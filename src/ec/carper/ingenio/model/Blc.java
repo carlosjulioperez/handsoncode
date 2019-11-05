@@ -16,17 +16,17 @@ import org.openxava.model.*;
 
 @Entity
 @View(members=
-    "fecha,numeroSemana;" +
+    "fecha,calSemana;" +
     "tabDatosDia{" + 
     "   canaDia;" +
     "   aguaMaceracion;" +
-    "   jugoDiluido;" +
+    "   jugoDiluido,calQtyJugoDiluido" +
     "}" +
     "tabTiempos { " + 
     "}" +
     "tabVariablesPrimarias{ " + 
     "   tabJugoDiluido{ " +
-            "rhoJugoDiluido,brixJDil;" +
+            "calRhoJugoDiluido,brixJDil;" +
     "   };" +
     "}" 
 )
@@ -45,8 +45,8 @@ public class Blc extends Identifiable{
      * https://stackoverflow.com/questions/26012434/get-week-number-of-localdate-java-8
      *
      */
-    @Depends("fecha") 
-    public int getNumeroSemana(){
+    @Depends("fecha") //Propiedad calculada
+    public int getCalSemana(){
 
         // Locale currentLocale = Locale.getDefault();
         // System.out.println(currentLocale.getLanguage());
@@ -66,22 +66,42 @@ public class Blc extends Identifiable{
     @Getter @Setter
     private BigDecimal aguaMaceracion;
     
-    @Getter @Setter
+    @Required @Getter @Setter
     private BigDecimal jugoDiluido;
     
     @Getter @Setter
+    private BigDecimal qtyJugoDiluido;
+
+    @Depends("jugoDiluido, brixJDil") //Propiedad calculada
+    public BigDecimal getCalQtyJugoDiluido(){
+        return getJugoDiluido().multiply(getCalRhoJugoDiluido()).divide(new BigDecimal("1000"));
+    }
+    
+    @Required @Getter @Setter
     private BigDecimal rhoJugoDiluido;
 
-    @Getter @Setter
+    @Depends("brixJDil") //Propiedad calculada
+    public BigDecimal getCalRhoJugoDiluido(){
+        return new BrixDensidadWp().getP(getBrixJDil());
+    }
+    
+    @Required @Getter @Setter
     private BigDecimal brixJDil;
-
     
     //**********************************************************************
     // Cálculos y formúlas
     //**********************************************************************
     
     public void recalculateSemana(){
-        setSemana(getNumeroSemana());
+        setSemana(getCalSemana());
+    }
+
+    public void recalculateQtyJugoDiluido(){
+        setQtyJugoDiluido(getCalQtyJugoDiluido());
+    }
+
+    public void recalculateRhoJugoDiluido(){
+        setRhoJugoDiluido(getCalRhoJugoDiluido());
     }
 
     //**********************************************************************
@@ -91,11 +111,15 @@ public class Blc extends Identifiable{
     @PrePersist //Al grabar la primera vez
     private void onPersist(){
         recalculateSemana();
+        recalculateQtyJugoDiluido();
+        recalculateRhoJugoDiluido();
     }
 
     @PreUpdate //Cada vez que se modifica
     private void onUpdate(){
         recalculateSemana();
+        recalculateQtyJugoDiluido();
+        recalculateRhoJugoDiluido();
     }
 
     /*

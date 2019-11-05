@@ -34,10 +34,7 @@ public class BrixDensidadWpTest extends ModuleTestBase {
         query.setParameter("w", w);
         
         List records = query.getResultList();
-        if (records.isEmpty())
-            return new BigDecimal(0);
-        else
-            return (BigDecimal) records.get(0);
+        return records.isEmpty() ? BigDecimal.ZERO: (BigDecimal) records.get(0);
     }
 
     public void testGetP(){

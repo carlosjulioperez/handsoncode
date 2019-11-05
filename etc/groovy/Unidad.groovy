@@ -1,4 +1,4 @@
-package ec.carper.fabrica.model
+package ec.carper.ingenio.model
 
 import lombok.Getter
 import lombok.Setter

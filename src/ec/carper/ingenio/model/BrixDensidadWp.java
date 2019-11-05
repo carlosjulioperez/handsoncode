@@ -28,9 +28,6 @@ public class BrixDensidadWp extends Identifiable{
         query.setParameter("w", w);
         
         List records = query.getResultList();
-        if (records.isEmpty())
-            return new BigDecimal(0);
-        else
-            return (BigDecimal) records.get(0);
+        return records.isEmpty() ? BigDecimal.ZERO: (BigDecimal) records.get(0);
     }
 }
