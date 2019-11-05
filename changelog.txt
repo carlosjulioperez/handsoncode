@@ -1,0 +1,45 @@
+Proyecto
+	
+	https://trello.com/b/lZwKk47m/fabrica
+	Locale: iso-8859-1
+
+	https://sourceforge.net/p/openxava/discussion/437013/thread/83b3114767/?limit=25
+
+	* hsqldb:
+		https://stackoverflow.com/questions/24613508/import-csv-file-in-hsqldb
+		http://hsqldb.org/doc/2.0/guide/texttables-chapt.html
+
+	* postgres:
+		createdb -O postgres eneragro_test
+
+		+ Listado de todos los esquemas:
+		https://tableplus.com/blog/2018/04/postgresql-how-to-list-all-schemas.html
+
+		SELECT schema_name FROM information_schema.schemata;
+		SELECT nspname FROM pg_catalog.pg_namespace;
+
+		+ Cambiar de esquema:
+		https://stackoverflow.com/questions/34098326/how-to-select-a-schema-in-postgres-when-using-psql
+
+		SHOW search_path;
+		SET search_path TO fabrica;
+
+		+ reiniciar secuencia:
+		ALTER SEQUENCE seq RESTART WITH 1;
+		UPDATE t SET idcolumn=nextval('seq');
+
+	* Mode:
+		1. persistence/META-INF/persistence.xml:
+			hibernate.dialect
+		2. context.xml:
+			+ Develop: web/META-INF/context.xml
+			+ Produccion: conf/context.xml 
+		3. build.xml, task:
+
+		<Resource name="jdbc/FabricaDS" auth="Container"
+			type="javax.sql.DataSource"
+			maxTotal="100" maxIdle="20" maxWaitMillis="10000"
+			username="postgres" password=""
+			driverClassName="org.postgresql.Driver"
+			url="jdbc:postgresql://localhost:5432/eneragro_test"/>
+
