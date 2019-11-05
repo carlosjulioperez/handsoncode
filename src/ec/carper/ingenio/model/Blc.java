@@ -20,7 +20,7 @@ import org.openxava.model.*;
     "tabDatosDia{" + 
     "   canaDia;" +
     "   aguaMaceracion;" +
-    "   jugoDiluido,calQtyJugoDiluido" +
+    "   jugoDiluido,calJugoDiluidoQty" +
     "}" +
     "tabTiempos { " + 
     "}" +
@@ -70,13 +70,29 @@ public class Blc extends Identifiable{
     private BigDecimal jugoDiluido;
     
     @Getter @Setter
-    private BigDecimal qtyJugoDiluido;
+    private BigDecimal jugoDiluidoQty;
 
     @Depends("jugoDiluido, brixJDil") //Propiedad calculada
-    public BigDecimal getCalQtyJugoDiluido(){
-        return getJugoDiluido().multiply(getCalRhoJugoDiluido()).divide(new BigDecimal("1000"));
+    public BigDecimal getCalJugoDiluidoQty(){
+        //return getJugoDiluido().multiply(getCalRhoJugoDiluido()).divide(new BigDecimal("1000"));
+        return (jugoDiluido!=null && brixJDil!=null) ? 
+            jugoDiluido.multiply(getCalRhoJugoDiluido()).divide(new BigDecimal("1000")) : 
+            BigDecimal.ZERO;
     }
     
+    @Getter @Setter
+    private BigDecimal bagazoCalculado;
+
+    @Getter @Setter
+    private BigDecimal bagazoCalculadoQty;
+
+    @Getter @Setter
+    private BigDecimal bagazoDirecto;
+
+    @Getter @Setter
+    private BigDecimal bagazoDirectoQty;
+
+    // Variables primarias
     @Required @Getter @Setter
     private BigDecimal rhoJugoDiluido;
 
@@ -97,7 +113,7 @@ public class Blc extends Identifiable{
     }
 
     public void recalculateQtyJugoDiluido(){
-        setQtyJugoDiluido(getCalQtyJugoDiluido());
+        setJugoDiluidoQty(getCalJugoDiluidoQty());
     }
 
     public void recalculateRhoJugoDiluido(){
