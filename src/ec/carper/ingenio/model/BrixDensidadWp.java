@@ -1,12 +1,17 @@
 package ec.carper.ingenio.model;
 
 import java.math.BigDecimal;
-import javax.persistence.*;
-import javax.validation.constraints.Digits;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.*;
+import javax.persistence.Query;
+import javax.validation.constraints.Digits;
 import org.openxava.annotations.*;
 import org.openxava.model.*;
+import static org.openxava.jpa.XPersistence.*;
 
 @Entity
 public class BrixDensidadWp extends Identifiable{
