@@ -17,4 +17,15 @@ public class BrixDensidadWp extends Identifiable{
     @Digits(integer=4,fraction=3) @Required @Getter @Setter
     private BigDecimal p;
 
+    public BigDecimal getP(BigDecimal w){
+        Query query = getManager().
+            createQuery("select o.p from BrixDensidadWp o where o.w <= :w order by o.w desc");
+        query.setParameter("w", w);
+        
+        List records = query.getResultList();
+        if (records.isEmpty())
+            return new BigDecimal(0);
+        else
+            return (BigDecimal) records.get(0);
+    }
 }
