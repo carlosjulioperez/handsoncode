@@ -79,8 +79,7 @@ class Blc extends Identifiable{
 
     @Depends("jugoDiluido, brixJDil") //Propiedad calculada 2
     BigDecimal getCalJugoDiluidoQty(){
-        return (jugoDiluido!=null && brixJDil!=null) ? 
-            ( jugoDiluido * getCalRhoJugoDiluido() / 1000 ) : 0
+        return ( jugoDiluido?:0 * getCalRhoJugoDiluido()?:0 ) / 1000
     }
     
     //************************************************************
@@ -89,8 +88,9 @@ class Blc extends Identifiable{
 
     @Depends("aguaMaceracion, jugoDiluido, canaDia, hojaCana") //Propiedad calculada 3
     BigDecimal getCalBagazoCalculado(){ 
-        return (aguaMaceracion!=null && jugoDiluido!=null && canaDia!=null && hojaCana!=null) ? 
-            ( getCalCanaNeta() + aguaMaceracion - getCalJugoDiluidoQty() ) : 0
+        // return (aguaMaceracion && jugoDiluido && canaDia && hojaCana) ? 
+        //     getCalCanaNeta() + aguaMaceracion - getCalJugoDiluidoQty(): 0
+        return getCalCanaNeta()?:0 + aguaMaceracion - getCalJugoDiluidoQty()?:0
     }
 
     @Getter @Setter
@@ -98,8 +98,8 @@ class Blc extends Identifiable{
 
     @Depends("aguaMaceracion, jugoDiluido, canaDia, hojaCana") //Propiedad calculada 4
     BigDecimal getCalBagazoCalculadoQty(){ 
-        return (aguaMaceracion!=null && jugoDiluido!=null && canaDia!=null && hojaCana!=null) ? 
-            ( getCalBagazoCalculado() / canaDia * 100 ) : 0
+        return (aguaMaceracion && jugoDiluido && canaDia && hojaCana) ? 
+            getCalBagazoCalculado() / canaDia * 100 : 0
     }
 
     @Getter @Setter
@@ -110,8 +110,8 @@ class Blc extends Identifiable{
 
     @Depends("bagazoDirecto, canaDia") //Propiedad calculada 5
     BigDecimal getCalBagazoDirectoQty(){
-        return (bagazoDirecto!=null && canaDia!=null) ? 
-            ( bagazoDirecto * 100 / canaDia) : 0
+        return (bagazoDirecto && canaDia) ? 
+            ( bagazoDirecto * 100 ) / canaDia : 0
     }
 
     @Getter @Setter
@@ -119,8 +119,7 @@ class Blc extends Identifiable{
 
     @Depends("canaDia, hojaCana") //Propiedad calculada
     BigDecimal getCalCanaNeta(){
-        return (canaDia!=null && hojaCana!=null) ? 
-            (canaDia - hojaCana) : 0
+        return (canaDia && hojaCana) ? canaDia - hojaCana: 0
     }
 
     @Getter @Setter
