@@ -63,7 +63,7 @@ public class Blc extends Identifiable{
     @Getter @Setter
     private BigDecimal canaDia;
     
-    @Getter @Setter
+    @Required @Getter @Setter
     private BigDecimal aguaMaceracion;
     
     @Required @Getter @Setter
@@ -82,6 +82,11 @@ public class Blc extends Identifiable{
     
     @Getter @Setter
     private BigDecimal bagazoCalculado;
+
+    @Depends("aguaMaceracion, jugoDiluido")
+    public BigDecimal getCalBagazoCalculado(){
+        return BigDecimal.ZERO;
+    }
 
     @Getter @Setter
     private BigDecimal bagazoCalculadoQty;
