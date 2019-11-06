@@ -17,10 +17,12 @@ import org.openxava.model.*;
 @Entity
 @View(members=
     "fecha,calSemana;" +
-    "tabDatosDia{" + 
+    "tabDatosDia{#" + 
     "   canaDia;" +
     "   aguaMaceracion;" +
-    "   jugoDiluido,calJugoDiluidoQty" +
+    "   jugoDiluido, calJugoDiluidoQty;" +
+    // "   calBagazoCalculado, calBagazoCalculadoQty;" +
+    // "   bagazoDirecto, calBagazoDirectoQty;" +
     "}" +
     "tabTiempos { " + 
     "}" +
@@ -59,7 +61,7 @@ public class Blc extends Identifiable{
         return weekNumber;
     }
 
-    //Datos dia
+    // DATOS DIA
     @Getter @Setter
     private BigDecimal canaDia;
     
@@ -80,12 +82,14 @@ public class Blc extends Identifiable{
             BigDecimal.ZERO;
     }
     
+    //************************************************************
     @Getter @Setter
     private BigDecimal bagazoCalculado;
 
-    @Depends("aguaMaceracion, jugoDiluido")
+    @Depends("aguaMaceracion, jugoDiluido, canaDia, hojaCana")
     public BigDecimal getCalBagazoCalculado(){
-        return BigDecimal.ZERO;
+        return (aguaMaceracion!=null && jugoDiluido!=null && canaDia!=null && hojaCana!=null) ? 
+            aguaMaceracion.add(getCalCanaNeta()).subtract(getCalJugoDiluidoQty()): BigDecimal.ZERO;
     }
 
     @Getter @Setter
@@ -97,7 +101,27 @@ public class Blc extends Identifiable{
     @Getter @Setter
     private BigDecimal bagazoDirectoQty;
 
-    // Variables primarias
+    @Depends("bagazoDirecto, canaDia")
+    public BigDecimal getCalBagazoDirectoQty(){
+        return (bagazoDirecto!=null && canaDia!=null) ? 
+            bagazoDirecto.multiply(new BigDecimal("100")).divide(canaDia) :
+            BigDecimal.ZERO;
+    }
+
+    @Getter @Setter
+    private BigDecimal canaNeta;
+
+    @Depends("canaDia, hojaCana")
+    public BigDecimal getCalCanaNeta(){
+        return (canaDia!=null && hojaCana!=null) ? canaDia.subtract(hojaCana): BigDecimal.ZERO;
+    }
+
+    @Getter @Setter
+    private BigDecimal hojaCana;
+
+    //************************************************************
+
+    // VARIABLES PRIMARIAS
     @Required @Getter @Setter
     private BigDecimal rhoJugoDiluido;
 
@@ -117,7 +141,7 @@ public class Blc extends Identifiable{
         setSemana(getCalSemana());
     }
 
-    public void recalculateQtyJugoDiluido(){
+    public void recalculateJugoDiluidoQty(){
         setJugoDiluidoQty(getCalJugoDiluidoQty());
     }
 
@@ -125,6 +149,13 @@ public class Blc extends Identifiable{
         setRhoJugoDiluido(getCalRhoJugoDiluido());
     }
 
+    public void recalculateBagazoDirectoQty(){
+        setBagazoDirectoQty(getCalBagazoDirectoQty());
+    }
+    
+    public void recalculateCanaNeta(){
+        setCanaNeta(getCalCanaNeta());
+    }
     //**********************************************************************
     // Sincronización de propiedades calculadas y persistentes
     //**********************************************************************
@@ -132,15 +163,17 @@ public class Blc extends Identifiable{
     @PrePersist //Al grabar la primera vez
     private void onPersist(){
         recalculateSemana();
-        recalculateQtyJugoDiluido();
+        recalculateJugoDiluidoQty();
         recalculateRhoJugoDiluido();
+        recalculateCanaNeta();
     }
 
     @PreUpdate //Cada vez que se modifica
     private void onUpdate(){
         recalculateSemana();
-        recalculateQtyJugoDiluido();
+        recalculateJugoDiluidoQty();
         recalculateRhoJugoDiluido();
+        recalculateCanaNeta();
     }
 
     /*
