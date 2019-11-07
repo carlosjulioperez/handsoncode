@@ -7,8 +7,6 @@ import java.time.temporal.WeekFields
 import java.util.Locale
 
 import javax.persistence.*
-import lombok.Getter
-import lombok.Setter
 import org.openxava.actions.*
 import org.openxava.annotations.*
 import org.openxava.calculators.*
@@ -53,10 +51,9 @@ import org.openxava.model.*
 class Blc extends Identifiable{
 
     @DefaultValueCalculator(CurrentLocalDateCalculator.class) // Fecha actual
-    @Required @Getter @Setter
+    @Required
     LocalDate fecha
 
-    @Getter @Setter
     int semana
 
     /**
@@ -79,16 +76,12 @@ class Blc extends Identifiable{
     }
 
     // DATOS DIA
-    @Getter @Setter
     BigDecimal canaDia
     
-    @Getter @Setter
     BigDecimal aguaMaceracion
     
-    @Getter @Setter
     BigDecimal jugoDiluido
     
-    @Getter @Setter
     BigDecimal jugoDiluidoQty
 
     @Depends("jugoDiluido, brixJDil") //Propiedad calculada 2
@@ -98,7 +91,6 @@ class Blc extends Identifiable{
     }
     
     //************************************************************
-    @Getter @Setter
     BigDecimal bagazoCalculado
 
     @Depends("aguaMaceracion, jugoDiluido, canaDia, hojaCana") //Propiedad calculada 3
@@ -107,7 +99,6 @@ class Blc extends Identifiable{
             ( getCalCanaNeta() + aguaMaceracion - getCalJugoDiluidoQty() ) : 0
     }
 
-    @Getter @Setter
     BigDecimal bagazoCalculadoQty
 
     @Depends("aguaMaceracion, jugoDiluido, canaDia, hojaCana") //Propiedad calculada 4
@@ -116,10 +107,8 @@ class Blc extends Identifiable{
             ( getCalBagazoCalculado() / canaDia * 100 ) : 0
     }
 
-    @Getter @Setter
     BigDecimal bagazoDirecto
 
-    @Getter @Setter
     BigDecimal bagazoDirectoQty
 
     @Depends("bagazoDirecto, canaDia") //Propiedad calculada 5
@@ -128,10 +117,8 @@ class Blc extends Identifiable{
             ( bagazoDirecto * 100 / canaDia) : 0
     }
 
-    @Getter @Setter
     BigDecimal cachaza
 
-    @Getter @Setter
     BigDecimal cachazaQty
 
     @Depends("canaDia, cachaza") //Propiedad calculada 6
@@ -140,10 +127,8 @@ class Blc extends Identifiable{
             (cachaza * 100 / canaDia ) : 0
     }
 
-    @Getter @Setter
     BigDecimal mielFinalMelaza
 
-    @Getter @Setter
     BigDecimal mielFinalMelazaQty
 
     @Depends("canaDia, mielFinalMelaza") //Propiedad calculada 7
@@ -152,10 +137,8 @@ class Blc extends Identifiable{
             (mielFinalMelaza * 100 / canaDia ) : 0
     }
 
-    @Getter @Setter
     BigDecimal azucarBlanca
 
-    @Getter @Setter
     BigDecimal azucarBlancaQty
 
     @Depends("azucarBlanca") //Propiedad calculada 8
@@ -164,7 +147,6 @@ class Blc extends Identifiable{
             (azucarBlanca / 20) : 0
     }
 
-    @Getter @Setter
     BigDecimal canaNeta
 
     @Depends("canaDia, hojaCana") //Propiedad calculada
@@ -173,7 +155,6 @@ class Blc extends Identifiable{
             (canaDia - hojaCana) : 0
     }
 
-    @Getter @Setter
     BigDecimal jugoNeto
 
     @Depends("jugoDiluido, brixJDil, solidosInsol") //Propiedad calculada 9
@@ -182,7 +163,6 @@ class Blc extends Identifiable{
             ( getCalJugoDiluidoQty() - (getCalJugoDiluidoQty() * solidosInsol / 100) ) : 0
     }
 
-    @Getter @Setter
     BigDecimal jugoNetoQty
 
     @Depends("jugoDiluido, brixJDil, solidosInsol, canaDia") //Propiedad calculada 10
@@ -191,7 +171,6 @@ class Blc extends Identifiable{
             ( getCalJugoNeto() * 100 / canaDia ) : 0
     }
 
-    @Getter @Setter
     BigDecimal meladura
 
     //TODO
@@ -201,7 +180,6 @@ class Blc extends Identifiable{
             ( (getCalJugoDiluidoQty()-(getCalJugoDiluidoQty()*solidosInsol/100)) - ((getCalJugoDiluidoQty()-(getCalJugoDiluidoQty()*solidosInsol/100)) * (1 - (brixJClaro/brixMeladuraCruda))) ) : 0
     }
 
-    @Getter @Setter
     BigDecimal meladuraQty
 
     @Depends("jugoDiluido, brixJDil, solidosInsol, brixJClaro, brixMeladuraCruda, canaDia") //Propiedad calculada 12
@@ -210,34 +188,27 @@ class Blc extends Identifiable{
         ( getCalMeladura()*100 / canaDia ) : 0
     }
 
-    @Getter @Setter
     BigDecimal hojaCana
 
     //************************************************************
 
     // VARIABLES PRIMARIAS
-    @Getter @Setter
     BigDecimal rhoJugoDiluido
 
     @Depends("brixJDil") //Propiedad calculada
     BigDecimal getCalRhoJugoDiluido(){
-        return new BrixDensidadWp().getP(getBrixJDil())
+        return brixJDil!=null ? new BrixDensidadWp().getP(getBrixJDil()) : 0
     }
     
-    @Getter @Setter
     BigDecimal brixJDil
     
-    @Getter @Setter
     BigDecimal solidosInsol
     
-    @Getter @Setter
     BigDecimal sacJDil
     
-    @Getter @Setter
     BigDecimal brixJClaro
 
     // ANALISIS RUTINARIOS Y ESPECIALES FABRICA
-    @Getter @Setter
     BigDecimal brixMeladuraCruda
 
     //**********************************************************************
@@ -310,13 +281,25 @@ class Blc extends Identifiable{
         recalculateRhoJugoDiluido()
     }
     
-    @PrePersist //Al grabar la primera vez
-    void onPersist(){
-        sincronizarPropiedadesPersistentes()
-    }
+    // https://www.openxava.org/OpenXavaDoc/docs/basic-business-logic_es.html#Metodos-de-retrollamadas-JPA-Sincronizar-propiedades-persistentes-y-calculadas
 
-    @PreUpdate //Cada vez que se modifica
-    void onUpdate(){
+    @PrePersist //Al grabar la primera vez
+    private void preGrabar() throws Exception{
         sincronizarPropiedadesPersistentes()
     }
+    
+    // @PrePersist 
+    // private void preGrabar() throws Exception {
+    //     calcularNumero(); //cabecera
+    //     recalcularImporte(); //detalle
+    // }
+    //
+    // @Version
+    // private Integer version; // Añadida propiedad 'version', sin getter, ni setter
+    //  
+    // @PreUpdate // Añadido '@PreUPdate'
+    // public void recalcularImporte() { // Ejecutado justo antes de actualizar el objeto
+    //     setImporte(getImporteTotal());
+    // }
+
 }
