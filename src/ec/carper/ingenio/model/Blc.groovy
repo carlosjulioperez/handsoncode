@@ -28,6 +28,7 @@ import org.openxava.model.*
        azucarBlanca, calAzucarBlancaQty;
        calCanaNeta;
        calJugoNeto, calJugoNetoQty;
+       calMeladura, calMeladuraQty;
        hojaCana;
     }
     tabTiempos {
@@ -35,8 +36,16 @@ import org.openxava.model.*
     tabVariablesPrimarias{
        tabJugoDiluido{
            calRhoJugoDiluido, brixJDil;
-            solidosInsol, sacJDil;
+           solidosInsol, sacJDil;
        }
+       tabJugoClaro{
+           brixJClaro;
+       }
+    }
+    tabAnalisisRutinariosEspecialesFabrica{
+        tabAnalisisAREF {
+            brixMeladuraCruda;
+        }
     }
     """
 )
@@ -158,6 +167,12 @@ class Blc extends Identifiable{
     @Getter @Setter
     BigDecimal canaNeta
 
+    @Depends("canaDia, hojaCana") //Propiedad calculada
+    BigDecimal getCalCanaNeta(){
+        return (canaDia!=null && hojaCana!=null) ? 
+            (canaDia - hojaCana) : 0
+    }
+
     @Getter @Setter
     BigDecimal jugoNeto
 
@@ -176,10 +191,23 @@ class Blc extends Identifiable{
             ( getCalJugoNeto() * 100 / canaDia ) : 0
     }
 
-    @Depends("canaDia, hojaCana") //Propiedad calculada
-    BigDecimal getCalCanaNeta(){
-        return (canaDia!=null && hojaCana!=null) ? 
-            (canaDia - hojaCana) : 0
+    @Getter @Setter
+    BigDecimal meladura
+
+    //TODO
+    @Depends("jugoDiluido, brixJDil, solidosInsol, brixJClaro, brixMeladuraCruda") //Propiedad calculada 11
+    BigDecimal getCalMeladura(){
+        return (jugoDiluido!=null && brixJDil!=null && solidosInsol!=null && brixJClaro!=null && brixMeladuraCruda!=null) ? 
+            ( (getCalJugoDiluidoQty()-(getCalJugoDiluidoQty()*solidosInsol/100)) - ((getCalJugoDiluidoQty()-(getCalJugoDiluidoQty()*solidosInsol/100)) * (1 - (brixJClaro/brixMeladuraCruda))) ) : 0
+    }
+
+    @Getter @Setter
+    BigDecimal meladuraQty
+
+    @Depends("jugoDiluido, brixJDil, solidosInsol, brixJClaro, brixMeladuraCruda, canaDia") //Propiedad calculada 12
+    BigDecimal getCalMeladuraQty(){
+        return (jugoDiluido!=null && brixJDil!=null && solidosInsol!=null && brixJClaro!=null && brixMeladuraCruda!=null && canaDia!=null) ? 
+        ( getCalMeladura()*100 / canaDia ) : 0
     }
 
     @Getter @Setter
@@ -205,6 +233,13 @@ class Blc extends Identifiable{
     @Getter @Setter
     BigDecimal sacJDil
     
+    @Getter @Setter
+    BigDecimal brixJClaro
+
+    // ANALISIS RUTINARIOS Y ESPECIALES FABRICA
+    @Getter @Setter
+    BigDecimal brixMeladuraCruda
+
     //**********************************************************************
     // Cálculos y formúlas
     //**********************************************************************
@@ -237,7 +272,13 @@ class Blc extends Identifiable{
         setJugoNeto(getCalJugoNeto())
     }
     void recalculateJugoNetoQty(){ //10
-        setJugoNeto(getCalJugoNeto())
+        setJugoNetoQty(getCalJugoNetoQty())
+    }
+    void recalculateMeladura(){ //11
+        setMeladura(getCalMeladura())
+    }
+    void recalculateMeladuraQty(){ //12
+        setMeladuraQty(getCalMeladuraQty())
     }
 
     void recalculateCanaNeta(){
@@ -255,12 +296,15 @@ class Blc extends Identifiable{
         recalculateSemana() //1
         recalculateJugoDiluidoQty() //2
         recalculateBagazoCalculado() //3
-        recalculateBagazoCalculadoQty //4
+        recalculateBagazoCalculadoQty() //4
         recalculateBagazoDirectoQty() //5
         recalculateCachazaQty() //6
         recalculateMielFinalMelazaQty() //7
         recalculateAzucarBlancaQty() //8
         recalculateJugoNeto() //9
+        recalculateJugoNetoQty() //10
+        recalculateMeladura() //11
+        recalculateMeladuraQty() //12
 
         recalculateCanaNeta()
         recalculateRhoJugoDiluido()
