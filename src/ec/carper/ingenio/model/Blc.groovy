@@ -23,7 +23,11 @@ import org.openxava.model.*
        jugoDiluido, calJugoDiluidoQty;
        calBagazoCalculado, calBagazoCalculadoQty;
        bagazoDirecto, calBagazoDirectoQty;
+       cachaza, calCachazaQty;
+       mielFinalMelaza, calMielFinalMelazaQty;
+       azucarBlanca, calAzucarBlancaQty;
        calCanaNeta;
+       calJugoNeto, calJugoNetoQty;
        hojaCana;
     }
     tabTiempos {
@@ -31,6 +35,7 @@ import org.openxava.model.*
     tabVariablesPrimarias{
        tabJugoDiluido{
            calRhoJugoDiluido, brixJDil;
+            solidosInsol, sacJDil;
        }
     }
     """
@@ -68,10 +73,10 @@ class Blc extends Identifiable{
     @Getter @Setter
     BigDecimal canaDia
     
-    @Required @Getter @Setter
+    @Getter @Setter
     BigDecimal aguaMaceracion
     
-    @Required @Getter @Setter
+    @Getter @Setter
     BigDecimal jugoDiluido
     
     @Getter @Setter
@@ -115,7 +120,61 @@ class Blc extends Identifiable{
     }
 
     @Getter @Setter
+    BigDecimal cachaza
+
+    @Getter @Setter
+    BigDecimal cachazaQty
+
+    @Depends("canaDia, cachaza") //Propiedad calculada 6
+    BigDecimal getCalCachazaQty(){
+        return (canaDia!=null && cachaza!=null) ? 
+            (cachaza * 100 / canaDia ) : 0
+    }
+
+    @Getter @Setter
+    BigDecimal mielFinalMelaza
+
+    @Getter @Setter
+    BigDecimal mielFinalMelazaQty
+
+    @Depends("canaDia, mielFinalMelaza") //Propiedad calculada 7
+    BigDecimal getCalMielFinalMelazaQty(){
+        return (canaDia!=null && mielFinalMelaza!=null) ? 
+            (mielFinalMelaza * 100 / canaDia ) : 0
+    }
+
+    @Getter @Setter
+    BigDecimal azucarBlanca
+
+    @Getter @Setter
+    BigDecimal azucarBlancaQty
+
+    @Depends("azucarBlanca") //Propiedad calculada 8
+    BigDecimal getCalAzucarBlancaQty(){
+        return (azucarBlanca!=null) ? 
+            (azucarBlanca / 20) : 0
+    }
+
+    @Getter @Setter
     BigDecimal canaNeta
+
+    @Getter @Setter
+    BigDecimal jugoNeto
+
+    @Depends("jugoDiluido, brixJDil, solidosInsol") //Propiedad calculada 9
+    BigDecimal getCalJugoNeto(){
+        return (jugoDiluido!=null && brixJDil!=null && solidosInsol!=null) ? 
+            ( getCalJugoDiluidoQty() - (getCalJugoDiluidoQty() * solidosInsol / 100) ) : 0
+    }
+
+    @Getter @Setter
+    BigDecimal jugoNetoQty
+
+    @Depends("jugoDiluido, brixJDil, solidosInsol, canaDia") //Propiedad calculada 10
+    BigDecimal getCalJugoNetoQty(){
+        return (jugoDiluido!=null && brixJDil!=null && solidosInsol!=null && canaDia!=null) ? 
+            ( getCalJugoNeto() * 100 / canaDia ) : 0
+    }
 
     @Depends("canaDia, hojaCana") //Propiedad calculada
     BigDecimal getCalCanaNeta(){
@@ -129,7 +188,7 @@ class Blc extends Identifiable{
     //************************************************************
 
     // VARIABLES PRIMARIAS
-    @Required @Getter @Setter
+    @Getter @Setter
     BigDecimal rhoJugoDiluido
 
     @Depends("brixJDil") //Propiedad calculada
@@ -137,8 +196,14 @@ class Blc extends Identifiable{
         return new BrixDensidadWp().getP(getBrixJDil())
     }
     
-    @Required @Getter @Setter
+    @Getter @Setter
     BigDecimal brixJDil
+    
+    @Getter @Setter
+    BigDecimal solidosInsol
+    
+    @Getter @Setter
+    BigDecimal sacJDil
     
     //**********************************************************************
     // Cálculos y formúlas
@@ -159,7 +224,21 @@ class Blc extends Identifiable{
     void recalculateBagazoDirectoQty(){ //5
         setBagazoDirectoQty(getCalBagazoDirectoQty())
     }
-    
+    void recalculateCachazaQty(){ //6
+        setCachazaQty(getCalCachazaQty())
+    }
+    void recalculateMielFinalMelazaQty(){ //7
+        setMielFinalMelazaQty(getCalMielFinalMelazaQty())
+    }
+    void recalculateAzucarBlancaQty(){ //8
+        setAzucarBlancaQty(getCalAzucarBlancaQty())
+    }
+    void recalculateJugoNeto(){ //9
+        setJugoNeto(getCalJugoNeto())
+    }
+    void recalculateJugoNetoQty(){ //10
+        setJugoNeto(getCalJugoNeto())
+    }
 
     void recalculateCanaNeta(){
         setCanaNeta(getCalCanaNeta())
@@ -171,28 +250,29 @@ class Blc extends Identifiable{
     //**********************************************************************
     // Sincronización de propiedades calculadas y persistentes
     //**********************************************************************
-    
-    @PrePersist //Al grabar la primera vez
-    void onPersist(){
+
+    void sincronizarPropiedadesPersistentes(){
         recalculateSemana() //1
         recalculateJugoDiluidoQty() //2
         recalculateBagazoCalculado() //3
         recalculateBagazoCalculadoQty //4
         recalculateBagazoDirectoQty() //5
-        
+        recalculateCachazaQty() //6
+        recalculateMielFinalMelazaQty() //7
+        recalculateAzucarBlancaQty() //8
+        recalculateJugoNeto() //9
+
         recalculateCanaNeta()
         recalculateRhoJugoDiluido()
+    }
+    
+    @PrePersist //Al grabar la primera vez
+    void onPersist(){
+        sincronizarPropiedadesPersistentes()
     }
 
     @PreUpdate //Cada vez que se modifica
     void onUpdate(){
-        recalculateSemana() //1
-        recalculateJugoDiluidoQty() //2
-        recalculateBagazoCalculado() //3
-        recalculateBagazoCalculadoQty //4
-        recalculateBagazoDirectoQty() //5
-
-        recalculateCanaNeta()
-        recalculateRhoJugoDiluido()
+        sincronizarPropiedadesPersistentes()
     }
 }
