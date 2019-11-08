@@ -28,6 +28,7 @@ import org.openxava.model.*
        calJugoNeto, calJugoNetoQty;
        calMeladura, calMeladuraQty;
        hojaCana;
+       calSacosDisueltos, sacosDisueltosQty;
     }
     tabTiempos {
     }
@@ -190,6 +191,15 @@ class Blc extends Identifiable{
 
     BigDecimal hojaCana
 
+    BigDecimal sacosDisueltos
+
+    @Depends("sacosDisueltosQty")
+    BigDecimal getCalSacosDisueltos(){
+        return (sacosDisueltosQty!=null) ? sacosDisueltosQty * 20 : 0
+    }
+
+    BigDecimal sacosDisueltosQty
+
     //************************************************************
 
     // VARIABLES PRIMARIAS
@@ -239,22 +249,25 @@ class Blc extends Identifiable{
     void recalculateAzucarBlancaQty(){ //8
         setAzucarBlancaQty(getCalAzucarBlancaQty())
     }
-    void recalculateJugoNeto(){ //9
-        setJugoNeto(getCalJugoNeto())
-    }
-    void recalculateJugoNetoQty(){ //10
-        setJugoNetoQty(getCalJugoNetoQty())
-    }
-    void recalculateMeladura(){ //11
-        setMeladura(getCalMeladura())
-    }
-    void recalculateMeladuraQty(){ //12
-        setMeladuraQty(getCalMeladuraQty())
-    }
-
-    void recalculateCanaNeta(){
+    void recalculateCanaNeta(){ //9
         setCanaNeta(getCalCanaNeta())
     }
+    void recalculateJugoNeto(){ //10
+        setJugoNeto(getCalJugoNeto())
+    }
+    void recalculateJugoNetoQty(){ //11
+        setJugoNetoQty(getCalJugoNetoQty())
+    }
+    void recalculateMeladura(){ //12
+        setMeladura(getCalMeladura())
+    }
+    void recalculateMeladuraQty(){ //13
+        setMeladuraQty(getCalMeladuraQty())
+    }
+    void recalculateSacosDisueltos(){ //14
+        setSacosDisueltos(getCalSacosDisueltos())
+    }
+
     void recalculateRhoJugoDiluido(){ //
         setRhoJugoDiluido(getCalRhoJugoDiluido())
     }
@@ -272,12 +285,13 @@ class Blc extends Identifiable{
         recalculateCachazaQty() //6
         recalculateMielFinalMelazaQty() //7
         recalculateAzucarBlancaQty() //8
-        recalculateJugoNeto() //9
-        recalculateJugoNetoQty() //10
-        recalculateMeladura() //11
-        recalculateMeladuraQty() //12
+        recalculateCanaNeta() //9
+        recalculateJugoNeto() //10
+        recalculateJugoNetoQty() //11
+        recalculateMeladura() //12
+        recalculateMeladuraQty() //13
+        recalculateSacosDisueltos() //14
 
-        recalculateCanaNeta()
         recalculateRhoJugoDiluido()
     }
     
