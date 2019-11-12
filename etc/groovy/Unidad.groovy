@@ -1,8 +1,5 @@
 package ec.carper.ingenio.model
 
-import lombok.Getter
-import lombok.Setter
-
 import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.model.*
@@ -11,10 +8,10 @@ import org.openxava.model.*
 class Unidad {
 
 	@Id @Column(length=3) @ReadOnly
-	@GeneratedValue(strategy=GenerationType.IDENTITY) @Getter @Setter
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	short id
 
-    @Column(length=10) @Required @Getter @Setter
+    @Column(length=10) @Required
     String descripcion
 
 }

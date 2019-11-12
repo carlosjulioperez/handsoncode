@@ -7,8 +7,6 @@ import java.time.temporal.WeekFields
 import java.util.Locale
 
 import javax.persistence.*
-import lombok.Getter
-import lombok.Setter
 import org.openxava.actions.*
 import org.openxava.annotations.*
 import org.openxava.calculators.*
@@ -39,10 +37,9 @@ import org.openxava.model.*
 class Blc extends Identifiable{
 
     @DefaultValueCalculator(CurrentLocalDateCalculator.class) // Fecha actual
-    @Required @Getter @Setter
+    @Required
     LocalDate fecha
 
-    @Getter @Setter
     int semana
 
     /**
@@ -65,16 +62,14 @@ class Blc extends Identifiable{
     }
 
     // DATOS DIA
-    @Getter @Setter
     BigDecimal canaDia
     
-    @Required @Getter @Setter
+    @Required
     BigDecimal aguaMaceracion
     
-    @Required @Getter @Setter
+    @Required
     BigDecimal jugoDiluido
     
-    @Getter @Setter
     BigDecimal jugoDiluidoQty
 
     @Depends("jugoDiluido, brixJDil") //Propiedad calculada 2
@@ -83,7 +78,6 @@ class Blc extends Identifiable{
     }
     
     //************************************************************
-    @Getter @Setter
     BigDecimal bagazoCalculado
 
     @Depends("aguaMaceracion, jugoDiluido, canaDia, hojaCana") //Propiedad calculada 3
@@ -93,7 +87,6 @@ class Blc extends Identifiable{
         return getCalCanaNeta()?:0 + aguaMaceracion - getCalJugoDiluidoQty()?:0
     }
 
-    @Getter @Setter
     BigDecimal bagazoCalculadoQty
 
     @Depends("aguaMaceracion, jugoDiluido, canaDia, hojaCana") //Propiedad calculada 4
@@ -102,10 +95,8 @@ class Blc extends Identifiable{
             getCalBagazoCalculado() / canaDia * 100 : 0
     }
 
-    @Getter @Setter
     BigDecimal bagazoDirecto
 
-    @Getter @Setter
     BigDecimal bagazoDirectoQty
 
     @Depends("bagazoDirecto, canaDia") //Propiedad calculada 5
@@ -114,7 +105,6 @@ class Blc extends Identifiable{
             ( bagazoDirecto * 100 ) / canaDia : 0
     }
 
-    @Getter @Setter
     BigDecimal canaNeta
 
     @Depends("canaDia, hojaCana") //Propiedad calculada
@@ -122,13 +112,12 @@ class Blc extends Identifiable{
         return (canaDia && hojaCana) ? canaDia - hojaCana: 0
     }
 
-    @Getter @Setter
     BigDecimal hojaCana
 
     //************************************************************
 
     // VARIABLES PRIMARIAS
-    @Required @Getter @Setter
+    @Required
     BigDecimal rhoJugoDiluido
 
     @Depends("brixJDil") //Propiedad calculada
@@ -136,7 +125,7 @@ class Blc extends Identifiable{
         return new BrixDensidadWp().getP(getBrixJDil())
     }
     
-    @Required @Getter @Setter
+    @Required
     BigDecimal brixJDil
     
     //**********************************************************************
