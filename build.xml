@@ -91,8 +91,10 @@
 				<formatter type="plain" />
 				<!-- <formatter type="xml" /> -->
 				<fileset dir="${class.dir}">
-					<include name="**/*Test.class" />
-					<!--
+					<!-- <include name="**/*Test.class" /> -->
+					<include name="**/Brix*Test.class" />
+                    
+                    <!--
 					<include name="**/CodeTest.class" />
 					<exclude name="**/HibernateTest.class" />
 					<exclude name="**/SpringTest.class" />
