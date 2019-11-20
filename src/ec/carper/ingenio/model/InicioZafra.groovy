@@ -10,6 +10,9 @@ import java.time.LocalDate
 @Entity
 class InicioZafra extends Identifiable{
 
+    @Column(length=50) @Required
+    String descripcion
+
     @DefaultValueCalculator(CurrentLocalDateCalculator.class) // Fecha actual
     @Required
     LocalDate fechaInicio
