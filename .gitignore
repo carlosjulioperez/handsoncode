@@ -10,6 +10,9 @@ temp/
 web/*
 xava/*
 
+!xava/application.xml
+!xava/controllers.xml
+
 # swap
 [._]*.s[a-v][a-z]
 [._]*.sw[a-p]
