@@ -1,4 +1,4 @@
-package ec.carper.ingenio.model
+eackage ec.carper.ingenio.model
 
 import javax.persistence.*
 import org.openxava.annotations.*
