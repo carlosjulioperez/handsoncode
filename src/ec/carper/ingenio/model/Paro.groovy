@@ -1,20 +1,24 @@
 package ec.carper.ingenio.model
 
+import java.time.LocalDate
+import java.util.*
 import javax.persistence.*
 import org.openxava.annotations.*
+import org.openxava.calculators.*
+import org.openxava.jpa.*;
 import org.openxava.model.*
 
 @Entity
 class Paro extends Identifiable{
 
-    @Column(length=100) @Required
-    String descripcion
+    @DefaultValueCalculator(CurrentLocalDateCalculator.class) // Fecha actual
+    @Required
+    LocalDate fecha
     
-    // https://github.com/mariuszs/openxava/blob/master/source/src/test/java/org/openxava/test/model/Clerk.java
-    @Stereotype("DATETIME") @Required
-    java.sql.Timestamp inicioParo
+    @Column(length=100) @Required
+    String observaciones 
 
-    @Stereotype("DATETIME") @Required
-    java.sql.Timestamp finParo
-
+    @ElementCollection
+    @ListProperties("""inicioParo,finParo,calTotalParo,area,descripcion""")
+    Collection<ParoDetalle>detalles
 }

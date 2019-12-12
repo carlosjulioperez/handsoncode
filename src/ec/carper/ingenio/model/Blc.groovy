@@ -297,7 +297,7 @@ class Blc extends Identifiable{
     
     // https://www.openxava.org/OpenXavaDoc/docs/basic-business-logic_es.html#Metodos-de-retrollamadas-JPA-Sincronizar-propiedades-persistentes-y-calculadas
 
-    @PrePersist //Al grabar la primera vez
+    @PrePersist //Ejecutado justo antes de grabar el objeto por primera vez
     private void preGrabar() throws Exception{
         sincronizarPropiedadesPersistentes()
     }
