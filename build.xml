@@ -92,7 +92,7 @@
 				<!-- <formatter type="xml" /> -->
 				<fileset dir="${class.dir}">
 					<!-- <include name="**/*Test.class" /> -->
-					<include name="**/AreaTest.class" />
+					<include name="**/ParoTest.class" />
                     
                     <!--
 					<include name="**/CodeTest.class" />

@@ -1,6 +1,5 @@
 package ec.carper.ingenio.model
 
-import ec.carper.ingenio.util.Util
 import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.model.*
@@ -16,14 +15,29 @@ class ParoDetalle{
     java.sql.Timestamp finParo
 
     @Depends("inicioParo, finParo") //Propiedad calculada
-    @Stereotype("TIME") @Required
-    String getCalTotalParo(){
-        return (inicioParo!=null && finParo!=null) ? 
-            Util.instance.toTimeString( 
-            Math.abs (finParo.getTime()-inicioParo.getTime()) / 1000*60*60 ): ""
+    @Stereotype("DATETIME") @Required
+    java.sql.Timestamp getCalTotalParo(){
+        if (inicioParo!=null && finParo!=null) {
+            def diferencia = finParo.getTime() - inicioParo.getTime()
+            def tm = diferencia
+
+            long hh = tm / 3600
+            println(hh)
+
+            tm %= 3600;
+            long mm = tm / 60;
+            println(mm)
+            
+            tm %= 60;
+            long ss = tm;
+            println(ss)
+
+            return new java.sql.Timestamp( diferencia )
+        }
+        else return null
     }
     
-    String totalParo
+    java.sql.Timestamp totalParo
 
     @ManyToOne(fetch=FetchType.LAZY)
     @DescriptionsList
