@@ -1,15 +1,16 @@
 package ec.carper.ingenio.model
 
 import java.time.LocalDate
-import java.util.*
 import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.calculators.*
-import org.openxava.jpa.*;
 import org.openxava.model.*
 
 @Entity
 class Paro extends Identifiable{
+
+    // @Version
+    // private Integer version; // Añadida propiedad 'version', sin getter, ni setter
 
     @DefaultValueCalculator(CurrentLocalDateCalculator.class) // Fecha actual
     @Required
@@ -19,6 +20,6 @@ class Paro extends Identifiable{
     String observaciones 
 
     @ElementCollection
-    @ListProperties("""inicioParo,finParo,calTotalParo,area,descripcion""")
+    @ListProperties("""fechaInicio,fechaFin,calParo,area,descripcion""")
     Collection<ParoDetalle>detalles
 }

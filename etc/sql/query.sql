@@ -1,0 +1,1 @@
+SELECT * FROM ingenio.PARO_DETALLES;

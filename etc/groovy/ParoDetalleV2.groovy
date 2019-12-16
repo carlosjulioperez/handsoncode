@@ -1,7 +1,9 @@
 package ec.carper.ingenio.model
 
+import ec.carper.ingenio.util.Util
 import java.time.LocalDate
 import javax.persistence.*
+import org.apache.commons.logging.*
 import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.model.*
@@ -9,28 +11,33 @@ import org.openxava.model.*
 @Embeddable
 class ParoDetalle{
 
+    private static Log log = LogFactory.getLog(ParoDetalle.class)
+
     // https://github.com/mariuszs/openxava/blob/master/source/src/test/java/org/openxava/test/model/Clerk.java
     
     @DefaultValueCalculator(CurrentLocalDateCalculator.class) // Fecha actual
     @Required
     LocalDate fechaInicio
 
-    @Stereotype("TIME") @Required
+    @Column(length=8) @Stereotype("TIME") @Required
     String horaInicio 
 
     @DefaultValueCalculator(CurrentLocalDateCalculator.class) // Fecha actual
     @Required
     LocalDate fechaFin
 
-    @Stereotype("TIME") @Required
+    @Column(length=8) @Stereotype("TIME") @Required
     String horaFin
 
     @Depends("fechaInicio,horaInicio,fechaFin,horaFin") //Propiedad calculada
-    @Required
+    @Column(length=8) @Required
     String getCalTotalParo(){
         if (fechaInicio!=null && horaInicio!=null && fechaFin!=null && horaFin!=null) {
             def starString = fechaInicio.toString() + " " + horaInicio
-            def starString = fechaFin.toString() + " " + horaFin
+            def endString  = fechaFin.toString() + " " + horaFin
+            
+            log.warn ("Start: ${starString}, end: ${endString} ")
+
             return Util.instance.getDurationAsString(starString, endString)
         }
         else return ""
@@ -55,3 +62,4 @@ class ParoDetalle{
     }
 
 }
+

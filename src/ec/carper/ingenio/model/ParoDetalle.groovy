@@ -1,30 +1,42 @@
 package ec.carper.ingenio.model
 
 import ec.carper.ingenio.util.Util
+import java.time.LocalDate
 import javax.persistence.*
+import org.apache.commons.logging.*
 import org.openxava.annotations.*
+import org.openxava.calculators.*
 import org.openxava.model.*
 
 @Embeddable
 class ParoDetalle{
 
+    private static Log log = LogFactory.getLog(ParoDetalle.class)
+
     // https://github.com/mariuszs/openxava/blob/master/source/src/test/java/org/openxava/test/model/Clerk.java
+    
     @Stereotype("DATETIME") @Required
-    java.sql.Timestamp inicioParo
+    java.sql.Timestamp fechaInicio
 
     @Stereotype("DATETIME") @Required
-    java.sql.Timestamp finParo
+    java.sql.Timestamp fechaFin
 
-    @Depends("inicioParo, finParo") //Propiedad calculada
-    @Stereotype("TIME") @Required
-    String getCalTotalParo(){
-        return (inicioParo!=null && finParo!=null) ? 
-            Util.instance.toTimeString( 
-            Math.abs (finParo.getTime()-inicioParo.getTime()) / 1000*60*60 ): ""
+    String paro
+
+    @Column(length=8)
+    @Depends("fechaInicio,fechaFin") //Propiedad calculada
+    String getCalParo(){
+        if (fechaInicio!=null && fechaFin!=null ) {
+            long startTime = fechaInicio.getTime()
+            long endTime = fechaFin.getTime()
+            
+            //log.warn ("Start: ${startTime}, end: ${endTime} ")
+
+            return Util.instance.getDurationAsString(startTime, endTime)
+        }
+        else return ""
     }
     
-    String totalParo
-
     @ManyToOne(fetch=FetchType.LAZY)
     @DescriptionsList
     Area area
@@ -32,17 +44,15 @@ class ParoDetalle{
     @Column(length=100) @Required
     String descripcion
 
-    // java.sql.Timestamp getTiempoTotalParada(){
-    //     java.sql.Timestamp total = new java.sql.Timestamp();
-    // }
-
     @PrePersist // Ejecutado justo antes de grabar el objeto por primera vez
     private void preGrabar() throws Exception {
-        recalcularTotalParo()
+        recalculateParo()
     }
 
-    public void recalcularTotalParo() {
-        setTotalParo(getCalTotalParo())
+    void recalculateParo() {
+        log.warn ("++++++++++ Total de paro: " + getCalParo())
+        setParo(getCalParo())
+        log.warn ("++++++++++ paro: " + getParo())
     }
 
 }

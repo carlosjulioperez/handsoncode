@@ -37,36 +37,51 @@ class ParoTest extends ModuleTestBase {
     }
 
     void sumaTiempos(){
-        def timestampsList = [ "01:40:01", "11:00:05", "10:24:03" ]
-        long duration = 0
-        for (durationp in timestampsList){
-            def arr = durationp.split(":")
-            duration += Integer.parseInt(arr[2])
-            duration += 60 * Integer.parseInt(arr[1])
-            duration += 3600 * Integer.parseInt(arr[0])
-        }
+        def timeList = [ "01:40:01", "11:00:05", "10:24:03" ]
+        def duration = Util.instance.getDuration(timeList)
+        // long duration = 0
+        // for (item in timeList){
+        //     def arr = item.split(":")
+        //     duration += Integer.parseInt(arr[2])
+        //     duration += 60 * Integer.parseInt(arr[1])
+        //     duration += 3600 * Integer.parseInt(arr[0])
+        // }
         log.warn ("============================================================")
+        //log.warn ( Util.instance.toTimeString(duration) )
         log.warn ( Util.instance.toTimeString(duration) )
     }
 
-    // https://www.programcreek.com/2014/01/how-to-calculate-time-difference-in-java/
-    // private void elapsed(){
-    //     String time1 = "23:59:01"
-    //     String time2 = "00:06:35"
-    //
-    //     SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss")
-    //     Date date1 = format.parse(time1)
-    //     Date date2 = format.parse(time2)
-    //     long difference = Math.abs(date2.getTime() - date1.getTime())
-    //     log.warn ("============================================================")
-    //     log.warn(difference)
-    //     log.warn ( toTimeString(difference) )
-    //     
-    //     log.warn ("============================================================")
-    //     difference /= 1000
-    //     log.warn ( toTimeString(difference) )
-    //
-    // }
+
+    // google: groovy interval between times
+    // https://stackoverflow.com/questions/48932709/calculate-difference-between-2-date-time-in-soapui
+    void elapsedStrings(){
+        //Assuming string teased out of response, if not you need to extract the value to a string....
+        def startString = '<startTime>2018-02-22T17:10:00-05:00</startTime>';
+        def endString     = '<endTime>2018-02-22T18:06:02-05:00</endTime>';
+
+        // If you have the tags, ditch them.
+        startString = startString.replace("<startTime>", "");
+        startString = startString.replace("</startTime>", "");
+
+        endString = endString.replace('<endTime>', '');
+        endString = endString.replace('</endTime>', '');
+
+        println ("Now just strings... ${startString} - ${endString}");
+
+        // Convert strings to dates...
+        def convertedStartDate = Date.parse("yyyy-MM-dd'T'HH:mm:ssX",startString);
+        def convertedEndDate = Date.parse("yyyy-MM-dd'T'HH:mm:ssX",endString);
+
+        println ("Now dates...  ${convertedStartDate} - ${convertedEndDate}");
+
+        //Use time category to tease out the values of interest...
+        use(groovy.time.TimeCategory) {
+            def duration = convertedEndDate - convertedStartDate
+                println ( "Days: ${duration.days}, Hours: ${duration.hours}, Minutes: ${duration.minutes}, Seconds: ${duration.seconds}, etc.")
+        }
+
+
+    }
 
 
 }

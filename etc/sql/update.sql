@@ -1,0 +1,2 @@
+DROP TABLE ingenio.PARO_DETALLES;
+DROP TABLE ingenio.PARO;
