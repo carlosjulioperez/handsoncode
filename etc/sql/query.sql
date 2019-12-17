@@ -1,1 +1,2 @@
+SELECT * FROM ingenio.PARO;
 SELECT * FROM ingenio.PARO_DETALLES;

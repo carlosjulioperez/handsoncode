@@ -21,8 +21,6 @@ class ParoDetalle{
     @Stereotype("DATETIME") @Required
     java.sql.Timestamp fechaFin
 
-    String paro
-
     @Column(length=8)
     @Depends("fechaInicio,fechaFin") //Propiedad calculada
     String getCalParo(){
@@ -43,16 +41,5 @@ class ParoDetalle{
 
     @Column(length=100) @Required
     String descripcion
-
-    @PrePersist // Ejecutado justo antes de grabar el objeto por primera vez
-    private void preGrabar() throws Exception {
-        recalculateParo()
-    }
-
-    void recalculateParo() {
-        log.warn ("++++++++++ Total de paro: " + getCalParo())
-        setParo(getCalParo())
-        log.warn ("++++++++++ paro: " + getParo())
-    }
 
 }

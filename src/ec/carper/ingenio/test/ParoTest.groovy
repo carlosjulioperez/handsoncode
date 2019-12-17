@@ -1,14 +1,17 @@
 package ec.carper.ingenio.test
  
 import java.util.List
+import javax.persistence.Query;
 
 import ec.carper.ingenio.model.Paro
+import ec.carper.ingenio.model.ParoDetalle
 import ec.carper.ingenio.util.Util
 import org.apache.commons.logging.*
 import org.openxava.tests.*
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import static org.openxava.jpa.XPersistence.*;
 
 class ParoTest extends ModuleTestBase {
 
@@ -33,7 +36,8 @@ class ParoTest extends ModuleTestBase {
     * https://www.tecmint.com/arithmetic-in-linux-terminal/
     */
     void test(){
-        sumaTiempos()
+        //sumaTiempos()
+        getConsultaClaseIncrustada()
     }
 
     void sumaTiempos(){
@@ -51,6 +55,18 @@ class ParoTest extends ModuleTestBase {
         log.warn ( Util.instance.toTimeString(duration) )
     }
 
+    String getConsultaClaseIncrustada(){
+        Query query = getManager().
+            createQuery("from Paro o where o.id= :id ")
+        query.setParameter("id", "ff8080816f0e8b24016f0e8ba71e0000")
+        
+        def paro = (Paro) query.getSingleResult()
+        // https://stackoverflow.com/questions/55222742/how-to-declare-an-string-array-in-groovy
+        def timeList = []
+        paro.detalles.each {
+            println ">>>>>>>>>>>>>>>>>>>>" + it.descripcion
+        }
+    }
 
     // google: groovy interval between times
     // https://stackoverflow.com/questions/48932709/calculate-difference-between-2-date-time-in-soapui
@@ -79,9 +95,5 @@ class ParoTest extends ModuleTestBase {
             def duration = convertedEndDate - convertedStartDate
                 println ( "Days: ${duration.days}, Hours: ${duration.hours}, Minutes: ${duration.minutes}, Seconds: ${duration.seconds}, etc.")
         }
-
-
     }
-
-
 }

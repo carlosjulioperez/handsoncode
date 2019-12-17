@@ -30,7 +30,7 @@ public class BrixDensidadWpTest extends ModuleTestBase {
 
     public BigDecimal getP(BigDecimal w){
         Query query = getManager().
-            createQuery("select o.p from BrixDensidadWp o where o.w <= :w order by o.w desc");
+            createQuery("select o.p from BrixDensidadWp o where o.w <= :w order by o.w desc")
         query.setParameter("w", w);
         
         List records = query.getResultList();
