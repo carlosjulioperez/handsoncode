@@ -8,6 +8,8 @@ import org.openxava.calculators.*
 import org.openxava.model.*
 
 @Entity
+@Tab(properties="""fecha,observaciones,totalParo""")
+@View(members=  """fecha;observaciones;detalles""")
 class Paro extends Identifiable{
 
     @Version
@@ -30,14 +32,16 @@ class Paro extends Identifiable{
     String totalParo
     
     String getSumaParo(){
-        if ( detalles.size() > 0 ) {
+        try{
             def timeList = []
             detalles.each { timeList << it.calParo }
+            //prinln ">>>>>>>>>>>>>>> " + timeList.size()
             def duration = Util.instance.getDuration(timeList)
             def valor = Util.instance.toTimeString(duration)
-            println( valor )
             return valor
-        }else return ""
+        }catch (Exception e){
+           return ""
+        }
     }
 
     @PrePersist // Ejecutado justo antes de grabar el objeto por primera vez
@@ -47,8 +51,6 @@ class Paro extends Identifiable{
 
     @PreUpdate
     void recalcularTotalParo() {
-        //println ("++++++++++ Total de paro: " + totalParo )
-        setTotalParo(getSumaParo())
-
+        setTotalParo(sumaParo)
     }
 }
