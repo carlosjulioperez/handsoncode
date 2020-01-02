@@ -39,7 +39,7 @@ class ParoDetalle{
     @DescriptionsList
     Area area
 
-    @Column(length=100) @Required
+    @Column(length=100) @DisplaySize(50) @Required
     String descripcion
 
 }

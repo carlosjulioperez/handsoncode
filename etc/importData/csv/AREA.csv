@@ -1,4 +1,4 @@
-id,descripcion
+ID,DESCRIPCION
 01,Campo
 02,Molino
 03,Instrumentación
@@ -8,4 +8,3 @@ id,descripcion
 07,Eléctrico
 08,Otros
 09,Programados
-
