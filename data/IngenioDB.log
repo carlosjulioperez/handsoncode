@@ -1,24 +1,32 @@
-/*C31*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C32*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C30*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C33*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C34*/SET SCHEMA INGENIO
-DELETE FROM PARO WHERE ID='ff8080816f63af23016f63bda85e0002'
-INSERT INTO PARO VALUES('ff8080816f63af23016f63bda85e0002','2019-08-03','PARADAS DE FABRICA 03/08/2019','03:43:00',1)
-DELETE FROM PARO_DETALLES WHERE PARO_ID='ff8080816f63af23016f63bda85e0002' AND AREA_ID='07' AND DESCRIPCION='CAIDA DE PLANTA ELECTRICA' AND FECHAFIN='2019-08-03 09:54:00.000000' AND FECHAINICIO='2019-08-03 07:41:00.000000'
-INSERT INTO PARO_DETALLES VALUES('ff8080816f63af23016f63bda85e0002','07','CAIDA DE PLANTA ELECTRICA','2019-08-03 09:54:00.000000','2019-08-03 07:41:00.000000')
-INSERT INTO PARO_DETALLES VALUES('ff8080816f63af23016f63bda85e0002','03','TACO MOLINO NO. 1','2019-08-03 13:51:00.000000','2019-08-03 13:35:00.000000')
-INSERT INTO PARO_DETALLES VALUES('ff8080816f63af23016f63bda85e0002','03','TACO MOLINO NO. 1 SINFONIA CONTROL DE NIVEL DE CHUTE DE MOLINO','2019-08-03 14:59:00.000000','2019-08-03 13:54:00.000000')
-INSERT INTO PARO_DETALLES VALUES('ff8080816f63af23016f63bda85e0002','02','DISPARO MOLINO NO. 1 SOBRE CARGA','2019-08-03 17:11:00.000000','2019-08-03 17:02:00.000000')
+/*C1*/SET SCHEMA SYSTEM_LOBS
+INSERT INTO BLOCKS VALUES(0,2147483647,0)
 COMMIT
-/*C36*/SET SCHEMA PUBLIC
-  TRUNCATE SCHEMA INGENIO AND COMMIT
+/*C2*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C37*/SET SCHEMA INGENIO
+/*C3*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C4*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C5*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C6*/SET SCHEMA PUBLIC
+CREATE SCHEMA INGENIO AUTHORIZATION SA
+create table Ingenio.Area (id varchar(32) not null, descripcion varchar(30), primary key (id))
+create table Ingenio.Blc (id varchar(32) not null, aguaMaceracion numeric(19,2), azucarBlanca numeric(19,2), azucarBlancaQty numeric(19,2), bagazoCalculado numeric(19,2), bagazoCalculadoQty numeric(19,2), bagazoDirecto numeric(19,2), bagazoDirectoQty numeric(19,2), brixJClaro numeric(19,2), brixJDil numeric(19,2), brixMeladuraCruda numeric(19,2), cachaza numeric(19,2), cachazaQty numeric(19,2), canaDia numeric(19,2), canaNeta numeric(19,2), fecha date, hojaCana numeric(19,2), jugoDiluido numeric(19,2), jugoDiluidoQty numeric(19,2), jugoNeto numeric(19,2), jugoNetoQty numeric(19,2), meladura numeric(19,2), meladuraQty numeric(19,2), mielFinalMelaza numeric(19,2), mielFinalMelazaQty numeric(19,2), rhoJugoDiluido numeric(19,2), sacJDil numeric(19,2), sacosDisueltos numeric(19,2), sacosDisueltosQty numeric(19,2), semana integer not null, solidosInsol numeric(19,2), primary key (id))
+create table Ingenio.BrixDensidadWp (id varchar(32) not null, p numeric(7,3), w numeric(4,2), primary key (id))
+create table Ingenio.IMAGES (ID varchar(255) not null, GALLERY varchar(255), IMAGE varbinary(16777216), primary key (ID))
+create table Ingenio.InicioZafra (id varchar(32) not null, descripcion varchar(50), fechaFin date, fechaInicio date, numeroZafra integer not null, primary key (id))
+create table Ingenio.OXDISCUSSIONCOMMENTS (id varchar(32) not null, comment clob(16777216), discussionId varchar(32), time timestamp, userName varchar(30), primary key (id))
+create table Ingenio.Paro (id varchar(32) not null, fecha date, observaciones varchar(100), totalParo varchar(255), version integer, primary key (id))
+create table Ingenio.Paro_detalles (Paro_id varchar(32) not null, area_id varchar(32), descripcion varchar(100), fechaFin timestamp, fechaInicio timestamp)
+create table Ingenio.Preferencias (id varchar(32) not null, inicioZafra_id varchar(32), primary key (id))
+create table Ingenio.Unidad (id varchar(32) not null, descripcion varchar(10), primary key (id))
+create table Ingenio.YourFirstEntity (id varchar(32) not null, amount numeric(19,2), date date, description varchar(50), primary key (id))
+create index Ingenio.IDXbhlx4vunn24ym1tbrlgq8g30m on Ingenio.OXDISCUSSIONCOMMENTS (discussionId)
+alter table Ingenio.Paro_detalles add constraint FK5lr8uthkrslsaeg3d2k0pyh4g foreign key (area_id) references Ingenio.Area
+alter table Ingenio.Paro_detalles add constraint FKennj5fx29an5dexcjn4k143a6 foreign key (Paro_id) references Ingenio.Paro
+alter table Ingenio.Preferencias add constraint FK7fc9tow3h0xpwt2dw45rj0xop foreign key (inicioZafra_id) references Ingenio.InicioZafra
+/*C7*/SET SCHEMA INGENIO
 INSERT INTO AREA VALUES('01','Campo')
 COMMIT
 INSERT INTO AREA VALUES('02','Molino')
@@ -37,7 +45,7 @@ INSERT INTO AREA VALUES('08','Otros')
 COMMIT
 INSERT INTO AREA VALUES('09','Programados')
 COMMIT
-/*C38*/SET SCHEMA INGENIO
+/*C8*/SET SCHEMA INGENIO
 INSERT INTO BRIXDENSIDADWP VALUES('1000',998.203,0.00)
 COMMIT
 INSERT INTO BRIXDENSIDADWP VALUES('1001',998.588,0.10)
@@ -1940,23 +1948,23 @@ INSERT INTO BRIXDENSIDADWP VALUES('1949',1515.170,94.90)
 COMMIT
 INSERT INTO BRIXDENSIDADWP VALUES('1950',1515.880,95.00)
 COMMIT
-/*C39*/SET SCHEMA INGENIO
+/*C9*/SET SCHEMA INGENIO
 INSERT INTO INICIOZAFRA VALUES('001','INICIO ZAFRA 2019/05/09','2020-01-01','2019-09-05',1)
 COMMIT
-/*C40*/SET SCHEMA INGENIO
+/*C10*/SET SCHEMA INGENIO
 INSERT INTO PREFERENCIAS VALUES('001','001')
 COMMIT
-/*C41*/SET SCHEMA INGENIO
+/*C11*/SET SCHEMA INGENIO
 INSERT INTO UNIDAD VALUES('1','TON')
 COMMIT
 INSERT INTO UNIDAD VALUES('2','M\u00b3')
 COMMIT
 INSERT INTO UNIDAD VALUES('3','QQ')
 COMMIT
-/*C42*/SET SCHEMA INGENIO
+/*C12*/SET SCHEMA INGENIO
 INSERT INTO PARO VALUES('001','2019-08-03','PARADAS DE FABRICA 03/08/2019','03:43:00',1)
 COMMIT
-/*C43*/SET SCHEMA INGENIO
+/*C13*/SET SCHEMA INGENIO
 INSERT INTO PARO_DETALLES VALUES('001','07','CAIDA DE PLANTA ELECTRICA','2019-08-03 09:54:00.000000','2019-08-03 07:41:00.000000')
 COMMIT
 INSERT INTO PARO_DETALLES VALUES('001','03','TACO MOLINO NO. 1','2019-08-03 13:51:00.000000','2019-08-03 13:35:00.000000')
@@ -1965,19 +1973,17 @@ INSERT INTO PARO_DETALLES VALUES('001','03','TACO MOLINO NO. 1 SINFONIA CONTROL 
 COMMIT
 INSERT INTO PARO_DETALLES VALUES('001','02','DISPARO MOLINO NO. 1 SOBRE CARGA','2019-08-03 17:11:00.000000','2019-08-03 17:02:00.000000')
 COMMIT
-/*C39*/SET SCHEMA PUBLIC
+SET SCHEMA PUBLIC
 DISCONNECT
-/*C37*/SET SCHEMA PUBLIC
+/*C11*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C41*/SET SCHEMA PUBLIC
+/*C12*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C40*/SET SCHEMA PUBLIC
+/*C9*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C38*/SET SCHEMA PUBLIC
+/*C8*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C42*/SET SCHEMA PUBLIC
+/*C7*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C43*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C35*/SET SCHEMA PUBLIC
+/*C10*/SET SCHEMA PUBLIC
 DISCONNECT
