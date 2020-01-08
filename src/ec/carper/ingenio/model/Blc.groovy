@@ -207,7 +207,8 @@ class Blc extends Identifiable{
 
     @Depends("brixJDil") //Propiedad calculada
     BigDecimal getCalRhoJugoDiluido(){
-        return brixJDil!=null ? new BrixDensidadWp().getP(getBrixJDil()) : 0
+        //return brixJDil!=null ? new BrixDensidadWp().getP(getBrixJDil()) : 0
+        return 0
     }
     
     BigDecimal brixJDil
