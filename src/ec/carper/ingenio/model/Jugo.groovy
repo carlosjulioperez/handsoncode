@@ -19,4 +19,15 @@ class Jugo extends Identifiable{
     @Required
     LocalDate fecha
 
+    @ElementCollection
+    @ListProperties("""
+        fecha,
+        jeBri,jePol,calJeSac,calJePur,
+        jdBri,jdPol,calJdSac,calJdPur,
+        jcBri,jcPol,calJcSac,calJcPur,
+        jnBri,jnPol,calJnSac,calJnPur,
+        jrBri,jrPol,calJrSac,calJrPur,
+        jfBri,jfPol,calJfSac,calJfPur
+    """)
+    Collection<JugoDetalle>detalles
 }

@@ -12,11 +12,10 @@ import static org.openxava.jpa.XPersistence.*
 @Entity
 class BrixDensidadWp extends Identifiable {
 
-    //@Digits(integer=2, fraction=2)
     @Required
     BigDecimal w
     
-    //@Digits(integer=4,fraction=3)
+    //@Digits(integer=4, fraction=3)
     @Required
     BigDecimal p
 
@@ -26,7 +25,6 @@ class BrixDensidadWp extends Identifiable {
         query.setParameter("w", w)
 
         List records = query.getResultList()
-        println records
         valor = records ? records[0]: 0
         //return  records.isEmpty() ? BigDecimal.ZERO : (BigDecimal) records.get(0)
         return valor
