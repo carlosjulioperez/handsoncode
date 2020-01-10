@@ -8,8 +8,6 @@ import org.openxava.calculators.*
 import org.openxava.model.*
 
 @Entity
-// @Tab(properties="""fecha,observaciones,totalParo""")
-// @View(members=  """fecha;observaciones;detalles""")
 class Jugo extends Identifiable{
 
     @Version
@@ -19,9 +17,9 @@ class Jugo extends Identifiable{
     @Required
     LocalDate fecha
 
-    @ElementCollection
+    @OneToMany (mappedBy="jugo", cascade=CascadeType.ALL)
     @ListProperties("""
-        fecha,
+        hora,
         jeBri,jePol,calJeSac,calJePur,
         jdBri,jdPol,calJdSac,calJdPur,
         jcBri,jcPol,calJcSac,calJcPur,

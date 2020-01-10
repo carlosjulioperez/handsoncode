@@ -6,15 +6,28 @@ import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.model.*
 
-@Embeddable
-class JugoDetalle{
+// @Embeddable
+// class JugoDetalle{
+@Entity
+@View(members="""
+    hora;
+    tabJExt {jeBri;jePol;calJeSac;calJePur};
+    tabJDil {jdBri;jdPol;calJdSac;calJdPur};
+    tabJCla {jcBri;jcPol;calJcSac;calJcPur};
+    tabJEnc {jnBri;jnPol;calJnSac;calJnPur};
+    tabJRes {jrBri;jrPol;calJrSac;calJrPur};
+    tabJFil {jfBri;jfPol;calJfSac;calJfPur}
+""")
+class JugoDetalle extends Identifiable {
+
+    @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
+    Jugo jugo
 
     @Stereotype("DATETIME") @Required
-    java.sql.Timestamp fecha
+    java.sql.Timestamp hora
 
-    @DisplaySize(10)
+    //@DisplaySize(10)
     BigDecimal jeBri
-    @DisplaySize(10)
     BigDecimal jePol
     @Depends("jeBri,jePol") //Propiedad calculada
     BigDecimal getCalJeSac(){
