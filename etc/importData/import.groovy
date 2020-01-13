@@ -27,6 +27,8 @@ def lista = [
     "INICIOZAFRA",
     "PREFERENCIAS",
     "UNIDAD",
+    "JUGO",
+    "JUGODETALLE",
     "PARO",
     "PARO_DETALLES"
 ]

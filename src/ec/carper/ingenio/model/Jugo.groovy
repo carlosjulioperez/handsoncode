@@ -8,6 +8,7 @@ import org.openxava.calculators.*
 import org.openxava.model.*
 
 @Entity
+// @Tab(properties="""fecha""")
 class Jugo extends Identifiable{
 
     @Version
