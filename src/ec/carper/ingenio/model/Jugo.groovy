@@ -6,6 +6,7 @@ import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.model.*
+import static org.openxava.jpa.XPersistence.*
 
 @Entity
 @Tab(properties="""
@@ -116,6 +117,17 @@ class Jugo extends Identifiable{
         setAvgJfPol(getAvg("jfPol"))
         setAvgJfSac(getAvg("calJfSac"))
         setAvgJfPur(getAvg("calJfPur"))
+    }
+
+    BigDecimal getAvgField (LocalDate fecha, String campo){
+        BigDecimal valor = 0
+        Query query = getManager().createQuery("select ${campo} from Jugo o where fecha= :fecha ")
+        query.setParameter("fecha", fecha)
+
+        List records = query.getResultList()
+        valor = records ? records[0]: 0
+        //return  records.isEmpty() ? BigDecimal.ZERO : (BigDecimal) records.get(0)
+        return valor
     }
 
     // @PrePersist // Ejecutado justo antes de grabar el objeto por primera vez

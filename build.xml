@@ -119,7 +119,8 @@
 				<fileset dir="${class.dir}">
 					<!-- <include name="**/*Test.class" /> -->
 					<!-- <include name="**/ParoTest.class" /> -->
-					<include name="**/BrixDensidadWpTest.class" />
+					<!-- <include name="**/BrixDensidadWpTest.class" /> -->
+					<include name="**/JugoTest.class" />
 
                     <!--
 					<include name="**/CodeTest.class" />
