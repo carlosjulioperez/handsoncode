@@ -4,12 +4,12 @@ import java.util.List
 
 import ec.carper.ingenio.model.BrixDensidadWp
 //import java.math.*
-//import org.apache.commons.logging.*
+import org.apache.commons.logging.*
 import org.openxava.tests.*
 
 class BrixDensidadWpTest extends ModuleTestBase {
 
-    //private static Log log = LogFactory.getLog(BrixDensidadWpTest.class)
+    private static Log log = LogFactory.getLog(BrixDensidadWpTest.class)
  
     BrixDensidadWpTest(String testName) {
         super(testName, "Ingenio", "BrixDensidadWp")
@@ -25,14 +25,15 @@ class BrixDensidadWpTest extends ModuleTestBase {
     */
 
     void testGetP(){
-        // log.warn ("============================================================")
+        log.warn ("============================================================")
         // log.warn (getP(14.93))
         // def valor = (String)new BrixDensidadWp().getP(14.93)
         // //assertEquals("Verificando:", valor, "1058.733")
         // assertEquals(valor, "1058.73")
 
-        def valor = (String)new BrixDensidadWp().getP(100)
-        assertEquals(valor, "1515.88")
+        def valor = (String)new BrixDensidadWp().getP(14.23)
+        log.warn(valor)
+        assertEquals(valor, "1055.74")
     }
 
 }
