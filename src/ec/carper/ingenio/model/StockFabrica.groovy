@@ -34,6 +34,14 @@ import org.openxava.model.*
         calTqJClaV2;
         calTqJClaVt;
     }
+    tqJEnc{#
+        calTqSacJEnc, calTqJEncBri;
+        tqSacJEncPorc, calTqJEncSac;
+        calTqSacJEncRho;
+        tqJEncOSlash;
+        tqJEncH2;
+        calTqJEncVt;
+    }
     """
 )
 
@@ -131,6 +139,41 @@ class StockFabrica extends Identifiable{
     BigDecimal getCalTqJClaVt(){
         //=+AQ8+AQ5
         return (calTqJClaV1 && calTqJClaV2) ? (calTqJClaV1 + calTqJClaV2) : 0
+    }
+
+    // --------------------------------------------------
+    // Tanque Jugo Encalado
+
+    @Depends("fecha") //Propiedad calculada
+    BigDecimal getCalTqJEncBri(){
+        return new Jugo().getAvgField(fecha, "avgJnBri")
+    }
+
+    @Depends("fecha") //Propiedad calculada
+    BigDecimal getCalTqJEncSac(){
+        return new Jugo().getAvgField(fecha, "avgJnSac")
+    }
+    
+    @Depends("calTqJEncVt, calTqSacJEncRho, calTqJEncSac") //Propiedad calculada
+    BigDecimal getCalTqSacJEnc(){
+        //=+((J12*O14)/1000)*(J14/100)
+        return (calTqJEncVt && calTqSacJEncRho && calTqJEncSac) ? (calTqJEncVt  * calTqSacJEncRho / 1000 * calTqJEncSac/100 ).setScale(2, BigDecimal.ROUND_HALF_UP) : 0
+    }
+
+    BigDecimal tqSacJEncPorc
+
+    @Depends("calTqJEncBri") //Propiedad calculada
+    BigDecimal getCalTqSacJEncRho(){
+        return new BrixDensidadWp().getP(calTqJEncBri)
+    }
+
+    BigDecimal tqJEncOSlash
+    BigDecimal tqJEncH2
+
+    @Depends("tqJEncOSlash,tqJEncH2,tqSacJEncPorc") //Propiedad calculada
+    BigDecimal getCalTqJEncVt(){
+        //=(3,1416*((J10/2)*(J10/2))*J11)*O13/100
+        return (tqJEncOSlash && tqJEncH2 && tqSacJEncPorc) ? (3.1416 * tqJEncOSlash/2 * tqJEncOSlash/2 * tqJEncH2 * tqSacJEncPorc / 100 ).setScale(2, BigDecimal.ROUND_HALF_UP) : 0
     }
 
     // @PrePersist // Ejecutado justo antes de grabar el objeto por primera vez
