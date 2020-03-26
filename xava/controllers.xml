@@ -21,12 +21,15 @@
     	</action>
 	</controller>    
     -->
-    
-    <controller name="Preferencias">
-    	<extends controller="Typical"/>
-    	<action name="new" icon="library-plus" keystroke="Control N"
-        	class="ec.carper.ingenio.actions.NuevaPreferencia">
+
+    <controller name="Ingenio">
+        
+        <extends controller="Typical"/>
+        
+        <action name="new" icon="library-plus" keystroke="Control N"
+        	class="ec.carper.ingenio.actions.EditableAction">
     	</action>
-	</controller>    
+
+    </controller>   
     
 </controllers>
