@@ -11,34 +11,31 @@ class DiaTrabajoEditableAction extends ViewBaseAction implements IChainAction{
     private String nextAction = null // Para guardar la siguiente acción a ejecutar
 
     void execute() throws Exception{
-
-        //def cerrado = getView().getMetaModel().containsMetaReference("diaTrabajo")
-
         // containsMetaProperty, containsMetaReference
         if (!getView().getMetaModel().containsMetaReference("diaTrabajo")) {
             nextAction = "CRUD.save" // 'CRUD.delete' se ejecutará cuando esta
             return // acción finalice
+        }else{
+
+            // Validar CRUD.save
+            def modulo = getModelName()
+            def map = getView().getKeyValues()
+            // println (">>>>>>>>>>>>>>>>>>>>>>> " + modulo)
+            // println ("*********************** " + map)
+
+            Query query = getManager().createQuery("select diaTrabajo.cerrado from ${modulo} o where id= :id ")
+            query.setParameter("id", map.id) 
+            def cerrado = (boolean) query.getSingleResult()
+
+            if ( cerrado ){
+                addMessage ("msgDiaTrabajoCerrado")
+
+                resetDescriptionsCache()
+                getView().clear()
+                getView().setEditable(false); // Dejamos la vista como no editable
+            }else
+                nextAction = "CRUD.save"
         }
-
-        // println ("****************************************************************************************************")
-        // println (cerrado)
-
-        // Validar CRUD.save
-        def modulo = getModelName()
-        println (">>>>>>>>>>>>>>>>>>>>>>> "+modulo)
-
-        println ("*********************** "+getView().getKeyValues())
-        Query query = getManager().createQuery("select count(*) from ${modulo}")
-        def numero = (Integer)query.getSingleResult()
-        //System.out.println(numero)
-
-        // if ( numero >0 ){
-        //     addMessage ("msgDiaTrabajoCerrado")
-        //     
-        //     resetDescriptionsCache()
-        //     getView().clear()
-        // }
-        nextAction = "CRUD.save"
     }
     
     // Obligatorio por causa de 'IChainAction'

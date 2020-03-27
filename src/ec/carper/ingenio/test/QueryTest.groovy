@@ -25,12 +25,6 @@ class QueryTest extends ModuleTestBase {
         query.setParameter("id", "ff808081711cd37c01711cd45a1f0001")
         def cerrado = (boolean) query.getSingleResult()
         log.warn (cerrado)
-        
-        // List records = query.getResultList()
-        // log.warn (records)
-        // //!results.isEmpty()
-        // Boolean valor = records ? records[0]: null
-        // if ( o ) log.warn ( o.cerrado )
     }
     
     /*
