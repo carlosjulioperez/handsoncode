@@ -26,10 +26,11 @@
         
         <extends controller="Typical"/>
         
-        <action name="new" icon="library-plus" keystroke="Control N"
-        	class="ec.carper.ingenio.actions.EditableAction">
+        <action name="save" mode="detail" by-default="if-possible"
+            icon="content-save" keystroke="Control S"
+        	class="ec.carper.ingenio.actions.DiaTrabajoEditableAction">
     	</action>
-
+        
     </controller>   
     
 </controllers>

@@ -12,7 +12,7 @@ class DiaTrabajo extends Identifiable{
 
     @DefaultValueCalculator(CurrentLocalDateCalculator.class) // Fecha actual
     @Required
-    LocalDate diaTrabajo
+    LocalDate fecha
     
     @Column(length=50) @Required
     String descripcion

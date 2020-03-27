@@ -4,9 +4,8 @@ import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.model.*
 
-//@View(members="""diaTrabajo""")
-@Entity
-abstract class Editable extends Identifiable{
+@MappedSuperclass
+class DiaTrabajoEditable extends Identifiable{
 
     @ManyToOne(fetch=FetchType.LAZY)
     @DescriptionsList @NoCreate @NoModify 

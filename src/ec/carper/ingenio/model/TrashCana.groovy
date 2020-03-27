@@ -9,7 +9,9 @@ import java.time.LocalDate
 
 //@View(extendsView="""super.DEFAULT""")
 @Entity
-class TrashCana extends Editable{
-
+class TrashCana extends DiaTrabajoEditable{
+    
+    @Column(length=50) @Required
+    String descripcion
 
 }
