@@ -7,11 +7,15 @@ import org.openxava.model.*
 
 import java.time.LocalDate
 
-//@View(extendsView="""super.DEFAULT""")
 @Entity
+@View(members=  """diaTrabajo;detalle1""")
 class TrashCana extends DiaTrabajoEditable{
     
-    @Column(length=50) @Required
-    String descripcion
+    @OneToMany (mappedBy="trashCana", cascade=CascadeType.ALL)
+    @ListProperties("""
+        hora,modulo.descripcion,turno.descripcion,variedad.descripcion,
+        cantidadCana,netaCana,calTrashCana,calPorcTrash
+    """)
+    Collection<TrashCanaDetalle1>detalle1
 
 }

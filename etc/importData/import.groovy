@@ -25,9 +25,13 @@ def path = new File("csv")
 def lista = [
     "AREA",
     "BRIXDENSIDADWP",
+    "DIATRABAJO",
     "INICIOZAFRA",
     "PREFERENCIAS",
+    "MODULO",
+    "TURNO",
     "UNIDAD",
+    "VARIEDAD",
     "JUGO",
     "JUGODETALLE",
     "PARO",
