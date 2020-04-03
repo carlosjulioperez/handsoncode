@@ -2,6 +2,7 @@ package ec.carper.ingenio.model
 
 import java.time.LocalDate
 import javax.persistence.*
+import javax.validation.constraints.Digits
 import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.model.*
@@ -36,7 +37,8 @@ class TrashCanaDetalle1 extends Identifiable {
     BigDecimal getCalTrashCana(){
         return (cantidadCana && netaCana) ? cantidadCana - netaCana : 0
     }
-
+    
+    @Digits(integer=4, fraction=3)
     @Depends("cantidadCana,calTrashCana") //Propiedad calculada
     BigDecimal getCalPorcTrash(){
         return (cantidadCana && calTrashCana) ? ((calTrashCana / cantidadCana)*100).setScale(3, BigDecimal.ROUND_HALF_UP): 0

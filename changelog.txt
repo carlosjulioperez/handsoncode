@@ -5,6 +5,12 @@ Proyecto
 
 	https://sourceforge.net/p/openxava/discussion/437013/thread/83b3114767/?limit=25
 
+	* groovy en ox 6.2.2:
+		Reemplazo de [groovy-all-] de 2.4.5 a 2.4.19
+
+		https://github.com/groovy/groovy-eclipse/issues/425
+		https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-all/
+
 	* hsqldb:
 		https://stackoverflow.com/questions/24613508/import-csv-file-in-hsqldb
 		http://hsqldb.org/doc/2.0/guide/texttables-chapt.html
