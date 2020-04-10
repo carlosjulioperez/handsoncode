@@ -33,6 +33,7 @@ class TrashCanaDetalle1 extends Identifiable {
     BigDecimal cantidadCana
     BigDecimal netaCana
     
+    @Digits(integer=4, fraction=3)
     @Depends("cantidadCana,netaCana") //Propiedad calculada
     BigDecimal getCalTrashCana(){
         return (cantidadCana && netaCana) ? cantidadCana - netaCana : 0

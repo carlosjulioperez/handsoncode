@@ -10,23 +10,21 @@ import org.openxava.model.*
 import static org.openxava.jpa.XPersistence.*
 
 @Entity
-class BrixDensidadWp extends Identifiable {
+class BrixDensidadTitSus extends Identifiable {
 
     @Required
-    BigDecimal w
+    BigDecimal titulacion
     
-    @Digits(integer=4, fraction=3)
     @Required
-    BigDecimal p
+    BigDecimal susRed
 
-    BigDecimal getP (BigDecimal w){
+    BigDecimal getSusRed (BigDecimal titulacion){
         BigDecimal valor = 0
-        Query query = getManager().createQuery("select o.p from BrixDensidadWp o where o.w <= :w order by o.w desc")
-        query.setParameter("w", w)
+        Query query = getManager().createQuery("select o.susRed from BrixDensidadTitSus o where o.titulacion <= :titulacion order by o.titulacion desc")
+        query.setParameter("titulacion", titulacion)
 
         List records = query.getResultList()
         valor = records ? records[0]: 0
-        //return  records.isEmpty() ? BigDecimal.ZERO : (BigDecimal) records.get(0)
         return valor
     }
 }

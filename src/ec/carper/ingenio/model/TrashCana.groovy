@@ -8,7 +8,7 @@ import org.openxava.model.*
 import java.time.LocalDate
 
 @Entity
-@View(members=  """diaTrabajo;detalle1""")
+@View(members=  """diaTrabajo;detalle1;detalle2""")
 class TrashCana extends DiaTrabajoEditable{
     
     @OneToMany (mappedBy="trashCana", cascade=CascadeType.ALL)
@@ -18,4 +18,10 @@ class TrashCana extends DiaTrabajoEditable{
     """)
     Collection<TrashCanaDetalle1>detalle1
 
+    @OneToMany (mappedBy="trashCana", cascade=CascadeType.ALL)
+    // @ListProperties("""
+    //     hora,modulo.descripcion,turno.descripcion,variedad.descripcion,
+    //     cantidadCana,netaCana,calTrashCana,calPorcTrash
+    // """)
+    Collection<TrashCanaDetalle2>detalle2
 }

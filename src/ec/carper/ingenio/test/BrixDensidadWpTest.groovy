@@ -33,7 +33,7 @@ class BrixDensidadWpTest extends ModuleTestBase {
 
         def valor = (String)new BrixDensidadWp().getP(14.23)
         log.warn(valor)
-        assertEquals(valor, "1055.74")
+        assertEquals(valor, "1055.743")
     }
 
 }

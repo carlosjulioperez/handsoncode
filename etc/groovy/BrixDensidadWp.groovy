@@ -12,7 +12,7 @@ import static org.openxava.jpa.XPersistence.*
 @Entity
 class BrixDensidadWp extends Identifiable {
 
-    @Digits(integer=2,fraction=2) @Required
+    @Required
     BigDecimal w
     
     @Digits(integer=4,fraction=3) @Required
@@ -23,7 +23,6 @@ class BrixDensidadWp extends Identifiable {
             .createQuery("select o.p from BrixDensidadWp o where o.w <= :w order by o.w desc")
         query.setParameter("w", w)
         
-        //TODO
         def lista = query.getResultList()
         return (BigDecimal) (lista.isEmpty() ? 0 : lista[0])
     }
