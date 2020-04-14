@@ -80,7 +80,6 @@ class Jugo extends Identifiable{
         return lista.size()>0 ? ( lista.sum() / lista.size() ).setScale(2, BigDecimal.ROUND_HALF_UP) : 0
     }
 
-
     @PrePersist // Ejecutado justo antes de grabar el objeto por primera vez
     private void preGrabar() throws Exception {
         sincronizarPropiedadesPersistentes()
