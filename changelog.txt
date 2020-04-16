@@ -1,5 +1,8 @@
 Proyecto
 	
+	* Nota:
+	Cuando sale NullPointerException, revisar las propiedades de UI. Hay que revisar si los campos en la tabla no sean nulos.
+
 	https://trello.com/b/lZwKk47m/fabrica
 	Locale: iso-8859-1
 
