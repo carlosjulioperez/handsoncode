@@ -32,17 +32,27 @@ class TrashCanaDetalle1 extends Identifiable {
 
     BigDecimal cantidadCana
     BigDecimal netaCana
+
+    @Digits(integer=4, fraction=3)
+    BigDecimal valTrashCana
+    
+    @Digits(integer=4, fraction=3)
+    BigDecimal valPorcTrash
     
     @Digits(integer=4, fraction=3)
     @Depends("cantidadCana,netaCana") //Propiedad calculada
     BigDecimal getCalTrashCana(){
-        return (cantidadCana && netaCana) ? cantidadCana - netaCana : 0
+        def valor = (cantidadCana && netaCana) ? cantidadCana - netaCana : 0
+        setValTrashCana(valor)
+        return valor
     }
     
     @Digits(integer=4, fraction=3)
     @Depends("cantidadCana,calTrashCana") //Propiedad calculada
     BigDecimal getCalPorcTrash(){
-        return (cantidadCana && calTrashCana) ? ((calTrashCana / cantidadCana)*100).setScale(3, BigDecimal.ROUND_HALF_UP): 0
+        def valor = (cantidadCana && calTrashCana) ? ((calTrashCana / cantidadCana)*100).setScale(3, BigDecimal.ROUND_HALF_UP): 0
+        setValPorcTrash(valor)
+        return valor
     }
 
 }

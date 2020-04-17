@@ -52,10 +52,7 @@ class TrashCana extends DiaTrabajoEditable {
     BigDecimal avgPorcTrash
 
     @OneToMany (mappedBy="trashCana", cascade=CascadeType.ALL)
-    // @ListProperties("""
-    //     hora,modulo.descripcion,turno.descripcion,variedad.descripcion,
-    //     cantidadCana,netaCana,calTrashCana,calPorcTrash
-    // """)
+    @ListProperties("""hora,mlReductores,calTab7SusRed,calPorcAzuRed""")
     Collection<TrashCanaDetalle2>detalle2
 
 }

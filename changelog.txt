@@ -1,7 +1,10 @@
 Proyecto
 	
-	* Nota:
+	* Nota 1:
 	Cuando sale NullPointerException, revisar las propiedades de UI. Hay que revisar si los campos en la tabla no sean nulos.
+
+	* Nota 2:
+	En las propiedades calculadas no deben haber consultas JPA. Hay que usar una consulta previa llenando mapas.
 
 	https://trello.com/b/lZwKk47m/fabrica
 	Locale: iso-8859-1
