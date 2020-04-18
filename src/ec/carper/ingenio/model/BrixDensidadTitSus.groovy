@@ -27,4 +27,15 @@ class BrixDensidadTitSus extends Identifiable {
         valor = records ? records[0]: 0
         return valor
     }
+
+    // https://stackoverflow.com/questions/21453582/convert-sql-groovyrowresult-with-two-columns-to-map
+    // https://www.baeldung.com/groovy-maps
+    Map getSqlToMap(){
+        Query query = getManager().createQuery("from BrixDensidadTitSus")
+
+        def myMap = query.resultList.collectEntries {
+            [ it.titulacion, it.susRed]
+        }
+        return myMap
+    }
 }

@@ -121,9 +121,8 @@
 					<!-- <include name="**/JugoTest.class" /> -->
 					<!-- <include name="**/ParoTest.class" /> -->
 					<!-- <include name="**/BrixDensidadWpTest.class" /> -->
-					<!-- <include name="**/BrixDensidadTitSusTest.class" /> -->
-                    
-                    <include name="**/QueryTest.class" />
+					<include name="**/BrixDensidadTitSusTest.class" />
+                    <!-- <include name="**/QueryTest.class" /> -->
 
                     <!--
 					<include name="**/CodeTest.class" />

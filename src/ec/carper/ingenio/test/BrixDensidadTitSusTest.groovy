@@ -22,4 +22,11 @@ class BrixDensidadTitSusTest extends ModuleTestBase {
         assertEquals(valor, "0.50")
     }
 
+    void testGetSqlToMap(){
+        log.warn ("============================================================")
+        def mapa = new BrixDensidadTitSus().getSqlToMap() 
+
+        println ( )
+    }
+
 }
