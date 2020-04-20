@@ -30,12 +30,39 @@ class BrixDensidadTitSus extends Identifiable {
 
     // https://stackoverflow.com/questions/21453582/convert-sql-groovyrowresult-with-two-columns-to-map
     // https://www.baeldung.com/groovy-maps
-    Map getSqlToMap(){
-        Query query = getManager().createQuery("from BrixDensidadTitSus")
+    // Map getSqlToMap(){
+    //     Query query = getManager().createQuery("from BrixDensidadTitSus")
+    //
+    //     def myMap = query.resultList.collectEntries {
+    //         [ it.titulacion, it.susRed]
+    //     }
+    //     return myMap
+    // }
 
-        def myMap = query.resultList.collectEntries {
-            [ it.titulacion, it.susRed]
+    def getSqlToList(){
+        Query query = getManager().createQuery("from BrixDensidadTitSus order by titulacion desc")
+        def lista = []
+        query.resultList.each {
+            lista << [ it.titulacion, it.susRed]
         }
-        return myMap
+        return lista
     }
+    
+    /**
+    * Obtiene el valor de SusRed dada la titulación de los registros como Lista     
+    * La lista generada por el query debe estar ordenada por titulacion ascendentemente
+    * Documentación
+    */
+    BigDecimal getSusRed(def lista, BigDecimal titulacion){
+        BigDecimal retorno = 0 
+        for (int i=0; i<lista.size; ) {
+            retorno = lista[i][1]
+            i++
+            if (lista[i][0] > titulacion){
+                break
+            }
+        }
+        return retorno
+    }
+
 }

@@ -12,7 +12,7 @@ import java.time.LocalDate
 @Tab(properties="""diaTrabajo.descripcion,promTrashCana,promPorcTrash""")
 @View(members=  """diaTrabajo;detalle1;detalle2""")
 class TrashCana extends DiaTrabajoEditable {
-    
+
     @OneToMany (mappedBy="trashCana", cascade=CascadeType.ALL)
     @ListProperties("""
         hora,modulo.descripcion,turno.descripcion,variedad.descripcion,

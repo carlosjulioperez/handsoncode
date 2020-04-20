@@ -1,6 +1,5 @@
 package ec.carper.ingenio.model
 
-import ec.carper.ingenio.util.Util
 import java.time.LocalDate
 import javax.persistence.*
 import org.openxava.annotations.*
