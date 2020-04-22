@@ -12,34 +12,39 @@ class UnidadTest extends ModuleTestBase { // Ha de extender de ModuleTestBase
     void testCreateReadUpdateDelete() throws Exception {
         login("admin", "admin") // The user sign in to access the module
  
-        String descripcion = "JUNIT"
+        String id = "99"
+        String descripcion= "JUNIT"
         String descripcion2 = "JUNI2"
         
         // Create
-        execute("CRUD.new") // Clicks on 'New' button
-        setValue("descripcion", descripcion) // Sets the value for the 'descripcion' field to access a reference member
-        execute("CRUD.save") // Clicks on 'Save' button
-        assertNoErrors() // Verifies that the application does not show errors
-        assertValue("descripcion", "") // Verifies the 'number' field is empty
+        execute("CRUD.new")
+        setValue("id", id)
+        setValue("descripcion", descripcion)
+        execute("CRUD.save")
+        assertNoErrors()
+        println "****************************************************************************************************"
+        println getValue(descripcion)
+        assertValue("id", "")
+        assertValue("descripcion", "")
  
         // Read
-        setValue("descripcion", descripcion) // Types 77 as the value for the 'number' field
-        execute("CRUD.refresh") // Clicks on 'Refresh' button
-        assertValue("descripcion", descripcion) // and 'descripcion' has 'JUNIT Unidad'
+        setValue("id", id)
+        execute("CRUD.refresh")
+        assertValue("descripcion", descripcion)
  
         // Update
-        setValue("descripcion", descripcion2) // Changes the value of 'descripcion' field
-        execute("CRUD.save") // Clicks on 'Save' button
-        assertNoErrors() // Verifies that the application does not show errors
-        assertValue("descripcion", "") // Verifies the 'descripcion' field is empty
+        setValue("descripcion", descripcion2)
+        execute("CRUD.save")
+        assertNoErrors()
+        assertValue("descripcion", "")
  
         // Verify if modified
-        setValue("descripcion", descripcion2) // Types 77 as the value for 'number' field
-        execute("CRUD.refresh") // Clicks on 'Refresh' button
-        assertValue("descripcion", descripcion2) // and 'descripcion' has 'JUNIT Unidad MODIFIED'
+        setValue("descripcion", descripcion2)
+        execute("CRUD.refresh")
+        assertValue("descripcion", descripcion2)
  
         // Delete
-        execute("CRUD.delete") // Clicks on 'Delete' button
+        execute("CRUD.delete")
         assertMessage("Unidad deleted successfully") // Verifies that the message 'Unidad deleted successfully' is shown to the user
     }
  

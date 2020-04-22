@@ -32,5 +32,15 @@
     	</action>
         
     </controller>   
+
+    <controller name="TrashCana">
+        
+        <extends controller="Typical"/>
+        
+        <action name="crearTrash" mode="detail" 
+        	class="ec.carper.ingenio.actions.CrearTrashFromTrashCanaAction">
+    	</action>
+        
+    </controller>   
     
 </controllers>
