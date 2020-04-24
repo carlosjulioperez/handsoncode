@@ -7,49 +7,58 @@ import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.model.*
 
-@Embeddable
+@Entity
 @View(members="""
     hora;
     modulo,turno,variedad;
-    cantidadCana;netaCana;calTrashCana;calPorcTrash 
+    cantidadCana;netaCana;
+    cogollos, calPorcCogollos;
+    valTrashCana;valPorcTrash 
 """)
-class TrashCanaDetalle1 {
+class TrashDetalle extends Identifiable {
     
+    @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
+    Trash trash
+
+    @ReadOnly
     @Stereotype("DATETIME") @Required
     java.sql.Timestamp hora
 
+    @ReadOnly
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
     Modulo modulo
 
+    @ReadOnly
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
     Turno turno
     
+    @ReadOnly
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
     Variedad variedad
 
+    @ReadOnly
     BigDecimal cantidadCana
+    
+    @ReadOnly
     BigDecimal netaCana
 
+    BigDecimal cogollos
+    
+    BigDecimal valPorcCogollos
+
+    @Depends("cogollos") //Propiedad calculada
+    BigDecimal getCalPorcCogollos(){
+        def valor = (cogollos) ? (cogollos*100/cantidadCana).setScale(2, BigDecimal.ROUND_HALF_UP): 0
+        setValPorcCogollos(valor)
+        return valor
+    }
+
+    @ReadOnly
     @Digits(integer=4, fraction=3)
     BigDecimal valTrashCana
     
+    @ReadOnly
     @Digits(integer=4, fraction=3)
     BigDecimal valPorcTrash
     
-    @Digits(integer=4, fraction=3)
-    @Depends("cantidadCana,netaCana") //Propiedad calculada
-    BigDecimal getCalTrashCana(){
-        def valor = (cantidadCana && netaCana) ? cantidadCana - netaCana : 0
-        setValTrashCana(valor)
-        return valor
-    }
-    
-    @Digits(integer=4, fraction=3)
-    @Depends("cantidadCana,calTrashCana") //Propiedad calculada
-    BigDecimal getCalPorcTrash(){
-        def valor = (cantidadCana && calTrashCana) ? ((calTrashCana / cantidadCana)*100).setScale(3, BigDecimal.ROUND_HALF_UP): 0
-        setValPorcTrash(valor)
-        return valor
-    }
-
 }

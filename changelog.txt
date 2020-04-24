@@ -6,6 +6,9 @@ Proyecto
 	* Nota 2:
 	En las propiedades calculadas no deben haber consultas JPA. Hay que usar una consulta previa llenando mapas.
 
+	* Nota 3:
+	En las propiedades calculadas no se deben hacer setters a otros miembros de clase. Eso provoca un ConcurrentException.
+
 	https://trello.com/b/lZwKk47m/fabrica
 	Locale: iso-8859-1
 

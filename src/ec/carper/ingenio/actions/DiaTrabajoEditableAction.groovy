@@ -28,7 +28,7 @@ class DiaTrabajoEditableAction extends ViewBaseAction implements IChainAction{
             def cerrado = (boolean) query.getSingleResult()
 
             if ( cerrado ){
-                addMessage ("msgDiaTrabajoCerrado")
+                addMessage ("dia_trabajo_cerrado_administrador")
 
                 resetDescriptionsCache()
                 getView().clear()

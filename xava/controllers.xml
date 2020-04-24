@@ -31,14 +31,22 @@
         	class="ec.carper.ingenio.actions.DiaTrabajoEditableAction">
     	</action>
         
-    </controller>   
+        <!-- <!&#45;&#45; Sobrescribe la acción para añadir &#45;&#45;>  -->
+        <!-- <action name="add" hidden="true" class="ec.carper.ingenio.actions.DesactivarAction"> -->
+
+    </controller>
 
     <controller name="TrashCana">
         
         <extends controller="Typical"/>
         
+        <!-- <action name="save" mode="detail" by&#45;default="if&#45;possible" -->
+        <!--     icon="content&#45;save" keystroke="Control S" -->
+        <!-- 	class="ec.carper.ingenio.actions.TrashCanaGrabarPromediosAction"> -->
+    	<!-- </action> -->
+
         <action name="crearTrash" mode="detail" 
-        	class="ec.carper.ingenio.actions.CrearTrashFromTrashCanaAction">
+        	class="ec.carper.ingenio.actions.TrashCanaCrearTrashAction">
     	</action>
         
     </controller>   

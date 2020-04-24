@@ -11,6 +11,16 @@ class DiaTrabajoEditable extends Identifiable{
     @DescriptionsList @NoCreate @NoModify 
     DiaTrabajo diaTrabajo
 
+    BigDecimal getPromedio(def detalle, String propiedad, int escala){
+        def lista = []
+        detalle.each {
+            def valor = (BigDecimal)Eval.x(it, "x."+propiedad)
+            // println ">>>>>>>>>>> " + valor
+            if (valor > 0) lista << valor
+        }
+        return lista.size()>0 ? ( lista.sum() / lista.size() ).setScale(escala, BigDecimal.ROUND_HALF_UP) : 0
+    }
+
     // @PrePersist
     // void execute() throws Exception{
     //     //TODO Ejemplo para ejecutar queries desde Groovy
@@ -22,7 +32,7 @@ class DiaTrabajoEditable extends Identifiable{
     //
     //     if ( numero >0 ){
     //         return
-    //         // addMessage ("msgSoloUnRegistro")
+    //         // addMessage ("solo_crear_un_registro")
     //         //
     //         // resetDescriptionsCache()
     //         // getView().clear()
