@@ -25,7 +25,7 @@ class BrixDensidadTitSusTest extends ModuleTestBase {
     void testGetSqlToList(){
         log.warn (">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         def lista = new BrixDensidadTitSus().getSqlToList() 
-        
+
         // Documentación
         // println new BrixDensidadTitSus().getSusRed(lista, 5.09)
 

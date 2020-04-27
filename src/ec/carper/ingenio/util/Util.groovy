@@ -1,5 +1,7 @@
 package ec.carper.ingenio.util
 
+import ec.carper.ingenio.model.*
+
 @Singleton
 class Util{
     private static String format(long s){
@@ -62,5 +64,9 @@ class Util{
         }
         return value
     }
+
+    // BigDecimal getSusRed (BigDecimal titulacion){
+    //     return new BrixDensidadTitSus().getSusRed(titulacion)
+    // }
 
 }

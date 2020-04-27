@@ -119,11 +119,11 @@
 				<fileset dir="${class.dir}">
 					<!-- <include name="**/*Test.class" /> -->
 					<!-- <include name="**/AreaTest.class" /> -->
-					<include name="**/UnidadTest.class" />
+					<!-- <include name="**/UnidadTest.class" /> -->
 					<!-- <include name="**/JugoTest.class" /> -->
 					<!-- <include name="**/ParoTest.class" /> -->
 					<!-- <include name="**/BrixDensidadWpTest.class" /> -->
-					<!-- <include name="**/BrixDensidadTitSusTest.class" /> -->
+					<include name="**/BrixDensidadTitSusTest.class" />
                     <!-- <include name="**/QueryTest.class" /> -->
 
                     <!--

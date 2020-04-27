@@ -7,17 +7,14 @@ import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.model.*
 
-@Entity
+@Embeddable
 @View(members="""
     hora;
     modulo,turno,variedad;
     cantidadCana;netaCana;calTrashCana;calPorcTrash 
 """)
-class TrashCanaDetalle1 extends Identifiable {
+class TrashCanaDetalle1 {
     
-    @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
-    TrashCana trashCana  
-
     @Stereotype("DATETIME") @Required
     java.sql.Timestamp hora
 
