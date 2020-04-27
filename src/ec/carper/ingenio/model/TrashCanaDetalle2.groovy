@@ -24,7 +24,7 @@ class TrashCanaDetalle2 extends Identifiable {
     java.sql.Timestamp hora
     
     @Required
-    @OnChange(TrashCanaCalculosAction.class)
+    @OnChange(TrashCanaDetalle2Action.class)
     BigDecimal mlReductores
     
     @ReadOnly

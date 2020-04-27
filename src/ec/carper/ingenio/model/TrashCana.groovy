@@ -17,6 +17,9 @@ import java.time.LocalDate
 @Tab(properties="""diaTrabajo.descripcion,promCantCana,promNetaCana,promTrashCana,promPorcTrash,promPorcAzuRed""")
 @View(members=  """diaTrabajo;detalle1;detalle2""")
 class TrashCana extends DiaTrabajoEditable {
+
+    @Version
+    private Integer version;
     
     @OneToMany (mappedBy="trashCana", cascade=CascadeType.ALL)
     @ListProperties("""
@@ -25,42 +28,22 @@ class TrashCana extends DiaTrabajoEditable {
     """)
     Collection<TrashCanaDetalle1>detalle1
     
-    // Promedio para detalle1
-    // BigDecimal getPromedioDetalle1(String propiedad, int escala){
-    //     def lista = []
-    //     detalle1.each {
-    //         def valor = (BigDecimal)Eval.x(it, "x."+propiedad)
-    //         // println ">>>>>>>>>>> " + valor
-    //         if (valor > 0) lista << valor
-    //     }
-    //     return lista.size()>0 ? ( lista.sum() / lista.size() ).setScale(escala, BigDecimal.ROUND_HALF_UP) : 0
-    // }
-
     BigDecimal getPromCantCana(){
-        //def valor = getAvgDetalle1("cantidadCana", 2)
-        def valor = super.getPromedio(detalle1, "cantidadCana", 2)
-        //setAvgCantCana(valor)
-        return valor 
+        return super.getPromedio(detalle1, "cantidadCana", 2)
     }
 
     BigDecimal getPromNetaCana(){
-        def valor = super.getPromedio(detalle1, "netaCana", 2)
-        //setAvgNetaCana(valor)
-        return valor 
+        return super.getPromedio(detalle1, "netaCana", 2)
     }
 
     @Digits(integer=4, fraction=3)
     BigDecimal getPromTrashCana(){
-        def valor = super.getPromedio(detalle1, "calTrashCana", 3)
-        //setAvgTrashCana(valor)
-        return valor 
+        return super.getPromedio(detalle1, "calTrashCana", 3)
     }
 
     @Digits(integer=4, fraction=3)
     BigDecimal getPromPorcTrash(){
-        def valor = super.getPromedio(detalle1, "calPorcTrash", 3)
-        //setAvgPorcTrash(valor)
-        return valor
+        return super.getPromedio(detalle1, "calPorcTrash", 3)
     }
     
     BigDecimal avgCantCana
@@ -82,15 +65,7 @@ class TrashCana extends DiaTrabajoEditable {
 
     @Digits(integer=4, fraction=3)
     BigDecimal getPromPorcAzuRed(){
-        // def lista = []
-        // detalle2.each {
-        //     if (it.calPorcAzuRed > 0) lista << it.calPorcAzuRed
-        // }
-        // def valor = lista.size()>0 ? ( lista.sum() / lista.size() ).setScale(3, BigDecimal.ROUND_HALF_UP) : 0
-        
-        def valor = super.getPromedio(detalle2, "calPorcAzuRed", 3)
-        //setAvgPorcAzuRed(valor)
-        return valor
+        return super.getPromedio(detalle2, "calPorcAzuRed", 3)
     }
 
     void crearTrash() throws ValidationException{
@@ -128,6 +103,20 @@ class TrashCana extends DiaTrabajoEditable {
         }catch(Exception ex){
             throw new SystemException("detalles_formulario_trash_no_copiados", ex)
         }
+    }
+    
+    @PrePersist // Ejecutado justo antes de grabar el objeto por primera vez
+    private void preGrabar() throws Exception {
+        recalcular()
+    }
+
+    @PreUpdate
+    void recalcular() {
+        avgCantCana   = promCantCana
+        avgNetaCana   = promNetaCana
+        avgTrashCana  = promTrashCana
+        avgPorcTrash  = promPorcTrash
+        avgPorcAzuRed = promPorcAzuRed
     }
 
 }

@@ -7,6 +7,8 @@ import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.model.*
 
+import ec.carper.ingenio.actions.*
+
 @Entity
 @View(members="""
     hora;
@@ -30,29 +32,18 @@ class TrashCanaDetalle1 extends Identifiable {
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
     Variedad variedad
 
+    @OnChange(TrashCanaDetalle1Action.class)
     BigDecimal cantidadCana
+    
+    @OnChange(TrashCanaDetalle1Action.class)
     BigDecimal netaCana
 
+    @ReadOnly
     @Digits(integer=4, fraction=3)
-    BigDecimal valTrashCana
+    BigDecimal calTrashCana
     
+    @ReadOnly
     @Digits(integer=4, fraction=3)
-    BigDecimal valPorcTrash
+    BigDecimal calPorcTrash
     
-    @Digits(integer=4, fraction=3)
-    @Depends("cantidadCana,netaCana") //Propiedad calculada
-    BigDecimal getCalTrashCana(){
-        def valor = (cantidadCana && netaCana) ? cantidadCana - netaCana : 0
-        setValTrashCana(valor)
-        return valor
-    }
-    
-    @Digits(integer=4, fraction=3)
-    @Depends("cantidadCana,calTrashCana") //Propiedad calculada
-    BigDecimal getCalPorcTrash(){
-        def valor = (cantidadCana && calTrashCana) ? ((calTrashCana / cantidadCana)*100).setScale(3, BigDecimal.ROUND_HALF_UP): 0
-        setValPorcTrash(valor)
-        return valor
-    }
-
 }
