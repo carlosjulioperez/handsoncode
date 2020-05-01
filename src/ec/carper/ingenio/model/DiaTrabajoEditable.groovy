@@ -16,7 +16,7 @@ class DiaTrabajoEditable extends Identifiable{
         detalle.each {
             def valor = (BigDecimal)Eval.x(it, "x."+propiedad)
             // println ">>>>>>>>>>> " + valor
-            if (valor > 0) lista << valor
+            if (valor >= 0) lista << valor
         }
         return lista.size()>0 ? ( lista.sum() / lista.size() ).setScale(escala, BigDecimal.ROUND_HALF_UP) : 0
     }

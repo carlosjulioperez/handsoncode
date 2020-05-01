@@ -71,8 +71,15 @@ class TrashCana extends DiaTrabajoEditable {
     void crearTrash() throws ValidationException{
         try{
             Trash trash = new Trash()
-            BeanUtils.copyProperties(trash, this)
+            //BeanUtils.copyProperties(trash, this)
             trash.id = null
+
+            trash.diaTrabajo   = this.diaTrabajo
+            trash.avgCantCana  = this.avgCantCana
+            trash.avgNetaCana  = this.avgNetaCana
+            trash.avgTrashCana = this.avgTrashCana
+            trash.avgPorcTrash = this.avgPorcTrash
+
             XPersistence.getManager().persist(trash)
             copiarDetallesHaciaTrash(trash)
                 
@@ -95,8 +102,8 @@ class TrashCana extends DiaTrabajoEditable {
                 o.variedad     = it.variedad
                 o.cantidadCana = it.cantidadCana
                 o.netaCana     = it.netaCana
-                o.valTrashCana = it.valTrashCana
-                o.valPorcTrash = it.valPorcTrash
+                o.calTrashCana = it.calTrashCana
+                o.calPorcTrash = it.calPorcTrash
 
                 XPersistence.getManager().persist(o)
             }

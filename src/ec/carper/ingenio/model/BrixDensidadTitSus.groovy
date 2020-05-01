@@ -39,30 +39,30 @@ class BrixDensidadTitSus extends Identifiable {
     //     return myMap
     // }
 
-    def getSqlToList(){
-        Query query = getManager().createQuery("from BrixDensidadTitSus order by titulacion desc")
-        def lista = []
-        query.resultList.each {
-            lista << [ it.titulacion, it.susRed]
-        }
-        return lista
-    }
-    
-    /**
-    * Obtiene el valor de SusRed dada la titulación de los registros como Lista     
-    * La lista generada por el query debe estar ordenada por titulacion ascendentemente
-    * Documentación
-    */
-    BigDecimal getSusRed(def lista, BigDecimal titulacion){
-        BigDecimal retorno = 0 
-        for (int i=0; i<lista.size; ) {
-            retorno = lista[i][1]
-            i++
-            if (lista[i][0] > titulacion){
-                break
-            }
-        }
-        return retorno
-    }
+    // def getSqlToList(){
+    //     Query query = getManager().createQuery("from BrixDensidadTitSus order by titulacion desc")
+    //     def lista = []
+    //     query.resultList.each {
+    //         lista << [ it.titulacion, it.susRed]
+    //     }
+    //     return lista
+    // }
+    //
+    // /**
+    // * Obtiene el valor de SusRed dada la titulación de los registros como Lista     
+    // * La lista generada por el query debe estar ordenada por titulacion ascendentemente
+    // * Documentación
+    // */
+    // BigDecimal getSusRed(def lista, BigDecimal titulacion){
+    //     BigDecimal retorno = 0 
+    //     for (int i=0; i<lista.size; ) {
+    //         retorno = lista[i][1]
+    //         i++
+    //         if (lista[i][0] > titulacion){
+    //             break
+    //         }
+    //     }
+    //     return retorno
+    // }
 
 }

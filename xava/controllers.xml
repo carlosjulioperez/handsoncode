@@ -50,5 +50,13 @@
     	</action>
         
     </controller>   
+
+    <controller name="TrashDetalle">
+        <extends controller="Typical"/>
+        <action name="save" mode="detail" by-default="if-possible"
+            icon="content-save" keystroke="Control S"
+        	class="ec.carper.ingenio.actions.TrashDetalleGrabarPromediosAction">
+    	</action>
+    </controller>   
     
 </controllers>

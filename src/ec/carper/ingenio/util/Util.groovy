@@ -68,5 +68,15 @@ class Util{
     // BigDecimal getSusRed (BigDecimal titulacion){
     //     return new BrixDensidadTitSus().getSusRed(titulacion)
     // }
+    
+    BigDecimal getPromedio(def detalle, String propiedad, int escala){
+        def lista = []
+        detalle.each {
+            def valor = (BigDecimal)Eval.x(it, "x."+propiedad)
+            // println ">>>>>>>>>>> " + valor
+            if (valor >= 0) lista << valor
+        }
+        return lista.size()>0 ? ( lista.sum() / lista.size() ).setScale(escala, BigDecimal.ROUND_HALF_UP) : 0
+    }
 
 }

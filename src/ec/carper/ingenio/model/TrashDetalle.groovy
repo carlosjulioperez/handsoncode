@@ -7,13 +7,21 @@ import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.model.*
 
+import ec.carper.ingenio.actions.*
+
 @Entity
-@View(members="""
+@View(members="""#
     hora;
     modulo,turno,variedad;
     cantidadCana;netaCana;
-    cogollos, calPorcCogollos;
-    valTrashCana;valPorcTrash 
+    cogollos     , calPorcCogollos;
+    hojas        , calPorcHojas;
+    cepa         , calPorcCepa;
+    canaSeca     , calPorcCanaSeca;
+    suelo        , calPorcSuelo;
+    otros        , calPorcOtros;
+    calTrashCana , calPorcTrash;
+    canaInfectada, calPorcCanaInfectada
 """)
 class TrashDetalle extends Identifiable {
     
@@ -42,23 +50,49 @@ class TrashDetalle extends Identifiable {
     @ReadOnly
     BigDecimal netaCana
 
+    @OnChange(TrashDetalleAction.class)
     BigDecimal cogollos
-    
-    BigDecimal valPorcCogollos
+    @ReadOnly
+    BigDecimal calPorcCogollos
 
-    @Depends("cogollos") //Propiedad calculada
-    BigDecimal getCalPorcCogollos(){
-        def valor = (cogollos) ? (cogollos*100/cantidadCana).setScale(2, BigDecimal.ROUND_HALF_UP): 0
-        setValPorcCogollos(valor)
-        return valor
-    }
+    @OnChange(TrashDetalleAction.class)
+    BigDecimal hojas
+    @ReadOnly
+    BigDecimal calPorcHojas
+
+    @OnChange(TrashDetalleAction.class)
+    BigDecimal cepa
+    @ReadOnly
+    BigDecimal calPorcCepa
+
+    @OnChange(TrashDetalleAction.class)
+    BigDecimal canaSeca
+    @ReadOnly
+    BigDecimal calPorcCanaSeca
+
+    @OnChange(TrashDetalleAction.class)
+    BigDecimal suelo
+    @ReadOnly
+    BigDecimal calPorcSuelo
+
+    @OnChange(TrashDetalleAction.class)
+    BigDecimal otros
+    @ReadOnly
+    BigDecimal calPorcOtros
+
+    @OnChange(TrashDetalleAction.class)
+    BigDecimal canaInfectada
+    @ReadOnly
+    BigDecimal calPorcCanaInfectada
+
+//==============
 
     @ReadOnly
     @Digits(integer=4, fraction=3)
-    BigDecimal valTrashCana
+    BigDecimal calTrashCana
     
     @ReadOnly
     @Digits(integer=4, fraction=3)
-    BigDecimal valPorcTrash
+    BigDecimal calPorcTrash
     
 }

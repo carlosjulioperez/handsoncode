@@ -13,8 +13,8 @@ class DiaTrabajoEditableAction extends ViewBaseAction implements IChainAction{
     void execute() throws Exception{
         // containsMetaProperty, containsMetaReference
         if (!getView().getMetaModel().containsMetaReference("diaTrabajo")) {
-            nextAction = "CRUD.save" // 'CRUD.delete' se ejecutará cuando esta
-            return // acción finalice
+            nextAction = "CRUD.save"
+            return
         }else{
 
             // Validar CRUD.save
