@@ -2,7 +2,6 @@ package ec.carper.ingenio.model
 
 import javax.persistence.*
 import javax.validation.constraints.Digits
-import org.apache.commons.beanutils.*
 import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.jpa.*
@@ -10,7 +9,6 @@ import org.openxava.model.*
 import org.openxava.util.*
 import org.openxava.validators.*
 
-import ec.carper.ingenio.util.Util
 import java.time.LocalDate
 
 @Entity
@@ -18,9 +16,6 @@ import java.time.LocalDate
 @View(members=  """diaTrabajo;detalle1;detalle2""")
 class TrashCana extends DiaTrabajoEditable {
 
-    @Version
-    private Integer version;
-    
     @OneToMany (mappedBy="trashCana", cascade=CascadeType.ALL)
     @ListProperties("""
         hora,modulo.descripcion,turno.descripcion,variedad.descripcion,
@@ -71,7 +66,6 @@ class TrashCana extends DiaTrabajoEditable {
     void crearTrash() throws ValidationException{
         try{
             Trash trash = new Trash()
-            //BeanUtils.copyProperties(trash, this)
             trash.id = null
 
             trash.diaTrabajo   = this.diaTrabajo
@@ -112,18 +106,20 @@ class TrashCana extends DiaTrabajoEditable {
         }
     }
     
-    @PrePersist // Ejecutado justo antes de grabar el objeto por primera vez
-    private void preGrabar() throws Exception {
-        recalcular()
-    }
+    void save() throws ValidationException{
+        try{
 
-    @PreUpdate
-    void recalcular() {
-        avgCantCana   = promCantCana
-        avgNetaCana   = promNetaCana
-        avgTrashCana  = promTrashCana
-        avgPorcTrash  = promPorcTrash
-        avgPorcAzuRed = promPorcAzuRed
+            this.avgCantCana   = promCantCana
+            this.avgNetaCana   = promNetaCana
+            this.avgTrashCana  = promTrashCana
+            this.avgPorcTrash  = promPorcTrash
+            this.avgPorcAzuRed = promPorcAzuRed
+
+            XPersistence.getManager().persist(this)
+                
+        }catch(Exception ex){
+            throw new SystemException("registro_no_actualizado", ex)
+        }
     }
 
 }

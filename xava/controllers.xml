@@ -49,13 +49,18 @@
         	class="ec.carper.ingenio.actions.TrashCanaCrearTrashAction">
     	</action>
         
+        <action name="save" mode="detail" by-default="if-possible"
+            icon="content-save" keystroke="Control S"
+        	class="ec.carper.ingenio.actions.TrashCanaSaveAction">
+    	</action>
+        
     </controller>   
 
-    <controller name="TrashDetalle">
+    <controller name="Trash">
         <extends controller="Typical"/>
         <action name="save" mode="detail" by-default="if-possible"
             icon="content-save" keystroke="Control S"
-        	class="ec.carper.ingenio.actions.TrashDetalleGrabarPromediosAction">
+        	class="ec.carper.ingenio.actions.TrashSaveAction">
     	</action>
     </controller>   
     

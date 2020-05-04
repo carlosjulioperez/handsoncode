@@ -4,9 +4,10 @@ import javax.persistence.*
 import javax.validation.constraints.Digits
 import org.openxava.annotations.*
 import org.openxava.calculators.*
+import org.openxava.jpa.*
 import org.openxava.model.*
-
-//import ec.carper.ingenio.util.Util
+import org.openxava.util.*
+import org.openxava.validators.*
 
 import java.time.LocalDate
 
@@ -25,9 +26,6 @@ import java.time.LocalDate
 """)
 @View(members=  """diaTrabajo;detalle""")
 class Trash extends DiaTrabajoEditable {
-
-    @Version
-    private Integer version;
 
     BigDecimal avgCantCana
 
@@ -78,7 +76,6 @@ class Trash extends DiaTrabajoEditable {
     // -------------------
     BigDecimal getPromCantCana(){
         return super.getPromedio(detalle, "cantidadCana", 2)
-        //return Util.instance.getPromedio(detalle, "cantidadCana", 2)
     }
     BigDecimal getPromNetaCana(){
         return super.getPromedio(detalle, "netaCana", 2)
@@ -142,34 +139,34 @@ class Trash extends DiaTrabajoEditable {
         return super.getPromedio(detalle, "calPorcCanaInfectada", 2)
     }
 
-    @PrePersist // Ejecutado justo antes de grabar el objeto por primera vez
-    private void preGrabar() throws Exception {
-        recalcular()
-    }
+    void save() throws ValidationException{
+        try{
 
-    @PreUpdate
-    void recalcular() {
-        avgCantCana          = promCantCana
-        avgNetaCana          = promNetaCana
+            this.avgCantCana          = promCantCana
+            this.avgNetaCana          = promNetaCana
+            this.avgTrashCana         = promTrashCana
+            this.avgPorcTrash         = promPorcTrash
 
-        avgTrashCana         = promTrashCana
-        avgPorcTrash         = promPorcTrash
+            this.avgCogollos          = promCogollos
+            this.avgPorcCogollos      = promPorcCogollos
+            this.avgHojas             = promHojas
+            this.avgPorcHojas         = promPorcHojas
+            this.avgCepa              = promCepa
+            this.avgPorcCepa          = promPorcCepa
+            this.avgCanaSeca          = promCanaSeca
+            this.avgPorcCanaSeca      = promPorcCanaSeca
+            this.avgSuelo             = promSuelo
+            this.avgPorcSuelo         = promPorcSuelo
+            this.avgOtros             = promOtros
+            this.avgPorcOtros         = promPorcOtros
+            this.avgCanaInfectada     = promCanaInfectada
+            this.avgPorcCanaInfectada = promPorcCanaInfectada
 
-        avgCogollos          = promCogollos
-        avgPorcCogollos      = promPorcCogollos
-        avgHojas             = promHojas
-        avgPorcHojas         = promPorcHojas
-
-        avgCepa              = promCepa
-        avgPorcCepa          = promPorcCepa
-        avgCanaSeca          = promCanaSeca
-        avgPorcCanaSeca      = promPorcCanaSeca
-        avgSuelo             = promSuelo
-        avgPorcSuelo         = promPorcSuelo
-        avgOtros             = promOtros
-        avgPorcOtros         = promPorcOtros
-        avgCanaInfectada     = promCanaInfectada
-        avgPorcCanaInfectada = promPorcCanaInfectada
+            XPersistence.getManager().persist(this)
+                
+        }catch(Exception ex){
+            throw new SystemException("registro_no_actualizado", ex)
+        }
     }
 
 }
