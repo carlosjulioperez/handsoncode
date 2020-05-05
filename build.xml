@@ -107,6 +107,16 @@
 		</sql>
     </target>
 
+	<target name="sql-alter">
+		<sql classpath="${sql.jar}"
+			driver="${sql.driver}" 
+			url="${sql.url}" 
+			userid="${sql.user}" password="${sql.pass}" 
+			print="yes"
+            src="etc/sql/alter.sql">
+		</sql>
+    </target>
+
     <target name="test" depends="compile">
 		
 		<mkdir dir="${represult.dir}"/>

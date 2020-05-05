@@ -7,26 +7,24 @@ import static org.openxava.jpa.XPersistence.*
 
 import ec.carper.ingenio.model.*
 
-class TrashSaveAction extends ViewBaseAction implements IChainAction{
+class CanaSaveAction extends ViewBaseAction implements IChainAction{
 
     private String nextAction = null // Para guardar la siguiente acción a ejecutar
 
     void execute() throws Exception{
 
         def id = getView().getValue("id")
-        // println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-        // println id
 
         if (id == null){
             addError("registro_no_actualizado")
             return
         }
-        MapFacade.setValues("Trash",
+        MapFacade.setValues("Cana",
             getView().getKeyValues(), getView().getValues()
         )
 
-        Trash trash = XPersistence.getManager().find( Trash.class, getView().getValue("id") )
-        trash.save()
+        Cana cana = XPersistence.getManager().find( Cana.class, getView().getValue("id") )
+        cana.save()
         //getView().refresh()
         addMessage("promedios_actualizados")
 
