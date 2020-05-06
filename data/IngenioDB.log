@@ -1,22 +1,8 @@
-/*C4*/SET SCHEMA PUBLIC
+/*C3*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C5*/SET SCHEMA PUBLIC
-alter table INGENIO.CANA add column brix numeric(19,2)
-alter table INGENIO.CANA add column brixExtracto numeric(19,2)
-alter table INGENIO.CANA add column muestraHumM1 numeric(19,2)
-alter table INGENIO.CANA add column muestraSecaM2 numeric(19,2)
-alter table INGENIO.CANA add column polExtracto numeric(19,2)
-alter table INGENIO.CANA add column polReal numeric(19,2)
-alter table INGENIO.CANA add column porcFibra numeric(19,2)
-alter table INGENIO.CANA add column porcHumedad numeric(19,2)
-alter table INGENIO.CANA add column porcSacarosa numeric(19,2)
-alter table INGENIO.CANA add column pureza numeric(19,2)
-alter table INGENIO.CANA add column tamizVacioM0 numeric(19,2)
-alter table INGENIO.CANA add column wCana numeric(19,2)
-alter table INGENIO.CANA add column wH2O numeric(19,2)
-SET SCHEMA INGENIO
-DELETE FROM CANA WHERE ID='ff80808171e34f830171e35056d00000'
-INSERT INTO CANA VALUES('ff80808171e34f830171e35056d00000',16.51,4.38,590.50,558.00,15.05,3.86,18.49,65.00,14.55,88.13,540.50,800.00,2400.00,'ff808081711cd37c01711cd403a70000',16.51,4.38,590.50,558.00,15.05,3.86,18.49,65.00,14.55,88.13,540.50,800.00,2400.00)
-COMMIT
+DISCONNECT
+/*C4*/SET SCHEMA PUBLIC
+DISCONNECT
 /*C6*/SET SCHEMA PUBLIC
 DISCONNECT

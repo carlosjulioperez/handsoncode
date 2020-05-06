@@ -18,6 +18,8 @@ import ec.carper.ingenio.actions.*
     muestraSecaM2, porcHumedad;
     brix, porcFibra;
     porcSacarosa, pureza;
+    nSac, aR;
+    porcArNsac
 """)
 class CanaDetalle extends Identifiable {
     
@@ -62,5 +64,14 @@ class CanaDetalle extends Identifiable {
     
     @ReadOnly
     BigDecimal pureza
+    
+    @ReadOnly
+    BigDecimal nSac
+    
+    @ReadOnly
+    BigDecimal aR
+    
+    @ReadOnly
+    BigDecimal porcArNsac
 
 }

@@ -2,6 +2,9 @@ package ec.carper.ingenio.util
 
 import ec.carper.ingenio.model.*
 
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
+
 @Singleton
 class Util{
     private static String format(long s){
@@ -64,7 +67,7 @@ class Util{
         }
         return value
     }
-
+   
     // BigDecimal getSusRed (BigDecimal titulacion){
     //     return new BrixDensidadTitSus().getSusRed(titulacion)
     // }
@@ -77,6 +80,18 @@ class Util{
             if (valor >= 0) lista << valor
         }
         return lista.size()>0 ? ( lista.sum() / lista.size() ).setScale(escala, BigDecimal.ROUND_HALF_UP) : 0
+    }
+    
+    // https://stackoverflow.com/questions/12102280/groovy-java-sql-timestamp-tostring-to-java-sql-timestamp
+    def toTimestamp(String hora) throws Exception{
+
+        // Este código java también funciona, pero el de abajo es más corto
+        // def dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+        // Date parsedDate = dateFormat.parse(hora);
+        // return new Timestamp(parsedDate.getTime());
+
+        def date = Date.parse('yyyy-MM-dd HH:mm:ss.S', hora)
+        return new java.sql.Timestamp(date.time)
     }
 
 }

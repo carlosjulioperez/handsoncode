@@ -1,12 +1,17 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.model.*
+import java.sql.Timestamp
 import org.openxava.actions.*
 
 class CanaDetalleAction extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
-        
+
+        // TODO
+        Cana cana                = (Cana)getView().getValue("cana")
+        Timestamp hora           = (Timestamp)getView().getValue("hora")
+
         BigDecimal wH2O          = (BigDecimal)getView().getValue("wH2O")
         BigDecimal wCana         = (BigDecimal)getView().getValue("wCana")
         BigDecimal brixExtracto  = (BigDecimal)getView().getValue("brixExtracto")
@@ -64,6 +69,16 @@ class CanaDetalleAction extends OnChangePropertyBaseAction{
             getView().setValue("pureza", (
                 (porcSacarosa/brix)*100 
             ).setScale(2, BigDecimal.ROUND_HALF_UP))
+
+            // =+L6-N6
+            getView().setValue("nSac", brix - porcSacarosa)
+        }
+        
+        BigDecimal nSac = (BigDecimal)getView().getValue("nSac")
+        if (nSac){
+            getView().setValue("aR", 
+                new TrashCanaDetalle2().getPorcAzuRed(cana.diaTrabajo, hora )
+            )
         }
 
     }

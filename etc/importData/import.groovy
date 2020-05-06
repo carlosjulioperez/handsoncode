@@ -33,6 +33,8 @@ def lista = [
     "TURNO",
     "UNIDAD",
     "VARIEDAD",
+    // "CANA",
+    // "CANADETALLE",
     "JUGO",
     "JUGODETALLE",
     "TRASH", 

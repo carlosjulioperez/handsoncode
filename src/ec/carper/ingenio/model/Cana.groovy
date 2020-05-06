@@ -26,7 +26,10 @@ import java.time.LocalDate
     brix,
     porcFibra,
     porcSacarosa,
-    pureza
+    pureza,
+    nSac,
+    aR,
+    porcArNsac
 """)
 @View(members=  """diaTrabajo;detalle""")
 class Cana extends DiaTrabajoEditable {
@@ -44,6 +47,9 @@ class Cana extends DiaTrabajoEditable {
     BigDecimal porcFibra
     BigDecimal porcSacarosa
     BigDecimal pureza
+    BigDecimal nSac
+    BigDecimal aR
+    BigDecimal porcArNsac
 
     @OneToMany (mappedBy="cana", cascade=CascadeType.ALL)
     @ListProperties("""
@@ -60,7 +66,10 @@ class Cana extends DiaTrabajoEditable {
         brix           [cana.promBrix],
         porcFibra      [cana.promPorcFibra],
         porcSacarosa   [cana.promPorcSacarosa],
-        pureza         [cana.promPureza]
+        pureza         [cana.promPureza],
+        nSac           [cana.nSac],
+        aR             [cana.aR],
+        porcArNsac     [cana.porcArNsac]
     """)
     Collection<CanaDetalle>detalle
 
@@ -103,6 +112,15 @@ class Cana extends DiaTrabajoEditable {
     BigDecimal getPromPureza(){
         return super.getPromedio(detalle, "pureza", 2)
     }
+    BigDecimal getPromNSac(){
+        return super.getPromedio(detalle, "nSac", 2)
+    }
+    BigDecimal getPromAR(){
+        return super.getPromedio(detalle, "aR", 2)
+    }
+    BigDecimal getPromPorcArNsac(){
+        return super.getPromedio(detalle, "porcArNsac", 2)
+    }
 
     void save() throws ValidationException{
         try{
@@ -120,6 +138,9 @@ class Cana extends DiaTrabajoEditable {
             porcFibra     = promPorcFibra
             porcSacarosa  = promPorcSacarosa
             pureza        = promPureza
+            nSac          = promNSac
+            aR            = promAR
+            porcArNsac    = promPorcArNsac
             
             XPersistence.getManager().persist(this)
 
