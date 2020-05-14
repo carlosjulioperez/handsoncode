@@ -67,9 +67,9 @@ class Cana extends DiaTrabajoEditable {
         porcFibra      [cana.promPorcFibra],
         porcSacarosa   [cana.promPorcSacarosa],
         pureza         [cana.promPureza],
-        nSac           [cana.nSac],
-        aR             [cana.aR],
-        porcArNsac     [cana.porcArNsac]
+        nSac           [cana.promNSac],
+        aR             [cana.promAR],
+        porcArNsac     [cana.promPorcArNsac]
     """)
     Collection<CanaDetalle>detalle
 
@@ -125,22 +125,22 @@ class Cana extends DiaTrabajoEditable {
     void save() throws ValidationException{
         try{
 
-            wH2O          = promWH2O
-            wCana         = promWCana
-            polReal       = promPolReal
-            brixExtracto  = promBrixExtracto
-            polExtracto   = promPolExtracto
-            tamizVacioM0  = promTamizVacioM0
-            muestraHumM1  = promMuestraHumM1
-            muestraSecaM2 = promMuestraSecaM2
-            porcHumedad   = promPorcHumedad
-            brix          = promBrix
-            porcFibra     = promPorcFibra
-            porcSacarosa  = promPorcSacarosa
-            pureza        = promPureza
-            nSac          = promNSac
-            aR            = promAR
-            porcArNsac    = promPorcArNsac
+            this.wH2O          = promWH2O
+            this.wCana         = promWCana
+            this.polReal       = promPolReal
+            this.brixExtracto  = promBrixExtracto
+            this.polExtracto   = promPolExtracto
+            this.tamizVacioM0  = promTamizVacioM0
+            this.muestraHumM1  = promMuestraHumM1
+            this.muestraSecaM2 = promMuestraSecaM2
+            this.porcHumedad   = promPorcHumedad
+            this.brix          = promBrix
+            this.porcFibra     = promPorcFibra
+            this.porcSacarosa  = promPorcSacarosa
+            this.pureza        = promPureza
+            this.nSac          = promNSac
+            this.aR            = promAR
+            this.porcArNsac    = promPorcArNsac
             
             XPersistence.getManager().persist(this)
 

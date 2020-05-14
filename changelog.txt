@@ -1,4 +1,7 @@
 Proyecto
+
+	* TODO:
+		
 	
 	* Nota 1:
 	Cuando sale NullPointerException, revisar las propiedades de UI. Hay que revisar si los campos en la tabla no sean nulos.
@@ -37,7 +40,7 @@ Proyecto
 		https://stackoverflow.com/questions/34098326/how-to-select-a-schema-in-postgres-when-using-psql
 
 		SHOW search_path;
-		SET search_path TO fabrica;
+		SET search_path TO ingenio;
 
 		+ reiniciar secuencia:
 		ALTER SEQUENCE seq RESTART WITH 1;

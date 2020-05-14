@@ -9,7 +9,7 @@
 // https://xkcd.com/1179/
 
 @Grab('org.hsqldb:hsqldb:2.3.2')
-//@Grab('org.postgresql:postgresql:42.2.5.jre7')
+// @Grab('org.postgresql:postgresql:42.2.5.jre7')
 @GrabConfig(systemClassLoader=true)
 @Grab('com.opencsv:opencsv:3.9')
 //@Grab(group='com.opencsv', module='opencsv', version='3.9')

@@ -35,14 +35,22 @@ class TrashCanaDetalle2 extends Identifiable {
     @Digits(integer=4, fraction=3)
     BigDecimal calPorcAzuRed
 
-    BigDecimal getPorcAzuRed(DiaTrabajo diaTrabajo, java.sql.Timestamp hora){
+    BigDecimal getPorcAzuRed(String diaTrabajoId, java.sql.Timestamp hora){
+        
         BigDecimal valor = 0
-        Query query = getManager().createQuery("select o.calPorcAzuRed from TrashCanaDetalle2 o where o.trashCana.diaTrabajo= :diaTrabajo and o.hora <= :hora order by o.hora desc")
-        query.setParameter("diaTrabajo" , diaTrabajo)
-        query.setParameter("hora"       , hora)
+        
+        Query query = getManager().createQuery("FROM TrashCanaDetalle2 WHERE trashCana.diaTrabajo.id = :diaTrabajoId ORDER BY hora")
+        query.setParameter("diaTrabajoId", diaTrabajoId)
 
-        List records = query.getResultList()
-        valor = records ? records[0]: 0
+        // println hora.toString() + " - "
+        for ( TrashCanaDetalle2 o: query.resultList ){
+            long lapso = (hora.time - o.hora.time) / ( 60 * 60 * 1000)
+            // println "\t" + "(" + o.calPorcAzuRed + ") " + o.hora.toString() + " = " + lapso
+            if (lapso ==0 || Math.abs(lapso) == 1){
+                valor = o.calPorcAzuRed 
+                break
+            }
+        }
         return valor
     }
 

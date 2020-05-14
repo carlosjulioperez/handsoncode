@@ -90,7 +90,8 @@ class Util{
         // Date parsedDate = dateFormat.parse(hora);
         // return new Timestamp(parsedDate.getTime());
 
-        def date = Date.parse('yyyy-MM-dd HH:mm:ss.S', hora)
+        //def date = Date.parse('yyyy-MM-dd HH:mm:ss.S', hora)
+        def date = Date.parse('yyyy-MM-dd HH:mm:ss', hora)
         return new java.sql.Timestamp(date.time)
     }
 

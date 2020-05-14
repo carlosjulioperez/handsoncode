@@ -8,8 +8,6 @@ class CanaDetalleAction extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
 
-        // TODO
-        Cana cana                = (Cana)getView().getValue("cana")
         Timestamp hora           = (Timestamp)getView().getValue("hora")
 
         BigDecimal wH2O          = (BigDecimal)getView().getValue("wH2O")
@@ -74,12 +72,19 @@ class CanaDetalleAction extends OnChangePropertyBaseAction{
             getView().setValue("nSac", brix - porcSacarosa)
         }
         
+        // https://sourceforge.net/p/openxava/discussion/419690/thread/e3d301aa/?limit=25
+        // println("values=" + getView().getRoot().getValues());
+        String diaTrabajoId = getView().getRoot().getValue("diaTrabajo.id")
+        // println diaTrabajoId
+         
         BigDecimal nSac = (BigDecimal)getView().getValue("nSac")
-        if (nSac){
-            getView().setValue("aR", 
-                new TrashCanaDetalle2().getPorcAzuRed(cana.diaTrabajo, hora )
-            )
-        }
+        if (nSac && diaTrabajoId)
+            getView().setValue("aR", new TrashCanaDetalle2().getPorcAzuRed(diaTrabajoId, hora))
+
+        BigDecimal aR = (BigDecimal)getView().getValue("aR")
+        if (nSac && aR)
+            getView().setValue("porcArNsac", (aR/nSac*100).setScale(8, BigDecimal.ROUND_HALF_UP))
+
 
     }
 }

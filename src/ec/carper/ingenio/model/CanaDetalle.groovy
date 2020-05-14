@@ -71,6 +71,7 @@ class CanaDetalle extends Identifiable {
     @ReadOnly
     BigDecimal aR
     
+    @Digits(integer=6, fraction=8)
     @ReadOnly
     BigDecimal porcArNsac
 
