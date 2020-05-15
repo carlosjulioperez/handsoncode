@@ -11,45 +11,34 @@ import ec.carper.ingenio.actions.*
 
 @Entity
 @View(members="""#
-    hora, wH2O;
-    wCana, polReal;
-    brixExtracto, polExtracto;
-    tamizVacioM0, muestraHumM1;
-    muestraSecaM2, porcHumedad;
+    horaDesde, horaHasta;
+    polReal, brixExtracto;
+    polExtracto, porcHumedad;
     brix, porcFibra;
     porcSacarosa, pureza;
-    nSac, aR;
-    porcArNsac
 """)
-class CanaDetalle extends Identifiable {
+class CanaDetalle2 extends Identifiable {
     
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Cana cana
     
+    @OnChange(CanaDetalle2Action.class)
     @Stereotype("DATETIME") @Required
-    java.sql.Timestamp hora
+    java.sql.Timestamp horaDesde
 
-    BigDecimal wH2O
-    BigDecimal wCana
+    @OnChange(CanaDetalle2Action.class)
+    @Stereotype("DATETIME") @Required
+    java.sql.Timestamp horaHasta
 
     @ReadOnly
     BigDecimal polReal
-
-    @OnChange(CanaDetalleAction.class)
+    
+    @OnChange(CanaDetalle2Action.class)
     BigDecimal brixExtracto
     
-    @OnChange(CanaDetalleAction.class)
+    @OnChange(CanaDetalle2Action.class)
     BigDecimal polExtracto
-
-    @OnChange(CanaDetalleAction.class)
-    BigDecimal tamizVacioM0
-
-    @ReadOnly
-    BigDecimal muestraHumM1
     
-    @OnChange(CanaDetalleAction.class)
-    BigDecimal muestraSecaM2
-
     @ReadOnly
     BigDecimal porcHumedad
 
@@ -64,15 +53,4 @@ class CanaDetalle extends Identifiable {
     
     @ReadOnly
     BigDecimal pureza
-    
-    @ReadOnly
-    BigDecimal nSac
-    
-    @ReadOnly
-    BigDecimal aR
-    
-    @Digits(integer=6, fraction=8)
-    @ReadOnly
-    BigDecimal porcArNsac
-
 }

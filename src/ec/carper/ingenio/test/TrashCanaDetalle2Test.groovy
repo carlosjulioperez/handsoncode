@@ -66,4 +66,5 @@ class TrashCanaDetalle2Test extends ModuleTestBase {
         //assertEquals(valor, "0.500")
     }
 
+    
 }

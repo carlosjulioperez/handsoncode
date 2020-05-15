@@ -4,7 +4,7 @@ import ec.carper.ingenio.model.*
 import java.sql.Timestamp
 import org.openxava.actions.*
 
-class CanaDetalleAction extends OnChangePropertyBaseAction{
+class CanaDetalle1Action extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
 
