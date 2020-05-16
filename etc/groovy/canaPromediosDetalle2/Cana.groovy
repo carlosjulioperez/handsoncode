@@ -29,7 +29,15 @@ import java.time.LocalDate
     pureza,
     nSac,
     aR,
-    porcArNsac
+    porcArNsac,
+    polReal2,
+    brixExtracto2,
+    polExtracto2,
+    porcHumedad2,
+    brix2,
+    porcFibra2,
+    porcSacarosa2,
+    pureza2
 """)
 @View(members=  """diaTrabajo;detalle1;detalle2""")
 class Cana extends DiaTrabajoEditable {
@@ -51,6 +59,15 @@ class Cana extends DiaTrabajoEditable {
     BigDecimal aR
     BigDecimal porcArNsac
     
+    BigDecimal polReal2
+    BigDecimal brixExtracto2
+    BigDecimal polExtracto2
+    BigDecimal porcHumedad2
+    BigDecimal brix2
+    BigDecimal porcFibra2
+    BigDecimal porcSacarosa2
+    BigDecimal pureza2
+
     @OneToMany (mappedBy="cana", cascade=CascadeType.ALL)
     @ListProperties("""
         hora,
@@ -125,16 +142,41 @@ class Cana extends DiaTrabajoEditable {
     @OneToMany (mappedBy="cana", cascade=CascadeType.ALL)
     @ListProperties("""
         horaDesde, horaHasta,
-        polReal,
-        brixExtracto,
-        polExtracto,
-        porcHumedad,
-        brix,
-        porcFibra,
-        porcSacarosa,
-        pureza
+        polReal        [cana.promPolReal2],
+        brixExtracto   [cana.promBrixExtracto2],
+        polExtracto    [cana.promPolExtracto2],
+        porcHumedad    [cana.promPorcHumedad2],
+        brix           [cana.promBrix2],
+        porcFibra      [cana.promPorcFibra2], 
+        porcSacarosa   [cana.promPorcSacarosa2],
+        pureza         [cana.promPureza2]
     """)
     Collection<CanaDetalle2>detalle2
+
+    BigDecimal getPromPolReal2(){
+        return super.getPromedio(detalle2, "polReal", 2)
+    }
+    BigDecimal getPromBrixExtracto2(){
+        return super.getPromedio(detalle2, "brixExtracto", 2)
+    }
+    BigDecimal getPromPolExtracto2(){
+        return super.getPromedio(detalle2, "polExtracto", 2)
+    }
+    BigDecimal getPromPorcHumedad2(){
+        return super.getPromedio(detalle2, "porcHumedad", 2)
+    }
+    BigDecimal getPromBrix2(){
+        return super.getPromedio(detalle2, "brix", 2)
+    }
+    BigDecimal getPromPorcFibra2(){
+        return super.getPromedio(detalle2, "porcFibra", 2)
+    }
+    BigDecimal getPromPorcSacarosa2(){
+        return super.getPromedio(detalle2, "porcSacarosa", 2)
+    }
+    BigDecimal getPromPureza2(){
+        return super.getPromedio(detalle2, "pureza", 2)
+    }
 
     void save() throws ValidationException{
         try{
@@ -155,6 +197,15 @@ class Cana extends DiaTrabajoEditable {
             this.nSac          = promNSac
             this.aR            = promAR
             this.porcArNsac    = promPorcArNsac
+            
+            this.polReal2      = promPolReal2
+            this.brixExtracto2 = promBrixExtracto2
+            this.polExtracto2  = promPolExtracto2
+            this.porcHumedad2  = promPorcHumedad2
+            this.brix2         = promBrix2
+            this.porcFibra2    = promPorcFibra2
+            this.porcSacarosa2 = promPorcSacarosa2
+            this.pureza2       = promPureza2
 
             XPersistence.getManager().persist(this)
 

@@ -35,6 +35,7 @@ def lista = [
     "VARIEDAD",
     "CANA",
     "CANADETALLE1",
+    "CANADETALLE2",
     "JUGO",
     "JUGODETALLE",
     "TRASH", 
