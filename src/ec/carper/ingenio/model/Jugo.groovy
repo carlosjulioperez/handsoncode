@@ -4,117 +4,138 @@ import java.time.LocalDate
 import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.calculators.*
+import org.openxava.jpa.*
 import org.openxava.model.*
+import org.openxava.util.*
+import org.openxava.validators.*
 import static org.openxava.jpa.XPersistence.*
 
 @Entity
 @Tab(properties="""
-    fecha,
-    avgJeBri, avgJePol, avgJeSac, avgJePur,
-    avgJdBri, avgJdPol, avgJdSac, avgJdPur,
-    avgJcBri, avgJcPol, avgJcSac, avgJcPur,
-    avgJnBri, avgJnPol, avgJnSac, avgJnPur,
-    avgJrBri, avgJrPol, avgJrSac, avgJrPur,
-    avgJfBri, avgJfPol, avgJfSac, avgJfPur
+    diaTrabajo.descripcion,
+    jeBri, jePol, jeSac, jePur,
+    jdBri, jdPol, jdSac, jdPur,
+    jcBri, jcPol, jcSac, jcPur,
+    jnBri, jnPol, jnSac, jnPur,
+    jrBri, jrPol, jrSac, jrPur,
+    jfBri, jfPol, jfSac, jfPur
 """)
-@View(members=  """fecha;detalles""")
-class Jugo extends Identifiable{
+@View(members=  """diaTrabajo;detalle""")
+class Jugo extends DiaTrabajoEditable {
 
-    @Version
-    private Integer version;
-
-    @DefaultValueCalculator(CurrentLocalDateCalculator.class) // Fecha actual
-    @Required
-    LocalDate fecha
+    BigDecimal jeBri
+    BigDecimal jePol
+    BigDecimal jeSac
+    BigDecimal jePur
+    BigDecimal jdBri
+    BigDecimal jdPol
+    BigDecimal jdSac
+    BigDecimal jdPur
+    BigDecimal jcBri
+    BigDecimal jcPol
+    BigDecimal jcSac
+    BigDecimal jcPur
+    BigDecimal jnBri
+    BigDecimal jnPol
+    BigDecimal jnSac
+    BigDecimal jnPur
+    BigDecimal jrBri
+    BigDecimal jrPol
+    BigDecimal jrSac
+    BigDecimal jrPur
+    BigDecimal jfBri
+    BigDecimal jfPol
+    BigDecimal jfSac
+    BigDecimal jfPur
 
     @OneToMany (mappedBy="jugo", cascade=CascadeType.ALL)
     @ListProperties("""
         hora,
-        jeBri,jePol,calJeSac,calJePur,
-        jdBri,jdPol,calJdSac,calJdPur,
-        jcBri,jcPol,calJcSac,calJcPur,
-        jnBri,jnPol,calJnSac,calJnPur,
-        jrBri,jrPol,calJrSac,calJrPur,
-        jfBri,jfPol,calJfSac,calJfPur
+        jeBri [jugo.promJeBri],
+        jePol [jugo.promJePol],
+        jeSac [jugo.promJeSac],
+        jePur [jugo.promJePur],
+        jdBri [jugo.promJdBri],
+        jdPol [jugo.promJdPol],
+        jdSac [jugo.promJdSac],
+        jdPur [jugo.promJdPur],
+        jcBri [jugo.promJcBri],
+        jcPol [jugo.promJcPol],
+        jcSac [jugo.promJcSac],
+        jcPur [jugo.promJcPur],
+        jnBri [jugo.promJnBri],
+        jnPol [jugo.promJnPol],
+        jnSac [jugo.promJnSac],
+        jnPur [jugo.promJnPur],
+        jrBri [jugo.promJrBri],
+        jrPol [jugo.promJrPol],
+        jrSac [jugo.promJrSac],
+        jrPur [jugo.promJrPur],
+        jfBri [jugo.promJfBri],
+        jfPol [jugo.promJfPol],
+        jfSac [jugo.promJfSac],
+        jfPur [jugo.promJfPur]
     """)
-    Collection<JugoDetalle>detalles
-
-    BigDecimal avgJeBri
-    BigDecimal avgJePol
-    BigDecimal avgJeSac
-    BigDecimal avgJePur
-
-    BigDecimal avgJdBri
-    BigDecimal avgJdPol
-    BigDecimal avgJdSac
-    BigDecimal avgJdPur
-
-    BigDecimal avgJcBri
-    BigDecimal avgJcPol
-    BigDecimal avgJcSac
-    BigDecimal avgJcPur
-
-    BigDecimal avgJnBri
-    BigDecimal avgJnPol
-    BigDecimal avgJnSac
-    BigDecimal avgJnPur
-
-    BigDecimal avgJrBri
-    BigDecimal avgJrPol
-    BigDecimal avgJrSac
-    BigDecimal avgJrPur
-
-    BigDecimal avgJfBri
-    BigDecimal avgJfPol
-    BigDecimal avgJfSac
-    BigDecimal avgJfPur
-
-    BigDecimal getAvg(String propiedad){
-        def lista = []
-        detalles.each {
-            //def valor = (BigDecimal)Eval.x(it, "x.jeBri")
-            def valor = (BigDecimal)Eval.x(it, "x."+propiedad)
-            if (valor > 0) lista << valor
-        }
-        return lista.size()>0 ? ( lista.sum() / lista.size() ).setScale(2, BigDecimal.ROUND_HALF_UP) : 0
-    }
-
-    @PrePersist // Ejecutado justo antes de grabar el objeto por primera vez
-    private void preGrabar() throws Exception {
-        sincronizarPropiedadesPersistentes()
-    }
+    Collection<JugoDetalle>detalle
     
-    @PreUpdate
-    void sincronizarPropiedadesPersistentes(){
-        setAvgJeBri(getAvg("jeBri"))
-        setAvgJePol(getAvg("jePol"))
-        setAvgJeSac(getAvg("calJeSac"))
-        setAvgJePur(getAvg("calJePur"))
+    BigDecimal getPromJeBri(){ return super.getPromedio(detalle, "jeBri", 2) }
+    BigDecimal getPromJePol(){ return super.getPromedio(detalle, "jePol", 2) }
+    BigDecimal getPromJeSac(){ return super.getPromedio(detalle, "jeSac", 2) }
+    BigDecimal getPromJePur(){ return super.getPromedio(detalle, "jePur", 2) }
+    BigDecimal getPromJdBri(){ return super.getPromedio(detalle, "jdBri", 2) }
+    BigDecimal getPromJdPol(){ return super.getPromedio(detalle, "jdPol", 2) }
+    BigDecimal getPromJdSac(){ return super.getPromedio(detalle, "jdSac", 2) }
+    BigDecimal getPromJdPur(){ return super.getPromedio(detalle, "jdPur", 2) }
+    BigDecimal getPromJcBri(){ return super.getPromedio(detalle, "jcBri", 2) }
+    BigDecimal getPromJcPol(){ return super.getPromedio(detalle, "jcPol", 2) }
+    BigDecimal getPromJcSac(){ return super.getPromedio(detalle, "jcSac", 2) }
+    BigDecimal getPromJcPur(){ return super.getPromedio(detalle, "jcPur", 2) }
+    BigDecimal getPromJnBri(){ return super.getPromedio(detalle, "jnBri", 2) }
+    BigDecimal getPromJnPol(){ return super.getPromedio(detalle, "jnPol", 2) }
+    BigDecimal getPromJnSac(){ return super.getPromedio(detalle, "jnSac", 2) }
+    BigDecimal getPromJnPur(){ return super.getPromedio(detalle, "jnPur", 2) }
+    BigDecimal getPromJrBri(){ return super.getPromedio(detalle, "jrBri", 2) }
+    BigDecimal getPromJrPol(){ return super.getPromedio(detalle, "jrPol", 2) }
+    BigDecimal getPromJrSac(){ return super.getPromedio(detalle, "jrSac", 2) }
+    BigDecimal getPromJrPur(){ return super.getPromedio(detalle, "jrPur", 2) }
+    BigDecimal getPromJfBri(){ return super.getPromedio(detalle, "jfBri", 2) }
+    BigDecimal getPromJfPol(){ return super.getPromedio(detalle, "jfPol", 2) }
+    BigDecimal getPromJfSac(){ return super.getPromedio(detalle, "jfSac", 2) }
+    BigDecimal getPromJfPur(){ return super.getPromedio(detalle, "jfPur", 2) }
+    
+    void save() throws ValidationException{
+        try{
 
-        setAvgJdBri(getAvg("jdBri"))
-        setAvgJdPol(getAvg("jdPol"))
-        setAvgJdSac(getAvg("calJdSac"))
-        setAvgJdPur(getAvg("calJdPur"))
+            this.jeBri = promJeBri
+            this.jePol = promJePol
+            this.jeSac = promJeSac
+            this.jePur = promJePur
+            this.jdBri = promJdBri
+            this.jdPol = promJdPol
+            this.jdSac = promJdSac
+            this.jdPur = promJdPur
+            this.jcBri = promJcBri
+            this.jcPol = promJcPol
+            this.jcSac = promJcSac
+            this.jcPur = promJcPur
+            this.jnBri = promJnBri
+            this.jnPol = promJnPol
+            this.jnSac = promJnSac
+            this.jnPur = promJnPur
+            this.jrBri = promJrBri
+            this.jrPol = promJrPol
+            this.jrSac = promJrSac
+            this.jrPur = promJrPur
+            this.jfBri = promJfBri
+            this.jfPol = promJfPol
+            this.jfSac = promJfSac
+            this.jfPur = promJfPur
 
-        setAvgJcBri(getAvg("jcBri"))
-        setAvgJcPol(getAvg("jcPol"))
-        setAvgJcSac(getAvg("calJcSac"))
-        setAvgJcPur(getAvg("calJcPur"))
+            XPersistence.getManager().persist(this)
 
-        setAvgJnBri(getAvg("jnBri"))
-        setAvgJnPol(getAvg("jnPol"))
-        setAvgJnSac(getAvg("calJnSac"))
-        setAvgJnPur(getAvg("calJnPur"))
-
-        setAvgJrBri(getAvg("jrBri"))
-        setAvgJrPol(getAvg("jrPol"))
-        setAvgJrSac(getAvg("calJrSac"))
-        setAvgJrPur(getAvg("calJrPur"))
-
-        setAvgJfBri(getAvg("jfBri"))
-        setAvgJfPol(getAvg("jfPol"))
-        setAvgJfSac(getAvg("calJfSac"))
-        setAvgJfPur(getAvg("calJfPur"))
+        }catch(Exception ex){
+            throw new SystemException("registro_no_actualizado", ex)
+        }
     }
 
     BigDecimal getAvgField (LocalDate fecha, String campo){
@@ -128,16 +149,4 @@ class Jugo extends Identifiable{
         return valor
     }
 
-    // @PrePersist // Ejecutado justo antes de grabar el objeto por primera vez
-    // private void preGrabar() throws Exception {
-    //     recalcularAvgJeBri()
-    // }
-    //
-    // @PreUpdate
-    // void recalcularAvgJeBri() {
-    //     def val = getAvg("jeBri")
-    //     println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + val
-    //     //setAvgJeBri(getAvg("jeBri"))
-    //     setAvgJeBri(val)
-    // }
 }

@@ -6,17 +6,17 @@ import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.model.*
 
-// @Embeddable
-// class JugoDetalle{
+import ec.carper.ingenio.actions.*
+
 @Entity
 @View(members="""
     hora;
-    tabJExt {jeBri;jePol;calJeSac;calJePur};
-    tabJDil {jdBri;jdPol;calJdSac;calJdPur};
-    tabJCla {jcBri;jcPol;calJcSac;calJcPur};
-    tabJEnc {jnBri;jnPol;calJnSac;calJnPur};
-    tabJRes {jrBri;jrPol;calJrSac;calJrPur};
-    tabJFil {jfBri;jfPol;calJfSac;calJfPur}
+    jeBri, jePol, jeSac, jePur;
+    jdBri, jdPol, jdSac, jdPur;
+    jcBri, jcPol, jcSac, jcPur;
+    jnBri, jnPol, jnSac, jnPur;
+    jrBri, jrPol, jrSac, jrPur;
+    jfBri, jfPol, jfSac, jfPur
 """)
 class JugoDetalle extends Identifiable {
 
@@ -25,79 +25,59 @@ class JugoDetalle extends Identifiable {
 
     @Stereotype("DATETIME") @Required
     java.sql.Timestamp hora
-
-    //@DisplaySize(10)
+    
+    @OnChange(JugoDetalleAction.class)
     BigDecimal jeBri
+    @OnChange(JugoDetalleAction.class)
     BigDecimal jePol
-    @Depends("jeBri,jePol") //Propiedad calculada
-    BigDecimal getCalJeSac(){
-        return (jeBri && jePol) ? getSac(jeBri, jePol) : 0
-    }
-    @Depends("jeBri,calJeSac ") //Propiedad calculada
-    BigDecimal getCalJePur(){
-        return (calJeSac && jeBri) ? getPur(calJeSac, jeBri) : 0
-    }
-
+    @ReadOnly
+    BigDecimal jeSac
+    @ReadOnly
+    BigDecimal jePur
+    
+    @OnChange(JugoDetalleAction.class)
     BigDecimal jdBri
+    @OnChange(JugoDetalleAction.class)
     BigDecimal jdPol
-    @Depends("jdBri,jdPol") //Propiedad calculada
-    BigDecimal getCalJdSac(){
-        return (jdBri && jdPol) ? getSac(jdBri, jdPol) : 0
-    }
-    @Depends("jdBri,calJdSac ") //Propiedad calculada
-    BigDecimal getCalJdPur(){
-        return (calJdSac && jdBri) ? getPur(calJdSac, jdBri) : 0
-    }
-
+    @ReadOnly
+    BigDecimal jdSac
+    @ReadOnly
+    BigDecimal jdPur
+    
+    @OnChange(JugoDetalleAction.class)
     BigDecimal jcBri
+    @OnChange(JugoDetalleAction.class)
     BigDecimal jcPol
-    @Depends("jcBri,jcPol") //Propiedad calculada
-    BigDecimal getCalJcSac(){
-        return (jcBri && jcPol) ? getSac(jcBri, jcPol) : 0
-    }
-    @Depends("jcBri,calJcSac ") //Propiedad calculada
-    BigDecimal getCalJcPur(){
-        return (calJcSac && jcBri) ? getPur(calJcSac, jcBri) : 0
-    }
-
+    @ReadOnly
+    BigDecimal jcSac
+    @ReadOnly
+    BigDecimal jcPur
+    
+    @OnChange(JugoDetalleAction.class)
     BigDecimal jnBri
+    @OnChange(JugoDetalleAction.class)
     BigDecimal jnPol
-    @Depends("jnBri,jnPol") //Propiedad calculada
-    BigDecimal getCalJnSac(){
-        return (jnBri && jnPol) ? getSac(jnBri, jnPol) : 0
-    }
-    @Depends("jnBri,calJnSac ") //Propiedad calculada
-    BigDecimal getCalJnPur(){
-        return (calJnSac && jnBri) ? getPur(calJnSac, jnBri) : 0
-    }
-
+    @ReadOnly
+    BigDecimal jnSac
+    @ReadOnly
+    BigDecimal jnPur
+    
+    @OnChange(JugoDetalleAction.class)
     BigDecimal jrBri
+    @OnChange(JugoDetalleAction.class)
     BigDecimal jrPol
-    @Depends("jrBri,jrPol") //Propiedad calculada
-    BigDecimal getCalJrSac(){
-        return (jrBri && jrPol) ? getSac(jrBri, jrPol) : 0
-    }
-    @Depends("jrBri,calJrSac ") //Propiedad calculada
-    BigDecimal getCalJrPur(){
-        return (calJrSac && jrBri) ? getPur(calJrSac, jrBri) : 0
-    }
-
+    @ReadOnly
+    BigDecimal jrSac
+    @ReadOnly
+    BigDecimal jrPur
+    
+    @OnChange(JugoDetalleAction.class)
     BigDecimal jfBri
+    @OnChange(JugoDetalleAction.class)
     BigDecimal jfPol
-    @Depends("jfBri,jfPol") //Propiedad calculada
-    BigDecimal getCalJfSac(){
-        return (jfBri && jfPol) ? getSac(jfBri, jfPol) : 0
-    }
-    @Depends("jfBri,calJfSac ") //Propiedad calculada
-    BigDecimal getCalJfPur(){
-        return (calJfSac && jfBri) ? getPur(calJfSac, jfBri) : 0
-    }
+    @ReadOnly
+    BigDecimal jfSac
+    @ReadOnly
+    BigDecimal jfPur
 
-    private BigDecimal getSac(BigDecimal bri, BigDecimal pol){
-        return (pol*0.26)/(0.9971883+0.00385310413*bri+0.0000132218495*bri*bri+0.00000004655189*bri*bri*bri)
-    }
-
-    private BigDecimal getPur(BigDecimal sac, BigDecimal bri){
-        return (sac/bri)*100 
-    }
 }

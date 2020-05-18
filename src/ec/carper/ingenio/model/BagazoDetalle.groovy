@@ -7,7 +7,6 @@ import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.model.*
 import org.openxava.jpa.*
-import org.openxava.model.*
 import static org.openxava.jpa.XPersistence.*
 
 import ec.carper.ingenio.actions.*
