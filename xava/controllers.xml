@@ -72,4 +72,20 @@
     	</action>
     </controller>   
     
+    <controller name="Bagazo">
+        <extends controller="Typical"/>
+        <action name="save" mode="detail" by-default="if-possible"
+            icon="content-save" keystroke="Control S"
+        	class="ec.carper.ingenio.actions.BagazoSaveAction">
+    	</action>
+    </controller>   
+    
+    <controller name="Ph">
+        <extends controller="Typical"/>
+        <action name="save" mode="detail" by-default="if-possible"
+            icon="content-save" keystroke="Control S"
+        	class="ec.carper.ingenio.actions.PhSaveAction">
+    	</action>
+    </controller>   
+    
 </controllers>

@@ -117,6 +117,16 @@
 		</sql>
     </target>
 
+	<target name="sql-insert">
+		<sql classpath="${sql.jar}"
+			driver="${sql.driver}" 
+			url="${sql.url}" 
+			userid="${sql.user}" password="${sql.pass}" 
+			print="yes"
+            src="etc/sql/insert.sql">
+		</sql>
+    </target>
+
     <target name="test" depends="compile">
 		
 		<mkdir dir="${represult.dir}"/>
