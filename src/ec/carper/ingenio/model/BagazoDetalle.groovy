@@ -19,7 +19,8 @@ import ec.carper.ingenio.actions.*
     tamizVacioM0, muestraHumM1;
     muestraSecaM2, porcHumedad;
     brix, porcFibra;
-    porcSacarosa, porcSacJR;
+    porcSacarosa;
+    horaPorcSacJR, porcSacJR;
     gradosAguaMac
 """)
 class BagazoDetalle extends Identifiable {
@@ -66,6 +67,10 @@ class BagazoDetalle extends Identifiable {
     @ReadOnly
     BigDecimal porcSacarosa
     
+    @Stereotype("DATETIME") @Required
+    @OnChange(BagazoDetalleAction.class)
+    java.sql.Timestamp horaPorcSacJR
+
     @ReadOnly
     BigDecimal porcSacJR
     

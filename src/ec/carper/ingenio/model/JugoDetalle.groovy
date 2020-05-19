@@ -5,6 +5,8 @@ import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.model.*
+import org.openxava.jpa.*
+import static org.openxava.jpa.XPersistence.*
 
 import ec.carper.ingenio.actions.*
 
@@ -79,5 +81,17 @@ class JugoDetalle extends Identifiable {
     BigDecimal jfSac
     @ReadOnly
     BigDecimal jfPur
+    
+    BigDecimal getPorcSacJR(String diaTrabajoId, java.sql.Timestamp hora){
+        BigDecimal valor = 0
+
+        Query query = getManager().createQuery("SELECT jrSac FROM JugoDetalle WHERE jugo.diaTrabajo.id = :diaTrabajoId AND hora = :hora ORDER BY hora")
+        query.setParameter("diaTrabajoId", diaTrabajoId)
+        query.setParameter("hora", hora)
+        
+        List records = query.resultList
+        valor = records ? records[0]: 0
+        return valor
+    }
 
 }

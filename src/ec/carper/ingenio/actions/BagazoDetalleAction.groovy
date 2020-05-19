@@ -8,6 +8,9 @@ class BagazoDetalleAction extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
 
+        String diaTrabajoId      = (String)getView().getRoot().getValue("diaTrabajo.id")
+        Timestamp horaPorcSacJR  = (Timestamp)getView().getValue("horaPorcSacJR")
+
         BigDecimal wH2O          = (BigDecimal)getView().getValue("wH2O")
         BigDecimal wBagazo       = (BigDecimal)getView().getValue("wBagazo")
         BigDecimal brixExtracto  = (BigDecimal)getView().getValue("brixExtracto")
@@ -49,7 +52,6 @@ class BagazoDetalleAction extends OnChangePropertyBaseAction{
         if (porcHumedad && brix)
             getView().setValue("porcFibra", 100 - porcHumedad - brix)
 
-
         // =E6*(D6+C6-0,0125*M6*D6)/D6
         BigDecimal polReal = (BigDecimal)getView().getValue("polReal")
         BigDecimal porcFibra = (BigDecimal)getView().getValue("porcFibra")
@@ -58,5 +60,12 @@ class BagazoDetalleAction extends OnChangePropertyBaseAction{
                 polReal*(wBagazo + wH2O - 0.0125*porcFibra*wBagazo)/wBagazo 
             ).setScale(2, BigDecimal.ROUND_HALF_UP))
         }
+
+        if (diaTrabajoId && horaPorcSacJR){
+            getView().setValue("porcSacJR", (
+                new JugoDetalle().getPorcSacJR(diaTrabajoId, horaPorcSacJR) 
+            ).setScale(2, BigDecimal.ROUND_HALF_UP))
+        }
+
     }
 }
