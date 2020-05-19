@@ -59,11 +59,11 @@ class JugoDetalleAction extends OnChangePropertyBaseAction{
     }
     
     private BigDecimal getSac(BigDecimal bri, BigDecimal pol){
-        return (pol*0.26)/(0.9971883+0.00385310413*bri+0.0000132218495*bri*bri+0.00000004655189*bri*bri*bri)
+        return ((pol*0.26)/(0.9971883+0.00385310413*bri+0.0000132218495*bri*bri+0.00000004655189*bri*bri*bri)).setScale(2, BigDecimal.ROUND_HALF_UP)
     }
 
     private BigDecimal getPur(BigDecimal sac, BigDecimal bri){
-        return (sac/bri)*100 
+        return ((sac/bri)*100).setScale(2, BigDecimal.ROUND_HALF_UP)
     }
 
 }

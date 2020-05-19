@@ -67,7 +67,7 @@ class BagazoDetalle extends Identifiable {
     @ReadOnly
     BigDecimal porcSacarosa
     
-    @Stereotype("DATETIME") @Required
+    @Stereotype("DATETIME")
     @OnChange(BagazoDetalleAction.class)
     java.sql.Timestamp horaPorcSacJR
 
