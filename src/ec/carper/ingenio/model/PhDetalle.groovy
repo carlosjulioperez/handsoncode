@@ -18,7 +18,7 @@ import ec.carper.ingenio.actions.*
     jDiluido, jEncalado;
     jClaro, jFiltrado;
     mCruda, mClarificada;
-    tJClaro
+    horaTJClaro, tJClaro
 """)
 class PhDetalle extends Identifiable {
     
@@ -35,6 +35,11 @@ class PhDetalle extends Identifiable {
     BigDecimal jFiltrado   
     BigDecimal mCruda      
     BigDecimal mClarificada
-    BigDecimal tJClaro     
+    
+    @Stereotype("DATETIME")
+    @OnChange(PhDetalleAction.class)
+    java.sql.Timestamp horaTJClaro
 
+    @ReadOnly
+    BigDecimal tJClaro     
 }

@@ -104,4 +104,12 @@
     	</action>
     </controller>   
     
+    <controller name="Turbiedad">
+        <extends controller="Typical"/>
+        <action name="save" mode="detail" by-default="if-possible"
+            icon="content-save" keystroke="Control S"
+        	class="ec.carper.ingenio.actions.TurbiedadSaveAction">
+    	</action>
+    </controller>   
+    
 </controllers>
