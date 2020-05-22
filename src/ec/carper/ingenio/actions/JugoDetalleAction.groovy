@@ -1,6 +1,8 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.model.*
+import ec.carper.ingenio.util.Calculo
+
 import java.sql.Timestamp
 import org.openxava.actions.*
 
@@ -59,11 +61,11 @@ class JugoDetalleAction extends OnChangePropertyBaseAction{
     }
     
     private BigDecimal getSac(BigDecimal bri, BigDecimal pol){
-        return ((pol*0.26)/(0.9971883+0.00385310413*bri+0.0000132218495*bri*bri+0.00000004655189*bri*bri*bri)).setScale(2, BigDecimal.ROUND_HALF_UP)
+        return Calculo.instance.getSac(bri, pol).setScale(2, BigDecimal.ROUND_HALF_UP)
     }
 
     private BigDecimal getPur(BigDecimal sac, BigDecimal bri){
-        return ((sac/bri)*100).setScale(2, BigDecimal.ROUND_HALF_UP)
+        return Calculo.instance.getPur(sac, bri).setScale(2, BigDecimal.ROUND_HALF_UP)
     }
 
 }

@@ -120,4 +120,12 @@
     	</action>
     </controller>   
     
+    <controller name="Masas">
+        <extends controller="Typical"/>
+        <action name="save" mode="detail" by-default="if-possible"
+            icon="content-save" keystroke="Control S"
+        	class="ec.carper.ingenio.actions.MasasSaveAction">
+    	</action>
+    </controller>   
+    
 </controllers>

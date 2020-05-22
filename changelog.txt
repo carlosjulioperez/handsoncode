@@ -1,7 +1,10 @@
 Proyecto
 
 	* TODO:
+		Masas: Primitivo B,C y Desarrollado B,C y Cristal
 		
+	* Reflection:
+		https://stackoverflow.com/questions/45737329/how-to-change-method-name-dynamically-in-loop-in-java
 	
 	* Nota 1:
 	Cuando sale NullPointerException, revisar las propiedades de UI. Hay que revisar si los campos en la tabla no sean nulos.
