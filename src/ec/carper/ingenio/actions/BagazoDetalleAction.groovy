@@ -1,6 +1,8 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.model.*
+import ec.carper.ingenio.util.Calculo
+
 import java.sql.Timestamp
 import org.openxava.actions.*
 
@@ -18,11 +20,8 @@ class BagazoDetalleAction extends OnChangePropertyBaseAction{
         BigDecimal tamizVacioM0  = (BigDecimal)getView().getValue("tamizVacioM0")
         BigDecimal muestraSecaM2 = (BigDecimal)getView().getValue("muestraSecaM2")
 
-        // =(G6*0,26)/(0,9971883+0,00385310413*F6+0,0000132218495*F6*F6+0,00000004655189*F6*F6*F6)
         if (brixExtracto && polExtracto) {
-            getView().setValue("polReal", (
-               (polExtracto*0.26)/(0.9971883 + 0.00385310413*brixExtracto + 0.0000132218495*brixExtracto*brixExtracto + 0.00000004655189*brixExtracto*brixExtracto*brixExtracto) 
-            ).setScale(2, BigDecimal.ROUND_HALF_UP))
+            getView().setValue("polReal", Calculo.instance.getSac(brixExtracto,polExtracto).setScale(2, BigDecimal.ROUND_HALF_UP))
         }
 
         if (tamizVacioM0)

@@ -1,7 +1,16 @@
 Proyecto
+	* Tests:
+		ant test -Dnombre_clase=CanaTest
 
 	* TODO:
 		Masas: Primitivo B,C y Desarrollado B,C y Cristal
+
+	* condiciones ant:
+		https://gist.github.com/bcremer/6111530
+
+	* Importar datos:
+		csv: Tablas de configuración por el usuario (importGroovy y *.csv)
+		sql: Transacciones de prueba (insert.sql)
 		
 	* Reflection:
 		https://stackoverflow.com/questions/45737329/how-to-change-method-name-dynamically-in-loop-in-java

@@ -1,6 +1,8 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.model.*
+import ec.carper.ingenio.util.Calculo
+
 import java.sql.Timestamp
 import org.openxava.actions.*
 
@@ -23,11 +25,8 @@ class CanaDetalle2Action extends OnChangePropertyBaseAction{
             wCana = lista[1]
         }
 
-        // =(U6*0,26)/(0,9971883+0,00385310413*T6+0,0000132218495*T6*T6+0,00000004655189*T6*T6*T6)
         if (brixExtracto && polExtracto) {
-            getView().setValue("polReal", (
-               (polExtracto*0.26)/(0.9971883 + 0.00385310413*brixExtracto + 0.0000132218495*brixExtracto*brixExtracto + 0.00000004655189*brixExtracto*brixExtracto*brixExtracto) 
-            ).setScale(2, BigDecimal.ROUND_HALF_UP))
+            getView().setValue("polReal", Calculo.instance.getSac(brixExtracto,polExtracto).setScale(2, BigDecimal.ROUND_HALF_UP))
         }
         
         // println("values=" + getView().getRoot().getValues());
@@ -64,12 +63,9 @@ class CanaDetalle2Action extends OnChangePropertyBaseAction{
             ).setScale(2, BigDecimal.ROUND_HALF_UP))
         }
 
-        // =(Y6/W6)*100
         BigDecimal porcSacarosa = (BigDecimal)getView().getValue("porcSacarosa")
-        if (porcSacarosa && brix){
-            getView().setValue("pureza", (
-                (porcSacarosa/brix)*100 
-            ).setScale(2, BigDecimal.ROUND_HALF_UP))
-        }
+        if (porcSacarosa && brix)
+            getView().setValue("pureza", Calculo.instance.getPur(porcSacarosa,brix).setScale(2, BigDecimal.ROUND_HALF_UP))
+
     }
 }

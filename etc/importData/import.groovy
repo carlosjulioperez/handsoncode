@@ -26,21 +26,9 @@ def lista = [
     "AREA",
     "BRIXDENSIDADTITSUS",
     "BRIXDENSIDADWP",
-    "DIATRABAJO",
-    "INICIOZAFRA",
-    "PREFERENCIAS",
     "MODULO",
     "TURNO",
-    "UNIDAD",
-    "VARIEDAD",
-    "CANA",
-    "CANADETALLE1",
-    "CANADETALLE2",
-    "TRASHCANA", 
-    "TRASHCANADETALLE1", 
-    "TRASHCANADETALLE2", 
-    "PARO",
-    "PARO_DETALLES"
+    "VARIEDAD"
 ]
 lista.each{
     def archivo = "csv/"+ it +".csv"

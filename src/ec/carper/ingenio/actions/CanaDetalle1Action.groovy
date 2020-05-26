@@ -1,6 +1,8 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.model.*
+import ec.carper.ingenio.util.Calculo
+
 import java.sql.Timestamp
 import org.openxava.actions.*
 
@@ -9,6 +11,8 @@ class CanaDetalle1Action extends OnChangePropertyBaseAction{
     void execute() throws Exception{
 
         Timestamp hora           = (Timestamp)getView().getValue("hora")
+        // println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        // println hora
 
         BigDecimal wH2O          = (BigDecimal)getView().getValue("wH2O")
         BigDecimal wCana         = (BigDecimal)getView().getValue("wCana")
@@ -16,13 +20,11 @@ class CanaDetalle1Action extends OnChangePropertyBaseAction{
         BigDecimal polExtracto   = (BigDecimal)getView().getValue("polExtracto")
         BigDecimal tamizVacioM0  = (BigDecimal)getView().getValue("tamizVacioM0")
         BigDecimal muestraSecaM2 = (BigDecimal)getView().getValue("muestraSecaM2")
+        println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        println("values=" + getView().getValues());
 
-        // =(G6*0,26)/(0,9971883+0,00385310413*F6+0,0000132218495*F6*F6+0,00000004655189*F6*F6*F6)
-        if (brixExtracto && polExtracto) {
-            getView().setValue("polReal", (
-               (polExtracto*0.26)/(0.9971883 + 0.00385310413*brixExtracto + 0.0000132218495*brixExtracto*brixExtracto + 0.00000004655189*brixExtracto*brixExtracto*brixExtracto) 
-            ).setScale(2, BigDecimal.ROUND_HALF_UP))
-        }
+        if (brixExtracto && polExtracto)
+            getView().setValue("polReal", Calculo.instance.getSac(brixExtracto, polExtracto, 1, 2))
 
         if (tamizVacioM0)
             getView().setValue("muestraHumM1", tamizVacioM0+50)
@@ -61,12 +63,9 @@ class CanaDetalle1Action extends OnChangePropertyBaseAction{
             ).setScale(2, BigDecimal.ROUND_HALF_UP))
         }
 
-        // =(N6/L6)*100
         BigDecimal porcSacarosa = (BigDecimal)getView().getValue("porcSacarosa")
         if (porcSacarosa && brix){
-            getView().setValue("pureza", (
-                (porcSacarosa/brix)*100 
-            ).setScale(2, BigDecimal.ROUND_HALF_UP))
+            getView().setValue("pureza", Calculo.instance.getPur(porcSacarosa, brix, 2))
 
             // =+L6-N6
             getView().setValue("nSac", brix - porcSacarosa)
@@ -75,10 +74,11 @@ class CanaDetalle1Action extends OnChangePropertyBaseAction{
         // https://sourceforge.net/p/openxava/discussion/419690/thread/e3d301aa/?limit=25
         // println("values=" + getView().getRoot().getValues());
         String diaTrabajoId = getView().getRoot().getValue("diaTrabajo.id")
+        // println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
         // println diaTrabajoId
          
         BigDecimal nSac = (BigDecimal)getView().getValue("nSac")
-        if (nSac && diaTrabajoId)
+        if (nSac && diaTrabajoId && hora)
             getView().setValue("aR", new TrashCanaDetalle2().getPorcAzuRed(diaTrabajoId, hora))
 
         BigDecimal aR = (BigDecimal)getView().getValue("aR")

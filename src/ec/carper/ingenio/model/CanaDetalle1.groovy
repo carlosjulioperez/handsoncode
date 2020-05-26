@@ -29,8 +29,10 @@ class CanaDetalle1 extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Cana cana
     
+    @OnChange(CanaDetalle1Action.class)
     @Stereotype("DATETIME") @Required
     java.sql.Timestamp hora
+    //Date hora
 
     @OnChange(CanaDetalle1Action.class)
     BigDecimal wH2O

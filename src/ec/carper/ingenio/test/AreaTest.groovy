@@ -7,18 +7,11 @@ class AreaTest extends ModuleTestBase {
         super(testName, "Ingenio", "Area")
     }
  
-    void testCreateReadUpdateDelete() throws Exception {
-        login("admin", "admin")
- 
-        String descripcion = "Cam"
-        String descripcion2 = "Campo"
-        
-        // Read
-        execute("CRUD.new")
-        setValue("descripcion", descripcion)
-        execute("CRUD.refresh")
-        assertValue("descripcion", descripcion2)
- 
+    public void testAreasEnLista() throws Exception {
+        login("admin", "admin");
+        assertValueInList(0, 0, "CAMPO"); // Row 0 column 0
+        assertValueInList(1, 0, "MOLINO"); // Row 1 column 0
+        assertValueInList(2, 0, "INSTRUMENTACION"); // Row 2 column 0
     }
  
 }
