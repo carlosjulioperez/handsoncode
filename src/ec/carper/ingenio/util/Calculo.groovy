@@ -20,4 +20,16 @@ class Calculo{
         return ((sac/bri)*100).setScale(escala, BigDecimal.ROUND_HALF_UP)
     }
 
+    BigDecimal getBrix(BigDecimal brixExtracto, BigDecimal wH2O, BigDecimal wCana, BigDecimal porcHumedad, int escala){
+        return (brixExtracto*(wH2O-0.25*wCana+0.0125*wCana*porcHumedad)/wCana/(1-0.0125*brixExtracto)).setScale(escala, BigDecimal.ROUND_HALF_UP)
+    }
+
+    BigDecimal getPorcFibra(BigDecimal porcHumedad, BigDecimal brix){
+        return (100 - porcHumedad - brix)
+    }
+
+    BigDecimal getPorcSacarosa(BigDecimal polReal, BigDecimal wCana, BigDecimal wH2O , BigDecimal porcFibra, int escala){
+        return (polReal*(wCana + wH2O - 0.0125*porcFibra*wCana)/wCana).setScale(escala, BigDecimal.ROUND_HALF_UP)
+    }
+
 }

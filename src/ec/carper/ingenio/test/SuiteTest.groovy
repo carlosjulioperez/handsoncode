@@ -20,6 +20,7 @@ public class SuiteTest extends TestCase{
        // Transacciones
        suite.addTestSuite(DiaTrabajoTest.class);
        suite.addTestSuite(CanaTest.class);
+       suite.addTestSuite(TrashCanaTest.class);
 
        return suite;
     }

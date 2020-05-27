@@ -42,24 +42,19 @@ class CanaDetalle1Action extends OnChangePropertyBaseAction{
         // =F6*(C6-0,25*D6+0,0125*D6*K6)/D6/(1-0,0125*F6)
         BigDecimal porcHumedad   = (BigDecimal)getView().getValue("porcHumedad")
         if (brixExtracto && wH2O && wCana && porcHumedad) {
-            getView().setValue("brix", (
-                brixExtracto*(wH2O-0.25*wCana+0.0125*wCana*porcHumedad)/wCana/(1-0.0125*brixExtracto)
-            ).setScale(2, BigDecimal.ROUND_HALF_UP))
+            getView().setValue("brix", Calculo.instance.getBrix(brixExtracto, wH2O, wCana, porcHumedad, 2))
         }
         
         // =100-K6-L6
         BigDecimal brix = (BigDecimal)getView().getValue("brix")
         if (porcHumedad && brix)
-            getView().setValue("porcFibra", 100 - porcHumedad - brix)
-
+            getView().setValue("porcFibra", Calculo.instance.getPorcFibra(porcHumedad, brix))
 
         // =E6*(D6+C6-0,0125*M6*D6)/D6
         BigDecimal polReal = (BigDecimal)getView().getValue("polReal")
         BigDecimal porcFibra = (BigDecimal)getView().getValue("porcFibra")
         if (polReal && wH2O && wCana && porcFibra) {
-            getView().setValue("porcSacarosa", (
-                polReal*(wCana + wH2O - 0.0125*porcFibra*wCana)/wCana 
-            ).setScale(2, BigDecimal.ROUND_HALF_UP))
+            getView().setValue("porcSacarosa", Calculo.instance.getPorcSacarosa(polReal, wCana, wH2O, porcFibra, 2))
         }
 
         BigDecimal porcSacarosa = (BigDecimal)getView().getValue("porcSacarosa")
