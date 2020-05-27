@@ -1,17 +1,8 @@
 package ec.carper.ingenio.test
  
-import ec.carper.ingenio.model.*
-import ec.carper.ingenio.util.Util
-
-import java.time.*
-import java.time.format.*
-import javax.persistence.*
 import org.openxava.tests.*
-import static org.openxava.jpa.XPersistence.*
 
 class CanaTest extends ModuleTestBase {
-
-    private Cana cana
 
     CanaTest(String testName) {
         super(testName, "Ingenio", "Cana")
@@ -31,8 +22,8 @@ class CanaTest extends ModuleTestBase {
         execute("Collection.new","viewObject=xava_view_detalle1")
         assertDialog()
         
-        // https://www.java67.com/2016/04/how-to-convert-string-to-localdatetime-in-java8-example.html
         setValue("hora"            , "03/08/2019 06:00")
+        //printHtml()
 
         setValue("wH2O"            , "2400")
         setValue("wCana"           , "800")

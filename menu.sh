@@ -53,7 +53,7 @@ case $opt in
 			ant sql-insert
 			;;
         "version")
-			echo "OpenXava 6.2.2"
+			echo "OpenXava 6.3.2"
             ;;
 		"Quit")
             break

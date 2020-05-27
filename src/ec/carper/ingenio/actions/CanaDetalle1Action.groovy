@@ -11,17 +11,15 @@ class CanaDetalle1Action extends OnChangePropertyBaseAction{
     void execute() throws Exception{
 
         Timestamp hora           = (Timestamp)getView().getValue("hora")
-        // println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-        // println hora
-
         BigDecimal wH2O          = (BigDecimal)getView().getValue("wH2O")
         BigDecimal wCana         = (BigDecimal)getView().getValue("wCana")
         BigDecimal brixExtracto  = (BigDecimal)getView().getValue("brixExtracto")
         BigDecimal polExtracto   = (BigDecimal)getView().getValue("polExtracto")
         BigDecimal tamizVacioM0  = (BigDecimal)getView().getValue("tamizVacioM0")
         BigDecimal muestraSecaM2 = (BigDecimal)getView().getValue("muestraSecaM2")
-        println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-        println("values=" + getView().getValues());
+        // println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        // println("values=" + getView().getValues());
+        // println hora
 
         if (brixExtracto && polExtracto)
             getView().setValue("polReal", Calculo.instance.getSac(brixExtracto, polExtracto, 1, 2))
@@ -84,7 +82,6 @@ class CanaDetalle1Action extends OnChangePropertyBaseAction{
         BigDecimal aR = (BigDecimal)getView().getValue("aR")
         if (nSac && aR)
             getView().setValue("porcArNsac", (aR/nSac*100).setScale(8, BigDecimal.ROUND_HALF_UP))
-
 
     }
 }
