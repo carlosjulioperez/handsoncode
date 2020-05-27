@@ -21,10 +21,7 @@ class CanaTest extends ModuleTestBase {
 
         execute("Collection.new","viewObject=xava_view_detalle1")
         assertDialog()
-        
         setValue("hora"            , "03/08/2019 06:00")
-        //printHtml()
-
         setValue("wH2O"            , "2400")
         setValue("wCana"           , "800")
         setValue("brixExtracto"    , "4.38")
@@ -43,9 +40,30 @@ class CanaTest extends ModuleTestBase {
         assertValue("nSac"         , "1.96")
         assertValue("aR"           , "0.50")
         assertValue("porcArNsac"   , "25.51020408")
+        execute("Collection.save")
+        assertNoErrors()
+        assertCollectionRowCount("detalle1", 1)
 
         execute("Collection.new","viewObject=xava_view_detalle2")
         assertDialog()
+        setValue("horaDesde"       , "03/08/2019 06:00")
+        setValue("horaHasta"       , "03/08/2019 11:00")
+        assertValue("porcHumedad"  , "61.07")
+
+        setValue("brixExtracto"    , "5.01")
+        assertValue("brix"         , "18.78")
+        assertValue("porcFibra"    , "20.15")
+
+        setValue("polExtracto"     , "12.82")
+        assertValue("polReal"      , "3.28")
+        assertValue("porcSacarosa" , "12.29")
+        assertValue("pureza"       , "65.44")
+        execute("Collection.save")
+        assertNoErrors()
+        assertCollectionRowCount("detalle2", 1)
+
+        execute("CRUD.delete")
+        assertNoErrors()
     }
 
 }

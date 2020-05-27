@@ -30,8 +30,8 @@ class CanaDetalle1 extends Identifiable {
     Cana cana
     
     @OnChange(CanaDetalle1Action.class)
-    //@Stereotype("DATETIME") @Required
-    @Stereotype("FECHAHORA") @Required
+    @Stereotype("DATETIME") @Required
+    //@Stereotype("FECHAHORA") @Required
     java.sql.Timestamp hora
 
     @OnChange(CanaDetalle1Action.class)

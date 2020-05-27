@@ -17,9 +17,10 @@ class CanaDetalle1Action extends OnChangePropertyBaseAction{
         BigDecimal polExtracto   = (BigDecimal)getView().getValue("polExtracto")
         BigDecimal tamizVacioM0  = (BigDecimal)getView().getValue("tamizVacioM0")
         BigDecimal muestraSecaM2 = (BigDecimal)getView().getValue("muestraSecaM2")
-        // println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-        // println("values=" + getView().getValues());
-        // println hora
+        
+        //println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        //println("values=" + getView().getValues());
+        //*println hora
 
         if (brixExtracto && polExtracto)
             getView().setValue("polReal", Calculo.instance.getSac(brixExtracto, polExtracto, 1, 2))

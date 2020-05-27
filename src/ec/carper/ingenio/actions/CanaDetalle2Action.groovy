@@ -18,6 +18,9 @@ class CanaDetalle2Action extends OnChangePropertyBaseAction{
 
         BigDecimal wH2O         = null
         BigDecimal wCana        = null
+
+        // println ">>>>> " + horaDesde
+        // println ">>>>> " + horaHasta
         
         def lista = new CanaDetalle1().getCampos(diaTrabajoId, horaDesde)
         if (lista){
@@ -25,9 +28,8 @@ class CanaDetalle2Action extends OnChangePropertyBaseAction{
             wCana = lista[1]
         }
 
-        if (brixExtracto && polExtracto) {
-            getView().setValue("polReal", Calculo.instance.getSac(brixExtracto,polExtracto).setScale(2, BigDecimal.ROUND_HALF_UP))
-        }
+        if (brixExtracto && polExtracto) 
+            getView().setValue("polReal", Calculo.instance.getSac(brixExtracto,polExtracto,1,2))
         
         // println("values=" + getView().getRoot().getValues());
         // println("values=" + getView().getValues());
@@ -65,7 +67,7 @@ class CanaDetalle2Action extends OnChangePropertyBaseAction{
 
         BigDecimal porcSacarosa = (BigDecimal)getView().getValue("porcSacarosa")
         if (porcSacarosa && brix)
-            getView().setValue("pureza", Calculo.instance.getPur(porcSacarosa,brix).setScale(2, BigDecimal.ROUND_HALF_UP))
+            getView().setValue("pureza", Calculo.instance.getPur(porcSacarosa,brix,2))
 
     }
 }
