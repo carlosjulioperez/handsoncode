@@ -1,6 +1,8 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.model.*
+import ec.carper.ingenio.util.Calculo
+
 import org.openxava.actions.*
 
 class TrashDetalleAction extends OnChangePropertyBaseAction{
@@ -20,29 +22,31 @@ class TrashDetalleAction extends OnChangePropertyBaseAction{
 
         // println ">>>" + cogollos
         // println ">>>" + cantidadCana
+        // println("values=" + getView().getValues());
+    
+        // Ni cantidadCana ni netaCana pueden ser cero.
+        if (cantidadCana){ //Groovy valida como verdadero: Non-zero numbers are true. 
+            if (cogollos>=0)
+               getView().setValue("calPorcCogollos", Calculo.instance.getPorc(cogollos, cantidadCana, 2))
 
-        if (cantidadCana){
-            if (cogollos)
-               getView().setValue("calPorcCogollos", (cogollos*100/cantidadCana).setScale(2, BigDecimal.ROUND_HALF_UP))
-
-            if (hojas)
-               getView().setValue("calPorcHojas", (hojas*100/cantidadCana).setScale(2, BigDecimal.ROUND_HALF_UP))
+            if (hojas>=0)
+               getView().setValue("calPorcHojas", Calculo.instance.getPorc(hojas, cantidadCana, 2))
             
-            if (cepa)
-               getView().setValue("calPorcCepa", (cepa*100/cantidadCana).setScale(2, BigDecimal.ROUND_HALF_UP))
+            if (cepa>=0)
+               getView().setValue("calPorcCepa", Calculo.instance.getPorc(cepa, cantidadCana, 2))
             
-            if (canaSeca)
-               getView().setValue("calPorcCanaSeca", (canaSeca*100/cantidadCana).setScale(2, BigDecimal.ROUND_HALF_UP))
+            if (canaSeca>=0)
+               getView().setValue("calPorcCanaSeca", Calculo.instance.getPorc(canaSeca, cantidadCana, 2))
             
-            if (suelo)
-               getView().setValue("calPorcSuelo", (suelo*100/cantidadCana).setScale(2, BigDecimal.ROUND_HALF_UP))
+            if (suelo>=0)
+               getView().setValue("calPorcSuelo", Calculo.instance.getPorc(suelo, cantidadCana, 2))
             
-            if (otros)
-               getView().setValue("calPorcOtros", (otros*100/cantidadCana).setScale(2, BigDecimal.ROUND_HALF_UP))
+            if (otros>=0)
+               getView().setValue("calPorcOtros", Calculo.instance.getPorc(otros, cantidadCana, 2))
         }
         
-        if (canaInfectada && netaCana)
-           getView().setValue("calPorcCanaInfectada", (canaInfectada*100/netaCana).setScale(2, BigDecimal.ROUND_HALF_UP))
+        if (canaInfectada>=0 && netaCana)
+           getView().setValue("calPorcCanaInfectada", Calculo.instance.getPorc(canaInfectada, netaCana, 2))
         
     }
 }

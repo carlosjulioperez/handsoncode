@@ -138,15 +138,13 @@ class Jugo extends DiaTrabajoEditable {
         }
     }
 
-    BigDecimal getAvgField (LocalDate fecha, String campo){
-        BigDecimal valor = 0
-        Query query = getManager().createQuery("select ${campo} from Jugo o where fecha= :fecha ")
-        query.setParameter("fecha", fecha)
+    //TODO Ajustar en StockFabrica
+    BigDecimal getAvgField (String diaTrabajoId, String campo){
+        Query query = getManager().createQuery("select ${campo} from Jugo o where diaTrabajo.id = :diaTrabajoId")
+        query.setParameter("diaTrabajoId", diaTrabajoId)
 
-        List records = query.getResultList()
-        valor = records ? records[0]: 0
-        //return  records.isEmpty() ? BigDecimal.ZERO : (BigDecimal) records.get(0)
-        return valor
+        def lista = query.resultList
+        return lista ? lista[0]: 0
     }
 
 }

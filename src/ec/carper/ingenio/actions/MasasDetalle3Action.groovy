@@ -19,7 +19,7 @@ class MasasDetalle3Action extends OnChangePropertyBaseAction{
         
         BigDecimal sac  = (BigDecimal)getView().getValue("sac")
         if (sac && bri2)
-            getView().setValue("pur", Calculo.instance.getPur(sac, bri2).setScale(2, BigDecimal.ROUND_HALF_UP))
+            getView().setValue("pur", Calculo.instance.getPorc(sac, bri2).setScale(2, BigDecimal.ROUND_HALF_UP))
         
         if (bri)
             getView().setValue("bri2", (bri*6).setScale(2, BigDecimal.ROUND_HALF_UP))

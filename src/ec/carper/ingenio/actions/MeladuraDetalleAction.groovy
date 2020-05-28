@@ -18,7 +18,7 @@ class MeladuraDetalleAction extends OnChangePropertyBaseAction{
         
         BigDecimal mcrSac = (BigDecimal)getView().getValue("mcrSac")
         if (mcrSac && mcrBri2)
-            getView().setValue("mcrPur", Calculo.instance.getPur(mcrSac, mcrBri2, 2))
+            getView().setValue("mcrPur", Calculo.instance.getPorc(mcrSac, mcrBri2, 2))
         
         if (mcrBri)
             getView().setValue("mcrBri2", (mcrBri*4).setScale(2, BigDecimal.ROUND_HALF_UP))
@@ -31,7 +31,7 @@ class MeladuraDetalleAction extends OnChangePropertyBaseAction{
         
         BigDecimal mclSac = (BigDecimal)getView().getValue("mclSac")
         if (mclSac && mclBri2)
-            getView().setValue("mclPur", Calculo.instance.getPur(mclSac, mclBri2, 2))
+            getView().setValue("mclPur", Calculo.instance.getPorc(mclSac, mclBri2, 2))
 
         if (mclBri)
             getView().setValue("mclBri2", (mclBri*4).setScale(2, BigDecimal.ROUND_HALF_UP))

@@ -13,59 +13,51 @@ class JugoDetalleAction extends OnChangePropertyBaseAction{
         BigDecimal jeBri = (BigDecimal)getView().getValue("jeBri")
         BigDecimal jePol = (BigDecimal)getView().getValue("jePol")
         if (jeBri && jePol)
-            getView().setValue("jeSac", getSac(jeBri, jePol))
+            getView().setValue("jeSac", Calculo.instance.getSac(jeBri, jePol,1,2))
         BigDecimal jeSac = (BigDecimal)getView().getValue("jeSac")
         if (jeSac && jeBri)
-            getView().setValue("jePur", getPur(jeSac, jeBri))
+            getView().setValue("jePur", Calculo.instance.getPorc(jeSac, jeBri,2))
 
         BigDecimal jdBri = (BigDecimal)getView().getValue("jdBri")
         BigDecimal jdPol = (BigDecimal)getView().getValue("jdPol")
         if (jdBri && jdPol)
-            getView().setValue("jdSac", getSac(jdBri, jdPol))
+            getView().setValue("jdSac", Calculo.instance.getSac(jdBri, jdPol,1,2))
         BigDecimal jdSac = (BigDecimal)getView().getValue("jdSac")
         if (jdSac && jdBri)
-            getView().setValue("jdPur", getPur(jdSac, jdBri))
+            getView().setValue("jdPur", Calculo.instance.getPorc(jdSac, jdBri,2))
 
         BigDecimal jcBri = (BigDecimal)getView().getValue("jcBri")
         BigDecimal jcPol = (BigDecimal)getView().getValue("jcPol")
         if (jcBri && jcPol)
-            getView().setValue("jcSac", getSac(jcBri, jcPol))
+            getView().setValue("jcSac", Calculo.instance.getSac(jcBri, jcPol,1,2))
         BigDecimal jcSac = (BigDecimal)getView().getValue("jcSac")
         if (jcSac && jcBri)
-            getView().setValue("jcPur", getPur(jcSac, jcBri))
+            getView().setValue("jcPur", Calculo.instance.getPorc(jcSac, jcBri,2))
 
         BigDecimal jnBri = (BigDecimal)getView().getValue("jnBri")
         BigDecimal jnPol = (BigDecimal)getView().getValue("jnPol")
         if (jnBri && jnPol)
-            getView().setValue("jnSac", getSac(jnBri, jnPol))
+            getView().setValue("jnSac", Calculo.instance.getSac(jnBri, jnPol,1,2))
         BigDecimal jnSac = (BigDecimal)getView().getValue("jnSac")
         if (jnSac && jnBri)
-            getView().setValue("jnPur", getPur(jnSac, jnBri))
+            getView().setValue("jnPur", Calculo.instance.getPorc(jnSac, jnBri,2))
 
         BigDecimal jrBri = (BigDecimal)getView().getValue("jrBri")
         BigDecimal jrPol = (BigDecimal)getView().getValue("jrPol")
         if (jrBri && jrPol)
-            getView().setValue("jrSac", getSac(jrBri, jrPol))
+            getView().setValue("jrSac", Calculo.instance.getSac(jrBri, jrPol,1,2))
         BigDecimal jrSac = (BigDecimal)getView().getValue("jrSac")
         if (jrSac && jrBri)
-            getView().setValue("jrPur", getPur(jrSac, jrBri))
+            getView().setValue("jrPur", Calculo.instance.getPorc(jrSac, jrBri,2))
 
         BigDecimal jfBri = (BigDecimal)getView().getValue("jfBri")
         BigDecimal jfPol = (BigDecimal)getView().getValue("jfPol")
         if (jfBri && jfPol)
-            getView().setValue("jfSac", getSac(jfBri, jfPol))
+            getView().setValue("jfSac", Calculo.instance.getSac(jfBri, jfPol,1,2))
         BigDecimal jfSac = (BigDecimal)getView().getValue("jfSac")
         if (jfSac && jfBri)
-            getView().setValue("jfPur", getPur(jfSac, jfBri))
+            getView().setValue("jfPur", Calculo.instance.getPorc(jfSac, jfBri,2))
 
-    }
-    
-    private BigDecimal getSac(BigDecimal bri, BigDecimal pol){
-        return Calculo.instance.getSac(bri, pol).setScale(2, BigDecimal.ROUND_HALF_UP)
-    }
-
-    private BigDecimal getPur(BigDecimal sac, BigDecimal bri){
-        return Calculo.instance.getPur(sac, bri).setScale(2, BigDecimal.ROUND_HALF_UP)
     }
 
 }

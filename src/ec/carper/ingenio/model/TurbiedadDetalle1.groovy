@@ -28,18 +28,17 @@ class TurbiedadDetalle1 extends Identifiable {
     BigDecimal abs900Nm
     
     @ReadOnly
+    @Digits(integer=4, fraction=2) 
     BigDecimal turJClaro
     
     BigDecimal getValorTurJClaro(String diaTrabajoId, java.sql.Timestamp hora){
-        BigDecimal valor = 0
 
         Query query = getManager().createQuery("SELECT turJClaro FROM TurbiedadDetalle1 WHERE turbiedad.diaTrabajo.id = :diaTrabajoId AND hora = :hora ORDER BY hora")
         query.setParameter("diaTrabajoId", diaTrabajoId)
         query.setParameter("hora", hora)
         
         List records = query.resultList
-        valor = records ? records[0]: 0
-        return valor
+        return records ? records[0]: 0
     }
     
 } 

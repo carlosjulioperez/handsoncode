@@ -63,7 +63,7 @@ class CanaDetalle2Action extends OnChangePropertyBaseAction{
 
         BigDecimal porcSacarosa = (BigDecimal)getView().getValue("porcSacarosa")
         if (porcSacarosa && brix)
-            getView().setValue("pureza", Calculo.instance.getPur(porcSacarosa,brix,2))
+            getView().setValue("pureza", Calculo.instance.getPorc(porcSacarosa,brix,2))
 
     }
 }

@@ -22,7 +22,7 @@ case $opt in
 			ant test -Dnombre_clase=SuiteTest
 			;;
 		"unit-test")
-			ant test -Dnombre_clase=TrashCanaTest
+			ant test -Dnombre_clase=FosfatosTest
 			;;
 		"borar-db-HSQL")
 			ant deleteDatabaseFolder

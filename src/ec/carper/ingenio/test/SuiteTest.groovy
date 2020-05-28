@@ -19,8 +19,15 @@ public class SuiteTest extends TestCase{
 
        // Transacciones
        suite.addTestSuite(DiaTrabajoTest.class);
-       suite.addTestSuite(CanaTest.class);
        suite.addTestSuite(TrashCanaTest.class);
+       suite.addTestSuite(TrashTest.class);
+       suite.addTestSuite(CanaTest.class);
+       suite.addTestSuite(BagazoTest.class);
+       suite.addTestSuite(PhTest.class);
+       suite.addTestSuite(JugoTest.class);
+       suite.addTestSuite(MeladuraTest.class);
+       suite.addTestSuite(TurbiedadTest.class);
+       suite.addTestSuite(FosfatosTest.class);
 
        return suite;
     }

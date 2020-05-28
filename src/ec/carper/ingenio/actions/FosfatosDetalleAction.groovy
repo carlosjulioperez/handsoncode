@@ -1,15 +1,12 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.model.*
-import java.sql.Timestamp
+
 import org.openxava.actions.*
 
 class FosfatosDetalleAction extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
-
-    // , , jdMgP, jdFosfatos;
-    // jcAbsorbancia, jcMlMuestra, jcMgP, jcFosfatos
 
         BigDecimal cteN1         = (BigDecimal)getView().getRoot().getValue("cteN1")
         BigDecimal cteN2         = (BigDecimal)getView().getRoot().getValue("cteN2")

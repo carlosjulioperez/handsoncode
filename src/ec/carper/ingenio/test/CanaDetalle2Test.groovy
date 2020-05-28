@@ -1,29 +1,18 @@
 package ec.carper.ingenio.test
  
-import java.util.List
-import java.sql.Timestamp
-
-import org.openxava.jpa.*
-import org.openxava.model.*
-import static org.openxava.jpa.XPersistence.*
-
 import ec.carper.ingenio.model.CanaDetalle1
 
 import ec.carper.ingenio.util.Util
-import org.apache.commons.logging.*
 import org.openxava.tests.*
 
 class CanaDetalle2Test extends ModuleTestBase {
 
-    private static Log log = LogFactory.getLog(CanaDetalle2Test.class)
- 
     CanaDetalle2Test(String testName) {
         super(testName, "Ingenio", "CanaDetalle2")
     }
  
     void _testGetCampos(){
         // https://stackoverflow.com/questions/573155/groovy-range-with-a-0-5-step-size
-        log.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         String horaDesde  = "2019-08-03 06:00:00"
         String horaDesde2 = "2019-08-03 07:00:00"
         String horaDesde3 = "2019-08-03 08:00:00"
