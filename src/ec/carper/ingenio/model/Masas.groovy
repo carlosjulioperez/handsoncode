@@ -17,7 +17,7 @@ import static org.openxava.jpa.XPersistence.*
     mbBri, mbPol, mbSac, mbPur, mbBri2,
     mcBri, mcPol, mcSac, mcPur, mcBri2
 """)
-@View(members=  """diaTrabajo;detalle1;detalle2;detalle3""")
+@View(members=  """diaTrabajo;detalle1;detalle2;detalle3;detalle4;detalle5;detalle6;detalle7;detalle8""")
 class Masas extends DiaTrabajoEditable {
 
     BigDecimal maBri
@@ -70,6 +70,26 @@ class Masas extends DiaTrabajoEditable {
         bri2 [masas.promMcBri2]
     """)
     Collection<MasasDetalle3>detalle3
+    
+    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL)
+    @ListProperties(""" hora, bri, pol, sac, pur, bri2 """)
+    Collection<MasasDetalle4>detalle4
+
+    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL)
+    @ListProperties(""" hora, bri, pol, sac, pur, bri2 """)
+    Collection<MasasDetalle5>detalle5
+
+    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL)
+    @ListProperties(""" hora, bri, pol, sac, pur, bri2 """)
+    Collection<MasasDetalle6>detalle6
+
+    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL)
+    @ListProperties(""" hora, bri, pol, sac, pur, bri2 """)
+    Collection<MasasDetalle7>detalle7
+
+    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL)
+    @ListProperties(""" hora, bri, pol, sac, pur, bri2 """)
+    Collection<MasasDetalle8>detalle8
     
     BigDecimal getPromMaBri()  { return super.getPromedio(detalle1, "bri",  2) }
     BigDecimal getPromMaPol()  { return super.getPromedio(detalle1, "pol",  2) }

@@ -5,7 +5,7 @@ import org.openxava.annotations.*
 
 @Entity
 @View(extendsView="super.DEFAULT")
-class MasasDetalle4 extends MasasDetalle{
+class MasasDetalle8 extends MasasDetalle{
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Masas masas
 

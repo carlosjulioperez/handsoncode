@@ -1,40 +1,12 @@
 package ec.carper.ingenio.model
 
 import javax.persistence.*
-import javax.validation.constraints.Digits
 import org.openxava.annotations.*
-import org.openxava.calculators.*
-import org.openxava.model.*
-
-import ec.carper.ingenio.actions.*
 
 @Entity
-@View(members="""
-    hora;
-    bri, pol, sac, pur, bri2;
-""")
-class MasasDetalle2 extends Identifiable {
-
+@View(extendsView="super.DEFAULT")
+class MasasDetalle2 extends MasasDetalle{
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Masas masas
 
-    @Stereotype("DATETIME") @Required
-    java.sql.Timestamp hora
-    
-    @OnChange(MasasDetalle2Action.class)
-    @Digits(integer=3, fraction=2)
-    BigDecimal bri
-    @OnChange(MasasDetalle2Action.class)
-    @Digits(integer=3, fraction=2)
-    BigDecimal pol
-    @ReadOnly
-    @Digits(integer=3, fraction=2)
-    BigDecimal sac
-    @ReadOnly
-    @Digits(integer=3, fraction=2)
-    BigDecimal pur
-    @ReadOnly
-    @Digits(integer=3, fraction=2)
-    BigDecimal bri2
-    
 }

@@ -6,7 +6,7 @@ import ec.carper.ingenio.util.Calculo
 import java.sql.Timestamp
 import org.openxava.actions.*
 
-class MasasDetalle3Action extends OnChangePropertyBaseAction{
+class MasasDetalleAction extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
 
@@ -15,11 +15,11 @@ class MasasDetalle3Action extends OnChangePropertyBaseAction{
         BigDecimal pol  = (BigDecimal)getView().getValue("pol")
         
         if (bri && pol)
-            getView().setValue("sac", (Calculo.instance.getSac(bri,pol)*6).setScale(2, BigDecimal.ROUND_HALF_UP))
+            getView().setValue("sac", Calculo.instance.getSac(bri, pol, 6, 2))
         
         BigDecimal sac  = (BigDecimal)getView().getValue("sac")
         if (sac && bri2)
-            getView().setValue("pur", Calculo.instance.getPorc(sac, bri2).setScale(2, BigDecimal.ROUND_HALF_UP))
+            getView().setValue("pur", Calculo.instance.getPorc(sac, bri2, 2))
         
         if (bri)
             getView().setValue("bri2", (bri*6).setScale(2, BigDecimal.ROUND_HALF_UP))
