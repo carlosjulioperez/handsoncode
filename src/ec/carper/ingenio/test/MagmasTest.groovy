@@ -7,6 +7,27 @@ class MagmasTest extends ModuleTestBase {
     MagmasTest(String testName) {
         super(testName, "Ingenio", "Magmas")
     }
+    
+    public void testValidarPromedios() throws Exception {
+        login("admin", "admin")
+
+        assertValueInList(0, 0, "DIA TRABAJO 03/08/2019");
+        execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila
+        
+        assertValue("diaTrabajo.id"     , "ff808081711cd37c01711cd403a70000");
+        assertValue("magmas.promMbBri"  , "14.93");
+        assertValue("magmas.promMbPol"  , "58.97");
+        assertValue("magmas.promMbSac"  , "86.97");
+        assertValue("magmas.promMbPur"  , "97.05");
+        assertValue("magmas.promMbBri2" , "89.60");
+
+        // assertCollectionRowCount ( "productos", 2); // Tiene 2 productos
+        // assertValueInCollection  ( "productos", 0, "numero", "2")
+        // assertValueInCollection  ( "productos", 0, "descripcion", "Arco iris de lágrimas")
+        // assertValueInCollection  ( "productos", 1, "numero", "3")
+        // assertValueInCollection  ( "productos", 1, "descripcion", "Ritmo de sangre")
+
+    }
  
     public void testCrear() throws Exception {
         login("admin", "admin")
