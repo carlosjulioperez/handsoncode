@@ -128,4 +128,12 @@
     	</action>
     </controller>   
     
+    <controller name="Mieles">
+        <extends controller="Typical"/>
+        <action name="save" mode="detail" by-default="if-possible"
+            icon="content-save" keystroke="Control S"
+        	class="ec.carper.ingenio.actions.MielesSaveAction">
+    	</action>
+    </controller>   
+    
 </controllers>

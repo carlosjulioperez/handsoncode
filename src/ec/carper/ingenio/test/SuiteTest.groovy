@@ -29,6 +29,7 @@ public class SuiteTest extends TestCase{
        suite.addTestSuite(TurbiedadTest.class);
        suite.addTestSuite(FosfatosTest.class);
        suite.addTestSuite(MasasTest.class);
+       suite.addTestSuite(MielesTest.class);
 
        return suite;
     }
