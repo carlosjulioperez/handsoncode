@@ -32,6 +32,7 @@ public class SuiteTest extends TestCase{
        suite.addTestSuite(MielesTest.class);
        suite.addTestSuite(MielesNutschTest.class);
        suite.addTestSuite(MagmasTest.class);
+       suite.addTestSuite(TqFundidorTest.class);
 
        return suite;
     }
