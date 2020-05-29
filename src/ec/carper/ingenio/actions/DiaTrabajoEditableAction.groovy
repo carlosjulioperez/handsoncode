@@ -20,10 +20,12 @@ class DiaTrabajoEditableAction extends ViewBaseAction implements IChainAction{
             // Validar CRUD.save
             def modulo = getModelName()
             def map = getView().getKeyValues()
+            // TODO Validar esto al momento de grabar
             println (">>>>>>>>>>>>>>>>>>>>>>> " + modulo)
             println ("*********************** " + map)
 
-            Query query = getManager().createQuery("select diaTrabajo.cerrado from ${modulo} o where id= :id ")
+            //Query query = getManager().createQuery("select diaTrabajo.cerrado from ${modulo} o where id= :id ")
+            Query query = getManager().createQuery("SELECT d.cerrado FROM DiaTrabajo d, ${modulo} o WHERE d.id = o.diaTrabajo.id AND o.id= :id ")
             query.setParameter("id", map.id) 
             def cerrado = (boolean) query.getSingleResult()
 

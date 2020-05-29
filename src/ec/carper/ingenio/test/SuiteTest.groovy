@@ -30,6 +30,7 @@ public class SuiteTest extends TestCase{
        suite.addTestSuite(FosfatosTest.class);
        suite.addTestSuite(MasasTest.class);
        suite.addTestSuite(MielesTest.class);
+       suite.addTestSuite(MielesNutschTest.class);
 
        return suite;
     }
