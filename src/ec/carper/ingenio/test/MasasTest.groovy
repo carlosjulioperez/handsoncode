@@ -13,7 +13,7 @@ class MasasTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        94setValue("diaTrabajo.id" , "ff808081711cd37c01711cd403a70000")
+        setValue("diaTrabajo.id" , "ff808081711cd37c01711cd403a70000")
         
         assertCollectionRowCount("detalle1", 0) // La colección esta vacía 
         assertCollectionRowCount("detalle2", 0) // La colección esta vacía 
