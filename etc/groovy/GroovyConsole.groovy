@@ -13,3 +13,17 @@ println Math.round(valor * 100) / 100
 
 println ( new BigDecimal(1.2686).setScale(2, BigDecimal.ROUND_HALF_UP))
 
+// Ejemplo de closure e iteradores.
+//int i = 1
+//String texto = "campo${i}"
+//println texto
+
+def closure = {
+    println "campo${it}"
+}
+
+//closure.call(1)  devuelte: campo1
+
+(1..8).each{
+    closure.call(it)
+}

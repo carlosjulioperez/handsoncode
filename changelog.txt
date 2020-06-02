@@ -1,6 +1,6 @@
 Proyecto
 	* Tests:
-		ant test -Dnombre_clase=PhTest
+		ant test -Dnombre_clase=QueryTest
 	* DateFormatter:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/1f814c16/
         https://www.java67.com/2016/04/how-to-convert-string-to-localdatetime-in-java8-example.html

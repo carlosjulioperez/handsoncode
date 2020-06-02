@@ -34,4 +34,8 @@ class Calculo{
         return (polReal*(wCana + wH2O - 0.0125*porcFibra*wCana)/wCana).setScale(escala, BigDecimal.ROUND_HALF_UP)
     }
 
+    BigDecimal getPromedio(def lista, int escala){
+        lista.size()>0 ? ( lista.sum() / lista.size() ).setScale(escala, BigDecimal.ROUND_HALF_UP) : 0
+    }
+
 }

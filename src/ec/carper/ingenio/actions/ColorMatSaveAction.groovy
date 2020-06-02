@@ -25,7 +25,7 @@ class ColorMatSaveAction extends ViewBaseAction implements IChainAction{
 
         ColorMat colorMat = XPersistence.getManager().find( ColorMat.class, getView().getValue("id") )
         colorMat.save()
-        //getView().refresh()
+        getView().refresh()
         addMessage("promedios_actualizados")
 
         nextAction = "CRUD.save"
