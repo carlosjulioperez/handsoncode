@@ -72,7 +72,7 @@ class MielesNutsch extends DiaTrabajoEditable {
     BigDecimal getPromMcSac () { return super.getPromedio(detalle, "mcSac", 2) }
     BigDecimal getPromMcPur () { return super.getPromedio(detalle, "mcPur", 2) }
     BigDecimal getPromMcBri2() { return super.getPromedio(detalle, "mcBri2", 2) }
-    void save() throws ValidationException{
+    void actualizar() throws ValidationException{
         try{
 
             this.maBri  = promMaBri

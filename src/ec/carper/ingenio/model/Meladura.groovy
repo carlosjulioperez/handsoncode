@@ -57,7 +57,7 @@ class Meladura extends DiaTrabajoEditable {
     BigDecimal getPromMclPur()  { return super.getPromedio(detalle, "mclPur",  2) }
     BigDecimal getPromMclBri2() { return super.getPromedio(detalle, "mclBri2", 2) }
     
-    void save() throws ValidationException{
+    void actualizar() throws ValidationException{
         try{
 
             this.mcrBri  = promMcrBri

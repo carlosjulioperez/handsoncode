@@ -74,7 +74,7 @@ class Ph extends DiaTrabajoEditable {
         return super.getPromedio(detalle, "tJClaro", 2)
     }
     
-    void save() throws ValidationException{
+    void actualizar() throws ValidationException{
         try{
 
             this.j1Extracto   = promJ1Extracto   

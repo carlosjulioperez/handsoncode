@@ -106,7 +106,7 @@ class TrashCana extends DiaTrabajoEditable {
         }
     }
     
-    void save() throws ValidationException{
+    void actualizar() throws ValidationException{
         try{
 
             this.avgCantCana   = promCantCana

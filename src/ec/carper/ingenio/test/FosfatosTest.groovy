@@ -7,7 +7,18 @@ class FosfatosTest extends ModuleTestBase {
     FosfatosTest(String testName) {
         super(testName, "Ingenio", "Fosfatos")
     }
- 
+
+    // Verificar con datos creados
+    public void _testGrabar() throws Exception {
+        login("admin", "admin")
+        execute("List.viewDetail", "row=0")
+        assertValue("cteN1", "0.2183")
+        // No funciona con id generado
+        // setValue("diaTrabajo.id", "ff8080817235e9f5017235ec85360000")
+        // execute("CRUD.save");
+        // assertNoErrors();
+    }
+
     public void testCrear() throws Exception {
         login("admin", "admin")
         

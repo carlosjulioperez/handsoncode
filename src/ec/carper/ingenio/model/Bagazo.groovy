@@ -109,7 +109,7 @@ class Bagazo extends DiaTrabajoEditable {
         return super.getPromedio(detalle, "gradosAguaMac", 2)
     }
     
-    void save() throws ValidationException{
+    void actualizar() throws ValidationException{
         try{
 
             this.wH2O          = promWH2O

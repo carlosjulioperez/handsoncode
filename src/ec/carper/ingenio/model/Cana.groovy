@@ -136,7 +136,7 @@ class Cana extends DiaTrabajoEditable {
     """)
     Collection<CanaDetalle2>detalle2
 
-    void save() throws ValidationException{
+    void actualizar() throws ValidationException{
         try{
 
             this.wH2O          = promWH2O

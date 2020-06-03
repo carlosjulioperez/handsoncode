@@ -139,7 +139,7 @@ class Trash extends DiaTrabajoEditable {
         return super.getPromedio(detalle, "calPorcCanaInfectada", 2)
     }
 
-    void save() throws ValidationException{
+    void actualizar() throws ValidationException{
         try{
 
             this.avgCantCana          = promCantCana

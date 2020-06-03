@@ -43,16 +43,19 @@ class DiaTrabajoEditableAction extends ViewBaseAction implements IChainAction{
                     getView().setEditable(false); // Dejamos la vista como no editable
                 }else{
                     // Si existe Modulo.save(), ejecutarlo
-                    def instance = this.class.classLoader.loadClass( modulo, true, false )?.newInstance()
+                    def instance = new groovy.lang.GroovyClassLoader().loadClass( 
+                        "ec.carper.ingenio.model.${modulo}", true, false )?.newInstance()
+
+                    instance = XPersistence.getManager().find( instance.class, getView().getValue("id") )
+
                     instance.metaClass.methods.each { method ->
-                        if (method.name == 'save'){
+                        if (method.name == 'actualizar'){
                             method.invoke(instance)
                             getView().refresh()
-                            addMessage("promedios_actualizados")
-                            println ">>> Ejecutando ${modulo}.save()... "
+                            addMessage("registro_actualizado")
+                            println ">>> Ejecutando ${modulo}.actualizar()... "
                         }
                     } 
-
                     nextAction = "CRUD.save"
                 }
             }else

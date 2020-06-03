@@ -313,7 +313,7 @@ class Blc extends Identifiable{
     // private Integer version; // Añadida propiedad 'version', sin getter, ni setter
     //  
     // @PreUpdate // Añadido '@PreUPdate'
-    // public void recalcularImporte() { // Ejecutado justo antes de actualizar el objeto
+    // public void recalcularImporte() { // Ejecutado justo antes de actualizar() el objeto
     //     setImporte(getImporteTotal());
     // }
 

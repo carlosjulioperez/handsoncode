@@ -41,7 +41,7 @@ class TqFundidor extends DiaTrabajoEditable {
     BigDecimal getPromPur()  { return super.getPromedio(detalle, "pur", 2) }
     BigDecimal getPromBri2() { return super.getPromedio(detalle, "bri2", 2) }
     
-    void save() throws ValidationException{
+    void actualizar() throws ValidationException{
         try{
 
             this.bri  = promBri

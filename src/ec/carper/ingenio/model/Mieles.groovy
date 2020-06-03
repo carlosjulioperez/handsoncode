@@ -105,7 +105,7 @@ class Mieles extends DiaTrabajoEditable {
     BigDecimal getPromMpPur () { return super.getPromedio(detalle, "mpPur", 2) }
     BigDecimal getPromMpBri2() { return super.getPromedio(detalle, "mpBri2", 2) }
     
-    void save() throws ValidationException{
+    void actualizar() throws ValidationException{
         try{
 
             this.maBri  = promMaBri

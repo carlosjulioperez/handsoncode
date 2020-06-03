@@ -41,7 +41,7 @@ class Fosfatos extends DiaTrabajoEditable {
     BigDecimal getPromJdFosfatos() { return super.getPromedio(detalle, "jdFosfatos",  3) }
     BigDecimal getPromJcFosfatos() { return super.getPromedio(detalle, "jcFosfatos",  3) }
     
-    void save() throws ValidationException{
+    void actualizar() throws ValidationException{
         try{
 
             this.jdFosfatos = promJdFosfatos

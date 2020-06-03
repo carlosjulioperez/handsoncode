@@ -109,7 +109,7 @@ class Masas extends DiaTrabajoEditable {
     BigDecimal getPromMcPur()  { return super.getPromedio(detalle3, "pur",  2) }
     BigDecimal getPromMcBri2() { return super.getPromedio(detalle3, "bri2", 2) }
     
-    void save() throws ValidationException{
+    void actualizar() throws ValidationException{
         try{
 
             this.maBri  = promMaBri

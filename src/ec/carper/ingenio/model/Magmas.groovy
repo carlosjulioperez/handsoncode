@@ -73,7 +73,7 @@ class Magmas extends DiaTrabajoEditable {
     BigDecimal getPromMrPur () { return super.getPromedio(detalle, "mrPur", 2) }
     BigDecimal getPromMrBri2() { return super.getPromedio(detalle, "mrBri2", 2) }
     
-    void save() throws ValidationException{
+    void actualizar() throws ValidationException{
         try{
 
             this.mbBri  = promMbBri

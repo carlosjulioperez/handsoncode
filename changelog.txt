@@ -1,6 +1,10 @@
 Proyecto
+	* Tips:
+		https://www.oreilly.com/library/view/programming-grails/9781449324513/ch01.html
+
 	* Tests:
-		ant test -Dnombre_clase=QueryTest
+		$ ant test -Dnombre_clase=FosfatosTest
+
 	* DateFormatter:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/1f814c16/
         https://www.java67.com/2016/04/how-to-convert-string-to-localdatetime-in-java8-example.html
@@ -9,7 +13,6 @@ Proyecto
 		http://groovy-lang.org/semantics.html#Groovy-Truth
 
 	* TODO:
-		Masas: Primitivo B,C y Desarrollado B,C y Cristal
 
 	* condiciones ant:
 		https://gist.github.com/bcremer/6111530
@@ -17,7 +20,12 @@ Proyecto
 	* Importar datos:
 		csv: Tablas de configuración por el usuario (importGroovy y *.csv)
 		sql: Transacciones de prueba (insert.sql)
-		
+			
+	* Modulos:
+		https://sourceforge.net/p/openxava/discussion/419690/thread/442eec1db7/?limit=25
+		https://sourceforge.net/p/openxava/discussion/437013/thread/bc0a46d4c4/?limit=25
+		https://sourceforge.net/p/openxava/discussion/437013/thread/25e434f6/?limit=25	
+
 	* Reflection:
 		https://stackoverflow.com/questions/45737329/how-to-change-method-name-dynamically-in-loop-in-java
 		https://stackoverflow.com/questions/8715851/how-do-i-dynamically-invoke-methods-in-groovy	

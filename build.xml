@@ -170,7 +170,7 @@
 	</target>
 
     <target name="deleteClasses">
-        <delete dir="${class.dir}/ec"/>
+        <delete dir="${class.dir}"/>
         <delete dir="temp"/>
 	</target>
 

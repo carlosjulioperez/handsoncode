@@ -103,7 +103,7 @@ class Jugo extends DiaTrabajoEditable {
     BigDecimal getPromJfSac(){ return super.getPromedio(detalle, "jfSac", 2) }
     BigDecimal getPromJfPur(){ return super.getPromedio(detalle, "jfPur", 2) }
     
-    void save() throws ValidationException{
+    void actualizar() throws ValidationException{
         try{
 
             this.jeBri = promJeBri

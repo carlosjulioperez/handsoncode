@@ -43,7 +43,7 @@ class Turbiedad extends DiaTrabajoEditable {
     
     BigDecimal getPromPolCachaza() { return super.getPromedio(detalle2, "polCachaza", 2) }
     
-    void save() throws ValidationException{
+    void actualizar() throws ValidationException{
         try{
 
             this.abs900Nm   = promAbs900Nm
