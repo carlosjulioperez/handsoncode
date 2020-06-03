@@ -25,7 +25,7 @@ class MielesSaveAction extends ViewBaseAction implements IChainAction{
 
         Mieles mieles = XPersistence.getManager().find( Mieles.class, getView().getValue("id") )
         mieles.save()
-        //getView().refresh()
+        getView().refresh()
         addMessage("promedios_actualizados")
 
         nextAction = "CRUD.save"

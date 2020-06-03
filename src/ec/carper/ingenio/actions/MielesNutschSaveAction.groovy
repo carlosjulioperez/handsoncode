@@ -25,7 +25,7 @@ class MielesNutschSaveAction extends ViewBaseAction implements IChainAction{
 
         MielesNutsch mielesNutsch = XPersistence.getManager().find( MielesNutsch.class, getView().getValue("id") )
         mielesNutsch.save()
-        //getView().refresh()
+        getView().refresh()
         addMessage("promedios_actualizados")
 
         nextAction = "CRUD.save"

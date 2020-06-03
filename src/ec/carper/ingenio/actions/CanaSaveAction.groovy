@@ -25,7 +25,7 @@ class CanaSaveAction extends ViewBaseAction implements IChainAction{
 
         Cana cana = XPersistence.getManager().find( Cana.class, getView().getValue("id") )
         cana.save()
-        //getView().refresh()
+        getView().refresh()
         addMessage("promedios_actualizados")
 
         nextAction = "CRUD.save"

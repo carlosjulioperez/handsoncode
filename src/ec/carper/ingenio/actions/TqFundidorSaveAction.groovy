@@ -25,7 +25,7 @@ class TqFundidorSaveAction extends ViewBaseAction implements IChainAction{
 
         TqFundidor tqFundidor = XPersistence.getManager().find( TqFundidor.class, getView().getValue("id") )
         tqFundidor.save()
-        //getView().refresh()
+        getView().refresh()
         addMessage("promedios_actualizados")
 
         nextAction = "CRUD.save"

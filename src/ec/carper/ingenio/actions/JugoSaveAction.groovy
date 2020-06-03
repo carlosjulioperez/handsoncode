@@ -25,7 +25,7 @@ class JugoSaveAction extends ViewBaseAction implements IChainAction{
 
         Jugo jugo = XPersistence.getManager().find( Jugo.class, getView().getValue("id") )
         jugo.save()
-        //getView().refresh()
+        getView().refresh()
         addMessage("promedios_actualizados")
 
         nextAction = "CRUD.save"

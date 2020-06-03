@@ -40,11 +40,6 @@
         
         <extends controller="Typical"/>
         
-        <!-- <action name="save" mode="detail" by&#45;default="if&#45;possible" -->
-        <!--     icon="content&#45;save" keystroke="Control S" -->
-        <!-- 	class="ec.carper.ingenio.actions.TrashCanaGrabarPromediosAction"> -->
-    	<!-- </action> -->
-
         <action name="crearTrash" mode="detail" 
         	class="ec.carper.ingenio.actions.TrashCanaCrearTrashAction">
     	</action>
@@ -112,14 +107,6 @@
     	</action>
     </controller>   
     
-    <controller name="Fosfatos">
-        <extends controller="Typical"/>
-        <action name="save" mode="detail" by-default="if-possible"
-            icon="content-save" keystroke="Control S"
-        	class="ec.carper.ingenio.actions.FosfatosSaveAction">
-    	</action>
-    </controller>   
-    
     <controller name="Masas">
         <extends controller="Typical"/>
         <action name="save" mode="detail" by-default="if-possible"
@@ -160,11 +147,11 @@
     	</action>
     </controller>   
     
-    <controller name="ColorMat">
+    <controller name="AzucarGranel">
         <extends controller="Typical"/>
         <action name="save" mode="detail" by-default="if-possible"
             icon="content-save" keystroke="Control S"
-        	class="ec.carper.ingenio.actions.ColorMatSaveAction">
+        	class="ec.carper.ingenio.actions.AzucarGranelSaveAction">
     	</action>
     </controller>   
     

@@ -24,19 +24,39 @@ class DiaTrabajoEditableAction extends ViewBaseAction implements IChainAction{
             println (">>>>>>>>>>>>>>>>>>>>>>> " + modulo)
             println ("*********************** " + map)
 
-            //Query query = getManager().createQuery("select diaTrabajo.cerrado from ${modulo} o where id= :id ")
-            Query query = getManager().createQuery("SELECT d.cerrado FROM DiaTrabajo d, ${modulo} o WHERE d.id = o.diaTrabajo.id AND o.id= :id ")
-            query.setParameter("id", map.id) 
-            def cerrado = (boolean) query.getSingleResult()
+            if (map){ //actualizar objeto
+                //Query query = getManager().createQuery("select diaTrabajo.cerrado from ${modulo} o where id= :id ")
+                boolean cerrado = (boolean) getManager()
+                    .createQuery("""
+                        SELECT d.cerrado 
+                        FROM ${modulo} o, DiaTrabajo d
+                        WHERE o.id = :id AND o.diaTrabajo.id = d.id
+                    """)
+                    .setParameter("id", map.id)
+                    .getSingleResult()
 
-            if ( cerrado ){
-                addMessage ("dia_trabajo_cerrado_administrador")
+                if ( cerrado ){
+                    addMessage ("dia_trabajo_cerrado_administrador")
 
-                resetDescriptionsCache()
-                getView().clear()
-                getView().setEditable(false); // Dejamos la vista como no editable
+                    resetDescriptionsCache()
+                    getView().clear()
+                    getView().setEditable(false); // Dejamos la vista como no editable
+                }else{
+                    // Si existe Modulo.save(), ejecutarlo
+                    def instance = this.class.classLoader.loadClass( modulo, true, false )?.newInstance()
+                    instance.metaClass.methods.each { method ->
+                        if (method.name == 'save'){
+                            method.invoke(instance)
+                            getView().refresh()
+                            addMessage("promedios_actualizados")
+                            println ">>> Ejecutando ${modulo}.save()... "
+                        }
+                    } 
+
+                    nextAction = "CRUD.save"
+                }
             }else
-                nextAction = "CRUD.save"
+                nextAction = "CRUD.save" //nuevo objeto
         }
     }
     

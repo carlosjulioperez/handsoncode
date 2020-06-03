@@ -25,7 +25,7 @@ class MeladuraSaveAction extends ViewBaseAction implements IChainAction{
 
         Meladura meladura = XPersistence.getManager().find( Meladura.class, getView().getValue("id") )
         meladura.save()
-        //getView().refresh()
+        getView().refresh()
         addMessage("promedios_actualizados")
 
         nextAction = "CRUD.save"

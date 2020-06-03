@@ -25,7 +25,7 @@ class MasasSaveAction extends ViewBaseAction implements IChainAction{
 
         Masas masas = XPersistence.getManager().find( Masas.class, getView().getValue("id") )
         masas.save()
-        //getView().refresh()
+        getView().refresh()
         addMessage("promedios_actualizados")
 
         nextAction = "CRUD.save"

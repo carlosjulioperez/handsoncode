@@ -27,7 +27,7 @@ class TrashSaveAction extends ViewBaseAction implements IChainAction{
 
         Trash trash = XPersistence.getManager().find( Trash.class, getView().getValue("id") )
         trash.save()
-        //getView().refresh()
+        getView().refresh()
         addMessage("promedios_actualizados")
 
         nextAction = "CRUD.save"

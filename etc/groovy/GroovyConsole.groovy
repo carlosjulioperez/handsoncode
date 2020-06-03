@@ -27,3 +27,22 @@ def closure = {
 (1..8).each{
     closure.call(it)
 }
+
+// **************************************************
+
+class Persona{
+    def getNombre(){
+        println "Carlos"
+    }
+} 
+
+// https://stackoverflow.com/questions/8715851/how-do-i-dynamically-invoke-methods-in-groovy
+
+def instance = this.class.classLoader.loadClass( 'Persona', true, false )?.newInstance()
+//instance.nombre
+
+instance.metaClass.methods.each { method ->
+    if (method.name == 'getNombre')
+        method.invoke(instance)
+    
+}

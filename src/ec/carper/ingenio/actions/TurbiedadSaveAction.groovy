@@ -25,7 +25,7 @@ class TurbiedadSaveAction extends ViewBaseAction implements IChainAction{
 
         Turbiedad turbiedad = XPersistence.getManager().find( Turbiedad.class, getView().getValue("id") )
         turbiedad.save()
-        //getView().refresh()
+        getView().refresh()
         addMessage("promedios_actualizados")
 
         nextAction = "CRUD.save"

@@ -25,7 +25,7 @@ class PhSaveAction extends ViewBaseAction implements IChainAction{
 
         Ph cana = XPersistence.getManager().find( Ph.class, getView().getValue("id") )
         cana.save()
-        //getView().refresh()
+        getView().refresh()
         addMessage("promedios_actualizados")
 
         nextAction = "CRUD.save"

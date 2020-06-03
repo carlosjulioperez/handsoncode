@@ -25,7 +25,7 @@ class BagazoSaveAction extends ViewBaseAction implements IChainAction{
 
         Bagazo cana = XPersistence.getManager().find( Bagazo.class, getView().getValue("id") )
         cana.save()
-        //getView().refresh()
+        getView().refresh()
         addMessage("promedios_actualizados")
 
         nextAction = "CRUD.save"

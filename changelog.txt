@@ -20,6 +20,8 @@ Proyecto
 		
 	* Reflection:
 		https://stackoverflow.com/questions/45737329/how-to-change-method-name-dynamically-in-loop-in-java
+		https://stackoverflow.com/questions/8715851/how-do-i-dynamically-invoke-methods-in-groovy	
+		https://stackoverflow.com/questions/7758398/groovy-way-to-dynamically-instantiate-a-class-from-string	
 	
 	* Nota 1:
 	Cuando sale NullPointerException, revisar las propiedades de UI. Hay que revisar si los campos en la tabla no sean nulos.

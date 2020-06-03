@@ -10,13 +10,19 @@ import static org.openxava.jpa.XPersistence.*;
 class QueryTest extends ModuleTestBase {
 
 /*
-   Customer pedro = (Customer) XPersistence.getManager()
+    Customer pedro = (Customer) XPersistence.getManager()
        .createQuery( "from Customer c where c.name = 'PEDRO')")
        .getSingleResult(); // Para obtener una única entidad (2)
    
-   List pedros = XPersistence.getManager()
+    List pedros = XPersistence.getManager()
         .createQuery("from Customer c where c.name like 'PEDRO%')")
         .getResultList(); // Para obtener una colección de entidades (3)
+        
+    ColorMatDetalle o = (ColorMatDetalle) getManager()
+        .createQuery("FROM ColorMatDetalle WHERE colorMat.id = :id ")
+        .setParameter("id", "ff808081726e376301726e3947fe0000")
+        .getSingleResult()
+
 */
  
     private static Log log = LogFactory.getLog(QueryTest.class)
@@ -26,19 +32,23 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getColorMatDetalle()
+        isDiaTrabajoCerrado()
         //getTrashCanaDiaTrabajoCerrado()
         //getTrashCanaDetalle2()
         //getNativo()
     }
-
-    void getColorMatDetalle(){
-        ColorMatDetalle o = (ColorMatDetalle) getManager()
-            .createQuery("FROM ColorMatDetalle WHERE colorMat.id = :id ")
-            .setParameter("id", "ff808081726e376301726e3947fe0000")
+    void isDiaTrabajoCerrado(){
+        boolean cerrado = (boolean) getManager()
+            .createQuery("""
+                SELECT d.cerrado 
+                FROM Cana o, DiaTrabajo d
+                WHERE o.id = :id AND o.diaTrabajo.id = d.id
+            """)
+            .setParameter("id", "ff8080817211f247017211fcf5810000")
             .getSingleResult()
 
-        println o.dump()
+        println cerrado
+
     }
 
     void getTrashCanaDetalle2(){

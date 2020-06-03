@@ -25,7 +25,7 @@ class MagmasSaveAction extends ViewBaseAction implements IChainAction{
 
         Magmas magmas = XPersistence.getManager().find( Magmas.class, getView().getValue("id") )
         magmas.save()
-        //getView().refresh()
+        getView().refresh()
         addMessage("promedios_actualizados")
 
         nextAction = "CRUD.save"

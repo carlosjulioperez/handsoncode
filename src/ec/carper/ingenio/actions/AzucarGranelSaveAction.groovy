@@ -7,7 +7,7 @@ import static org.openxava.jpa.XPersistence.*
 
 import ec.carper.ingenio.model.*
 
-class ColorMatSaveAction extends ViewBaseAction implements IChainAction{
+class AzucarGranelSaveAction extends ViewBaseAction implements IChainAction{
 
     private String nextAction = null // Para guardar la siguiente acción a ejecutar
 
@@ -19,12 +19,12 @@ class ColorMatSaveAction extends ViewBaseAction implements IChainAction{
             addError("registro_no_actualizado")
             return
         }
-        MapFacade.setValues("ColorMat",
+        MapFacade.setValues("AzucarGranel",
             getView().getKeyValues(), getView().getValues()
         )
 
-        ColorMat colorMat = XPersistence.getManager().find( ColorMat.class, getView().getValue("id") )
-        colorMat.save()
+        AzucarGranel azucarGranel = XPersistence.getManager().find( AzucarGranel.class, getView().getValue("id") )
+        azucarGranel.save()
         getView().refresh()
         addMessage("promedios_actualizados")
 

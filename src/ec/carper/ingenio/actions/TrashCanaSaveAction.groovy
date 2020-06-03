@@ -25,7 +25,7 @@ class TrashCanaSaveAction extends ViewBaseAction implements IChainAction{
 
         TrashCana trashCana = XPersistence.getManager().find( TrashCana.class, getView().getValue("id") )
         trashCana.save()
-        //getView().refresh()
+        getView().refresh()
         addMessage("promedios_actualizados")
 
         nextAction = "CRUD.save"
