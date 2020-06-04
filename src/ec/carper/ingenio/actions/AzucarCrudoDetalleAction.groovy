@@ -6,7 +6,7 @@ import ec.carper.ingenio.util.Calculo
 import java.sql.Timestamp
 import org.openxava.actions.*
 
-class AzucarGranelDetalleAction extends OnChangePropertyBaseAction{
+class AzucarCrudoDetalleAction extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
 
@@ -18,7 +18,7 @@ class AzucarGranelDetalleAction extends OnChangePropertyBaseAction{
         
         if (bri){
             getView().setValue("rho", new BrixDensidadWp().getP(bri))
-            getView().setValue("briCorr", (bri*0.989).setScale(2, BigDecimal.ROUND_HALF_UP))
+            getView().setValue("briCorr", (bri*0.99718).setScale(2, BigDecimal.ROUND_HALF_UP))
         }
         
         // =+(C7*H7)/100000
@@ -27,7 +27,7 @@ class AzucarGranelDetalleAction extends OnChangePropertyBaseAction{
             if (rho)
                 getView().setValue("cedilla", Calculo.instance.getCedilla(briCorr, rho, 6))
 
-            getView().setValue("briEle", (briCorr*2).setScale(2, BigDecimal.ROUND_HALF_UP))
+            getView().setValue("briEle", (bri*2).setScale(2, BigDecimal.ROUND_HALF_UP))
         }
 
         // =+(1000*D7)/(F7*G7)
