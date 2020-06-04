@@ -23,11 +23,6 @@ class ColorMatTest extends ModuleTestBase {
         assertValue ( "rho1"           , "1,001.293000")
         assertValue ( "color1"         , "15,855.18")
         assertValue ( "turb1"          , "3,495.63")
-
-        assertValue("color1", "15,855.18")
-        assertValue("turb1" , "3,495.63")
-
-        execute("CRUD.delete")
         assertNoErrors()
     }
 
