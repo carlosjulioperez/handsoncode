@@ -23,14 +23,19 @@
     -->
 
     <controller name="Ingenio">
-        
         <extends controller="Typical"/>
-        
         <action name="save" mode="detail" by-default="if-possible"
             icon="content-save" keystroke="Control S"
         	class="ec.carper.ingenio.actions.DiaTrabajoEditableAction">
     	</action>
-        
     </controller>
     
+    <controller name="Fosfatos">
+        <extends controller="Typical"/>
+        <action name="save" mode="detail" by-default="if-possible"
+            icon="content-save" keystroke="Control S"
+        	class="ec.carper.ingenio.actions.FosfatosSaveAction">
+    	</action>
+    </controller>
+
 </controllers>

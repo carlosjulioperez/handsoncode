@@ -10,6 +10,7 @@ do
 
 case $opt in
         "compile")
+            ant deleteClasses
             ant compile
             ;;
 		"updateSchema")
