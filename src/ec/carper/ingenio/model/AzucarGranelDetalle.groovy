@@ -9,11 +9,15 @@ import org.openxava.model.*
 import ec.carper.ingenio.actions.*
 
 @Entity
-@View(members="""
-    hora;
-    briCorr,bri,absFiltrada,absSinFiltrar,celda;
-    rho,cedilla,briEle,color,turb;
-    pol,humedad,numSaco,polReproc
+@View(members="""#
+    hora          , briCorr;
+    bri           , absFiltrada;
+    absSinFiltrar , celda;
+    rho           , cedilla;
+    briEle        , color;
+    turb          , pol;
+    humedad       , numSaco;
+    polReproc
 """)
 class AzucarGranelDetalle extends Identifiable {
 

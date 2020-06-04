@@ -23,9 +23,9 @@ class AzucarGranelDetalleAction extends OnChangePropertyBaseAction{
         
         // =+(C7*H7)/100000
         BigDecimal rho = (BigDecimal)getView().getValue("rho")
-        if (briCorri){
+        if (briCorr){
             if (rho)
-                getView().setValue("cedilla", (briCorr*rho/100000).setScale(6, BigDecimal.ROUND_HALF_UP))
+                getView().setValue("cedilla", Calculo.instance.getCedilla(briCorr, rho, 6))
 
             getView().setValue("briEle", (briCorr*2).setScale(6, BigDecimal.ROUND_HALF_UP))
         }
@@ -33,12 +33,12 @@ class AzucarGranelDetalleAction extends OnChangePropertyBaseAction{
         // =+(1000*D7)/(F7*G7)
         BigDecimal cedilla = (BigDecimal)getView().getValue("cedilla")
         if (absFiltrada && celda && cedilla)
-            getView().setValue("color", ((1000*absFiltrada)/(celda*cedilla)).setScale(2, BigDecimal.ROUND_HALF_UP))
+            getView().setValue("color", Calculo.instance.getColor(absFiltrada, celda, cedilla, 2))
         
         // =+((1000*E7)/(F7*G7))-I7
         BigDecimal color = (BigDecimal)getView().getValue("color")
         if (absSinFiltrar && celda && cedilla && color)
-            getView().setValue("turb", (((1000*absSinFiltrar)/(celda*cedilla))-color).setScale(2, BigDecimal.ROUND_HALF_UP))
+            getView().setValue("turb", Calculo.instance.getColor(absSinFiltrar, celda, cedilla, 2) - color)
         
     }
     

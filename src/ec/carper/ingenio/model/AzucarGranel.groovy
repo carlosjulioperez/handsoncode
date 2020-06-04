@@ -13,42 +13,79 @@ import static org.openxava.jpa.XPersistence.*
 @Entity
 @Tab(properties="""
     diaTrabajo.descripcion,
-    bri, pol, sac, pur, bri2
+    briCorr, bri, absFiltrada, absSinFiltrar, celda, rho,
+    cedilla, briEle, color, turb, pol, humedad, numSaco, polReproc
 """)
 @View(members=  """diaTrabajo;detalle""")
 class AzucarGranel extends DiaTrabajoEditable {
 
+    BigDecimal briCorr
     BigDecimal bri
+    BigDecimal absFiltrada
+    BigDecimal absSinFiltrar
+    BigDecimal celda
+    BigDecimal rho
+    BigDecimal cedilla
+    BigDecimal briEle
+    BigDecimal color
+    BigDecimal turb
     BigDecimal pol
-    BigDecimal sac
-    BigDecimal pur
-    BigDecimal bri2
-
+    BigDecimal humedad
+    BigDecimal numSaco
+    BigDecimal polReproc
+    
     @OneToMany (mappedBy="azucarGranel", cascade=CascadeType.ALL)
     @ListProperties("""
-        hora,
-        bri  [azucarGranel.promBri],
-        pol  [azucarGranel.promPol],
-        sac  [azucarGranel.promSac],
-        pur  [azucarGranel.promPur],
-        bri2 [azucarGranel.promBri2]
+        hora,    
+        briCorr        [azucarGranel.promBriCorr],
+        bri            [azucarGranel.promBri],
+        absFiltrada    [azucarGranel.promAbsFiltrada],
+        absSinFiltrar  [azucarGranel.promAbsSinFiltrar],
+        celda          [azucarGranel.promCelda],
+        rho            [azucarGranel.promRho],
+        cedilla        [azucarGranel.promCedilla],
+        briEle         [azucarGranel.promBriEle],
+        color          [azucarGranel.promColor],
+        turb           [azucarGranel.promTurb],
+        pol            [azucarGranel.promPol],
+        humedad        [azucarGranel.promHumedad],
+        numSaco        [azucarGranel.promNumSaco],
+        polReproc      [azucarGranel.promPolReproc]
     """)
     Collection<AzucarGranelDetalle>detalle
     
-    BigDecimal getPromBri()  { return super.getPromedio(detalle, "bri", 2) }
-    BigDecimal getPromPol()  { return super.getPromedio(detalle, "pol", 2) }
-    BigDecimal getPromSac()  { return super.getPromedio(detalle, "sac", 2) }
-    BigDecimal getPromPur()  { return super.getPromedio(detalle, "pur", 2) }
-    BigDecimal getPromBri2() { return super.getPromedio(detalle, "bri2", 2) }
+    BigDecimal getPromBriCorr      () { return super.getPromedio(detalle, "briCorr", 2) }
+    BigDecimal getPromBri          () { return super.getPromedio(detalle, "bri", 2) }
+    BigDecimal getPromAbsFiltrada  () { return super.getPromedio(detalle, "absFiltrada", 3) }
+    BigDecimal getPromAbsSinFiltrar() { return super.getPromedio(detalle, "absSinFiltrar", 3) }
+    BigDecimal getPromCelda        () { return super.getPromedio(detalle, "celda", 2) }
+    BigDecimal getPromRho          () { return super.getPromedio(detalle, "rho", 3) }
+    BigDecimal getPromCedilla      () { return super.getPromedio(detalle, "cedilla", 6) }
+    BigDecimal getPromBriEle       () { return super.getPromedio(detalle, "briEle", 2) }
+    BigDecimal getPromColor        () { return super.getPromedio(detalle, "color", 2) }
+    BigDecimal getPromTurb         () { return super.getPromedio(detalle, "turb", 2) }
+    BigDecimal getPromPol          () { return super.getPromedio(detalle, "pol", 2) }
+    BigDecimal getPromHumedad      () { return super.getPromedio(detalle, "humedad", 2) }
+    BigDecimal getPromNumSaco      () { return super.getPromedio(detalle, "numSaco", 2) }
+    BigDecimal getPromPolReproc    () { return super.getPromedio(detalle, "polReproc", 2) }
     
     void actualizar() throws ValidationException{
         try{
 
-            this.bri  = promBri
-            this.pol  = promPol
-            this.sac  = promSac
-            this.pur  = promPur
-            this.bri2 = promBri2
+            this.briCorr       = promBriCorr
+            this.bri           = promBri
+            this.absFiltrada   = promAbsFiltrada
+            this.absSinFiltrar = promAbsSinFiltrar
+            this.celda         = promCelda
+            this.rho           = promRho
+            this.cedilla       = promCedilla
+            this.briEle        = promBriEle
+            this.color         = promColor
+            this.turb          = promTurb
+            this.pol           = promPol
+            this.humedad       = promHumedad
+            this.numSaco       = promNumSaco
+            this.polReproc     = promPolReproc
 
             XPersistence.getManager().persist(this)
 
