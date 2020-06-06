@@ -1,9 +1,15 @@
 Proyecto
+	* TODO:
+		https://www.programcreek.com/java-api-examples/?class=org.apache.commons.math3.stat.regression.SimpleRegression&method=getIntercept
+
 	* Tips:
 		https://www.oreilly.com/library/view/programming-grails/9781449324513/ch01.html
 
 	* Tests:
-		$ ant test -Dnombre_clase=GrasshoperTest
+		$ ant test -Dnombre_clase=TamanoGranoTest
+	
+	* i18n:
+		https://sourceforge.net/p/openxava/discussion/419690/thread/34508380/
 
 	* DateFormatter:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/1f814c16/
@@ -12,8 +18,7 @@ Proyecto
 	* Groovy Truth:
 		http://groovy-lang.org/semantics.html#Groovy-Truth
 
-	* TODO:
-
+	
 	* condiciones ant:
 		https://gist.github.com/bcremer/6111530
 

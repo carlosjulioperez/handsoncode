@@ -48,4 +48,8 @@ class Calculo{
         return ((1000*abs)/(celda*cedilla)).setScale(escala, BigDecimal.ROUND_HALF_UP)
     }
 
+    BigDecimal redondear(BigDecimal numero, int escala){
+        return numero.setScale(escala, BigDecimal.ROUND_HALF_UP)
+    }
+
 }

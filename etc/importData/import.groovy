@@ -27,6 +27,7 @@ def lista = [
     "BRIXDENSIDADTITSUS",
     "BRIXDENSIDADWP",
     "MODULO",
+    "PARAMETRO",
     "TURNO",
     "VARIEDAD"
 ]

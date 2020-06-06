@@ -16,6 +16,7 @@ public class SuiteTest extends TestCase{
        suite.addTestSuite(ModuloTest.class)
        suite.addTestSuite(TurnoTest.class)
        suite.addTestSuite(VariedadTest.class)
+       suite.addTestSuite(ParametroTest.class)
 
        // Transacciones
        suite.addTestSuite(DiaTrabajoTest.class)
@@ -37,6 +38,7 @@ public class SuiteTest extends TestCase{
        suite.addTestSuite(AzucarGranelTest.class)
        suite.addTestSuite(AzucarCrudoTest.class)
        suite.addTestSuite(GrasshoperTest.class)
+       suite.addTestSuite(TamanoGranoTest.class)
 
        return suite
     }
