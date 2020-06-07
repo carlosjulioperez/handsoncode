@@ -133,5 +133,14 @@ class Bagazo extends DiaTrabajoEditable {
             throw new SystemException("registro_no_actualizado", ex)
         }
     }
+    
+    BigDecimal getValorPorcHumedad(String diaTrabajoId){
+        Query query = getManager().createQuery("SELECT turJClaro FROM TurbiedadDetalle1 WHERE turbiedad.diaTrabajo.id = :diaTrabajoId AND hora = :hora ORDER BY hora")
+        query.setParameter("diaTrabajoId", diaTrabajoId)
+        query.setParameter("hora", hora)
+        
+        List records = query.resultList
+        return records ? records[0]: 0
+    }
 
 }

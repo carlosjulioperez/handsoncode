@@ -5,7 +5,6 @@ import javax.validation.constraints.Digits
 import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.model.*
-import org.openxava.model.*
 import org.openxava.jpa.*
 import static org.openxava.jpa.XPersistence.*
 

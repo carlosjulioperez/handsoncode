@@ -6,7 +6,7 @@ Proyecto
 		https://www.oreilly.com/library/view/programming-grails/9781449324513/ch01.html
 
 	* Tests:
-		$ ant test -Dnombre_clase=TamanoGranoTest
+		$ ant test -Dnombre_clase=BtuLbBagazgTest 
 	
 	* i18n:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/34508380/
