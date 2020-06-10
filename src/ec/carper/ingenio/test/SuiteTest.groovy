@@ -39,6 +39,8 @@ public class SuiteTest extends TestCase{
        suite.addTestSuite(AzucarCrudoTest.class)
        suite.addTestSuite(GrasshoperTest.class)
        suite.addTestSuite(TamanoGranoTest.class)
+       suite.addTestSuite(BtuLbBagazoTest.class)
+       suite.addTestSuite(Cto24HTest.class)
 
        return suite
     }

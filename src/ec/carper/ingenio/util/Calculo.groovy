@@ -15,11 +15,17 @@ class Calculo{
         return (((pol*0.26)/(0.9971883+0.00385310413*bri+0.0000132218495*bri*bri+0.00000004655189*bri*bri*bri))*factor).setScale(escala, BigDecimal.ROUND_HALF_UP)
     }
 
-    // =(E6/G6)*100 o =+H6*100/F6
+    // =(a/b)*100 o =(a*100)/b
     BigDecimal getPorc(BigDecimal valor1, BigDecimal valor2, int escala){
         // println ">>> valor1: " + valor1
         // println ">>> valor2: " + valor2
         return ((valor1/valor2)*100).setScale(escala, BigDecimal.ROUND_HALF_UP)
+    }
+    // =+(a/100)*b
+    BigDecimal getPorc2(BigDecimal valor1, BigDecimal valor2, int escala){
+        // println ">>> valor1: " + valor1
+        // println ">>> valor2: " + valor2
+        return ((valor1/100)*valor2).setScale(escala, BigDecimal.ROUND_HALF_UP)
     }
 
     BigDecimal getBrix(BigDecimal brixExtracto, BigDecimal wH2O, BigDecimal wMaterial, BigDecimal porcHumedad, int escala){
