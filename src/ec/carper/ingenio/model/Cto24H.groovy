@@ -283,157 +283,150 @@ class Cto24H extends DiaTrabajoEditable {
     @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
     BigDecimal ccJ10
 
-    @OnChange(Cto24HAction.class)
-    @LabelFormat(LabelFormatType.SMALL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.SMALL) @DisplaySize(8)
     BigDecimal ccJd1
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
     BigDecimal ccJd2
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
     BigDecimal ccJd3
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJd4                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
-    BigDecimal ccJd5                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJd6                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJd7                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJd8                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJd9                                             
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
+    BigDecimal ccJd4
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    BigDecimal ccJd5
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=8) @ReadOnly
+    BigDecimal ccJd6
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=8) @ReadOnly
+    BigDecimal ccJd7
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=3) @ReadOnly
+    BigDecimal ccJd8
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=3) @ReadOnly
+    BigDecimal ccJd9
     @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
     BigDecimal ccJd0
 
-    @OnChange(Cto24HAction.class)
-    @LabelFormat(LabelFormatType.SMALL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.SMALL) @DisplaySize(8)
     BigDecimal ccJc1
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
     BigDecimal ccJc2
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
     BigDecimal ccJc3
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJc4                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
-    BigDecimal ccJc5                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJc6                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJc7                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJc8                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJc9                                             
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
+    BigDecimal ccJc4
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    BigDecimal ccJc5
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=8) @ReadOnly
+    BigDecimal ccJc6
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=8) @ReadOnly
+    BigDecimal ccJc7
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=3) @ReadOnly
+    BigDecimal ccJc8
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=3) @ReadOnly
+    BigDecimal ccJc9
     @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
     BigDecimal ccJc0
 
-    @OnChange(Cto24HAction.class)
-    @LabelFormat(LabelFormatType.SMALL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.SMALL) @DisplaySize(8)
     BigDecimal ccJf1
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
     BigDecimal ccJf2
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
     BigDecimal ccJf3
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJf4                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
-    BigDecimal ccJf5                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJf6                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJf7                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJf8                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccJf9                                             
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
+    BigDecimal ccJf4
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    BigDecimal ccJf5
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=8) @ReadOnly
+    BigDecimal ccJf6
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=8) @ReadOnly
+    BigDecimal ccJf7
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=3) @ReadOnly
+    BigDecimal ccJf8
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=3) @ReadOnly
+    BigDecimal ccJf9
     @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
     BigDecimal ccJf0
 
-    @OnChange(Cto24HAction.class)
-    @LabelFormat(LabelFormatType.SMALL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.SMALL) @DisplaySize(8)
     BigDecimal ccMc1
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
     BigDecimal ccMc2
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
     BigDecimal ccMc3
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMc4                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
-    BigDecimal ccMc5                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMc6                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMc7                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMc8                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMc9                                             
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
+    BigDecimal ccMc4
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    BigDecimal ccMc5
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=8) @ReadOnly
+    BigDecimal ccMc6
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=8) @ReadOnly
+    BigDecimal ccMc7
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=3) @ReadOnly
+    BigDecimal ccMc8
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=3) @ReadOnly
+    BigDecimal ccMc9
     @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
     BigDecimal ccMc0
 
-    @OnChange(Cto24HAction.class)
-    @LabelFormat(LabelFormatType.SMALL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.SMALL) @DisplaySize(8)
     BigDecimal ccMa1
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
     BigDecimal ccMa2
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
     BigDecimal ccMa3
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMa4                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
-    BigDecimal ccMa5                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMa6                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMa7                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMa8                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMa9                                             
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
+    BigDecimal ccMa4
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    BigDecimal ccMa5
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=8) @ReadOnly
+    BigDecimal ccMa6
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=8) @ReadOnly
+    BigDecimal ccMa7
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=3) @ReadOnly
+    BigDecimal ccMa8
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=3) @ReadOnly
+    BigDecimal ccMa9
     @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
     BigDecimal ccMa0
 
-    @OnChange(Cto24HAction.class)
-    @LabelFormat(LabelFormatType.SMALL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.SMALL) @DisplaySize(8)
     BigDecimal ccMb1
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
     BigDecimal ccMb2
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
     BigDecimal ccMb3
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMb4                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
-    BigDecimal ccMb5                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMb6                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMb7                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMb8                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMb9                                             
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
+    BigDecimal ccMb4
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    BigDecimal ccMb5
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=8) @ReadOnly
+    BigDecimal ccMb6
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=8) @ReadOnly
+    BigDecimal ccMb7
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=3) @ReadOnly
+    BigDecimal ccMb8
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=3) @ReadOnly
+    BigDecimal ccMb9
     @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
     BigDecimal ccMb0
 
-    @OnChange(Cto24HAction.class)
-    @LabelFormat(LabelFormatType.SMALL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.SMALL) @DisplaySize(8)
     BigDecimal ccMf1
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
     BigDecimal ccMf2
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
     BigDecimal ccMf3
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMf4                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
-    BigDecimal ccMf5                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMf6                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMf7                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMf8                                             
-    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
-    BigDecimal ccMf9                                             
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
+    BigDecimal ccMf4
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8)
+    BigDecimal ccMf5
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=8) @ReadOnly
+    BigDecimal ccMf6
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=8) @ReadOnly
+    BigDecimal ccMf7
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=3) @ReadOnly
+    BigDecimal ccMf8
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @Digits(integer=6,fraction=3) @ReadOnly
+    BigDecimal ccMf9
     @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
     BigDecimal ccMf0
 

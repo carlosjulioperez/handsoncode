@@ -40,7 +40,7 @@ class MielesDetalleAction extends OnChangePropertyBaseAction{
         BigDecimal mfBri2 = (BigDecimal)getView().getValue("mfBri2")
         BigDecimal mfPol  = (BigDecimal)getView().getValue("mfPol")
         if (mfBri && mfPol)
-            getView().setValue("mfSac", Calculo.instance.getSac(mfBri, mfPol, 6, 2))
+            getView().setValue("mfSac", Calculo.instance.redondear(mfPol*6, 2))
         
         BigDecimal mfSac = (BigDecimal)getView().getValue("mfSac")
         if (mfSac && mfBri2)
@@ -53,7 +53,7 @@ class MielesDetalleAction extends OnChangePropertyBaseAction{
         BigDecimal mrBri2 = (BigDecimal)getView().getValue("mrBri2")
         BigDecimal mrPol  = (BigDecimal)getView().getValue("mrPol")
         if (mrBri && mrPol)
-            getView().setValue("mrSac", Calculo.instance.getSac(mrBri, mrPol, 6, 2))
+            getView().setValue("mrSac", Calculo.instance.redondear(mrPol*6, 2))
         
         BigDecimal mrSac = (BigDecimal)getView().getValue("mrSac")
         if (mrSac && mrBri2)
