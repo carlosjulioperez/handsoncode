@@ -43,8 +43,51 @@ import static org.openxava.jpa.XPersistence.*
         ccM9,ccJ19,ccJd9,ccJc9,ccJf9,ccMc9,ccMa9,ccMb9,ccMf9;
         ccM0,ccJ10,ccJd0,ccJc0,ccJf0,ccMc0,ccMa0,ccMb0,ccMf0
     }
+    cs  {
+        csPMtra, csPCrisol, csPCriCen, csPorcCen 
+    }
+    ip  {
+        ipBXOc, ipBXDig, ipPorc 
+    }
+    av  {
+        fr;detalle
+    }   
 """)
 class Cto24H extends DiaTrabajoEditable {
+
+    BigDecimal mlTitu
+    BigDecimal fd
+    BigDecimal ppm
+    
+    @Digits(integer=6,fraction=3) @DisplaySize(6) @Required
+    BigDecimal fr
+    
+    @OneToMany (mappedBy="cto24H", cascade=CascadeType.ALL)
+    @ListProperties("""
+        modulo.descripcion,turno.descripcion,tipo,hora,
+        mlTitu [cto24H.promMlTitu],
+        fd     [cto24H.promFd],
+        ppm    [cto24H.promPpm]
+    """)
+    Collection<Cto24HDetalle>detalle
+
+    BigDecimal getPromMlTitu()  { return super.getPromedio(detalle, "mlTitu",  2) }
+    BigDecimal getPromFd    ()  { return super.getPromedio(detalle, "fd",      2) }
+    BigDecimal getPromPpm   ()  { return super.getPromedio(detalle, "ppm",     2) }
+
+    void actualizar() throws ValidationException{
+        try{
+
+            this.mlTitu  = promMlTitu
+            this.fd      = promFd
+            this.ppm     = promPpm
+            
+            XPersistence.getManager().persist(this)
+
+        }catch(Exception ex){
+            throw new SystemException("registro_no_actualizado", ex)
+        }
+    }
 
     @OnChange(Cto24HAction.class) @Required
     @Digits(integer=3, fraction=3) @DisplaySize(6) 
@@ -429,5 +472,28 @@ class Cto24H extends DiaTrabajoEditable {
     BigDecimal ccMf9
     @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(8) @ReadOnly
     BigDecimal ccMf0
+
+    // CENIZAS SULAFATADAS MIEL FINAL O MELAZA (CTO 24 HORAS)
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.SMALL) @DisplaySize(6)
+    BigDecimal csPMtra
+
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.SMALL) @DisplaySize(6)
+    BigDecimal csPCrisol
+
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.SMALL) @DisplaySize(6)
+    BigDecimal csPCriCen
+
+    @LabelFormat(LabelFormatType.SMALL) @DisplaySize(6) @ReadOnly
+    BigDecimal csPorcCen
+
+    // INDICE DE PREPARACION
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.SMALL) @DisplaySize(6)
+    BigDecimal ipBXOc
+    
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.SMALL) @DisplaySize(6)
+    BigDecimal ipBXDig
+
+    @LabelFormat(LabelFormatType.SMALL) @DisplaySize(6) @ReadOnly
+    BigDecimal ipPorc
 
 }

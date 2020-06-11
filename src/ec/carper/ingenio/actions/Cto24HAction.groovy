@@ -322,6 +322,21 @@ class Cto24HAction extends OnChangePropertyBaseAction{
         if (ccMf8 && ccMf6 && ccMf9)
             getView().setValue("ccMf0", porcCenizas(ccMf8, ccMf6, ccMf9) )
 
+        // CENIZAS SULAFATADAS MIEL FINAL O MELAZA (CTO 24 HORAS)
+        BigDecimal csPMtra   = (BigDecimal)getView().getValue("csPMtra")
+        BigDecimal csPCrisol = (BigDecimal)getView().getValue("csPCrisol")
+        BigDecimal csPCriCen = (BigDecimal)getView().getValue("csPCriCen")
+
+        // =+((P19-O19)/N19)*100
+        if (csPMtra && csPCrisol && csPCriCen )
+            getView().setValue("csPorcCen", Calculo.instance.redondear( ((csPCriCen-csPCrisol)/csPMtra)*100, 2))
+
+        // INDICE DE PREPARACION
+        BigDecimal ipBXOc  = (BigDecimal)getView().getValue("ipBXOc")
+        BigDecimal ipBXDig = (BigDecimal)getView().getValue("ipBXDig")
+        if (ipBXOc && ipBXDig) 
+            getView().setValue("ipPorc", Calculo.instance.getPorc(ipBXOc,ipBXDig, 2))
+
     }
     
     // =5,127/(D8*$E$5*0,02)

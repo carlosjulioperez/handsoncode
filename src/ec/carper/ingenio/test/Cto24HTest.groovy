@@ -162,13 +162,37 @@ class Cto24HTest extends ModuleTestBase {
         setValue    ( "ccMf2" , "1.05")
         setValue    ( "ccMf3" , "2.05")
         setValue    ( "ccMf5" , "0.04")
-        assertValue ( "ccMf4" , "0.00")
+        assertValue ( "ccMf4" , "84.63")
         assertValue ( "ccMf6" , "1.78829941")
         assertValue ( "ccMf7" , "0.73829941")
-        assertValue ( "ccMf8" , "0.000")
+        assertValue ( "ccMf8" , "0.034")
         assertValue ( "ccMf9" , "125.000")
-        assertValue ( "ccMf0" , "0.00")
+        assertValue ( "ccMf0" , "0.36")
         
+        execute("Sections.change", "activeSection=4");
+        setValue    ( "csPMtra"   , "0.54")
+        setValue    ( "csPCrisol" , "0.23")
+        setValue    ( "csPCriCen" , "0.4")
+        assertValue ( "csPorcCen" , "31.48")
+        
+        execute("Sections.change", "activeSection=5");
+        setValue    ( "ipBXOc"  , "15.55")
+        setValue    ( "ipBXDig" , "16.66")
+        assertValue ( "ipPorc"  , "93.34")
+
+        /*
+        execute("Sections.change", "activeSection=6");
+        setValue    ( "fr"     , "0.641")
+
+        assertCollectionRowCount("detalle", 0)
+        execute("Collection.new"   , "viewObject=xava_view_detalle")
+        assertDialog()
+
+        setValue    ( "mlTitu" , "1")
+        setValue    ( "fd"     , "3")
+        assertValue ( "ppm"    , "280.81")
+        */
+
         // setValue    ( "" , "")
         // assertValue ( "" , "")
         
