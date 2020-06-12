@@ -10,16 +10,8 @@ import org.openxava.actions.*
 class Cto24HAction extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
-        /*
-        atM1,atC1,atJ11,atJd1,atJc1,atJf1,atMc1,atMa1,atMb1,atMf1;
-        atM2,atC2,atJ12,atJd2,atJc2,atJf2,atMc2,atMa2,atMb2,atMf2;
-        BigDecimal = (BigDecimal)getView().getValue("")
-        getView().setValue("", new BrixDensidadWp().getP())
-        if ()
-            getView().setValue("", calcJugo(, ff) )
-        */
 
-        String diaTrabajoId      = (String)getView().getRoot().getValue("diaTrabajo.id")
+        String diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
 
         BigDecimal ff = (BigDecimal)getView().getValue("fFelining")
 
@@ -337,6 +329,46 @@ class Cto24HAction extends OnChangePropertyBaseAction{
         if (ipBXOc && ipBXDig) 
             getView().setValue("ipPorc", Calculo.instance.getPorc(ipBXOc,ipBXDig, 2))
 
+        // % CONCENTRACION TOT LINEA EVAPORACION
+        BigDecimal ceBr1 = (BigDecimal)getView().getValue("ceBr1")
+        BigDecimal ceBr2 = (BigDecimal)getView().getValue("ceBr2")
+        BigDecimal ceBr3 = (BigDecimal)getView().getValue("ceBr3")
+        BigDecimal ceBr4 = (BigDecimal)getView().getValue("ceBr4")
+        BigDecimal ceBr5 = (BigDecimal)getView().getValue("ceBr5")
+
+
+        if (ceBr1)
+            getView().setValue("ceBe1", ceBr1)
+        // Sin cePc1
+
+        if (ceBr2)
+            getView().setValue("ceBe2", Calculo.instance.redondear(ceBr2*4,2))
+        BigDecimal ceBe1 = (BigDecimal)getView().getValue("ceBe1")
+        BigDecimal ceBe2 = (BigDecimal)getView().getValue("ceBe2")
+        if (ceBe1 && ceBe2) 
+            getView().setValue("cePc2", porcCon(ceBe1, ceBe2))
+
+        if (ceBr3)
+            getView().setValue("ceBe3", Calculo.instance.redondear(ceBr3*4,2))
+        BigDecimal ceBe3 = (BigDecimal)getView().getValue("ceBe3")
+        if (ceBe2 && ceBe3)
+            getView().setValue("cePc3", porcCon(ceBe2, ceBe3))
+
+        if (ceBr4)
+            getView().setValue("ceBe4", Calculo.instance.redondear(ceBr4*4,2))
+        BigDecimal ceBe4 = (BigDecimal)getView().getValue("ceBe4")
+        if (ceBe3 && ceBe4)
+            getView().setValue("cePc4", porcCon(ceBe3, ceBe4))
+
+        if (ceBr5)
+            getView().setValue("ceBe5", Calculo.instance.redondear(ceBr5*4,2))
+        BigDecimal ceBe5 = (BigDecimal)getView().getValue("ceBe5")
+        if (ceBe4 && ceBe5)
+            getView().setValue("cePc5", porcCon(ceBe4, ceBe5))
+
+        if (ceBe1 && ceBe5)
+            getView().setValue("cePc6", porcCon(ceBe1, ceBe5))
+
     }
     
     // =5,127/(D8*$E$5*0,02)
@@ -355,5 +387,9 @@ class Cto24HAction extends OnChangePropertyBaseAction{
 
     def porcCenizas (def valor1, def valor2, def valor3){
         return Calculo.instance.redondear( (16.2+0.36*valor1)*0.0001*valor2*valor3, 2)
+    }
+
+    def porcCon(def valor1, def valor2){
+        return Calculo.instance.redondear((valor2-valor1)/valor2*100, 2)
     }
 }

@@ -192,6 +192,23 @@ class Cto24HTest extends ModuleTestBase {
         setValue    ( "fd"     , "3")
         assertValue ( "ppm"    , "280.81")
         */
+    
+        execute("Sections.change", "activeSection=7");
+        setValue    ( "ceBr1"  , "1.1")
+        setValue    ( "ceBr2"  , "2.2")
+        setValue    ( "ceBr3"  , "3.3")
+        setValue    ( "ceBr4"  , "4.4")
+        setValue    ( "ceBr5"  , "5.5")
+        assertValue ( "ceBe1" , "1.10")
+        assertValue ( "ceBe2" , "8.80")
+        assertValue ( "ceBe3" , "13.20")
+        assertValue ( "ceBe4" , "17.60")
+        assertValue ( "ceBe5" , "22.00")
+        assertValue ( "cePc2" , "87.50")
+        assertValue ( "cePc3" , "33.33")
+        assertValue ( "cePc4" , "25.00")
+        assertValue ( "cePc5" , "20.00")
+        assertValue ( "cePc6" , "95.00")
 
         // setValue    ( "" , "")
         // assertValue ( "" , "")

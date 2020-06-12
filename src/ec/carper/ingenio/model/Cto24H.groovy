@@ -52,6 +52,13 @@ import static org.openxava.jpa.XPersistence.*
     av  {
         fr;detalle
     }   
+    ce  {
+        ceM1,ceBr1,ceBe1,cePc1;
+        ceM2,ceBr2,ceBe2,cePc2;
+        ceM3,ceBr3,ceBe3,cePc3;
+        ceM4,ceBr4,ceBe4,cePc4;
+        ceM5,ceBr5,ceBe5,cePc5,cePc6
+    }
 """)
 class Cto24H extends DiaTrabajoEditable {
 
@@ -495,5 +502,52 @@ class Cto24H extends DiaTrabajoEditable {
 
     @LabelFormat(LabelFormatType.SMALL) @DisplaySize(6) @ReadOnly
     BigDecimal ipPorc
+
+    // % CONCENTRACION TOT LINEA EVAPORACION
+    @Transient @ReadOnly @DisplaySize(1)
+    String ceM1
+    @Transient @ReadOnly @DisplaySize(1)
+    String ceM2
+    @Transient @ReadOnly @DisplaySize(1)
+    String ceM3
+    @Transient @ReadOnly @DisplaySize(1)
+    String ceM4
+    @Transient @ReadOnly @DisplaySize(1)
+    String ceM5
+
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.SMALL) @DisplaySize(5)
+    BigDecimal ceBr1
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(5)
+    BigDecimal ceBr2
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(5)
+    BigDecimal ceBr3
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(5)
+    BigDecimal ceBr4
+    @OnChange(Cto24HAction.class) @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(5)
+    BigDecimal ceBr5
+
+    @LabelFormat(LabelFormatType.SMALL) @DisplaySize(5) @ReadOnly
+    BigDecimal ceBe1
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(5) @ReadOnly
+    BigDecimal ceBe2
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(5) @ReadOnly
+    BigDecimal ceBe3
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(5) @ReadOnly
+    BigDecimal ceBe4
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(5) @ReadOnly
+    BigDecimal ceBe5
+
+    @LabelFormat(LabelFormatType.SMALL) @DisplaySize(5) @ReadOnly
+    BigDecimal cePc1
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(5) @ReadOnly
+    BigDecimal cePc2
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(5) @ReadOnly
+    BigDecimal cePc3
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(5) @ReadOnly
+    BigDecimal cePc4
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(5) @ReadOnly
+    BigDecimal cePc5
+    @LabelFormat(LabelFormatType.NO_LABEL) @DisplaySize(5) @ReadOnly
+    BigDecimal cePc6
 
 }

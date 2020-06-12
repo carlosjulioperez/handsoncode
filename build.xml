@@ -9,7 +9,18 @@
 	
     <!-- 2019-10-10 Agregado por carper -->
 	<property name="webinf.dir"    value="web/WEB-INF" />
-	<property name="sql.jar"       value="../OpenXava/lib/hsqldb.jar" />
+
+	<!-- <property name="sql.jar"    value="../OpenXava/lib/hsqldb.jar" /> -->
+	<!-- <property name="sql.driver" value="org.hsqldb.jdbcDriver"/> -->
+	<!-- <property name="sql.url"  	 value="jdbc:hsqldb:hsql://localhost:1666"/> -->
+	<!-- <property name="sql.user" 	 value="sa"/> -->
+	<!-- <property name="sql.pass" 	 value=""/>  -->
+
+    <property name="sql.jar"    value="web/WEB-INF/lib/postgresql-42.2.5.jar" />
+	<property name="sql.driver" value="org.postgresql.Driver"/>
+	<property name="sql.url" 	value="jdbc:postgresql://localhost:5432/ingenio"/>
+	<property name="sql.user" 	value="postgres"/>
+	<property name="sql.pass" 	value=""/> 
 
     <!-- 
 	Compile all .java and .groovy 
@@ -82,10 +93,6 @@
 		<pathelement location="${class.dir}/" />
 	</path>
 
-	<property name="sql.driver" value="org.hsqldb.jdbcDriver"/>
-	<property name="sql.url" 	value="jdbc:hsqldb:hsql://localhost:1666"/>
-	<property name="sql.user" 	value="sa"/>
-	<property name="sql.pass" 	value=""/> 
     
 	<target name="sql-query">
 		<sql classpath="${sql.jar}"

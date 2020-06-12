@@ -8,7 +8,7 @@ Proyecto
 	* Tests:
 		$ ant test -Dnombre_clase=Cto24HTest 
 		$ ant test -Dnombre_clase=MielesTest 
-	
+
 	* i18n:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/34508380/
 
@@ -25,7 +25,16 @@ Proyecto
 	* Importar datos:
 		csv: Tablas de configuración por el usuario (importGroovy y *.csv)
 		sql: Transacciones de prueba (insert.sql)
-			
+
+		COPY area               FROM '/tmp/AREA.csv'   			   DELIMITER  ',' CSV HEADER;
+		COPY brixdensidadtitsus FROM '/tmp/BRIXDENSIDADTITSUS.csv' DELIMITER  ',' CSV HEADER;
+		COPY brixdensidadwp     FROM '/tmp/BRIXDENSIDADWP.csv'     DELIMITER  ',' CSV HEADER;
+		COPY modulo             FROM '/tmp/MODULO.csv'             DELIMITER  ',' CSV HEADER;
+		COPY parametro          FROM '/tmp/PARAMETRO.csv'          DELIMITER  ',' CSV HEADER;
+		COPY turno              FROM '/tmp/TURNO.csv'              DELIMITER  ',' CSV HEADER;
+		COPY unidad             FROM '/tmp/UNIDAD.csv'             DELIMITER  ',' CSV HEADER;
+		COPY variedad           FROM '/tmp/VARIEDAD.csv'           DELIMITER  ',' CSV HEADER;
+
 	* Modulos:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/442eec1db7/?limit=25
 		https://sourceforge.net/p/openxava/discussion/437013/thread/bc0a46d4c4/?limit=25
@@ -85,7 +94,8 @@ Proyecto
 		2. context.xml:
 			+ Develop: web/META-INF/context.xml
 			+ Produccion: conf/context.xml 
-		3. build.xml, task:
+		3. Driver en build.xml, task:
+		4. import.groovy, configuration.properties
 
 		<Resource name="jdbc/FabricaDS" auth="Container"
 			type="javax.sql.DataSource"
