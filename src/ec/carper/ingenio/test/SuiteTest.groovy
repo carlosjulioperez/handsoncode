@@ -13,10 +13,12 @@ public class SuiteTest extends TestCase{
        suite.addTestSuite(AreaTest.class)
        suite.addTestSuite(BrixDensidadTitSusTest.class)
        suite.addTestSuite(BrixDensidadWpTest.class)
+       suite.addTestSuite(MaterialTest.class)
        suite.addTestSuite(ModuloTest.class)
-       suite.addTestSuite(TurnoTest.class)
-       suite.addTestSuite(VariedadTest.class)
        suite.addTestSuite(ParametroTest.class)
+       suite.addTestSuite(TurnoTest.class)
+       suite.addTestSuite(UnidadTest.class)
+       suite.addTestSuite(VariedadTest.class)
 
        // Transacciones
        suite.addTestSuite(DiaTrabajoTest.class)

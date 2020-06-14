@@ -1,6 +1,10 @@
 Proyecto
 	* TODO:
 		https://www.programcreek.com/java-api-examples/?class=org.apache.commons.math3.stat.regression.SimpleRegression&method=getIntercept
+		Tablas: Material, Unidad, etc.
+
+		Blc: @EditOnly
+		Crear detalles como TrashCana.crearTrash()
 
 	* Tips:
 		https://www.oreilly.com/library/view/programming-grails/9781449324513/ch01.html
@@ -8,6 +12,7 @@ Proyecto
 	* Tests:
 		$ ant test -Dnombre_clase=Cto24HTest 
 		$ ant test -Dnombre_clase=MielesTest 
+		$ ant test -Dnombre_clase=MaterialTest 
 
 	* i18n:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/34508380/

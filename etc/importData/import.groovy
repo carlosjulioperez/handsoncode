@@ -26,9 +26,11 @@ def lista = [
     "AREA",
     "BRIXDENSIDADTITSUS",
     "BRIXDENSIDADWP",
+    "MATERIAL",
     "MODULO",
     "PARAMETRO",
     "TURNO",
+    "UNIDAD",
     "VARIEDAD"
 ]
 lista.each{
