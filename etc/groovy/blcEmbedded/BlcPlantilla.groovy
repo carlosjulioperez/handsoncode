@@ -5,7 +5,6 @@ import org.openxava.annotations.*
 import org.openxava.model.*
 
 @Entity
-@View(members="codigo,descripcion;detalle1")
 class BlcPlantilla{
     @Id
     int codigo
@@ -13,7 +12,8 @@ class BlcPlantilla{
     @Column(length=30) @Required
     String descripcion 
 
-    @OneToMany (mappedBy="blcPlantilla", cascade=CascadeType.ALL)
+    @ElementCollection
+    @ListProperties("""material,valor,unidad,cantidad,unidad2""")
     Collection<BlcDetalle1>detalle1
 }
 

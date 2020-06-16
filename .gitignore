@@ -11,6 +11,7 @@ xava/*
 
 !xava/application.xml
 !xava/controllers.xml
+!xava/editors.xml
 
 # swap
 [._]*.s[a-v][a-z]

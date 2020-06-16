@@ -4,37 +4,11 @@
 
 <controllers>
     
-    <!-- Environment variable:
-    <env-var name="Ingenio_DEFAULT_YEAR" value="2015"/> 
-    -->
-    
-    <!-- Session object:
-    <object name="Ingenio_activeYear" class="java.lang.Integer" value="2015" 
-    	    scope="global"/>    
-    -->
-    
-    <!-- Controller:
-    <controller name="Teacher">
-    	<extends controller="Typical"/>
-    	<action name="new" icon="library-plus" keystroke="Control N"
-        	class="actions.CreateTeacher">
-    	</action>
-	</controller>    
-    -->
-
     <controller name="Ingenio">
         <extends controller="Typical"/>
         <action name="save" mode="detail" by-default="if-possible"
             icon="content-save" keystroke="Control S"
         	class="ec.carper.ingenio.actions.DiaTrabajoEditableAction">
-    	</action>
-    </controller>
-    
-    <controller name="Fosfatos">
-        <extends controller="Typical"/>
-        <action name="save" mode="detail" by-default="if-possible"
-            icon="content-save" keystroke="Control S"
-        	class="ec.carper.ingenio.actions.FosfatosSaveAction">
     	</action>
     </controller>
 

@@ -13,7 +13,7 @@ import ec.carper.ingenio.actions.*
 @View(members="""
     hora;
     modulo,turno,variedad;
-    cantidadCana;netaCana;calTrashCana;calPorcTrash 
+    cantidadCana,netaCana;calTrashCana,calPorcTrash 
 """)
 class TrashCanaDetalle1 extends Identifiable {
     
@@ -32,18 +32,19 @@ class TrashCanaDetalle1 extends Identifiable {
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
     Variedad variedad
 
-    @OnChange(TrashCanaDetalle1Action.class)
+    @OnChange(TrashCanaDetalle1Action.class) @DisplaySize(6)
     BigDecimal cantidadCana
     
     @OnChange(TrashCanaDetalle1Action.class)
+    @Digits(integer=4, fraction=1) @DisplaySize(6)
     BigDecimal netaCana
 
     @ReadOnly
-    @Digits(integer=4, fraction=3)
+    @Digits(integer=4, fraction=3) @DisplaySize(6)
     BigDecimal calTrashCana
     
     @ReadOnly
-    @Digits(integer=4, fraction=3)
+    @Digits(integer=4, fraction=3) @DisplaySize(6)
     BigDecimal calPorcTrash
     
 }

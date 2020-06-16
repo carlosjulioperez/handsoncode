@@ -1,0 +1,19 @@
+<?xml version = "1.0" encoding = "ISO-8859-1"?>
+<!DOCTYPE editors SYSTEM "dtds/editors.dtd">
+<editors>
+    
+    <editor name="DateTimeCalendar" url="dateTimeCombinedCalendarEditor.jsp">
+        <formatter class="ec.carper.ingenio.formatters.MyDateTimeCombinedFormatter" />
+        <!-- <list&#45;formatter class="ec.carper.ingenio.formatters.DateFormatter" /> -->
+        <for-type type="java.sql.Timestamp" />
+        <for-stereotype stereotype="DATETIME" />
+        <for-stereotype stereotype="FECHAHORA" />
+    </editor>    
+    
+    <!-- <editor name="DateCalendar" url="dateCalendarEditor.jsp"> -->
+    <!--     <formatter class="ec.carper.ingenio.formatters.DateTimeCombinedFormatter" /> -->
+    <!--     <!&#45;&#45; <formatter class="ec.carper.ingenio.formatters.DateFormatter" /> &#45;&#45;> -->
+    <!--     <for&#45;type type="java.util.Date" /> -->
+    <!--     <for&#45;stereotype stereotype="FECHAHORA"/> -->
+    <!-- </editor> -->
+</editors>

@@ -20,8 +20,8 @@ class DiaTrabajoEditableAction extends ViewBaseAction implements IChainAction{
             // Validar CRUD.save
             def modulo = getModelName()
             def map = getView().getKeyValues()
-            // println (">>>>>>>>>>>>>>>>>>>>>>> " + modulo)
-            // println ("*********************** " + map)
+            println (">>>>>>>>>>>>>>>>>>>>>>> " + modulo)
+            println ("*********************** " + map)
 
             if (map){ //actualizar objeto
                 //Query query = getManager().createQuery("select diaTrabajo.cerrado from ${modulo} o where id= :id ")
@@ -41,7 +41,7 @@ class DiaTrabajoEditableAction extends ViewBaseAction implements IChainAction{
                     getView().clear()
                     getView().setEditable(false); // Dejamos la vista como no editable
                 }else{
-                    // Si existe Modulo.save(), ejecutarlo
+                    // Si existe Modulo.actualizar(), ejecutarlo
                     def instance = new groovy.lang.GroovyClassLoader().loadClass( 
                         "ec.carper.ingenio.model.${modulo}", true, false )?.newInstance()
 

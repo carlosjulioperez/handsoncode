@@ -54,7 +54,7 @@ class Trash extends DiaTrabajoEditable {
     BigDecimal avgCanaInfectada
     BigDecimal avgPorcCanaInfectada
 
-    @OneToMany (mappedBy="trash", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="trash", cascade=CascadeType.ALL) @EditOnly
     @ListProperties("""
         hora,modulo.descripcion,turno.descripcion,variedad.descripcion,
         cantidadCana[trash.promCantCana],netaCana[trash.promNetaCana],

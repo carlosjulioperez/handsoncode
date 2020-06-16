@@ -22,9 +22,8 @@ import static org.openxava.jpa.XPersistence.*
 """)
 class Blc extends DiaTrabajoEditable {
 
-    @CollectionView("Edicion")
-    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL)
-    @EditOnly
+    @ElementCollection //@EditOnly
+    @ListProperties("""material,valor,unidad,cantidad,unidad2""")
     Collection<BlcDetalle1>detalle1
 
 }

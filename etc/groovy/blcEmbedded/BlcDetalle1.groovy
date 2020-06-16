@@ -5,22 +5,13 @@ import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.model.*
 
-@Entity
-@Views([
-    @View( members="orden,material;valor,unidad;cantidad,unidad2" ),
-    @View( name="Edicion", extendsView="DEFAULT" )
-])
-class BlcDetalle1 extends Identifiable{
-    
-    @ManyToOne
-    BlcPlantilla blcPlantilla 
-   
-    @ManyToOne
-    Blc blc
 
-    @ReadOnly(notForViews="DEFAULT")
-    @Column(length=2)
-    int orden
+@Embeddable
+@Views([
+    @View( members="material,valor,unidad,cantidad,unidad2" ),
+    @View( name="A", extendsView="DEFAULT" )
+])
+class BlcDetalle1{
    
     @ReadOnly(notForViews="DEFAULT")
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList
