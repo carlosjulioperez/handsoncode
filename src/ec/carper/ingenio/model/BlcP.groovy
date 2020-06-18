@@ -6,14 +6,14 @@ import org.openxava.model.*
 
 @Entity
 @View(members="codigo,descripcion;detalle1")
-class BlcPlantilla{
+class BlcP{
     @Id
     int codigo
     
     @Column(length=30) @Required
     String descripcion 
 
-    @OneToMany (mappedBy="blcPlantilla", cascade=CascadeType.ALL)
-    Collection<BlcDetalle1>detalle1
+    @OneToMany (mappedBy="blcP", cascade=CascadeType.ALL)
+    Collection<BlcPDetalle1>detalle1
 }
 

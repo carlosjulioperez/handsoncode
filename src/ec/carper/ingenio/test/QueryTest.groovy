@@ -37,6 +37,10 @@ class QueryTest extends ModuleTestBase {
         //getTrashCanaDetalle2()
         //getNativo()
     }
+
+    void getBlcDetalle1(){
+    }
+
     void isDiaTrabajoCerrado(){
         boolean cerrado = (boolean) getManager()
             .createQuery("""

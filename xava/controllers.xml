@@ -12,4 +12,18 @@
     	</action>
     </controller>
 
+    <controller name="TrashCana">
+        <extends controller="Typical"/>
+        <action name="crearTrash" mode="detail" 
+        	class="ec.carper.ingenio.actions.TrashCanaCrearTrashAction">
+    	</action>
+    </controller>   
+
+    <controller name="Blc">
+        <extends controller="Typical"/>
+        <action name="cargarItems" mode="detail" 
+        	class="ec.carper.ingenio.actions.BlcCargarItemsAction">
+    	</action>
+    </controller>   
+
 </controllers>
