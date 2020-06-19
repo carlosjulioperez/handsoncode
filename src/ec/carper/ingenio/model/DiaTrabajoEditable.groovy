@@ -8,7 +8,8 @@ import org.openxava.model.*
 class DiaTrabajoEditable extends Identifiable{
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @DescriptionsList @NoCreate @NoModify 
+    @DescriptionsList @NoCreate @NoModify
+    //@DescriptionsList(descriptionProperties="numeroDia,fecha") @NoCreate @NoModify
     DiaTrabajo diaTrabajo
 
     BigDecimal getPromedio(def detalle, String propiedad, int escala){

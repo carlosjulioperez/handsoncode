@@ -6,6 +6,7 @@ import org.openxava.calculators.*
 import org.openxava.model.*
 
 import java.time.LocalDate
+import java.time.format.*
 
 @Entity
 class DiaTrabajo extends Identifiable{
@@ -14,8 +15,13 @@ class DiaTrabajo extends Identifiable{
     @Required
     LocalDate fecha
     
-    @Column(length=50) @Required
-    String descripcion
+    @Hidden
+    String getDescripcion(){
+        return numeroDia+" "+fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+    }
+    
+    @Column(length=2) @Required
+    int numeroDia
     
     @Required
     boolean cerrado

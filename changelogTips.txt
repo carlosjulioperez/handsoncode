@@ -1,0 +1,117 @@
+Proyecto
+	* TODO:
+		https://www.programcreek.com/java-api-examples/?class=org.apache.commons.math3.stat.regression.SimpleRegression&method=getIntercept
+		Tablas: Material, Unidad, etc.
+
+		Blc: @EditOnly
+		Crear detalles como TrashCana.crearTrash()
+
+		DROP TABLE ingenio.blcdetalle1;
+		DROP TABLE ingenio.blc;
+		DROP TABLE ingenio.blcplantilla;
+
+		Módulo para control de inventario por código de barras
+
+	* Tips:
+		https://www.oreilly.com/library/view/programming-grails/9781449324513/ch01.html
+
+	* Tests:
+		$ ant test -Dnombre_clase=Cto24HTest 
+		$ ant test -Dnombre_clase=BlcTest 
+		$ ant test -Dnombre_clase=BrixDensidadWpTest
+
+	* i18n:
+		https://sourceforge.net/p/openxava/discussion/419690/thread/34508380/
+
+	* DateFormatter:
+		https://sourceforge.net/p/openxava/discussion/419690/thread/1f814c16/
+        https://www.java67.com/2016/04/how-to-convert-string-to-localdatetime-in-java8-example.html
+
+	* Groovy Truth:
+		http://groovy-lang.org/semantics.html#Groovy-Truth
+
+	* condiciones ant:
+		https://gist.github.com/bcremer/6111530
+
+	* Importar datos:
+		csv: Tablas de configuración por el usuario (importGroovy y *.csv)
+		sql: Transacciones de prueba (insert.sql)
+
+		COPY area               FROM '/tmp/AREA.csv'   			   DELIMITER  ',' CSV HEADER;
+		COPY brixdensidadtitsus FROM '/tmp/BRIXDENSIDADTITSUS.csv' DELIMITER  ',' CSV HEADER;
+		COPY brixdensidadwp     FROM '/tmp/BRIXDENSIDADWP.csv'     DELIMITER  ',' CSV HEADER;
+		COPY modulo             FROM '/tmp/MODULO.csv'             DELIMITER  ',' CSV HEADER;
+		COPY parametro          FROM '/tmp/PARAMETRO.csv'          DELIMITER  ',' CSV HEADER;
+		COPY turno              FROM '/tmp/TURNO.csv'              DELIMITER  ',' CSV HEADER;
+		COPY unidad             FROM '/tmp/UNIDAD.csv'             DELIMITER  ',' CSV HEADER;
+		COPY variedad           FROM '/tmp/VARIEDAD.csv'           DELIMITER  ',' CSV HEADER;
+
+	* Modulos:
+		https://sourceforge.net/p/openxava/discussion/419690/thread/442eec1db7/?limit=25
+		https://sourceforge.net/p/openxava/discussion/437013/thread/bc0a46d4c4/?limit=25
+		https://sourceforge.net/p/openxava/discussion/437013/thread/25e434f6/?limit=25	
+
+	* Reflection:
+		https://stackoverflow.com/questions/45737329/how-to-change-method-name-dynamically-in-loop-in-java
+		https://stackoverflow.com/questions/8715851/how-do-i-dynamically-invoke-methods-in-groovy	
+		https://stackoverflow.com/questions/7758398/groovy-way-to-dynamically-instantiate-a-class-from-string	
+	
+	* Nota 1:
+	Cuando sale NullPointerException, revisar las propiedades de UI. Hay que revisar si los campos en la tabla no sean nulos.
+
+	* Nota 2:
+	En las propiedades calculadas no deben haber consultas JPA. Hay que usar una consulta previa llenando mapas.
+
+	* Nota 3:
+	En las propiedades calculadas no se deben hacer setters a otros miembros de clase. Eso provoca un ConcurrentException.
+
+	https://trello.com/b/lZwKk47m/fabrica
+	Locale: iso-8859-1
+
+	https://sourceforge.net/p/openxava/discussion/437013/thread/83b3114767/?limit=25
+
+	* groovy en ox 6.3.2:
+		Reemplazo de [groovy-all-] de 2.4.5 a 2.4.19
+
+		https://github.com/groovy/groovy-eclipse/issues/425
+		https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-all/
+
+	* hsqldb:
+		https://stackoverflow.com/questions/24613508/import-csv-file-in-hsqldb
+		http://hsqldb.org/doc/2.0/guide/texttables-chapt.html
+
+	* postgres:
+		createdb -O postgres eneragro_test
+
+		+ Listado de todos los esquemas:
+		https://tableplus.com/blog/2018/04/postgresql-how-to-list-all-schemas.html
+
+		SELECT schema_name FROM information_schema.schemata;
+		SELECT nspname FROM pg_catalog.pg_namespace;
+
+		+ Cambiar de esquema:
+		https://stackoverflow.com/questions/34098326/how-to-select-a-schema-in-postgres-when-using-psql
+
+		SHOW search_path;
+		SET search_path TO ingenio;
+
+		+ reiniciar secuencia:
+		ALTER SEQUENCE seq RESTART WITH 1;
+		UPDATE t SET idcolumn=nextval('seq');
+
+	* Mode:
+		1. persistence/META-INF/persistence.xml:
+			hibernate.dialect
+		2. context.xml:
+			+ Develop: web/META-INF/context.xml
+			+ Produccion: conf/context.xml 
+		3. Driver en build.xml, task:
+		4. import.groovy, configuration.properties
+
+		<Resource name="jdbc/FabricaDS" auth="Container"
+			type="javax.sql.DataSource"
+			maxTotal="100" maxIdle="20" maxWaitMillis="10000"
+			username="postgres" password=""
+			driverClassName="org.postgresql.Driver"
+			url="jdbc:postgresql://localhost:5432/eneragro_test"/>
+

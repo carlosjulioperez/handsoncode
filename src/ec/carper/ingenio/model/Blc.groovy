@@ -52,7 +52,7 @@ class Blc extends DiaTrabajoEditable {
                 getManager().persist(d1)
             }
         }catch(Exception ex){
-            throw new SystemException("detalles_formulario_trash_no_copiados", ex)
+            throw new SystemException("items_no_cargados", ex)
         }
     }
 

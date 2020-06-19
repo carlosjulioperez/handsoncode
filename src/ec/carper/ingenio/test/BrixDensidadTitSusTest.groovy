@@ -10,8 +10,8 @@ class BrixDensidadTitSusTest extends ModuleTestBase {
     }
  
     void testGetSusRed(){
-        def valor = (String)new BrixDensidadTitSus().getSusRed(9.4)
-        assertEquals(valor, "0.50")
+        def valor = (String)new BrixDensidadTitSus().getSusRed(10.3)
+        assertEquals(valor, "0.45")
     }
 
     void _testGetSqlToList(){
