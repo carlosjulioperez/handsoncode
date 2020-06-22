@@ -19,6 +19,8 @@ Proyecto
 		$ ant test -Dnombre_clase=Cto24HTest 
 		$ ant test -Dnombre_clase=BlcTest 
 		$ ant test -Dnombre_clase=BrixDensidadWpTest
+		$ ant test -Dnombre_clase=ParoTest
+		$ ant test -Dnombre_clase=CodigoTest
 
 	* i18n:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/34508380/

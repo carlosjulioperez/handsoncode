@@ -37,7 +37,8 @@ class ParoTest extends ModuleTestBase {
     */
     void test(){
         //sumaTiempos()
-        getConsultaClaseIncrustada()
+        //getConsultaClaseIncrustada()
+        elapsedStrings()
     }
 
     void sumaTiempos(){

@@ -10,8 +10,8 @@ import org.openxava.model.*
 import ec.carper.ingenio.actions.*
 
 @Entity
-@View(members="""
-    hora;
+@View(members="""#
+    horaS, hora;
     modulo,turno,variedad;
     cantidadCana,netaCana;calTrashCana,calPorcTrash 
 """)
@@ -20,7 +20,10 @@ class TrashCanaDetalle1 extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     TrashCana trashCana  
 
-    @Stereotype("DATETIME") @Required
+    @Stereotype("TIME") @OnChange(TrashCanaDetalle1Action.class) @Required
+    String horaS
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
 
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify

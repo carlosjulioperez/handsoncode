@@ -1,5 +1,7 @@
 package ec.carper.ingenio.util
 
+import ec.carper.ingenio.model.*
+
 import javax.persistence.*
 import org.openxava.jpa.*
 import org.openxava.model.*
@@ -16,4 +18,7 @@ class SqlUtil{
         return lista ? lista[0]: 0
     }
 
+    def getDiaTrabajo(String diaTrabajoId){
+        return XPersistence.getManager().find(DiaTrabajo.class, diaTrabajoId)
+    }
 }

@@ -1,5 +1,13 @@
+2020-06-21
+Ajuste de hora en TrashCana
+Agregar campo horaS para formar la hora real
+LocalDate to java.sql.Timestamp
+
+2020-06-19
+Descripción DiaTrabajo
+Tablas BrixDensidad ReadOnly
+
 2020-06-18
-Archivar en changelog.txt +ingenio
-Cálculo %A.R. en TrashCana +ingenio
-Demo formulario +contenedores
-TrashCana calendario para fecha +ingenio
+Archivar en changelog.txt
+Cálculo %A.R. en TrashCana
+TrashCana calendario para fecha

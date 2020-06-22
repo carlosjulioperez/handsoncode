@@ -4,6 +4,8 @@ import ec.carper.ingenio.model.*
 
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.*
 
 @Singleton
 class Util{
@@ -93,6 +95,17 @@ class Util{
         //def date = Date.parse('yyyy-MM-dd HH:mm:ss.S', hora)
         def date = Date.parse('yyyy-MM-dd HH:mm:ss', hora)
         return new java.sql.Timestamp(date.time)
+    }
+    
+    def toTimestamp(def hora, def fecha){
+        def strDigito = hora.split(":")[0]
+        def intHora = strDigito as int
+
+        if(intHora >=0 && intHora <=5)
+            fecha = fecha.plusDays(1);
+
+        def strFecha = fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) 
+        return toTimestamp(strFecha+" "+hora+":00")
     }
 
 }

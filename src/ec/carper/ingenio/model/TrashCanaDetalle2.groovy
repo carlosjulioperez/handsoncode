@@ -12,7 +12,7 @@ import ec.carper.ingenio.actions.*
 
 @Entity
 @View(members="""#
-    hora;
+    horaS, hora;
     mlReductores;
     calTab7SusRed;
     calPorcAzuRed;
@@ -22,17 +22,20 @@ class TrashCanaDetalle2 extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     TrashCana trashCana  
 
-    @Stereotype("DATETIME") @Required
+    @Stereotype("TIME") @OnChange(TrashCanaDetalle2Action.class) @Required
+    String horaS
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
-    @OnChange(TrashCanaDetalle2Action.class)
+    @OnChange(TrashCanaDetalle2Action.class) @DisplaySize(6)
     BigDecimal mlReductores
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal calTab7SusRed
     
     @ReadOnly
-    @Digits(integer=4, fraction=3)
+    @Digits(integer=4, fraction=3) @DisplaySize(6)
     BigDecimal calPorcAzuRed
 
     BigDecimal getPorcAzuRed(String diaTrabajoId, java.sql.Timestamp hora){
