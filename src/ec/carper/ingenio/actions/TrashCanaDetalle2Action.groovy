@@ -16,7 +16,7 @@ class TrashCanaDetalle2Action extends OnChangePropertyBaseAction{
         if (horaS)
             getView().setValue("hora", Util.instance.toTimestamp(horaS, diaTrabajo.fecha)) 
 
-        BigDecimal mlReductores = (BigDecimal)getView().getValue("mlReductores ")
+        BigDecimal mlReductores = (BigDecimal)getView().getValue("mlReductores")
 
         if (mlReductores ){
             BigDecimal tab7SusRed = (mlReductores/4).setScale(2, BigDecimal.ROUND_HALF_UP)

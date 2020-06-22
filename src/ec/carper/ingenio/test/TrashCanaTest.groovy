@@ -13,21 +13,22 @@ class TrashCanaTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        setValue("diaTrabajo.id", "ff808081711cd37c01711cd403a70000")
+        setValue("diaTrabajo.id", "ff80808172d500d40172d50282420000")
         
         assertCollectionRowCount("detalle1", 0) // La colección esta vacía 
         assertCollectionRowCount("detalle2", 0) // La colección esta vacía 
 
         execute("Collection.new"   , "viewObject=xava_view_detalle1")
         assertDialog()
-        setValue("hora"            , "03/08/2019 06:00")
-        setValue("modulo.id"       , "04")
-        setValue("turno.id"        , "2")
+        setValue("horaS"           , "06:00")
+        setValue("modulo.id"       , "01")
+        setValue("turno.id"        , "1")
         setValue("variedad.id"     , "01")
-        setValue("cantidadCana"    , "24")
-        setValue("netaCana"        , "22.1")
-        assertValue("calTrashCana" , "1.900")
-        assertValue("calPorcTrash" , "7.917")
+        setValue("cantidadCana"    , "26.8")
+        setValue("netaCana"        , "24.3")
+        assertValue("hora"         , "07/08/2019 06:00")
+        assertValue("calTrashCana" , "2.500")
+        assertValue("calPorcTrash" , "9.328")
         
         execute("Collection.save")
         assertNoErrors()
@@ -35,8 +36,9 @@ class TrashCanaTest extends ModuleTestBase {
 
         execute("Collection.new"    , "viewObject=xava_view_detalle2")
         assertDialog()
-        setValue("hora"             , "03/08/2019 07:00")
+        setValue("horaS"            , "07:00")
         setValue("mlReductores"     , "37.6")
+        assertValue("hora"          , "07/08/2019 07:00")
         assertValue("calTab7SusRed" , "9.40")
         assertValue("calPorcAzuRed" , "0.500")
 

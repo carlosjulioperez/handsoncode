@@ -3,7 +3,7 @@
 # http://askubuntu.com/questions/1705/how-can-i-create-a-select-menu-in-a-shell-script
 
 PS3='Input your option: '
-options=("deleteClasses" "compile" "updateSchema" "codigo-test" "unit-test" "suite-test" "borar-db-HSQL" "datos-prueba-SQL" "sql-query" "sql-insert" "sql-alter" "sql-update"  "createWar" "zip" "version" "Quit")
+options=("deleteClasses" "compile" "unit-test" "codigo-test" "suite-test" "updateSchema" "borar-db-HSQL" "datos-prueba-SQL" "sql-query" "sql-insert" "sql-alter" "sql-update"  "createWar" "zip" "version" "Quit")
 
 select opt in "${options[@]}"
 do
@@ -26,7 +26,7 @@ case $opt in
 			ant test -Dnombre_clase=SuiteTest
 			;;
 		"unit-test")
-			ant test -Dnombre_clase=Cto24HTest
+			ant test -Dnombre_clase=TrashCanaTest
 			;;
 		"borar-db-HSQL")
 			ant deleteDatabaseFolder

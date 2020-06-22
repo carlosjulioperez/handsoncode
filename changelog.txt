@@ -1,3 +1,6 @@
+2020-06-22 
+Ajuste de horaS y hora en TrashCanaTest +ingenio
+
 2020-06-21
 Ajuste de hora en TrashCana
 Agregar campo horaS para formar la hora real
