@@ -12,11 +12,11 @@ import static org.openxava.jpa.XPersistence.*
 @Entity
 class BrixDensidadWp extends Identifiable {
 
-    @Required @ReadOnly
+    @Required @ReadOnly @DisplaySize(6)
     BigDecimal w
     
     @Digits(integer=4, fraction=3)
-    @Required @ReadOnly
+    @Required @ReadOnly @DisplaySize(6)
     BigDecimal p
 
     BigDecimal getP (BigDecimal w){

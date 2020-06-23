@@ -26,4 +26,26 @@
     	</action>
     </controller>   
 
+    <controller name="BrixDensidadTitSus">
+        <extends controller="Typical"/>
+        <action name="delete" mode="detail" confirm="true" 
+            icon="delete" available-on-new="false" keystroke="Control D" 
+            class="ec.carper.ingenio.actions.RestringirDeleteAction"/>
+        <action name="deleteSelected" mode="list" confirm="true" keystroke="Control D" 
+            class="ec.carper.ingenio.actions.RestringirDeleteSelectedAction"/>
+        <action name="deleteRow" mode="NONE" confirm="true" icon="delete" in-each-row="true" 
+            class="ec.carper.ingenio.actions.RestringirDeleteSelectedAction"/>
+    </controller>   
+
+    <controller name="BrixDensidadWp">
+        <extends controller="Typical"/>
+        <action name="delete" mode="detail" confirm="true" 
+            icon="delete" available-on-new="false" keystroke="Control D" 
+            class="ec.carper.ingenio.actions.RestringirDeleteAction"/>
+        <action name="deleteSelected" mode="list" confirm="true" keystroke="Control D" 
+            class="ec.carper.ingenio.actions.RestringirDeleteSelectedAction"/>
+        <action name="deleteRow" mode="NONE" confirm="true" icon="delete" in-each-row="true" 
+            class="ec.carper.ingenio.actions.RestringirDeleteSelectedAction"/>
+    </controller>   
+
 </controllers>

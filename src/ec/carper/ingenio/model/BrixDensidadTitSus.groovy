@@ -12,10 +12,10 @@ import static org.openxava.jpa.XPersistence.*
 @Entity
 class BrixDensidadTitSus extends Identifiable {
 
-    @Required @ReadOnly
+    @Required @ReadOnly @DisplaySize(6)
     BigDecimal titulacion
     
-    @Required @ReadOnly
+    @Required @ReadOnly @DisplaySize(6)
     BigDecimal susRed
 
     BigDecimal getSusRed (BigDecimal titulacion){

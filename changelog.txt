@@ -1,4 +1,6 @@
 2020-06-22 
+CRUD.delete impedir borrar un registro
+Diagrama de proceso para conteo de sacos por código de barras
 Ajuste de horaS y hora en TrashCanaTest +ingenio
 
 2020-06-21

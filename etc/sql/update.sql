@@ -14,6 +14,5 @@
 -- DELETE FROM INGENIO.TRASHDETALLE;
 -- DELETE FROM INGENIO.TRASH;
 
-DELETE FROM ingenio.blcdetalle1;
-DELETE FROM ingenio.blc;
+DELETE FROM ingenio.BrixDensidadTitSus;
 
