@@ -11,7 +11,8 @@ import ec.carper.ingenio.actions.*
 
 @Entity
 @View(members="""#
-    horaDesde, horaHasta;
+    horaSD, horaDesde; 
+    horaSH, horaHasta;
     polReal, brixExtracto;
     polExtracto, porcHumedad;
     brix, porcFibra;
@@ -22,35 +23,39 @@ class CanaDetalle2 extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Cana cana
     
-    @OnChange(CanaDetalle2Action.class)
-    @Stereotype("DATETIME") @Required
+    @Stereotype("TIME") @OnChange(CanaDetalle2Action.class) @Required
+    String horaSD
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp horaDesde
 
-    @OnChange(CanaDetalle2Action.class)
-    @Stereotype("DATETIME") @Required
+    @Stereotype("TIME") @OnChange(CanaDetalle2Action.class) @Required
+    String horaSH
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp horaHasta
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal polReal
     
-    @OnChange(CanaDetalle2Action.class)
+    @OnChange(CanaDetalle2Action.class) @DisplaySize(6)
     BigDecimal brixExtracto
     
-    @OnChange(CanaDetalle2Action.class)
+    @OnChange(CanaDetalle2Action.class) @DisplaySize(6)
     BigDecimal polExtracto
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal porcHumedad
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal brix
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal porcFibra
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal porcSacarosa
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal pureza
 }

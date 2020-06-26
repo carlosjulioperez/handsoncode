@@ -19,14 +19,14 @@ case $opt in
 		"createWar")
             ant createWar
 			;;
+		"unit-test")
+			ant test -Dnombre_clase=TrashTest
+			;;
 		"codigo-test")
 			ant test -Dnombre_clase=CodigoTest
 			;;
 		"suite-test")
 			ant test -Dnombre_clase=SuiteTest
-			;;
-		"unit-test")
-			ant test -Dnombre_clase=TrashCanaTest
 			;;
 		"borar-db-HSQL")
 			ant deleteDatabaseFolder

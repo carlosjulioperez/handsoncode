@@ -1,15 +1,15 @@
 package ec.carper.ingenio.model
 
+import java.time.LocalDate
 import javax.persistence.*
 import javax.validation.constraints.Digits
+
 import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.jpa.*
 import org.openxava.model.*
 import org.openxava.util.*
 import org.openxava.validators.*
-
-import java.time.LocalDate
 
 @Entity
 @Tab(properties="""

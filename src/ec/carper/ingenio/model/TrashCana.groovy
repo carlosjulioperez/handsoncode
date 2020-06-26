@@ -90,6 +90,7 @@ class TrashCana extends DiaTrabajoEditable {
                 
                 o.id           = null
                 o.trash        = trash
+                o.horaS        = it.horaS
                 o.hora         = it.hora
                 o.modulo       = it.modulo
                 o.turno        = it.turno

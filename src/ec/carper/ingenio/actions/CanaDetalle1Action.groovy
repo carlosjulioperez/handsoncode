@@ -1,7 +1,7 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.model.*
-import ec.carper.ingenio.util.Calculo
+import ec.carper.ingenio.util.*
 
 import java.sql.Timestamp
 import org.openxava.actions.*
@@ -9,8 +9,15 @@ import org.openxava.actions.*
 class CanaDetalle1Action extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
+        
+        String diaTrabajoId = getView().getRoot().getValue("diaTrabajo.id")
 
-        Timestamp hora           = (Timestamp)getView().getValue("hora")
+        def hora = (Timestamp)getView().getValue("hora")
+        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(diaTrabajoId)
+        String horaS = (String)getView().getValue("horaS")
+        if (horaS)
+            getView().setValue("hora", Util.instance.toTimestamp(horaS, diaTrabajo.fecha)) 
+
         BigDecimal wH2O          = (BigDecimal)getView().getValue("wH2O")
         BigDecimal wCana         = (BigDecimal)getView().getValue("wCana")
         BigDecimal brixExtracto  = (BigDecimal)getView().getValue("brixExtracto")
@@ -67,7 +74,6 @@ class CanaDetalle1Action extends OnChangePropertyBaseAction{
         
         // https://sourceforge.net/p/openxava/discussion/419690/thread/e3d301aa/?limit=25
         // println("values=" + getView().getRoot().getValues());
-        String diaTrabajoId = getView().getRoot().getValue("diaTrabajo.id")
         // println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
         // println diaTrabajoId
          

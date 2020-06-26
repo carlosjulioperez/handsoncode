@@ -16,10 +16,10 @@ class DiaTrabajoTest extends ModuleTestBase {
         def fecha = LocalDate.of(2019, 8, 7)
     }
 
-    public void _testDiaTrabajoEnLista() throws Exception {
+    public void testDiaTrabajoEnLista() throws Exception {
         login("admin", "admin");
-        //assertValueInList(0, 0, "03/08/2019");  // Row 0 column 0
-        assertValueInList(0, 1, "DIA TRABAJO 03/08/2019"); // Row 0 column 1
+        assertValueInList(0, 0, "8/7/19");  // Row 0 column 0
+        assertValueInList(0, 1, "3"); // Row 0 column 1
     }
  	
 }

@@ -1,7 +1,7 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.model.*
-import ec.carper.ingenio.util.Calculo
+import ec.carper.ingenio.util.*
 
 import org.openxava.actions.*
 

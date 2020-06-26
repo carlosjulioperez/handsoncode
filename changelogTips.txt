@@ -39,14 +39,15 @@ Proyecto
 		csv: Tablas de configuración por el usuario (importGroovy y *.csv)
 		sql: Transacciones de prueba (insert.sql)
 
-		COPY area               FROM '/tmp/AREA.csv'   			   DELIMITER  ',' CSV HEADER;
-		COPY brixdensidadtitsus FROM '/tmp/BRIXDENSIDADTITSUS.csv' DELIMITER  ',' CSV HEADER;
-		COPY brixdensidadwp     FROM '/tmp/BRIXDENSIDADWP.csv'     DELIMITER  ',' CSV HEADER;
-		COPY modulo             FROM '/tmp/MODULO.csv'             DELIMITER  ',' CSV HEADER;
-		COPY parametro          FROM '/tmp/PARAMETRO.csv'          DELIMITER  ',' CSV HEADER;
-		COPY turno              FROM '/tmp/TURNO.csv'              DELIMITER  ',' CSV HEADER;
-		COPY unidad             FROM '/tmp/UNIDAD.csv'             DELIMITER  ',' CSV HEADER;
-		COPY variedad           FROM '/tmp/VARIEDAD.csv'           DELIMITER  ',' CSV HEADER;
+		COPY area               FROM '/tmp/area.csv'   			   DELIMITER  ',' CSV HEADER;
+		COPY brixdensidadtitsus FROM '/tmp/brixdensidadtitsus.csv' DELIMITER  ',' CSV HEADER;
+		COPY brixdensidadwp     FROM '/tmp/brixdensidadwp.csv'     DELIMITER  ',' CSV HEADER;
+		COPY material           FROM '/tmp/material.csv'           DELIMITER  ',' CSV HEADER;
+		COPY modulo             FROM '/tmp/modulo.csv'             DELIMITER  ',' CSV HEADER;
+		COPY parametro          FROM '/tmp/parametro.csv'          DELIMITER  ',' CSV HEADER;
+		COPY turno              FROM '/tmp/turno.csv'              DELIMITER  ',' CSV HEADER;
+		COPY unidad             FROM '/tmp/unidad.csv'             DELIMITER  ',' CSV HEADER;
+		COPY variedad           FROM '/tmp/variedad.csv'           DELIMITER  ',' CSV HEADER;
 
 	* Modulos:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/442eec1db7/?limit=25

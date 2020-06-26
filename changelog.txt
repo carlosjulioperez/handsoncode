@@ -1,18 +1,21 @@
+2020-06-24
+	Ajuste de hora en Trash
+
 2020-06-22 
-CRUD.delete impedir borrar un registro
-Diagrama de proceso para conteo de sacos por código de barras
-Ajuste de horaS y hora en TrashCanaTest +ingenio
+	CRUD.delete impedir borrar un registro
+	Diagrama de proceso para conteo de sacos por código de barras
+	Ajuste de horaS y hora en TrashCanaTest +ingenio
 
 2020-06-21
-Ajuste de hora en TrashCana
-Agregar campo horaS para formar la hora real
-LocalDate to java.sql.Timestamp
+	Ajuste de hora en TrashCana
+	Agregar campo horaS para formar la hora real
+	LocalDate to java.sql.Timestamp
 
 2020-06-19
-Descripción DiaTrabajo
-Tablas BrixDensidad ReadOnly
+	Descripción DiaTrabajo
+	Tablas BrixDensidad ReadOnly
 
 2020-06-18
-Archivar en changelog.txt
-Cálculo %A.R. en TrashCana
-TrashCana calendario para fecha
+	Archivar en changelog.txt
+	Cálculo %A.R. en TrashCana
+	TrashCana calendario para fecha

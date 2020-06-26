@@ -14,23 +14,26 @@ import ec.carper.ingenio.actions.*
 
 @Entity
 @View(members="""#
-    hora, wH2O;
-    wCana, polReal;
-    brixExtracto, polExtracto;
-    tamizVacioM0, muestraHumM1;
-    muestraSecaM2, porcHumedad;
-    brix, porcFibra;
-    porcSacarosa, pureza;
-    nSac, aR;
-    porcArNsac
+    horaS, hora;
+    wH2O, wCana;
+    polReal, brixExtracto;
+    polExtracto, tamizVacioM0;
+    muestraHumM1, muestraSecaM2;
+    porcHumedad, brix;
+    porcFibra, porcSacarosa;
+    pureza, nSac;
+    aR, porcArNsac
 """)
 class CanaDetalle1 extends Identifiable {
     
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Cana cana
     
+    @Stereotype("TIME") @OnChange(TrashCanaDetalle1Action.class) @Required
+    String horaS
+
     @OnChange(CanaDetalle1Action.class)
-    @Stereotype("DATETIME") @Required
+    @Stereotype("DATETIME") @ReadOnly @Required
     //@Stereotype("FECHAHORA") @Required
     java.sql.Timestamp hora
 
