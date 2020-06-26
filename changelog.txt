@@ -1,3 +1,9 @@
+2020-06-26
+	Crear tarea para generar war sin libs
+
+2020-06-25
+	Ajuste de hora en Trashm Caña y Material
+
 2020-06-24
 	Ajuste de hora en Trash
 

@@ -13,22 +13,25 @@ import ec.carper.ingenio.actions.*
 
 @Entity
 @View(members="""#
-    hora, wH2O;
-    wBagazo, polReal;
-    brixExtracto, polExtracto;
-    tamizVacioM0, muestraHumM1;
-    muestraSecaM2, porcHumedad;
-    brix, porcFibra;
-    porcSacarosa;
-    horaPorcSacJR, porcSacJR;
-    gradosAguaMac
+    horaS, hora;
+    wH2O, wBagazo;
+    polReal, brixExtracto;
+    polExtracto, tamizVacioM0;
+    muestraHumM1, muestraSecaM2;
+    porcHumedad, brix;
+    porcFibra, porcSacarosa;
+    horaSPorcSacJR, horaPorcSacJR;
+    porcSacJR, gradosAguaMac
 """)
 class BagazoDetalle extends Identifiable {
     
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Bagazo bagazo
     
-    @Stereotype("DATETIME") @Required
+    @Stereotype("TIME") @OnChange(BagazoDetalleAction.class) @Required
+    String horaS
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
 
     @OnChange(BagazoDetalleAction.class)
@@ -67,8 +70,10 @@ class BagazoDetalle extends Identifiable {
     @ReadOnly
     BigDecimal porcSacarosa
     
-    @Stereotype("DATETIME")
-    @OnChange(BagazoDetalleAction.class)
+    @Stereotype("TIME") @OnChange(BagazoDetalleAction.class) @Required
+    String horaSPorcSacJR
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp horaPorcSacJR
 
     @ReadOnly

@@ -18,6 +18,9 @@ case $opt in
             ;;
 		"createWar")
             ant createWar
+            # Quitar los *.jars del war para copiar en menos tiempo
+            # zip -d file.jar unwanted_file.txt
+            zip -d ../../workspace.dist/Ingenio.dist/Ingenio.war WEB-INF/lib/\*
 			;;
 		"unit-test")
 			ant test -Dnombre_clase=TrashTest

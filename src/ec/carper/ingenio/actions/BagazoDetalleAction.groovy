@@ -1,7 +1,7 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.model.*
-import ec.carper.ingenio.util.Calculo
+import ec.carper.ingenio.util.*
 
 import java.sql.Timestamp
 import org.openxava.actions.*
@@ -10,8 +10,16 @@ class BagazoDetalleAction extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
 
-        String diaTrabajoId      = (String)getView().getRoot().getValue("diaTrabajo.id")
-        Timestamp horaPorcSacJR  = (Timestamp)getView().getValue("horaPorcSacJR")
+        def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
+        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(diaTrabajoId)
+        String horaS = (String)getView().getValue("horaS")
+        if (horaS)
+            getView().setValue("hora", Util.instance.toTimestamp(horaS, diaTrabajo.fecha)) 
+        
+        String horaSPorcSacJR = (String)getView().getValue("horaSPorcSacJR")
+        if (horaSPorcSacJR)
+            getView().setValue("horaPorcSacJR", Util.instance.toTimestamp(horaSPorcSacJR, diaTrabajo.fecha)) 
+        def horaPorcSacJR  = (Timestamp)getView().getValue("horaPorcSacJR")
 
         BigDecimal wH2O          = (BigDecimal)getView().getValue("wH2O")
         BigDecimal wBagazo       = (BigDecimal)getView().getValue("wBagazo")
