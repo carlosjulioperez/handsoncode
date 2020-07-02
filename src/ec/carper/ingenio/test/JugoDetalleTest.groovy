@@ -12,10 +12,9 @@ class JugoDetalleTest extends ModuleTestBase {
     }
  
     void testGetPorcSacJR(){
-        String diaTrabajoId = "ff808081711cd37c01711cd403a70000"
-        String hora      = "2019-08-03 06:00:00"
+        String hora      = "2019-08-07 10:00:00"
         
-        def porcSacJR = new JugoDetalle().getPorcSacJR(diaTrabajoId, Util.instance.toTimestamp(hora))
+        def porcSacJR = new JugoDetalle().getPorcSacJR(Aux.instance.diaTrabajoId, Util.instance.toTimestamp(hora))
         println porcSacJR
     }
 }

@@ -19,7 +19,7 @@ class BtuLbBagazoAction extends OnChangePropertyBaseAction{
         BigDecimal pMtra    = (BigDecimal)getView().getValue("pMtra")
         
         if (pHum)
-            getView().setValue("porcHumedad", SqlUtil.instance.getPromedio(diaTrabajoId, "Bagazo", "porcHumedad"))
+            getView().setValue("porcHumedad", SqlUtil.instance.getValorCampo(diaTrabajoId, "Bagazo", "porcHumedad"))
 
         if (pCrisol && pCriCen && pMtra)
             getView().setValue("porcCenBs", ((pCriCen-pCrisol)*100/pMtra).setScale(3, BigDecimal.ROUND_HALF_UP))

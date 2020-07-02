@@ -13,7 +13,7 @@ class TrashCanaTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        setValue("diaTrabajo.id", "ff80808172a5ebad0172c9078f1e0001")
+        setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle1", 0) // La colección esta vacía 
         assertCollectionRowCount("detalle2", 0) // La colección esta vacía 

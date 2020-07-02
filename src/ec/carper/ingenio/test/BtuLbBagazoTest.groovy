@@ -11,7 +11,7 @@ class BtuLbBagazoTest extends ModuleTestBase {
     }
 
     public void testPromedio() throws Exception {
-        println SqlUtil.instance.getPromedio("ff808081711cd37c01711cd403a70000","Bagazo","porcHumedad")
+        println SqlUtil.instance.getValorCampo("ff808081711cd37c01711cd403a70000","Bagazo","porcHumedad")
     }
 
     public void testCrear() throws Exception {

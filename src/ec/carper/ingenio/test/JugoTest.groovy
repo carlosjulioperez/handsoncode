@@ -1,6 +1,8 @@
 package ec.carper.ingenio.test
  
 import ec.carper.ingenio.model.Jugo
+import ec.carper.ingenio.util.SqlUtil
+
 import org.openxava.tests.*
 
 class JugoTest extends ModuleTestBase {
@@ -10,9 +12,8 @@ class JugoTest extends ModuleTestBase {
     }
  
     void testGetAvgField(){
-        String diaTrabajoId = "ff808081711cd37c01711cd403a70000"
-        def valor = (String)new Jugo().getAvgField(diaTrabajoId, "jdBri")
-        assertEquals(valor, "14.23")
+        def valor = (String)SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jdBri")
+        assertEquals(valor, "13.92")
     }
     
     public void testCrear() throws Exception {
@@ -20,38 +21,39 @@ class JugoTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        setValue("diaTrabajo.id" , "ff808081711cd37c01711cd403a70000")
+        setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle", 0) // La colección esta vacía 
         execute("Collection.new" , "viewObject=xava_view_detalle")
         assertDialog()
         
-        setValue    ( "hora" , "04/08/2019 02:00")
+        setValue("horaS"      , "06:00")
+        assertValue("hora"    , "07/08/2019 06:00")
         
-        setValue    ( "jeBri" , "19.99")
-        setValue    ( "jePol" , "71.61")
-        assertValue ( "jeSac" , "17.24")
-        assertValue ( "jePur" , "86.24")
-        setValue    ( "jdBri" , "16.73")
-        setValue    ( "jdPol" , "58.88")
-        assertValue ( "jdSac" , "14.37")
-        assertValue ( "jdPur" , "85.89")
-        setValue    ( "jcBri" , "17.04")
-        setValue    ( "jcPol" , "60.37")
-        assertValue ( "jcSac" , "14.71")
-        assertValue ( "jcPur" , "86.33")
-        setValue    ( "jnBri" , "16.65")
-        setValue    ( "jnPol" , "58.72")
-        assertValue ( "jnSac" , "14.33")
-        assertValue ( "jnPur" , "86.07")
-        setValue    ( "jrBri" , "9.22")
-        setValue    ( "jrPol" , "30.23")
-        assertValue ( "jrSac" , "7.60")
-        assertValue ( "jrPur" , "82.43")
-        setValue    ( "jfBri" , "13.57")
-        setValue    ( "jfPol" , "40.91")
-        assertValue ( "jfSac" , "10.11")
-        assertValue ( "jfPur" , "74.50")
+        setValue    ( "jeBri" , "18.17")
+        setValue    ( "jePol" , "63.36")
+        assertValue ( "jeSac" , "15.37")
+        assertValue ( "jePur" , "84.59")
+        setValue    ( "jdBri" , "13.41")
+        setValue    ( "jdPol" , "46.92")
+        assertValue ( "jdSac" , "11.60")
+        assertValue ( "jdPur" , "86.50")
+        setValue    ( "jcBri" , "15.74")
+        setValue    ( "jcPol" , "55.04")
+        assertValue ( "jcSac" , "13.48")
+        assertValue ( "jcPur" , "85.64")
+        setValue    ( "jnBri" , "15.81")
+        setValue    ( "jnPol" , "55.58")
+        assertValue ( "jnSac" , "13.61")
+        assertValue ( "jnPur" , "86.08")
+        setValue    ( "jrBri" , "5.07")
+        setValue    ( "jrPol" , "16.37")
+        assertValue ( "jrSac" , "4.18")
+        assertValue ( "jrPur" , "82.45")
+        setValue    ( "jfBri" , "28.16")
+        setValue    ( "jfPol" , "97.58")
+        assertValue ( "jfSac" , "22.71")
+        assertValue ( "jfPur" , "80.65")
 
         execute("Collection.save")
         assertNoErrors()

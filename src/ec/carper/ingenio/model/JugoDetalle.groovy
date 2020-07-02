@@ -12,7 +12,7 @@ import ec.carper.ingenio.actions.*
 
 @Entity
 @View(members="""
-    hora;
+    horaS, hora;
     jeBri, jePol, jeSac, jePur;
     jdBri, jdPol, jdSac, jdPur;
     jcBri, jcPol, jcSac, jcPur;
@@ -25,61 +25,64 @@ class JugoDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Jugo jugo
 
-    @Stereotype("DATETIME") @Required
+    @Stereotype("TIME") @OnChange(TrashCanaDetalle2Action.class) @Required
+    String horaS
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
-    @OnChange(JugoDetalleAction.class)
+    @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jeBri
-    @OnChange(JugoDetalleAction.class)
+    @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jePol
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal jeSac
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal jePur
     
-    @OnChange(JugoDetalleAction.class)
+    @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jdBri
-    @OnChange(JugoDetalleAction.class)
+    @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jdPol
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal jdSac
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal jdPur
     
-    @OnChange(JugoDetalleAction.class)
+    @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jcBri
-    @OnChange(JugoDetalleAction.class)
+    @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jcPol
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal jcSac
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal jcPur
     
-    @OnChange(JugoDetalleAction.class)
+    @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jnBri
-    @OnChange(JugoDetalleAction.class)
+    @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jnPol
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal jnSac
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal jnPur
     
-    @OnChange(JugoDetalleAction.class)
+    @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jrBri
-    @OnChange(JugoDetalleAction.class)
+    @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jrPol
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal jrSac
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal jrPur
     
-    @OnChange(JugoDetalleAction.class)
+    @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jfBri
-    @OnChange(JugoDetalleAction.class)
+    @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jfPol
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal jfSac
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal jfPur
     
     BigDecimal getPorcSacJR(String diaTrabajoId, java.sql.Timestamp hora){
@@ -89,9 +92,12 @@ class JugoDetalle extends Identifiable {
         query.setParameter("diaTrabajoId", diaTrabajoId)
         query.setParameter("hora", hora)
         
-        List records = query.resultList
-        valor = records ? records[0]: 0
-        return valor
+        // TODO: Validación de nulo en primer elemento de listas
+        // List records = query.resultList
+        // println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        // println records
+        // valor = records[0]?: 0
+        return query.resultList[0]?: 0
     }
 
 }

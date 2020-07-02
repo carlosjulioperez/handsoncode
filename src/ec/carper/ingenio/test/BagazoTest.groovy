@@ -13,31 +13,33 @@ class BagazoTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        setValue("diaTrabajo.id" , "ff808081711cd37c01711cd403a70000")
+        setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle", 0) // La colección esta vacía 
         execute("Collection.new" , "viewObject=xava_view_detalle")
         assertDialog()
 
-        setValue("hora"            , "03/08/2019 18:30")
+        setValue("horaS"           , "06:00")
+        assertValue("hora"         , "07/08/2019 06:00")
         setValue("wH2O"            , "3000")
         setValue("wBagazo"         , "300")
-        setValue("brixExtracto"    , "0.66")
-        setValue("polExtracto"     , "1.06")
-        assertValue("polReal"      , "0.28")
+        setValue("brixExtracto"    , "0.29")
+        setValue("polExtracto"     , "1.05")
+        assertValue("polReal"      , "0.27")
 
-        setValue("tamizVacioM0"    , "537.20")
-        assertValue("muestraHumM1" , "587.20")
+        setValue("tamizVacioM0"    , "536.70")
+        assertValue("muestraHumM1" , "586.70")
 
-        setValue("muestraSecaM2"   , "569.10")
-        assertValue("porcHumedad"  , "36.20")
-        assertValue("brix"         , "6.79")
-        assertValue("porcFibra"    , "57.01")
-        assertValue("porcSacarosa" , "2.88")
+        setValue("muestraSecaM2"   , "564.60")
+        assertValue("porcHumedad"  , "44.20")
+        assertValue("brix"         , "3.00")
+        assertValue("porcFibra"    , "52.80")
+        assertValue("porcSacarosa" , "2.79")
 
-        setValue("horaPorcSacJR"   , "03/08/2019 06:00")
-        assertValue("porcSacJR"    , "5.07")
-        setValue("gradosAguaMac"   , "83.00")
+        setValue("horaSPorcSacJR"  , "10:00")
+        setValue("horaPorcSacJR"   , "07/08/2019 10:00")
+        assertValue("porcSacJR"    , "0.00")
+        setValue("gradosAguaMac"   , "85.00")
 
         execute("Collection.save")
         assertNoErrors()

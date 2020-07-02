@@ -4,7 +4,7 @@ import junit.framework.Test
 import junit.framework.TestCase
 import junit.framework.TestSuite
 
-public class SuiteTest extends TestCase{
+class SuiteTest extends TestCase{
 	
     public static Test suite(){
        TestSuite suite = new TestSuite("Prueba integral o de integración...")
@@ -25,9 +25,9 @@ public class SuiteTest extends TestCase{
        suite.addTestSuite(TrashCanaTest.class)
        suite.addTestSuite(TrashTest.class)
        suite.addTestSuite(CanaTest.class)
-       // suite.addTestSuite(BagazoTest.class)
+       suite.addTestSuite(BagazoTest.class)
        // suite.addTestSuite(PhTest.class)
-       // suite.addTestSuite(JugoTest.class)
+       suite.addTestSuite(JugoTest.class)
        // suite.addTestSuite(MeladuraTest.class)
        // suite.addTestSuite(TurbiedadTest.class)
        // suite.addTestSuite(FosfatosTest.class)

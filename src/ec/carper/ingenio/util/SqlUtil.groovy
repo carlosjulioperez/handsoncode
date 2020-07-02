@@ -10,7 +10,7 @@ import static org.openxava.jpa.XPersistence.*
 @Singleton
 class SqlUtil{
 
-    BigDecimal getPromedio (String diaTrabajoId, String modulo, String campo){
+    BigDecimal getValorCampo(String diaTrabajoId, String modulo, String campo){
         Query query = getManager().createQuery("SELECT ${campo} FROM ${modulo} WHERE diaTrabajo.id = :diaTrabajoId")
         query.setParameter("diaTrabajoId", diaTrabajoId)
 

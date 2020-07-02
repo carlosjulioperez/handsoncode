@@ -34,51 +34,52 @@ class BagazoDetalle extends Identifiable {
     @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
 
-    @OnChange(BagazoDetalleAction.class)
+    @OnChange(BagazoDetalleAction.class) @DisplaySize(6)
     BigDecimal wH2O
 
-    @OnChange(BagazoDetalleAction.class)
+    @OnChange(BagazoDetalleAction.class) @DisplaySize(6)
     BigDecimal wBagazo
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal polReal
 
-    @OnChange(BagazoDetalleAction.class)
+    @OnChange(BagazoDetalleAction.class) @DisplaySize(6)
     BigDecimal brixExtracto
     
-    @OnChange(BagazoDetalleAction.class)
+    @OnChange(BagazoDetalleAction.class) @DisplaySize(6)
     BigDecimal polExtracto
 
-    @OnChange(BagazoDetalleAction.class)
+    @OnChange(BagazoDetalleAction.class) @DisplaySize(6)
     BigDecimal tamizVacioM0
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal muestraHumM1
     
-    @OnChange(BagazoDetalleAction.class)
+    @OnChange(BagazoDetalleAction.class) @DisplaySize(6)
     BigDecimal muestraSecaM2
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal porcHumedad
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal brix
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal porcFibra
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal porcSacarosa
     
-    @Stereotype("TIME") @OnChange(BagazoDetalleAction.class) @Required
+    @Stereotype("TIME") @OnChange(BagazoDetalleAction.class)
     String horaSPorcSacJR
 
-    @Stereotype("DATETIME") @ReadOnly @Required
+    @Stereotype("DATETIME") @ReadOnly
     java.sql.Timestamp horaPorcSacJR
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal porcSacJR
     
+    @DisplaySize(6)
     BigDecimal gradosAguaMac
 
 }

@@ -138,6 +138,7 @@ class Jugo extends DiaTrabajoEditable {
         }
     }
 
+    /*
     //TODO Ajustar en StockFabrica
     BigDecimal getAvgField (String diaTrabajoId, String campo){
         Query query = getManager().createQuery("select ${campo} from Jugo o where diaTrabajo.id = :diaTrabajoId")
@@ -146,5 +147,6 @@ class Jugo extends DiaTrabajoEditable {
         def lista = query.resultList
         return lista ? lista[0]: 0
     }
+    */
 
 }
