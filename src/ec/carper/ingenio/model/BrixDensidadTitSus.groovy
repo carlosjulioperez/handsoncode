@@ -23,9 +23,7 @@ class BrixDensidadTitSus extends Identifiable {
         Query query = getManager().createQuery("select o.susRed from BrixDensidadTitSus o where o.titulacion <= :titulacion order by o.titulacion desc")
         query.setParameter("titulacion", titulacion)
 
-        List records = query.getResultList()
-        valor = records ? records[0]: 0
-        return valor
+        return query.resultList[0]?: 0
     }
 
     // https://stackoverflow.com/questions/21453582/convert-sql-groovyrowresult-with-two-columns-to-map

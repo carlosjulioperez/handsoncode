@@ -13,9 +13,8 @@ class SqlUtil{
     BigDecimal getValorCampo(String diaTrabajoId, String modulo, String campo){
         Query query = getManager().createQuery("SELECT ${campo} FROM ${modulo} WHERE diaTrabajo.id = :diaTrabajoId")
         query.setParameter("diaTrabajoId", diaTrabajoId)
-
-        def lista = query.resultList
-        return lista ? lista[0]: 0
+        
+        return query.resultList[0]?: 0
     }
 
     def getDiaTrabajo(String diaTrabajoId){

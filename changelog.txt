@@ -1,8 +1,9 @@
 2020-07-01 
-	Ajuste de hora en Bagazo +ingenio
+	Ajuste de hora en Bagazo
+	Validación nulos de query.resultList
 
 2020-06-29 
-	Ajuste de hora en Jugo +ingenio
+	Ajuste de hora en Jugo
 	Clase con datos generales para pruebas +ingenio
 
 2020-06-26
@@ -17,7 +18,7 @@
 2020-06-22 
 	CRUD.delete impedir borrar un registro
 	Diagrama de proceso para conteo de sacos por código de barras
-	Ajuste de horaS y hora en TrashCanaTest +ingenio
+	Ajuste de horaS y hora en TrashCanaTest
 
 2020-06-21
 	Ajuste de hora en TrashCana

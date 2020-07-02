@@ -139,8 +139,7 @@ class Bagazo extends DiaTrabajoEditable {
         query.setParameter("diaTrabajoId", diaTrabajoId)
         query.setParameter("hora", hora)
         
-        List records = query.resultList
-        return records ? records[0]: 0
+        return query.resultList[0]?: 0
     }
 
 }

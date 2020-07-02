@@ -24,9 +24,6 @@ class BrixDensidadWp extends Identifiable {
         Query query = getManager().createQuery("select o.p from BrixDensidadWp o where o.w <= :w order by o.w desc")
         query.setParameter("w", w)
 
-        List records = query.getResultList()
-        valor = records ? records[0]: 0
-        //return  records.isEmpty() ? BigDecimal.ZERO : (BigDecimal) records.get(0)
-        return valor
+        return query.resultList[0]?: 0
     }
 }

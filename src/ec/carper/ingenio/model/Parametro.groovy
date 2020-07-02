@@ -17,8 +17,7 @@ class Parametro extends Identifiable{
     String obtenerValor (String nombre){
         Query query = getManager().createQuery("SELECT valor FROM Parametro WHERE nombre = :nombre")
         query.setParameter("nombre", nombre)
-        def lista = query.resultList
-        return lista ? lista[0]: ""
+        return query.resultList[0]?: 0
     }
 
 }
