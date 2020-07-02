@@ -12,22 +12,26 @@ import ec.carper.ingenio.actions.*
 
 @Entity
 @View(members="""
-    hora, abs900Nm, turJClaro
+    horaS, hora;
+    abs900Nm; turJClaro
 """)
 class TurbiedadDetalle1 extends Identifiable {
 
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Turbiedad turbiedad
 
-    @Stereotype("DATETIME") @Required
+    @Stereotype("TIME") @OnChange(TurbiedadDetalle1Action.class) @Required
+    String horaS
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
     @OnChange(TurbiedadDetalle1Action.class)
-    @Digits(integer=4, fraction=3) 
+    @Digits(integer=4, fraction=3) @DisplaySize(6) 
     BigDecimal abs900Nm
     
     @ReadOnly
-    @Digits(integer=4, fraction=2) 
+    @Digits(integer=4, fraction=2) @DisplaySize(6) 
     BigDecimal turJClaro
     
     BigDecimal getValorTurJClaro(String diaTrabajoId, java.sql.Timestamp hora){

@@ -14,32 +14,52 @@ import ec.carper.ingenio.actions.*
 
 @Entity
 @View(members="""#
-    hora, j1Extracto;
-    jDiluido, jEncalado;
-    jClaro, jFiltrado;
-    mCruda, mClarificada;
-    horaTJClaro, tJClaro
+    horaS, hora;
+    j1Extracto, jDiluido;
+    jEncalado, jClaro;
+    jFiltrado, mCruda;
+    mClarificada;
+    horaSTJClaro, horaTJClaro;
+    tJClaro
 """)
 class PhDetalle extends Identifiable {
     
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Ph ph
     
-    @Stereotype("DATETIME") @Required
-    java.sql.Timestamp hora
+    @Stereotype("TIME") @OnChange(PhDetalleAction.class) @Required
+    String horaS
 
+    @Stereotype("DATETIME") @ReadOnly @Required
+    java.sql.Timestamp hora
+    
+    @DisplaySize(6)
     BigDecimal j1Extracto  
+    
+    @DisplaySize(6)
     BigDecimal jDiluido    
+    
+    @DisplaySize(6)
     BigDecimal jEncalado   
+    
+    @DisplaySize(6)
     BigDecimal jClaro      
+    
+    @DisplaySize(6)
     BigDecimal jFiltrado   
+    
+    @DisplaySize(6)
     BigDecimal mCruda      
+    
+    @DisplaySize(6)
     BigDecimal mClarificada
     
-    @Stereotype("DATETIME")
-    @OnChange(PhDetalleAction.class)
+    @Stereotype("TIME") @OnChange(PhDetalleAction.class)
+    String horaSTJClaro
+
+    @Stereotype("DATETIME") @ReadOnly
     java.sql.Timestamp horaTJClaro
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal tJClaro     
 }

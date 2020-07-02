@@ -1,3 +1,7 @@
+2020-07-02 
+	Ajuste de hora en Ph
+	Ajuste de hora en Turbiedad
+
 2020-07-01 
 	Ajuste de hora en Bagazo
 	Validación nulos de query.resultList

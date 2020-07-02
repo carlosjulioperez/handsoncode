@@ -13,14 +13,16 @@ class PhTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        setValue("diaTrabajo.id" , "ff808081711cd37c01711cd403a70000")
+        setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle", 0) // La colección esta vacía 
         execute("Collection.new" , "viewObject=xava_view_detalle")
         assertDialog()
-        setValue("hora" , "03/08/2019 18:00")
-        setValue("horaTJClaro" , "03/08/2019 19:00")
-        assertValue("tJClaro"  , "18.60")
+        setValue("horaS"          , "08:00")
+        assertValue("hora"        , "07/08/2019 08:00")
+        setValue("horaSTJClaro"   , "09:00")
+        assertValue("horaTJClaro" , "07/08/2019 09:00")
+        assertValue("tJClaro"     , "188.90")
 
         execute("Collection.save")
         assertNoErrors()

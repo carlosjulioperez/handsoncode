@@ -5,7 +5,7 @@ import ec.carper.ingenio.util.*
 
 import org.openxava.actions.*
 
-class TurbiedadDetalle1Action extends OnChangePropertyBaseAction{
+class TurbiedadDetalle2Action extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
 
@@ -14,12 +14,6 @@ class TurbiedadDetalle1Action extends OnChangePropertyBaseAction{
         String horaS = (String)getView().getValue("horaS")
         if (horaS)
             getView().setValue("hora", Util.instance.toTimestamp(horaS, diaTrabajo.fecha)) 
-        
-        BigDecimal abs900Nm = (BigDecimal)getView().getValue("abs900Nm")
-        println("values=" + getView().getValues());
-
-        if (abs900Nm)
-            getView().setValue("turJClaro", (abs900Nm*100).setScale(2, BigDecimal.ROUND_HALF_UP))
         
     }
 

@@ -13,16 +13,17 @@ class TurbiedadTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        setValue("diaTrabajo.id" , "ff808081711cd37c01711cd403a70000")
+        setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle1", 0) // La colección esta vacía 
         assertCollectionRowCount("detalle2", 0) // La colección esta vacía 
 
         execute("Collection.new"  , "viewObject=xava_view_detalle1")
         assertDialog()
-        setValue    ( "hora"      , "03/08/2019 19:00")
-        setValue    ( "abs900Nm"  , "0.186")
-        assertValue ( "turJClaro" , "18.60")
+        setValue    ("horaS"      , "09:00")
+        assertValue ("hora"       , "07/08/2019 09:00")
+        setValue    ( "abs900Nm"  , "1.889")
+        assertValue ( "turJClaro" , "188.90")
         execute("Collection.save")
         assertNoErrors()
         assertCollectionRowCount("detalle1", 1)
@@ -30,8 +31,9 @@ class TurbiedadTest extends ModuleTestBase {
         
         execute("Collection.new"   , "viewObject=xava_view_detalle2")
         assertDialog()
-        setValue    ( "hora"       , "03/08/2019 07:00")
-        setValue    ( "polCachaza" , "2.11")
+        setValue    ("horaS"      , "06:00")
+        assertValue ("hora"       , "07/08/2019 06:00")
+        setValue    ( "polCachaza" , "3.31")
         execute("Collection.save")
         assertNoErrors()
         assertCollectionRowCount("detalle2", 1)
