@@ -24,7 +24,7 @@ class FosfatosTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        setValue("diaTrabajo.id" , "ff808081711cd37c01711cd403a70000")
+        setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         setValue("cteN1" , "0.2183")
         setValue("cteN2" , "0.0118")
         
@@ -32,17 +32,18 @@ class FosfatosTest extends ModuleTestBase {
 
         execute("Collection.new"      , "viewObject=xava_view_detalle")
         assertDialog()
-        setValue    ( "hora"          , "03/08/2019 09:30")
+        setValue    ( "horaS"         , "09:30")
+        assertValue ( "hora"          , "07/08/2019 09:30")
 
-        setValue    ( "jdAbsorbancia" , "2.887")
-        setValue    ( "jdMlMuestra"   , "2.00")
-        assertValue ( "jdMgP"         , "0.618")
-        assertValue ( "jdFosfatos"    , "309.00")
+        setValue    ( "jdAbsorbancia" , "1.142")
+        setValue    ( "jdMlMuestra"   , "2")
+        assertValue ( "jdMgP"         , "0.237")
+        assertValue ( "jdFosfatos"    , "118.50")
         
-        setValue    ( "jcAbsorbancia" , "0.994")
-        setValue    ( "jcMlMuestra"   , "2.00")
-        assertValue ( "jcMgP"         , "0.205")
-        assertValue ( "jcFosfatos"    , "102.50")
+        setValue    ( "jcAbsorbancia" , "2.385")
+        setValue    ( "jcMlMuestra"   , "10")
+        assertValue ( "jcMgP"         , "0.509")
+        assertValue ( "jcFosfatos"    , "50.90")
 
         execute("Collection.save")
         assertNoErrors()

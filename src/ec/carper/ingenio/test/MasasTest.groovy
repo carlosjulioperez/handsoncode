@@ -13,7 +13,7 @@ class MasasTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        setValue("diaTrabajo.id" , "ff808081711cd37c01711cd403a70000")
+        setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle1", 0) // La colección esta vacía 
         assertCollectionRowCount("detalle2", 0) // La colección esta vacía 
@@ -21,10 +21,11 @@ class MasasTest extends ModuleTestBase {
 
         execute("Collection.new" , "viewObject=xava_view_detalle1")
         assertDialog()
-        setValue    ( "hora" ,  "03/08/2019 11:25")
-        setValue    ( "bri"  ,  "13.61")
-        setValue    ( "pol"  ,  "50.10")
-        assertValue ( "sac"  ,  "74.28")
+        setValue    ( "horaS" , "08:00")
+        assertValue ( "hora"  , "07/08/2019 08:00")
+        setValue    ( "bri"   , "13.61")
+        setValue    ( "pol"   , "50.10")
+        assertValue ( "sac"   , "74.28")
         assertValue ( "pur"  ,  "90.96")
         assertValue ( "bri2" ,  "81.66")
         execute("Collection.save")

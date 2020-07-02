@@ -10,7 +10,7 @@ import ec.carper.ingenio.actions.*
 
 @Entity
 @View(members="""
-    hora;
+    horaS, hora;
     mcrBri, mcrPol, mcrSac, mcrPur, mcrBri2;
     mclBri, mclPol, mclSac, mclPur, mclBri2
 """)
@@ -19,7 +19,10 @@ class MeladuraDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Meladura meladura
 
-    @Stereotype("DATETIME") @Required
+    @Stereotype("TIME") @OnChange(MeladuraDetalleAction.class) @Required
+    String horaS
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
     @OnChange(MeladuraDetalleAction.class)

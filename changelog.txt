@@ -1,4 +1,7 @@
 2020-07-02 
+	Ajuste de hora en Masas
+	Ajuste de hora en Fosfatos
+	Ajuste de hora en Meladura
 	Ajuste de hora en Ph
 	Ajuste de hora en Turbiedad
 

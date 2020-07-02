@@ -13,25 +13,26 @@ class MeladuraTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        setValue("diaTrabajo.id" , "ff808081711cd37c01711cd403a70000")
+        setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle", 0) // La colección esta vacía 
         execute("Collection.new" , "viewObject=xava_view_detalle")
         assertDialog()
         
-        setValue    ( "hora"    , "03/08/2019 07:00")
+        setValue("horaS"          , "07:00")
+        assertValue("hora"        , "07/08/2019 07:00")
 
-        setValue    ( "mcrBri"  , "17.4")
-        setValue    ( "mcrPol"  , "61.8")
-        assertValue ( "mcrSac"  , "60.15")
-        assertValue ( "mcrPur"  , "86.42")
-        assertValue ( "mcrBri2" , "69.60")
+        setValue    ( "mcrBri"  , "15.31")
+        setValue    ( "mcrPol"  , "53.36")
+        assertValue ( "mcrSac"  , "52.38")
+        assertValue ( "mcrPur"  , "85.53")
+        assertValue ( "mcrBri2" , "61.24")
 
-        setValue    ( "mclBri"  , "13.1")
-        setValue    ( "mclPol"  , "44.9")
-        assertValue ( "mclSac"  , "44.47")
-        assertValue ( "mclPur"  , "84.87")
-        assertValue ( "mclBri2" , "52.40")
+        setValue    ( "mclBri"  , "15.21")
+        setValue    ( "mclPol"  , "52.85")
+        assertValue ( "mclSac"  , "51.90")
+        assertValue ( "mclPur"  , "85.31")
+        assertValue ( "mclBri2" , "60.84")
 
         execute("Collection.save")
         assertNoErrors()

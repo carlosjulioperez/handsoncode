@@ -8,10 +8,13 @@ import org.openxava.model.*
 import ec.carper.ingenio.actions.*
 
 @MappedSuperclass
-@View(members="""hora;bri,pol,sac,pur,bri2""")
+@View(members="""horaS,hora;bri,pol,sac,pur,bri2""")
 class MasasDetalle extends Identifiable {
 
-    @Stereotype("DATETIME") @Required
+    @Stereotype("TIME") @OnChange(MasasDetalleAction.class) @Required
+    String horaS
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
     @OnChange(MasasDetalleAction.class)

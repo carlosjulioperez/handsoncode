@@ -10,7 +10,7 @@ import ec.carper.ingenio.actions.*
 
 @Entity
 @View(members="""
-    hora;
+    horaS, hora;
     jdAbsorbancia, jdMlMuestra, jdMgP, jdFosfatos;
     jcAbsorbancia, jcMlMuestra, jcMgP, jcFosfatos
 """)
@@ -19,7 +19,10 @@ class FosfatosDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Fosfatos fosfatos
 
-    @Stereotype("DATETIME") @Required
+    @Stereotype("TIME") @OnChange(FosfatosDetalleAction.class) @Required
+    String horaS
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
     @OnChange(FosfatosDetalleAction.class)
