@@ -23,7 +23,7 @@ case $opt in
             zip -d ../../workspace.dist/Ingenio.dist/Ingenio.war WEB-INF/lib/\*
 			;;
 		"unit-test")
-			ant test -Dnombre_clase=MasasTest
+			ant test -Dnombre_clase=MielesTest
 			;;
 		"codigo-test")
 			ant test -Dnombre_clase=CodigoTest

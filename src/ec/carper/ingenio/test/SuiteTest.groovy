@@ -32,7 +32,7 @@ class SuiteTest extends TestCase{
        suite.addTestSuite(TurbiedadTest.class)
        suite.addTestSuite(FosfatosTest.class)
        suite.addTestSuite(MasasTest.class)
-       // suite.addTestSuite(MielesTest.class)
+       suite.addTestSuite(MielesTest.class)
        // suite.addTestSuite(MielesNutschTest.class)
        // suite.addTestSuite(MagmasTest.class)
        // suite.addTestSuite(TqFundidorTest.class)
