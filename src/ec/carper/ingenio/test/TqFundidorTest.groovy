@@ -13,18 +13,19 @@ class TqFundidorTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        setValue("diaTrabajo.id" , "ff808081711cd37c01711cd403a70000")
+        setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle", 0) // La colección esta vacía 
         execute("Collection.new" , "viewObject=xava_view_detalle")
         assertDialog()
         
-        setValue    ( "hora"    , "03/08/2019 06:30")
+        setValue    ( "horaS" , "08:00")
+        assertValue ( "hora"  , "07/08/2019 08:00")
 
-        setValue    ( "bri"  , "11.74")
-        setValue    ( "pol"  , "45.67")
-        assertValue ( "sac"  , "68.22")
-        assertValue ( "pur"  , "96.85")
+        setValue    ( "bri"   , "11.74")
+        setValue    ( "pol"   , "45.67")
+        assertValue ( "sac"   , "68.22")
+        assertValue ( "pur"   , "96.85")
         assertValue ( "bri2" , "70.44")
 
         execute("Collection.save")

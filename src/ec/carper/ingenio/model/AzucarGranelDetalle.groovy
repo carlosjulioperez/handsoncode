@@ -10,21 +10,24 @@ import ec.carper.ingenio.actions.*
 
 @Entity
 @View(members="""#
-    hora          , briCorr;
-    bri           , absFiltrada;
-    absSinFiltrar , celda;
-    rho           , cedilla;
-    briEle        , color;
-    turb          , pol;
-    humedad       , numSaco;
-    polReproc
+    horaS, hora;
+    briCorr, bri;
+    absFiltrada, absSinFiltrar;
+    celda, rho;
+    cedilla, briEle;
+    color, turb;
+    pol, humedad;
+    numSaco, polReproc
 """)
 class AzucarGranelDetalle extends Identifiable {
 
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     AzucarGranel azucarGranel
 
-    @Stereotype("DATETIME") @Required
+    @Stereotype("TIME") @OnChange(PhDetalleAction.class) @Required
+    String horaS
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
     @ReadOnly

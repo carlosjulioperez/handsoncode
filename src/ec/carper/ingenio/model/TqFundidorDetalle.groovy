@@ -10,7 +10,7 @@ import ec.carper.ingenio.actions.*
 
 @Entity
 @View(members="""
-    hora;
+    horaS, hora;
     bri, pol, sac, pur, bri2
 """)
 class TqFundidorDetalle extends Identifiable {
@@ -18,7 +18,10 @@ class TqFundidorDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     TqFundidor tqFundidor
 
-    @Stereotype("DATETIME") @Required
+    @Stereotype("TIME") @OnChange(PhDetalleAction.class) @Required
+    String horaS
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
     @OnChange(TqFundidorDetalleAction.class)

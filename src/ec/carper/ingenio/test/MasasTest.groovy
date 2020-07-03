@@ -34,7 +34,8 @@ class MasasTest extends ModuleTestBase {
 
         execute("Collection.new" , "viewObject=xava_view_detalle2")
         assertDialog()
-        setValue    ( "hora" , "03/08/2019 11:37")
+        setValue    ( "horaS" , "11:37")
+        assertValue ( "hora"  , "07/08/2019 11:37")
         setValue    ( "bri"  , "15.70")
         setValue    ( "pol"  , "45.11")
         assertValue ( "sac"  , "66.32")
@@ -46,7 +47,8 @@ class MasasTest extends ModuleTestBase {
 
         execute("Collection.new" , "viewObject=xava_view_detalle3")
         assertDialog()
-        setValue    ( "hora" , "04/08/2019 04:30")
+        setValue    ( "horaS" , "04:30")
+        assertValue ( "hora"  , "08/08/2019 04:30")
         setValue    ( "bri"  , "16.19")
         setValue    ( "pol"  , "44.32")
         assertValue ( "sac"  , "65.03")
@@ -58,7 +60,8 @@ class MasasTest extends ModuleTestBase {
 
         execute("Collection.new" , "viewObject=xava_view_detalle4")
         assertDialog()
-        setValue    ( "hora" , "03/08/2019 15:30")
+        setValue    ( "horaS" , "15:30")
+        assertValue ( "hora"  , "07/08/2019 15:30")
         setValue    ( "bri"  , "15.17")
         setValue    ( "pol"  , "54.8")
         assertValue ( "sac"  , "80.74")
@@ -70,7 +73,8 @@ class MasasTest extends ModuleTestBase {
 
         execute("Collection.new" , "viewObject=xava_view_detalle5")
         assertDialog()
-        setValue    ( "hora" , "03/08/2019 19:35")
+        setValue    ( "horaS" , "19:35")
+        assertValue ( "hora"  , "07/08/2019 19:35")
         setValue    ( "bri"  , "15.44")
         setValue    ( "pol"  , "57.72")
         assertValue ( "sac"  , "84.95")
@@ -82,7 +86,8 @@ class MasasTest extends ModuleTestBase {
 
         execute("Collection.new" , "viewObject=xava_view_detalle6")
         assertDialog()
-        setValue    ( "hora" , "03/08/2019 22:30")
+        setValue    ( "horaS" , "22:30")
+        assertValue ( "hora"  , "07/08/2019 22:30")
         setValue    ( "bri"  , "15.53")
         setValue    ( "pol"  , "55.68")
         assertValue ( "sac"  , "81.91")
@@ -94,7 +99,8 @@ class MasasTest extends ModuleTestBase {
 
         execute("Collection.new" , "viewObject=xava_view_detalle7")
         assertDialog()
-        setValue    ( "hora" , "04/08/2019 01:00")
+        setValue    ( "horaS" , "01:00")
+        assertValue ( "hora"  , "08/08/2019 01:00")
         setValue    ( "bri"  , "15.60")
         setValue    ( "pol"  , "57.38")
         assertValue ( "sac"  , "84.39")
@@ -106,7 +112,8 @@ class MasasTest extends ModuleTestBase {
 
         execute("Collection.new" , "viewObject=xava_view_detalle8")
         assertDialog()
-        setValue    ( "hora" , "03/08/2019 03:40")
+        setValue    ( "horaS" , "03:40")
+        assertValue ( "hora"  , "08/08/2019 03:40")
         setValue    ( "bri"  , "15.49")
         setValue    ( "pol"  , "55.63")
         assertValue ( "sac"  , "81.85")

@@ -1,7 +1,7 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.model.*
-import ec.carper.ingenio.util.Calculo
+import ec.carper.ingenio.util.*
 
 import java.sql.Timestamp
 import org.openxava.actions.*
@@ -10,6 +10,12 @@ class MagmasDetalleAction extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
 
+        def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
+        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(diaTrabajoId)
+        String horaS = (String)getView().getValue("horaS")
+        if (horaS)
+            getView().setValue("hora", Util.instance.toTimestamp(horaS, diaTrabajo.fecha)) 
+        
         BigDecimal mbBri  = (BigDecimal)getView().getValue("mbBri")
         BigDecimal mbBri2 = (BigDecimal)getView().getValue("mbBri2")
         BigDecimal mbPol  = (BigDecimal)getView().getValue("mbPol")
