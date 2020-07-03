@@ -24,52 +24,56 @@ class AzucarGranelDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     AzucarGranel azucarGranel
 
-    @Stereotype("TIME") @OnChange(PhDetalleAction.class) @Required
+    @Stereotype("TIME") @OnChange(AzucarGranelDetalleAction.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal briCorr
 
-    @OnChange(AzucarGranelDetalleAction.class)
+    @OnChange(AzucarGranelDetalleAction.class) @DisplaySize(6)
     BigDecimal bri
 
-    @OnChange(AzucarGranelDetalleAction.class)
+    @OnChange(AzucarGranelDetalleAction.class) @DisplaySize(6)
     @Digits(integer=2, fraction=3)
     BigDecimal absFiltrada
 
-    @OnChange(AzucarGranelDetalleAction.class)
+    @OnChange(AzucarGranelDetalleAction.class) @DisplaySize(6)
     @Digits(integer=2, fraction=3)
     BigDecimal absSinFiltrar
 
-    @OnChange(AzucarGranelDetalleAction.class)
+    @OnChange(AzucarGranelDetalleAction.class) @DisplaySize(6)
     BigDecimal celda
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     @Digits(integer=4, fraction=3)
     BigDecimal rho
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     @Digits(integer=2, fraction=6)
     BigDecimal cedilla
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal briEle
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal color
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal turb
     
+    @DisplaySize(6)
     BigDecimal pol
     
+    @DisplaySize(6)
     BigDecimal humedad
     
+    @DisplaySize(6)
     BigDecimal numSaco
     
+    @DisplaySize(6)
     BigDecimal polReproc
     
 }

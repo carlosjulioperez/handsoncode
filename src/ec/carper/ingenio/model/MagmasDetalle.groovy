@@ -20,7 +20,7 @@ class MagmasDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Magmas magmas
 
-    @Stereotype("TIME") @OnChange(PhDetalleAction.class) @Required
+    @Stereotype("TIME") @OnChange(MagmasDetalleAction.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required

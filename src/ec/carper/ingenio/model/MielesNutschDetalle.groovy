@@ -20,7 +20,7 @@ class MielesNutschDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     MielesNutsch mielesNutsch
 
-    @Stereotype("TIME") @OnChange(PhDetalleAction.class) @Required
+    @Stereotype("TIME") @OnChange(MielesNutschDetalleAction.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required

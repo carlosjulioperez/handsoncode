@@ -25,7 +25,7 @@ class JugoDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Jugo jugo
 
-    @Stereotype("TIME") @OnChange(TrashCanaDetalle2Action.class) @Required
+    @Stereotype("TIME") @OnChange(JugoDetalleAction.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required

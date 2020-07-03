@@ -38,7 +38,7 @@ class SuiteTest extends TestCase{
        suite.addTestSuite(TqFundidorTest.class)
        suite.addTestSuite(ColorMatTest.class)
        suite.addTestSuite(AzucarGranelTest.class)
-       // suite.addTestSuite(AzucarCrudoTest.class)
+       suite.addTestSuite(AzucarCrudoTest.class)
        // suite.addTestSuite(GrasshoperTest.class)
        // suite.addTestSuite(TamanoGranoTest.class)
        // suite.addTestSuite(BtuLbBagazoTest.class)
