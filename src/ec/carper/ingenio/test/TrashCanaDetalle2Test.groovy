@@ -37,7 +37,7 @@ class TrashCanaDetalle2Test extends ModuleTestBase {
         // https://stackoverflow.com/questions/10578674/find-hour-or-minute-difference-between-2-java-sql-timestamps
 
         log.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-        String diaTrabajoId = "ff808081711cd37c01711cd403a70000"
+        String diaTrabajoId = Aux.instance.diaTrabajoId
         
         def horas = [
             "2019-08-03 06:00:00", 

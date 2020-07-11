@@ -14,5 +14,6 @@
 -- DELETE FROM INGENIO.TRASHDETALLE;
 -- DELETE FROM INGENIO.TRASH;
 
-DELETE FROM ingenio.BrixDensidadTitSus;
+DELETE FROM ingenio.cto24hdetalle;
+DELETE FROM ingenio.cto24h;
 

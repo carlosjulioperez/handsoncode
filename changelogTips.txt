@@ -12,15 +12,18 @@ Proyecto
 
 		Módulo para control de inventario por código de barras
 
+	* Acciones:
+		1. Clases Action
+		2. Totales de columnas en colecciones
+		3. Propiedades calculada		1. Clases Action
+		2. Totales de columnas en colecciones
+		3. Propiedades calculadass
+
 	* Tips:
 		https://www.oreilly.com/library/view/programming-grails/9781449324513/ch01.html
 
 	* Tests:
-		$ ant test -Dnombre_clase=Cto24HTest 
-		$ ant test -Dnombre_clase=BlcTest 
-		$ ant test -Dnombre_clase=BrixDensidadWpTest
-		$ ant test -Dnombre_clase=ParoTest
-		$ ant test -Dnombre_clase=CodigoTest
+		$ ant test -Dnombre_clase=TurbiedadDetalle1Test
 
 	* i18n:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/34508380/

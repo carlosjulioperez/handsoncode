@@ -13,7 +13,7 @@ class ColorMatTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        setValue("diaTrabajo.id" , "ff808081711cd37c01711cd403a70000")
+        setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         setValue    ( "bri1"           , "0.8")
         setValue    ( "absFiltrada1"   , "0.127")

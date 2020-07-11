@@ -40,7 +40,7 @@ class TamanoGranoTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        setValue("diaTrabajo.id" , "ff808081711cd37c01711cd403a70000")
+        setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle", 0) // La colección esta vacía 
         execute("Collection.new" , "viewObject=xava_view_detalle")

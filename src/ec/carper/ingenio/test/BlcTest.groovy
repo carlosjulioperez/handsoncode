@@ -21,8 +21,9 @@ class BlcTest extends ModuleTestBase {
             blc.id            = null
 
             //blc.diaTrabajo  = this.diaTrabajo
+            // TODO optimizar codigo groovy
             def diaTrabajo    = new DiaTrabajo()
-            diaTrabajo.id     = "ff808081711cd37c01711cd403a70000"
+            diaTrabajo.id     = Aux.instance.diaTrabajoId
 
             blc.diaTrabajo    = diaTrabajo
             blc.itemsCargados = true

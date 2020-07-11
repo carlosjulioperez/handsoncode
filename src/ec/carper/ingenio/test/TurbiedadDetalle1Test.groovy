@@ -20,10 +20,9 @@ class TurbiedadDetalle1Test extends ModuleTestBase {
     }
  
     void testGetTurJClaro(){
-        String diaTrabajoId = "ff808081711cd37c01711cd403a70000"
-        String hora      = "2019-08-03 19:00:00"
-        
-        def turJClaro = new TurbiedadDetalle1().getValorTurJClaro(diaTrabajoId, Util.instance.toTimestamp(hora))
+        String hora      = "2019-08-07 09:00:00"
+       
+        def turJClaro = new TurbiedadDetalle1().getValorTurJClaro(Aux.instance.diaTrabajoId, Util.instance.toTimestamp(hora))
         println turJClaro 
     }
 }

@@ -11,7 +11,7 @@ class BtuLbBagazoTest extends ModuleTestBase {
     }
 
     public void testPromedio() throws Exception {
-        println SqlUtil.instance.getValorCampo("ff808081711cd37c01711cd403a70000","Bagazo","porcHumedad")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId,"Bagazo","porcHumedad")
     }
 
     public void testCrear() throws Exception {
@@ -19,16 +19,16 @@ class BtuLbBagazoTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        setValue("diaTrabajo.id" , "ff808081711cd37c01711cd403a70000")
+        setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
     
         setValue    ( "pHum"        , "1")
         setValue    ( "pCrisol"     , "0.25")
         setValue    ( "pCriCen"     , "0.55")
         setValue    ( "pMtra"       , "0.19")
-        assertValue ( "porcHumedad" , "43.92")
+        assertValue ( "porcHumedad" , "46.00")
         assertValue ( "porcCenBs"   , "157.895")
-        assertValue ( "porcCenBh"   , "88.55")
-        assertValue ( "pcBtuLb"     , "383.07")
+        assertValue ( "porcCenBh"   , "85.26")
+        assertValue ( "pcBtuLb"     , "474.78")
         assertNoErrors()
     }
 

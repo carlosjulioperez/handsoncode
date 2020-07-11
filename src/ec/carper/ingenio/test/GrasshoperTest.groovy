@@ -13,25 +13,25 @@ class GrasshoperTest extends ModuleTestBase {
         
         execute("CRUD.new")
 
-        setValue("diaTrabajo.id" , "ff808081711cd37c01711cd403a70000")
+        setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle", 0) // La colección esta vacía 
         execute("Collection.new" , "viewObject=xava_view_detalle")
         assertDialog()
         
-        setValue    ( "hora"          , "03/08/2019 06:30")
-
-        setValue    ( "bri"           , "48.95")
-        setValue    ( "absFiltrada"   , "0.298")
-        setValue    ( "absSinFiltrar" , "0.504")
+        setValue    ( "horaS"         , "08:00")
+        assertValue ( "hora"          , "07/08/2019 08:00")
+        setValue    ( "bri"           , "50.98")
+        setValue    ( "absFiltrada"   , "0.149")
+        setValue    ( "absSinFiltrar" , "0.221")
         setValue    ( "celda"         , "1.00")
 
-        assertValue ( "briCorr"       , "48.41")
-        assertValue ( "rho"           , "1,223.626")
-        assertValue ( "cedilla"       , "0.592357")
-        assertValue ( "briEle"        , "97.90")
-        assertValue ( "color"         , "503.08")
-        assertValue ( "turb"          , "347.76")
+        assertValue ( "briCorr"       , "50.42")
+        assertValue ( "rho"           , "1,234.623")
+        assertValue ( "cedilla"       , "0.622497")
+        assertValue ( "briEle"        , "101.96")
+        assertValue ( "color"         , "239.36")
+        assertValue ( "turb"          , "115.66")
 
         execute("Collection.save")
         assertNoErrors()

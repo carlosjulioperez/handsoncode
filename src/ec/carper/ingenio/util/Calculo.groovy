@@ -46,7 +46,7 @@ class Calculo{
 
     // =+(1000*D7)/(F7*G7)
     BigDecimal getCedilla(BigDecimal bri, BigDecimal rho, int escala){
-        return (bri*rho/100000).setScale(escala, BigDecimal.ROUND_HALF_UP)
+        return ((bri*rho)/100000).setScale(escala, BigDecimal.ROUND_HALF_UP)
     }
 
     // =+((1000*E7)/(F7*G7))-I7

@@ -1,3 +1,13 @@
+2020-07-07
+	Revisar acceso al sistema por IP pública
+
+2020-07-03 
+	Cambio de Pestañas por Secciones en Cto24HTest
+	Ajuste de hora en Cto24HTest
+	Ajuste de hora en BtuLbBagazo
+	Ajuste de hora en TamanoGrano
+	Ajuste de hora en Grasshoper
+
 2020-07-02 
 	Ajuste de hora en AzucarCrudo
 	Ajuste de hora en Mieles

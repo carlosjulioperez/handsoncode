@@ -42,7 +42,7 @@ class CanaDetalle2Test extends ModuleTestBase {
 
     void testGetPromPorcHumedad(){
         // https://stackoverflow.com/questions/567659/calculate-elapsed-time-in-java-groovy
-        String diaTrabajoId = "ff808081711cd37c01711cd403a70000"
+        String diaTrabajoId = Aux.instance.diaTrabajoId
 
         String hora      = "2019-08-03 06:00:00"
         String horaDesde = "2019-08-03 06:00:00"

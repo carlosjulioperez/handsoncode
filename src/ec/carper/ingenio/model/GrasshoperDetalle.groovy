@@ -10,20 +10,23 @@ import ec.carper.ingenio.actions.*
 
 @Entity
 @View(members="""#
-    hora          , briCorr;
-    bri           , absFiltrada;
-    absSinFiltrar , celda;
-    rho           , cedilla;
-    briEle        , color;
-    turb          , pol;
-    humedad
+    horaS, hora;
+    briCorr, bri;
+    absFiltrada, absSinFiltrar;
+    celda, rho;
+    cedilla, briEle;
+    color, turb;
+    pol, humedad
 """)
 class GrasshoperDetalle extends Identifiable {
 
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Grasshoper grasshoper
 
-    @Stereotype("DATETIME") @Required
+    @Stereotype("TIME") @OnChange(GrasshoperDetalleAction.class) @Required
+    String horaS
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
     @ReadOnly
