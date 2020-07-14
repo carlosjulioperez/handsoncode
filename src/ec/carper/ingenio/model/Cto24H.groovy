@@ -116,36 +116,36 @@ class Cto24H extends DiaTrabajoEditable {
     @OneToMany (mappedBy="cto24H", cascade=CascadeType.ALL) //@EditOnly
     @ListProperties("""
         cana       [ cto24H.pd311, cto24H.pd321 ],
-        j1Extracto [ cto24H.pd312 ],
-        jDiluido   [ cto24H.pd313 ],
-        jClaro     [ cto24H.pd314 ],
-        jFiltrado  [ cto24H.pd315 ],
-        mClara     [ cto24H.pd316 ],
-        mielA      [ cto24H.pd317 ],
-        mielB      [ cto24H.pd318 ],
-        mielF      [ cto24H.pd319 ]
+        j1Extracto [ cto24H.pd312, cto24H.pd322 ],
+        jDiluido   [ cto24H.pd313, cto24H.pd323 ],
+        jClaro     [ cto24H.pd314, cto24H.pd324 ],
+        jFiltrado  [ cto24H.pd315, cto24H.pd325 ],
+        mClara     [ cto24H.pd316, cto24H.pd326 ],
+        mielA      [ cto24H.pd317, cto24H.pd327 ],
+        mielB      [ cto24H.pd318, cto24H.pd328 ],
+        mielF      [ cto24H.pd319, cto24H.pd329 ]
     """)
     Collection<Cto24HDetalle3>detalle3
 
-    BigDecimal getPd311() { return detalle3[0] ? detalle3[0].cana1: 0 }
-    BigDecimal getPd312() { return 0 }
-    BigDecimal getPd313() { return 0 } 
-    BigDecimal getPd314() { return 0 } 
-    BigDecimal getPd315() { return 0 } 
-    BigDecimal getPd316() { return 0 } 
-    BigDecimal getPd317() { return 0 } 
-    BigDecimal getPd318() { return 0 } 
-    BigDecimal getPd319() { return 0 } 
+    BigDecimal getPd311() { return detalle3[0] ? detalle3[0].pd311: 0 }
+    BigDecimal getPd312() { return detalle3[0] ? detalle3[0].pd312: 0 }
+    BigDecimal getPd313() { return detalle3[0] ? detalle3[0].pd313: 0 }
+    BigDecimal getPd314() { return detalle3[0] ? detalle3[0].pd314: 0 }
+    BigDecimal getPd315() { return detalle3[0] ? detalle3[0].pd315: 0 }
+    BigDecimal getPd316() { return detalle3[0] ? detalle3[0].pd316: 0 }
+    BigDecimal getPd317() { return detalle3[0] ? detalle3[0].pd317: 0 }
+    BigDecimal getPd318() { return detalle3[0] ? detalle3[0].pd318: 0 }
+    BigDecimal getPd319() { return detalle3[0] ? detalle3[0].pd319: 0 }
     
-    BigDecimal getPd321() { return detalle3[0] ? detalle3[0].cana2: 0 }
-    BigDecimal getPd322() { return 0 }
-    BigDecimal getPd323() { return 0 } 
-    BigDecimal getPd324() { return 0 } 
-    BigDecimal getPd325() { return 0 } 
-    BigDecimal getPd326() { return 0 } 
-    BigDecimal getPd327() { return 0 } 
-    BigDecimal getPd328() { return 0 } 
-    BigDecimal getPd329() { return 0 } 
+    BigDecimal getPd321() { return detalle3[0] ? detalle3[0].pd321: 0 }
+    BigDecimal getPd322() { return detalle3[0] ? detalle3[0].pd322: 0 }
+    BigDecimal getPd323() { return detalle3[0] ? detalle3[0].pd323: 0 }
+    BigDecimal getPd324() { return detalle3[0] ? detalle3[0].pd324: 0 }
+    BigDecimal getPd325() { return detalle3[0] ? detalle3[0].pd325: 0 }
+    BigDecimal getPd326() { return detalle3[0] ? detalle3[0].pd326: 0 }
+    BigDecimal getPd327() { return detalle3[0] ? detalle3[0].pd327: 0 }
+    BigDecimal getPd328() { return detalle3[0] ? detalle3[0].pd328: 0 }
+    BigDecimal getPd329() { return detalle3[0] ? detalle3[0].pd329: 0 }
     
     // ==================================================
     // ACIDEZ VOLATIL
@@ -166,9 +166,9 @@ class Cto24H extends DiaTrabajoEditable {
     """)
     Collection<Cto24HDetalle>detalle
 
-    BigDecimal getPromMlTitu()  { return super.getPromedio(detalle, "mlTitu",  2) }
-    BigDecimal getPromFd    ()  { return super.getPromedio(detalle, "fd",      2) }
-    BigDecimal getPromPpm   ()  { return super.getPromedio(detalle, "ppm",     2) }
+    BigDecimal getPromMlTitu() { return super.getPromedio(detalle, "mlTitu", 2) }
+    BigDecimal getPromFd    () { return super.getPromedio(detalle, "fd",     2) }
+    BigDecimal getPromPpm   () { return super.getPromedio(detalle, "ppm",    2) }
 
     void actualizar() throws ValidationException{
         try{

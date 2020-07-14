@@ -23,6 +23,7 @@ Proyecto
 		https://www.oreilly.com/library/view/programming-grails/9781449324513/ch01.html
 
 	* Tests:
+		$ ant test -Dnombre_clase=QueryTest
 		$ ant test -Dnombre_clase=TurbiedadDetalle1Test
 
 	* i18n:

@@ -32,10 +32,16 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        isDiaTrabajoCerrado()
+        getDiaTrabajo()
+        //isDiaTrabajoCerrado()
         //getTrashCanaDiaTrabajoCerrado()
         //getTrashCanaDetalle2()
         //getNativo()
+    }
+
+    void getDiaTrabajo(){
+        DiaTrabajo diaTrabajo = getManager().find( DiaTrabajo.class, Aux.instance.diaTrabajoId) 
+        println diaTrabajo.fecha
     }
 
     void getBlcDetalle1(){
