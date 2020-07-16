@@ -6,6 +6,7 @@ import ec.carper.ingenio.util.Calculo
 import java.sql.Timestamp
 import org.openxava.actions.*
 
+//TODO: Renombrar
 class Cto24HDetalleAction extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{

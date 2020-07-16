@@ -48,4 +48,11 @@
             class="ec.carper.ingenio.actions.RestringirDeleteSelectedAction"/>
     </controller>   
 
+    <controller name="Cto24H">
+        <extends controller="Typical"/>
+        <action name="cargarDetalles" mode="detail" 
+        	class="ec.carper.ingenio.actions.Cto24HCargarDetallesAction">
+    	</action>
+    </controller>   
+
 </controllers>

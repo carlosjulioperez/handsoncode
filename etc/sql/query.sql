@@ -14,3 +14,5 @@
 -- SELECT * FROM INGENIO.TAMANOGRANODETALLE;
 SELECT * FROM ingenio.cto24h;
 SELECT * FROM ingenio.cto24hdetalle1;
+SELECT * FROM ingenio.cto24hdetalle2;
+SELECT * FROM ingenio.cto24hdetalle3;

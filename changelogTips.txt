@@ -12,6 +12,9 @@ Proyecto
 
 		Módulo para control de inventario por código de barras
 
+	* Grabar cifras en cero:
+		En los Actions considerar grabar valores de cero y no solamente nulos
+
 	* Acciones:
 		1. Clases Action
 		2. Totales de columnas en colecciones

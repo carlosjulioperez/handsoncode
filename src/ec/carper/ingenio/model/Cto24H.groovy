@@ -1,12 +1,10 @@
 package ec.carper.ingenio.model 
 
-//import ec.carper.ingenio.actions.Cto24HAction
 import ec.carper.ingenio.util.Calculo
 
 import javax.persistence.*
 import javax.validation.constraints.Digits
 import org.openxava.annotations.*
-//import org.openxava.calculators.*
 import org.openxava.jpa.*
 import org.openxava.model.*
 import org.openxava.util.*
@@ -39,7 +37,12 @@ import static org.openxava.jpa.XPersistence.*
     }
 """)
 class Cto24H extends DiaTrabajoEditable {
-
+    
+    boolean detallesCargados
+    
+    @Digits(integer=3, fraction=3) @DisplaySize(6) @Required
+    BigDecimal fFelining
+    
     // ==================================================
     // AZÚCARES TOTALES REDUCTORES A.T.R.
     // ==================================================
@@ -53,7 +56,7 @@ class Cto24H extends DiaTrabajoEditable {
     BigDecimal mielB
     BigDecimal mielF
 
-    @OneToMany (mappedBy="cto24H", cascade=CascadeType.ALL) //@EditOnly
+    @OneToMany (mappedBy="cto24H", cascade=CascadeType.ALL) @EditOnly
     @ListProperties("""
         cana       [ cto24H.pd11 ],
         j1Extracto [ cto24H.pd12 ],
@@ -67,16 +70,17 @@ class Cto24H extends DiaTrabajoEditable {
     """)
     Collection<Cto24HDetalle1>detalle1
     
-    BigDecimal getPd11() { return Calculo.instance.redondear((calcJugo("cana")*3), 2) }
-    BigDecimal getPd12() { return calcJugo("j1Extracto") }
-    BigDecimal getPd13() { return calcJugo("jDiluido") }
-    BigDecimal getPd14() { return calcJugo("jClaro") }
-    BigDecimal getPd15() { return calcJugo("jFiltrado") }
+    //BigDecimal getPd11() { return Calculo.instance.redondear((calcJugo("cana")*3), 2) }
+    BigDecimal getPd11() { return detalle1[0] ? detalle1[0].pd11: 0 }
+    BigDecimal getPd12() { return detalle1[0] ? detalle1[0].pd12: 0 }
+    BigDecimal getPd13() { return detalle1[0] ? detalle1[0].pd13: 0 }
+    BigDecimal getPd14() { return detalle1[0] ? detalle1[0].pd14: 0 }
+    BigDecimal getPd15() { return detalle1[0] ? detalle1[0].pd15: 0 }
     
-    BigDecimal getPd16() { return calcMiel("mClara") }
-    BigDecimal getPd17() { return calcMiel("mielA") }
-    BigDecimal getPd18() { return calcMiel("mielB") }
-    BigDecimal getPd19() { return calcMiel("mielF") }
+    BigDecimal getPd16() { return detalle1[0] ? detalle1[0].pd16: 0 }
+    BigDecimal getPd17() { return detalle1[0] ? detalle1[0].pd17: 0 }
+    BigDecimal getPd18() { return detalle1[0] ? detalle1[0].pd18: 0 }
+    BigDecimal getPd19() { return detalle1[0] ? detalle1[0].pd19: 0 }
 
     // ==================================================
     // % SOLIDOS INSOLUBLES (CTO 24 HORAS)
@@ -222,27 +226,60 @@ class Cto24H extends DiaTrabajoEditable {
             throw new SystemException("registro_no_actualizado", ex)
         }
     }
+    
+    void cargarDetalles() throws ValidationException{
+        try{
+            this.detallesCargados = true
+            getManager().persist(this)
+            cargar(this)
+        }catch(Exception ex){
+            throw new SystemException("detalles_no_cargados", ex)
+        }
+    }
 
-    //@OnChange(Cto24HAction.class) @Required
-    @Digits(integer=3, fraction=3) @DisplaySize(6) 
-    BigDecimal fFelining
-
+    void cargar(Cto24H cto24H){
+        try{
+            def d1        = new Cto24HDetalle1()
+            d1.id         = null
+            d1.cto24H     = cto24H
+            // d1.cana       = 1
+            // d1.j1Extracto = 1
+            // d1.jDiluido   = 1
+            // d1.jClaro     = 1
+            // d1.jFiltrado  = 1
+            // d1.mClara     = 1
+            // d1.mielA      = 1
+            // d1.mielB      = 1
+            // d1.mielF      = 1
+            getManager().persist(d1)
+            
+        }catch(Exception ex){
+            throw new SystemException("detalles_no_cargados", ex)
+        }
+    }
+    
     // Métodos de cálculos
     def calcJugo (def atributo){
         def valor = 0.0
-        detalle1.each {
-            def v = (BigDecimal)Eval.x(it, "x."+atributo)
-            valor = Calculo.instance.redondear((5.127 / (v * fFelining * 0.02)), 2)
-        } 
+        if (detalle){
+            detalle1.each {
+                def v = (BigDecimal)Eval.x(it, "x."+atributo)
+                valor = Calculo.instance.redondear((5.127 / (v * fFelining * 0.02)), 2)
+            }
+        }
+        println "calcJugo para ${atributo}: ${valor}"
         return valor 
     }
 
     def calcMiel (def atributo){
         def valor = 0.0
-        detalle1.each {
-            def v = (BigDecimal)Eval.x(it, "x."+atributo)
-            valor = Calculo.instance.redondear((5.127 / (v * fFelining * 0.005)), 2)
+        if (detalle){
+            detalle1.each {
+                def v = (BigDecimal)Eval.x(it, "x."+atributo)
+                valor = Calculo.instance.redondear((5.127 / (v * fFelining * 0.005)), 2)
+            }
         }
+        println "calcMiel para ${atributo}: ${valor}"
         return valor
     }
 }
