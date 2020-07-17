@@ -14,6 +14,7 @@
 -- DELETE FROM INGENIO.TRASHDETALLE;
 -- DELETE FROM INGENIO.TRASH;
 
+DELETE FROM ingenio.cto24h_detalle4;
 DELETE FROM ingenio.cto24hdetalle3;
 DELETE FROM ingenio.cto24hdetalle2;
 DELETE FROM ingenio.cto24hdetalle1;

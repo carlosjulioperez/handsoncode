@@ -18,6 +18,6 @@ class SqlUtil{
     }
 
     def getDiaTrabajo(String diaTrabajoId){
-        return XPersistence.getManager().find(DiaTrabajo.class, diaTrabajoId)
+        return getManager().find(DiaTrabajo.class, diaTrabajoId)
     }
 }

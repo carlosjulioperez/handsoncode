@@ -1,5 +1,6 @@
 package ec.carper.ingenio.model
 
+import ec.carper.ingenio.actions.*
 import ec.carper.ingenio.util.Calculo
 
 import javax.persistence.*
@@ -9,13 +10,8 @@ import org.openxava.model.*
 @Embeddable
 class Cto24HDetalle4{
 
-    int id
-
-    @Column(length=20)
+    @Column(length=20) @ReadOnly
     String descripcion
-    
-    @DisplaySize(6)
-    BigDecimal cana
     
     @DisplaySize(6)
     BigDecimal j1Extracto

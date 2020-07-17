@@ -1,4 +1,6 @@
 2020-07-07
+	Query de métodos promedio como atributos
+	Validar es necesario grabar los promedios (SI)
 	Revisar acceso al sistema por IP pública
 
 2020-07-03 

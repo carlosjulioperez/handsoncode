@@ -16,3 +16,5 @@ SELECT * FROM ingenio.cto24h;
 SELECT * FROM ingenio.cto24hdetalle1;
 SELECT * FROM ingenio.cto24hdetalle2;
 SELECT * FROM ingenio.cto24hdetalle3;
+SELECT * FROM ingenio.cto24h_detalle41;
+SELECT * FROM ingenio.cto24h_detalle42;

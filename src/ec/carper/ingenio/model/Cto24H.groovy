@@ -1,6 +1,6 @@
 package ec.carper.ingenio.model 
 
-import ec.carper.ingenio.util.Calculo
+import ec.carper.ingenio.util.*
 
 import javax.persistence.*
 import javax.validation.constraints.Digits
@@ -25,6 +25,8 @@ import static org.openxava.jpa.XPersistence.*
         detalle3
     }
     Cto24H_cc {
+        detalle41;
+        detalle42;
     }
     Cto24H_cs {
     }
@@ -90,7 +92,7 @@ class Cto24H extends DiaTrabajoEditable {
     BigDecimal masa3
     BigDecimal porcInso
     
-    @OneToMany (mappedBy="cto24H", cascade=CascadeType.ALL) //@EditOnly
+    @OneToMany (mappedBy="cto24H", cascade=CascadeType.ALL) @EditOnly
     @ListProperties(""" masa1, masa2, masa3, porcInso """)
     Collection<Cto24HDetalle2>detalle2
 
@@ -117,7 +119,7 @@ class Cto24H extends DiaTrabajoEditable {
     BigDecimal mielB2
     BigDecimal mielF2
 
-    @OneToMany (mappedBy="cto24H", cascade=CascadeType.ALL) //@EditOnly
+    @OneToMany (mappedBy="cto24H", cascade=CascadeType.ALL) @EditOnly
     @ListProperties("""
         cana       [ cto24H.pd311, cto24H.pd321 ],
         j1Extracto [ cto24H.pd312, cto24H.pd322 ],
@@ -150,7 +152,33 @@ class Cto24H extends DiaTrabajoEditable {
     BigDecimal getPd327() { return detalle3[0] ? detalle3[0].pd327: 0 }
     BigDecimal getPd328() { return detalle3[0] ? detalle3[0].pd328: 0 }
     BigDecimal getPd329() { return detalle3[0] ? detalle3[0].pd329: 0 }
+
+    // ==================================================
+    // CENIZAS CONDUCTIMETRICAS EN MATERIALES DE PROCESO
+    // ==================================================
+    // Consulta de Brix Mtra
+    @ElementCollection @ReadOnly
+    @ListProperties("""
+        descripcion, j1Extracto, jDiluido, jClaro, jFiltrado, mClara, mielA, mielB, mielF
+    """)
+    Collection<Cto24HDetalle4>detalle41
     
+    @ElementCollection @EditOnly
+    @ListProperties("""
+        descripcion,
+        j1Extracto[ cto24H.pd4211 ],
+        jDiluido  ,
+        jClaro    ,
+        jFiltrado ,
+        mClara    ,
+        mielA     ,
+        mielB     ,
+        mielF     
+    """)
+    Collection<Cto24HDetalle4>detalle42
+    
+    BigDecimal getPd4211() { return 0 }
+
     // ==================================================
     // ACIDEZ VOLATIL
     // ==================================================
@@ -242,20 +270,56 @@ class Cto24H extends DiaTrabajoEditable {
             def d1        = new Cto24HDetalle1()
             d1.id         = null
             d1.cto24H     = cto24H
-            // d1.cana       = 1
-            // d1.j1Extracto = 1
-            // d1.jDiluido   = 1
-            // d1.jClaro     = 1
-            // d1.jFiltrado  = 1
-            // d1.mClara     = 1
-            // d1.mielA      = 1
-            // d1.mielB      = 1
-            // d1.mielF      = 1
             getManager().persist(d1)
+            
+            def d2        = new Cto24HDetalle2()
+            d2.id         = null
+            d2.cto24H     = cto24H
+            getManager().persist(d2)
+            
+            def d3        = new Cto24HDetalle3()
+            d3.id         = null
+            d3.cto24H     = cto24H
+            getManager().persist(d3)
+            
+            // CENIZAS CONDUCTIMETRICAS EN MATERIALES DE PROCESO
+            // Detalle 4 
+            this.detalle41 = new ArrayList()
+            this.detalle41.add(detalle4JugosBrix())
+
+            this.detalle42 = new ArrayList()
+            def d4
+            (2..5).each{
+                d4 = new Cto24HDetalle4()      
+                
+                if (it==2) d4.descripcion="Conductividad Agua"
+                if (it==3) d4.descripcion="Conductividad Mtra"
+                if (it==4) d4.descripcion="Temperatura"
+                if (it==5) d4.descripcion="Peso de muestra"
+
+                this.detalle42.add(d4)
+            }
+            getManager().persist(cto24H)
             
         }catch(Exception ex){
             throw new SystemException("detalles_no_cargados", ex)
         }
+    }
+
+    def detalle4JugosBrix(){
+        def o = new Cto24HDetalle4()
+
+        o.descripcion = "Brix Mtra"
+        o.j1Extracto  = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Jugo"     , "jeBri")
+        o.jDiluido    = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Jugo"     , "jdBri")
+        o.jClaro      = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Jugo"     , "jcBri")
+        o.jFiltrado   = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Jugo"     , "jfBri")
+        o.mClara      = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Meladura" , "mclBri2")
+        o.mielA       = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Mieles"   , "maBri2")
+        o.mielB       = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Mieles"   , "mbBri2")
+        o.mielF       = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Mieles"   , "mfBri2")
+
+        return o
     }
     
     // Métodos de cálculos

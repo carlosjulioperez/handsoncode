@@ -32,6 +32,7 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
+        //getCto24H() //DESCARTADO
         getDiaTrabajo()
         //isDiaTrabajoCerrado()
         //getTrashCanaDiaTrabajoCerrado()
@@ -90,6 +91,17 @@ class QueryTest extends ModuleTestBase {
         query.setParameter("id", "ff808081711cd37c01711cd45a1f0001")
         def cerrado = (boolean) query.getSingleResult()
         log.warn (cerrado)
+    }
+    
+    void getCto24H(){
+        Query query = getManager().createQuery("select pd11 from Cto24H where diaTrabajo.id= :id ")
+        query.setParameter("id", Aux.instance.diaTrabajoId)
+        query.resultList.each{
+            def o = (Cto24H)it
+            println ("**************************************************")
+            println (o.pd11)
+            println (o.pd12)
+        }
     }
     
     /*
