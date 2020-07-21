@@ -162,22 +162,129 @@ class Cto24H extends DiaTrabajoEditable {
         descripcion, j1Extracto, jDiluido, jClaro, jFiltrado, mClara, mielA, mielB, mielF
     """)
     Collection<Cto24HDetalle4>detalle41
-    
+        
     @ElementCollection @EditOnly
     @ListProperties("""
         descripcion,
-        j1Extracto[ cto24H.pd4211 ],
-        jDiluido  ,
-        jClaro    ,
-        jFiltrado ,
-        mClara    ,
-        mielA     ,
-        mielB     ,
-        mielF     
+        j1Extracto[ cto24H.pd4211, cto24H.pd4212, cto24H.pd4213, cto24H.pd4214, cto24H.pd4215 ],
+        jDiluido  [ cto24H.pd4221, cto24H.pd4222, cto24H.pd4223, cto24H.pd4224, cto24H.pd4225 ],
+        jClaro    [ cto24H.pd4231, cto24H.pd4232, cto24H.pd4233, cto24H.pd4234, cto24H.pd4235 ],
+        jFiltrado [ cto24H.pd4241, cto24H.pd4242, cto24H.pd4243, cto24H.pd4244, cto24H.pd4245 ],
+        mClara    [ cto24H.pd4251, cto24H.pd4252, cto24H.pd4253, cto24H.pd4254, cto24H.pd4255 ],
+        mielA     [ cto24H.pd4261, cto24H.pd4262, cto24H.pd4263, cto24H.pd4264, cto24H.pd4265 ],
+        mielB     [ cto24H.pd4271, cto24H.pd4272, cto24H.pd4273, cto24H.pd4274, cto24H.pd4275 ],
+        mielF     [ cto24H.pd4281, cto24H.pd4282, cto24H.pd4283, cto24H.pd4284, cto24H.pd4285 ]
     """)
     Collection<Cto24HDetalle4>detalle42
     
-    BigDecimal getPd4211() { return 0 }
+    BigDecimal getPd4211() { return getPd4Valor (1 , "j1Extracto") }
+    BigDecimal getPd4212() { return getPd4Valor (2 , "j1Extracto" , "getPd4211") }
+    BigDecimal getPd4213() { return getPd4Valor (3 , "j1Extracto" ) }
+    BigDecimal getPd4214() { return getPd4Valor (4 , "j1Extracto" ) }
+    BigDecimal getPd4215() { return getPd4Valor (5 , "j1Extracto", "getPd4213", "getPd4211", "getPd4214" ) }
+
+    BigDecimal getPd4221() { return getPd4Valor (1 , "jDiluido" ) }
+    BigDecimal getPd4222() { return getPd4Valor (2 , "jDiluido" , "getPd4221") }
+    BigDecimal getPd4223() { return getPd4Valor (3 , "jDiluido" ) }
+    BigDecimal getPd4224() { return getPd4Valor (4 , "jDiluido" ) }
+    BigDecimal getPd4225() { return getPd4Valor (5 , "jDiluido", "getPd4223", "getPd4221", "getPd4224" ) }
+
+    BigDecimal getPd4231() { return getPd4Valor (1 , "jClaro" ) }
+    BigDecimal getPd4232() { return getPd4Valor (2 , "jClaro" , "getPd4231") }
+    BigDecimal getPd4233() { return getPd4Valor (3 , "jClaro" ) }
+    BigDecimal getPd4234() { return getPd4Valor (4 , "jClaro" ) }
+    BigDecimal getPd4235() { return getPd4Valor (5 , "jClaro", "getPd4233", "getPd4231", "getPd4234" ) }
+
+    BigDecimal getPd4241() { return getPd4Valor (1 , "jFiltrado" ) }
+    BigDecimal getPd4242() { return getPd4Valor (2 , "jFiltrado" , "getPd4241") }
+    BigDecimal getPd4243() { return getPd4Valor (3 , "jFiltrado" ) }
+    BigDecimal getPd4244() { return getPd4Valor (4 , "jFiltrado" ) }
+    BigDecimal getPd4245() { return getPd4Valor (5 , "jFiltrado", "getPd4243", "getPd4241", "getPd4244" ) }
+
+    BigDecimal getPd4251() { return getPd4Valor (1 , "mClara" ) }
+    BigDecimal getPd4252() { return getPd4Valor (2 , "mClara" , "getPd4251") }
+    BigDecimal getPd4253() { return getPd4Valor (3 , "mClara" ) }
+    BigDecimal getPd4254() { return getPd4Valor (4 , "mClara" ) }
+    BigDecimal getPd4255() { return getPd4Valor (5 , "mClara", "getPd4253", "getPd4251", "getPd4254" ) }
+
+    BigDecimal getPd4261() { return getPd4Valor (1 , "mielA" ) }
+    BigDecimal getPd4262() { return getPd4Valor (2 , "mielA" , "getPd4261") }
+    BigDecimal getPd4263() { return getPd4Valor (3 , "mielA" ) }
+    BigDecimal getPd4264() { return getPd4Valor (4 , "mielA" ) }
+    BigDecimal getPd4265() { return getPd4Valor (5 , "mielA", "getPd4263", "getPd4261", "getPd4264" ) }
+
+    BigDecimal getPd4271() { return getPd4Valor (1 , "mielB" ) }
+    BigDecimal getPd4272() { return getPd4Valor (2 , "mielB" , "getPd4271") }
+    BigDecimal getPd4273() { return getPd4Valor (3 , "mielB" ) }
+    BigDecimal getPd4274() { return getPd4Valor (4 , "mielB" ) }
+    BigDecimal getPd4275() { return getPd4Valor (5 , "mielB", "getPd4273", "getPd4271", "getPd4274" ) }
+
+    BigDecimal getPd4281() { return getPd4Valor (1 , "mielF" ) }
+    BigDecimal getPd4282() { return getPd4Valor (2 , "mielF" , "getPd4281") }
+    BigDecimal getPd4283() { return getPd4Valor (3 , "mielF" ) }
+    BigDecimal getPd4284() { return getPd4Valor (4 , "mielF" ) }
+    BigDecimal getPd4285() { return getPd4Valor (5 , "mielF", "getPd4283", "getPd4281", "getPd4284" ) }
+
+    def getPd4Valor (int totalFilaNo, String propiedad, String... args){
+
+        def valor = 0
+        def o0 = detalle42[0]
+        def o1 = detalle42[1]
+        def o2 = detalle42[2]
+        def o3 = detalle42[3]
+        
+        def o4 = detalle41[0] //Brix
+                
+        def v0 = o0 ? ( (BigDecimal)Eval.x(o0, "x."+propiedad)?:0 ) : 0
+        def v1 = o1 ? ( (BigDecimal)Eval.x(o1, "x."+propiedad)?:0 ) : 0
+        def v2 = o2 ? ( (BigDecimal)Eval.x(o2, "x."+propiedad)?:0 ) : 0
+        def v3 = o3 ? ( (BigDecimal)Eval.x(o3, "x."+propiedad)?:0 ) : 0
+
+        def v4 = o4 ? ( (BigDecimal)Eval.x(o4, "x."+propiedad)?:0 ) : 0
+
+
+        switch (totalFilaNo){
+            case 1: 
+                valor = (o1 && o2) ? calcC20 (v1, v2) : 0
+                break
+            
+            case 2:
+                def metodo1 = args.length>0 ? args[0] : ""
+                def v = this."${metodo1}"() ?:0
+                valor = o0 ? ( v - v0 ) : 0
+                break
+            
+            case 3:
+                valor = Calculo.instance.getPorc2(v4, v3, 2)
+                break
+            
+            case 4:
+                valor = Calculo.instance.redondear(5/v3, 2)
+                break
+            
+            case 5:
+                def metodo1 = args.length>0 ? args[0] : ""
+                def metodo2 = args.length>0 ? args[1] : ""
+                def metodo3 = args.length>0 ? args[2] : ""
+                
+                def m1 = this."${metodo1}"() ?:0
+                def m2 = this."${metodo2}"() ?:0
+                def m3 = this."${metodo3}"() ?:0
+                
+                valor = porcCenizas(m1, m2, m3)
+                break
+        }
+
+        return valor
+    }
+
+    def calcC20 (def valor1, def valor2){
+        return Calculo.instance.redondear(valor1/(1+0.023*(valor2-20)),8)
+    }
+
+    def porcCenizas (def valor1, def valor2, def valor3){
+        return Calculo.instance.redondear( (16.2+0.36*valor1)*0.0001*valor2*valor3, 2)
+    }
 
     // ==================================================
     // ACIDEZ VOLATIL
@@ -289,13 +396,13 @@ class Cto24H extends DiaTrabajoEditable {
 
             this.detalle42 = new ArrayList()
             def d4
-            (2..5).each{
+            (1..4).each{
                 d4 = new Cto24HDetalle4()      
                 
-                if (it==2) d4.descripcion="Conductividad Agua"
-                if (it==3) d4.descripcion="Conductividad Mtra"
-                if (it==4) d4.descripcion="Temperatura"
-                if (it==5) d4.descripcion="Peso de muestra"
+                if (it==1) d4.descripcion="Conductividad Agua"
+                if (it==2) d4.descripcion="Conductividad Mtra"
+                if (it==3) d4.descripcion="Temperatura"
+                if (it==4) d4.descripcion="Peso de muestra"
 
                 this.detalle42.add(d4)
             }
