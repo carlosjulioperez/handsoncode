@@ -29,8 +29,10 @@ import static org.openxava.jpa.XPersistence.*
         detalle42;
     }
     Cto24H_cs {
+        detalle5
     }
     Cto24H_ip {
+        detalle6
     }
     Cto24H_av {
         fr;detalle
@@ -259,7 +261,7 @@ class Cto24H extends DiaTrabajoEditable {
                 break
             
             case 4:
-                valor = Calculo.instance.redondear(5/v3, 2)
+                valor = v3>0 ? Calculo.instance.redondear(5/v3, 2): 0
                 break
             
             case 5:
@@ -285,6 +287,18 @@ class Cto24H extends DiaTrabajoEditable {
     def porcCenizas (def valor1, def valor2, def valor3){
         return Calculo.instance.redondear( (16.2+0.36*valor1)*0.0001*valor2*valor3, 2)
     }
+
+    // ==================================================
+    // CENIZAS SULAFATADAS MIEL FINAL O MELAZA (CTO 24 HORAS)
+    // ==================================================
+    @OneToMany (mappedBy="cto24H", cascade=CascadeType.ALL) @EditOnly
+    Collection<Cto24HDetalle5>detalle5
+
+    // ==================================================
+    // INDICE DE PREPARACION
+    // ==================================================
+    @OneToMany (mappedBy="cto24H", cascade=CascadeType.ALL) @EditOnly
+    Collection<Cto24HDetalle6>detalle6
 
     // ==================================================
     // ACIDEZ VOLATIL
@@ -407,6 +421,16 @@ class Cto24H extends DiaTrabajoEditable {
                 this.detalle42.add(d4)
             }
             getManager().persist(cto24H)
+            
+            def d5        = new Cto24HDetalle5()
+            d5.id         = null
+            d5.cto24H     = cto24H
+            getManager().persist(d5)
+            
+            def d6        = new Cto24HDetalle6()
+            d6.id         = null
+            d6.cto24H     = cto24H
+            getManager().persist(d6)
             
         }catch(Exception ex){
             throw new SystemException("detalles_no_cargados", ex)

@@ -1,3 +1,8 @@
+2020-07-21 
+	Cto24HDetalle6
+	Cto24HDetalle5
+	Cálculo de totales de Cto24HDetalle4
+
 2020-07-07
 	Query de métodos promedio como atributos
 	Validar es necesario grabar los promedios (SI)
