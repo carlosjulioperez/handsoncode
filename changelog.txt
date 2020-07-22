@@ -1,3 +1,8 @@
+2020-07-22 
+	Cto24HDetalle8
+	Rediseñar Cto24H
+	Crear @Embedded Cto24HDetalle4
+
 2020-07-21 
 	Ajustar material.csv
 	Ajuste de hora en Cto24HDetalle7 (Acidez Volatil)

@@ -11,6 +11,9 @@ Proyecto
 		DROP TABLE ingenio.blcplantilla;
 
 		Módulo para control de inventario por código de barras
+		
+		//println("\n>>> Root View values:\n" + getView().getRoot().getValues());
+		//println("\n>>> View values:\n" + getView().getValues());
 
 	* Grabar cifras en cero:
 		En los Actions considerar grabar valores de cero y no solamente nulos

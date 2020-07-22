@@ -58,4 +58,7 @@ class Calculo{
         return numero.setScale(escala, BigDecimal.ROUND_HALF_UP)
     }
 
+    def porcCon(def valor1, def valor2){
+        return redondear((valor2-valor1)/valor2*100, 2)
+    }
 }

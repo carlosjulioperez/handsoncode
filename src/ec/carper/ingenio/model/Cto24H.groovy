@@ -12,9 +12,11 @@ import org.openxava.validators.*
 import static org.openxava.jpa.XPersistence.*
 
 @Entity
-@Tab(properties="""diaTrabajo.descripcion""")
+@Tab(properties="""diaTrabajo.descripcion, descripcion""")
 @View(members="""#
     diaTrabajo, fFelining;
+    descripcion;
+
     Cto24H_atr {
         detalle1
     }
@@ -47,6 +49,9 @@ class Cto24H extends DiaTrabajoEditable {
     
     @Digits(integer=3, fraction=3) @DisplaySize(6) @Required
     BigDecimal fFelining
+
+    @Column(length=50) @Required
+    String descripcion
     
     // ==================================================
     // AZÚCARES TOTALES REDUCTORES A.T.R.
@@ -328,7 +333,16 @@ class Cto24H extends DiaTrabajoEditable {
     // % CONCENTRACION TOT LINEA EVAPORACION
     // ==================================================
     @ElementCollection @EditOnly
+    @ListProperties("""
+        filaNo,descripcion,brixRef,brixEle,
+        porc[cto24H.pd8]
+    """)
     Collection<Cto24HDetalle8>detalle8
+    BigDecimal getPd8(){
+        def v1 = detalle8[0] ? (detalle8[0].brixEle ?:0) : 0 
+        def v2 = detalle8[4] ? (detalle8[4].brixEle ?:0) : 0 
+        return v2 ? Calculo.instance.porcCon(v1, v2): 0
+    }
 
     void actualizar() throws ValidationException{
         try{

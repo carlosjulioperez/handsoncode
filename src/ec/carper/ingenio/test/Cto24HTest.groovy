@@ -15,9 +15,66 @@ class Cto24HTest extends ModuleTestBase {
         
         execute("CRUD.new")
         
-        setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
-        setValue("fFelining" , "0.997")
+        setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
+        setValue("fFelining"     , "0.997")
+        setValue("descripcion"   , "JUNIT")
+        execute ("CRUD.save")
+        assertNoErrors()
+
+        setValue   ("descripcion", "JUNIT")
+        execute    ("CRUD.refresh")
+        assertValue("descripcion", "JUNIT")
+        execute    ("Cto24H.cargarDetalles")
         
+        // Detalle 1
+        assertCollectionRowCount("detalle1", 1)
+        execute("Collection.edit" , "row=0,viewObject=xava_view_section0_detalle1")
+        assertDialog()
+        setValue    ( "cana"       , "1")
+        setValue    ( "j1Extracto" , "2")
+        setValue    ( "jDiluido"   , "3")
+        setValue    ( "jClaro"     , "4")
+        setValue    ( "jFiltrado"  , "5")
+        setValue    ( "mClara"     , "6")
+        setValue    ( "mielA"      , "7")
+        setValue    ( "mielB"      , "8")
+        setValue    ( "mielF"      , "9")
+        assertValue ( "pd11"       , "771.36")
+        assertValue ( "pd12"       , "128.56")
+        assertValue ( "pd13"       , "85.71")
+        assertValue ( "pd14"       , "64.28")
+        assertValue ( "pd15"       , "51.42")
+        assertValue ( "pd16"       , "171.41")
+        assertValue ( "pd17"       , "146.93")
+        assertValue ( "pd18"       , "128.56")
+        assertValue ( "pd19"       , "114.28")
+        execute("Collection.save")
+        assertNoErrors()
+
+        execute("Sections.change", "activeSection=1")
+        assertCollectionRowCount("detalle2", 1)
+        execute("Collection.edit" , "row=0,viewObject=xava_view_section1_detalle2")
+        assertDialog()
+        setValue    ( "bv600"       , "224.0168")
+        setValue    ( "bv50"        , "28.8723")
+        setValue    ( "sc4"         , "4.0003")
+        setValue    ( "sc8"         , "8")
+        setValue    ( "pf"          , "2.3628")
+        setValue    ( "pj"          , "150")
+        setValue    ( "bs600"       , "222.6286")
+        setValue    ( "bs50"        , "43.8265")
+        assertValue ( "masa1"       , "267.2522")
+        assertValue ( "masa2"       , "417.2522") 
+        assertValue ( "masa3"       , "266.4551")
+        assertValue ( "porcInso"    , "-0.53")
+        execute("Collection.save")
+        assertNoErrors()
+
+        // FINALIZAR
+        execute    ("CRUD.delete")
+        assertNoErrors()
+
+        /*
         execute("Sections.change", "activeSection=2")
         assertCollectionRowCount("detalle3", 0) // La colección esta vacía 
         execute("Collection.new" , "viewObject=xava_view_section2_detalle3")
@@ -67,6 +124,7 @@ class Cto24HTest extends ModuleTestBase {
 
         execute("CRUD.delete")
         assertNoErrors()
+        */
        
         // execute("Sections.change", "activeSection=2");
         // setValue    ( "fr"     , "0.641")
