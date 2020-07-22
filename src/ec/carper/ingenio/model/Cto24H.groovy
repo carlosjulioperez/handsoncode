@@ -35,9 +35,10 @@ import static org.openxava.jpa.XPersistence.*
         detalle6
     }
     Cto24H_av {
-        fr;detalle
+        fr;detalle7
     }   
     Cto24H_ce {
+        detalle8
     }
 """)
 class Cto24H extends DiaTrabajoEditable {
@@ -317,11 +318,17 @@ class Cto24H extends DiaTrabajoEditable {
         fd     [cto24H.promFd],
         ppm    [cto24H.promPpm]
     """)
-    Collection<Cto24HDetalle>detalle
+    Collection<Cto24HDetalle7>detalle7
 
-    BigDecimal getPromMlTitu() { return super.getPromedio(detalle, "mlTitu", 2) }
-    BigDecimal getPromFd    () { return super.getPromedio(detalle, "fd",     2) }
-    BigDecimal getPromPpm   () { return super.getPromedio(detalle, "ppm",    2) }
+    BigDecimal getPromMlTitu() { return super.getPromedio(detalle7, "mlTitu", 2) }
+    BigDecimal getPromFd    () { return super.getPromedio(detalle7, "fd",     2) }
+    BigDecimal getPromPpm   () { return super.getPromedio(detalle7, "ppm",    2) }
+
+    // ==================================================
+    // % CONCENTRACION TOT LINEA EVAPORACION
+    // ==================================================
+    @ElementCollection @EditOnly
+    Collection<Cto24HDetalle8>detalle8
 
     void actualizar() throws ValidationException{
         try{
@@ -432,6 +439,22 @@ class Cto24H extends DiaTrabajoEditable {
             d6.cto24H     = cto24H
             getManager().persist(d6)
             
+            this.detalle8 = new ArrayList()
+            def d8
+            (1..5).each{
+                d8 = new Cto24HDetalle8()
+                d8.filaNo = it
+
+                if (it==1) d8.descripcion="BX J. CLARO"
+                if (it==2) d8.descripcion="SALIDA EVAP I"
+                if (it==3) d8.descripcion="SALIDA EVAP II"
+                if (it==4) d8.descripcion="SALIDA EVAP III"
+                if (it==5) d8.descripcion="SALIDA EVAP IV"
+
+                this.detalle8.add(d8)
+            }
+            getManager().persist(cto24H)
+
         }catch(Exception ex){
             throw new SystemException("detalles_no_cargados", ex)
         }
@@ -453,28 +476,4 @@ class Cto24H extends DiaTrabajoEditable {
         return o
     }
     
-    // Métodos de cálculos
-    def calcJugo (def atributo){
-        def valor = 0.0
-        if (detalle){
-            detalle1.each {
-                def v = (BigDecimal)Eval.x(it, "x."+atributo)
-                valor = Calculo.instance.redondear((5.127 / (v * fFelining * 0.02)), 2)
-            }
-        }
-        println "calcJugo para ${atributo}: ${valor}"
-        return valor 
-    }
-
-    def calcMiel (def atributo){
-        def valor = 0.0
-        if (detalle){
-            detalle1.each {
-                def v = (BigDecimal)Eval.x(it, "x."+atributo)
-                valor = Calculo.instance.redondear((5.127 / (v * fFelining * 0.005)), 2)
-            }
-        }
-        println "calcMiel para ${atributo}: ${valor}"
-        return valor
-    }
 }

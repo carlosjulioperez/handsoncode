@@ -1,4 +1,6 @@
 2020-07-21 
+	Ajustar material.csv
+	Ajuste de hora en Cto24HDetalle7 (Acidez Volatil)
 	Cto24HDetalle6
 	Cto24HDetalle5
 	Cálculo de totales de Cto24HDetalle4

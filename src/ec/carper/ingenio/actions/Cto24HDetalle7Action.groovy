@@ -1,15 +1,20 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.model.*
-import ec.carper.ingenio.util.Calculo
+import ec.carper.ingenio.util.*
 
 import java.sql.Timestamp
 import org.openxava.actions.*
 
-//TODO: Renombrar
-class Cto24HDetalleAction extends OnChangePropertyBaseAction{
+class Cto24HDetalle7Action extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
+
+        def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
+        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(diaTrabajoId)
+        String horaS = (String)getView().getValue("horaS")
+        if (horaS)
+            getView().setValue("hora", Util.instance.toTimestamp(horaS, diaTrabajo.fecha)) 
 
         BigDecimal fr     = (BigDecimal)getView().getRoot().getValue("fr")
         
