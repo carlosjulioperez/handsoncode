@@ -21,6 +21,39 @@ class ParoTest extends ModuleTestBase {
         super(testName, "Ingenio", "Paro")
     }
     
+    void testCrear() throws Exception {
+        login("admin", "admin")
+        
+        execute("CRUD.new")
+        setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
+        assertCollectionRowCount("detalle", 0) // La colección esta vacía 
+        execute("Collection.new" , "viewObject=xava_view_detalle")
+        assertDialog()
+        
+        setValue    ( "horaI"            , "07:41")
+        setValue    ( "horaF"            , "09:54")
+        assertValue ( "fechaInicio"      , "07/08/2019 07:41")
+        assertValue ( "fechaFin"         , "07/08/2019 09:54")
+        assertValue ( "totalParo"        , "02:13:00")
+        setValue    ( "area.id"          , "01")
+        setValue    ( "descripcion"      , "JUNIT")
+        
+        execute("Collection.save")
+        assertNoErrors()
+        assertCollectionRowCount("detalle", 1)
+
+        assertTotalInCollection("detalle" , 0 , "totalParo" , "02:13:00")
+
+        execute("CRUD.delete")
+        assertNoErrors()
+    }
+
+    void _test(){
+        //sumaTiempos()
+        //getConsultaClaseIncrustada()
+        elapsedStrings()
+    }
+
     /**
         Imprimir duration en java puro:
         https://stackoverflow.com/questions/38054179/how-do-i-convert-a-jodatime-duration-into-a-string-formatted-as-hhmmss
@@ -35,12 +68,6 @@ class ParoTest extends ModuleTestBase {
     * Modulus:
     * https://www.tecmint.com/arithmetic-in-linux-terminal/
     */
-    void test(){
-        //sumaTiempos()
-        //getConsultaClaseIncrustada()
-        elapsedStrings()
-    }
-
     void sumaTiempos(){
         def timeList = [ "01:40:01", "11:00:05", "10:24:03" ]
         def duration = Util.instance.getDuration(timeList)

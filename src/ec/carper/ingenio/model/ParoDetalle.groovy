@@ -32,11 +32,11 @@ class ParoDetalle extends Identifiable {
     @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp fechaFin
 
-    @Column(length=8) @ReadOnly
+    @Column(length=8) @ReadOnly @Required
     String totalParo
     
     @ManyToOne(fetch=FetchType.LAZY)
-    @DescriptionsList @NoCreate @NoModify
+    @DescriptionsList @NoCreate @NoModify @Required
     Area area
 
     @Column(length=100) @DisplaySize(50) @Required
