@@ -1,42 +1,42 @@
 package ec.carper.ingenio.model
 
-import ec.carper.ingenio.util.Util
-import java.time.LocalDate
+import ec.carper.ingenio.actions.*
+import ec.carper.ingenio.util.*
+
 import javax.persistence.*
-import org.apache.commons.logging.*
 import org.openxava.annotations.*
-import org.openxava.calculators.*
 import org.openxava.model.*
 
-@Embeddable
-class ParoDetalle{
+@Entity
+@View(members="""#
+    horaI, fechaInicio;
+    horaF, fechaFin;
+    totalParo, area;
+    descripcion
+""")
+class ParoDetalle extends Identifiable {
 
-    private static Log log = LogFactory.getLog(ParoDetalle.class)
-
-    // https://github.com/mariuszs/openxava/blob/master/source/src/test/java/org/openxava/test/model/Clerk.java
+    @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
+    Paro paro
     
-    @Stereotype("DATETIME") @Required
+    // https://github.com/mariuszs/openxava/blob/master/source/src/test/java/org/openxava/test/model/Clerk.java
+    @Stereotype("TIME") @OnChange(ParoDetalleAction.class) @Required
+    String horaI
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp fechaInicio
 
-    @Stereotype("DATETIME") @Required
+    @Stereotype("TIME") @OnChange(ParoDetalleAction.class) @Required
+    String horaF
+
+    @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp fechaFin
 
-    @Column(length=8)
-    @Depends("fechaInicio,fechaFin") //Propiedad calculada
-    String getCalParo(){
-        if (fechaInicio!=null && fechaFin!=null ) {
-            long startTime = fechaInicio.getTime()
-            long endTime = fechaFin.getTime()
-            
-            //log.warn ("Start: ${startTime}, end: ${endTime} ")
-
-            return Util.instance.getDurationAsString(startTime, endTime)
-        }
-        else return ""
-    }
+    @Column(length=8) @ReadOnly
+    String totalParo
     
     @ManyToOne(fetch=FetchType.LAZY)
-    @DescriptionsList
+    @DescriptionsList @NoCreate @NoModify
     Area area
 
     @Column(length=100) @DisplaySize(50) @Required

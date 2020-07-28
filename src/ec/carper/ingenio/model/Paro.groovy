@@ -1,56 +1,89 @@
 package ec.carper.ingenio.model
 
 import ec.carper.ingenio.util.Util
-import java.time.LocalDate
+
 import javax.persistence.*
 import org.openxava.annotations.*
-import org.openxava.calculators.*
+import org.openxava.jpa.*
 import org.openxava.model.*
+import org.openxava.util.*
+import org.openxava.validators.*
+import static org.openxava.jpa.XPersistence.*;
 
 @Entity
-@Tab(properties="""fecha,observaciones,totalParo""")
-@View(members=  """fecha;observaciones;detalles""")
-class Paro extends Identifiable{
+@Tab(properties="""diaTrabajo.descripcion,totalParada""")
+@View(members=  """diaTrabajo;detalle;total""")
+class Paro extends DiaTrabajoEditable {
 
-    @Version
-    private Integer version;
-
-    @DefaultValueCalculator(CurrentLocalDateCalculator.class) // Fecha actual
-    @Required
-    LocalDate fecha
+    @OneToMany (mappedBy="paro", cascade=CascadeType.ALL)
+    @ListProperties(""" fechaInicio,fechaFin,area.descripcion,descripcion,totalParo[paro.sumaParo] """)
+    Collection<ParoDetalle> detalle
     
-    @Column(length=100) @Required
-    String observaciones 
-
-    @ElementCollection
-    @ListProperties("""
-        area,descripcion,fechaInicio,fechaFin,
-        calParo[paro.sumaParo]
-    """)
-    Collection<ParoDetalle>detalles
+    @ElementCollection @ReadOnly
+    @ListProperties(""" area.descripcion,totalParo """)
+    Collection<ParoTotal> total 
     
-    String totalParo
+    String totalParada
     
-    String getSumaParo(){
+    void actualizar() throws ValidationException{
         try{
-            def timeList = []
-            detalles.each { timeList << it.calParo }
-            //prinln ">>>>>>>>>>>>>>> " + timeList.size()
-            def duration = Util.instance.getDuration(timeList)
-            def valor = Util.instance.toTimeString(duration)
-            return valor
-        }catch (Exception e){
-           return ""
+            this.totalParada = sumaParo
+            getManager().persist(this)
+        }catch(Exception ex){
+            throw new SystemException("registro_no_actualizado", ex)
         }
     }
+    
+    private void agregarTotal(def areaId, def totalArea){
+        def d    = Util.instance.getDuration(totalArea)
+        def v    = Util.instance.toTimeString(d)
 
-    @PrePersist // Ejecutado justo antes de grabar el objeto por primera vez
-    private void preGrabar() throws Exception {
-        recalcularTotalParo()
+        def area = new Area()
+        area.id  = areaId
+        def p    = new ParoTotal(area: area, totalParo: v)
+        
+        this.total.add(p)
     }
 
-    @PreUpdate
-    void recalcularTotalParo() {
-        setTotalParo(sumaParo)
+    String getSumaParo(){
+        this.total = new ArrayList()
+        def totalGeneral = []
+        def totalArea = []
+        int i=0
+        
+        Query query = getManager().createQuery("from ParoDetalle o where paro.id= :id order by area.id")
+        query.setParameter("id", this.id) 
+        
+        def lista = query.resultList
+        //println ">>> lista: ${lista}"
+        lista.each{
+            totalArea << it.totalParo 
+
+            if ( i < lista.size()-1 ){
+                if ( it.area.id != lista[i+1].area.id ){
+                    agregarTotal(it.area.id, totalArea)                    
+                    totalArea = []
+                }
+            }else
+                agregarTotal(it.area.id, totalArea) //Ultimo elemento
+
+            i++ 
+            
+            totalGeneral << it.totalParo 
+        }
+        def duration = Util.instance.getDuration(totalGeneral)
+        def valor = Util.instance.toTimeString(duration)
+
+        // detalle.each { 
+        //     //println ">>>area id: ${it.area.id}"
+        //     totalGeneral << it.totalParo 
+        // }
+        // //prinln ">>>>>>>>>>>>>>> " + totalGeneral.size()
+        // def duration = Util.instance.getDuration(totalGeneral)
+        // def valor = Util.instance.toTimeString(duration)
+        // //println ">>>valor: ${valor}"
+
+        return valor
     }
+
 }

@@ -7,13 +7,6 @@
 -- PostgreSQL
 --DROP SCHEMA ingenio CASCADE;
 
-DROP TABLE ingenio.cto24h_detalle8;
-DROP TABLE ingenio.cto24hdetalle7;
-DROP TABLE ingenio.cto24hdetalle6;
-DROP TABLE ingenio.cto24hdetalle5;
-DROP TABLE ingenio.cto24h_detalle42;
-DROP TABLE ingenio.cto24h_detalle41;
-DROP TABLE ingenio.cto24hdetalle3;
-DROP TABLE ingenio.cto24hdetalle2;
-DROP TABLE ingenio.cto24hdetalle1;
-DROP TABLE ingenio.cto24h;
+DROP TABLE ingenio.paro_total;
+DROP TABLE ingenio.parodetalle;
+DROP TABLE ingenio.paro;

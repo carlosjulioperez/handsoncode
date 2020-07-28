@@ -18,7 +18,7 @@ class Cto24HDetalle8{
     @OnChange(Cto24HDetalle8Action.class) @DisplaySize(6)
     BigDecimal brixRef
     
-    @DisplaySize(6) @ReadOnly
+    @OnChange(Cto24HDetalle8Action.class) @DisplaySize(6) @ReadOnly
     BigDecimal brixEle
     
     @DisplaySize(6) @ReadOnly

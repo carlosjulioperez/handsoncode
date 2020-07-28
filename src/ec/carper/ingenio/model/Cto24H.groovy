@@ -13,7 +13,7 @@ import static org.openxava.jpa.XPersistence.*
 
 @Entity
 @Tab(properties="""diaTrabajo.descripcion, descripcion""")
-@View(members="""#
+@View(members="""
     diaTrabajo, fFelining;
     descripcion;
 
@@ -78,7 +78,7 @@ class Cto24H extends DiaTrabajoEditable {
         mielB      [ cto24H.pd18 ],
         mielF      [ cto24H.pd19 ]
     """)
-    Collection<Cto24HDetalle1>detalle1
+    Collection<Cto24HDetalle1> detalle1
     
     //BigDecimal getPd11() { return Calculo.instance.redondear((calcJugo("cana")*3), 2) }
     BigDecimal getPd11() { return detalle1[0] ? detalle1[0].pd11: 0 }
@@ -102,7 +102,7 @@ class Cto24H extends DiaTrabajoEditable {
     
     @OneToMany (mappedBy="cto24H", cascade=CascadeType.ALL) @EditOnly
     @ListProperties(""" masa1, masa2, masa3, porcInso """)
-    Collection<Cto24HDetalle2>detalle2
+    Collection<Cto24HDetalle2> detalle2
 
     // ==================================================
     // AZUCARES REDUCTORES - Lane Eynon
@@ -139,7 +139,7 @@ class Cto24H extends DiaTrabajoEditable {
         mielB      [ cto24H.pd318, cto24H.pd328 ],
         mielF      [ cto24H.pd319, cto24H.pd329 ]
     """)
-    Collection<Cto24HDetalle3>detalle3
+    Collection<Cto24HDetalle3> detalle3
 
     BigDecimal getPd311() { return detalle3[0] ? detalle3[0].pd311: 0 }
     BigDecimal getPd312() { return detalle3[0] ? detalle3[0].pd312: 0 }
@@ -169,7 +169,7 @@ class Cto24H extends DiaTrabajoEditable {
     @ListProperties("""
         descripcion, j1Extracto, jDiluido, jClaro, jFiltrado, mClara, mielA, mielB, mielF
     """)
-    Collection<Cto24HDetalle4>detalle41
+    Collection<Cto24HDetalle4> detalle41
         
     @ElementCollection @EditOnly
     @ListProperties("""
@@ -183,7 +183,7 @@ class Cto24H extends DiaTrabajoEditable {
         mielB     [ cto24H.pd4271, cto24H.pd4272, cto24H.pd4273, cto24H.pd4274, cto24H.pd4275 ],
         mielF     [ cto24H.pd4281, cto24H.pd4282, cto24H.pd4283, cto24H.pd4284, cto24H.pd4285 ]
     """)
-    Collection<Cto24HDetalle4>detalle42
+    Collection<Cto24HDetalle4> detalle42
     
     BigDecimal getPd4211() { return getPd4Valor (1 , "j1Extracto") }
     BigDecimal getPd4212() { return getPd4Valor (2 , "j1Extracto" , "getPd4211") }
@@ -298,13 +298,13 @@ class Cto24H extends DiaTrabajoEditable {
     // CENIZAS SULAFATADAS MIEL FINAL O MELAZA (CTO 24 HORAS)
     // ==================================================
     @OneToMany (mappedBy="cto24H", cascade=CascadeType.ALL) @EditOnly
-    Collection<Cto24HDetalle5>detalle5
+    Collection<Cto24HDetalle5> detalle5
 
     // ==================================================
     // INDICE DE PREPARACION
     // ==================================================
     @OneToMany (mappedBy="cto24H", cascade=CascadeType.ALL) @EditOnly
-    Collection<Cto24HDetalle6>detalle6
+    Collection<Cto24HDetalle6> detalle6
 
     // ==================================================
     // ACIDEZ VOLATIL
@@ -323,7 +323,7 @@ class Cto24H extends DiaTrabajoEditable {
         fd     [cto24H.promFd],
         ppm    [cto24H.promPpm]
     """)
-    Collection<Cto24HDetalle7>detalle7
+    Collection<Cto24HDetalle7> detalle7
 
     BigDecimal getPromMlTitu() { return super.getPromedio(detalle7, "mlTitu", 2) }
     BigDecimal getPromFd    () { return super.getPromedio(detalle7, "fd",     2) }
@@ -337,11 +337,19 @@ class Cto24H extends DiaTrabajoEditable {
         filaNo,descripcion,brixRef,brixEle,
         porc[cto24H.pd8]
     """)
-    Collection<Cto24HDetalle8>detalle8
+    Collection<Cto24HDetalle8> detalle8
+
     BigDecimal getPd8(){
-        def v1 = detalle8[0] ? (detalle8[0].brixEle ?:0) : 0 
-        def v2 = detalle8[4] ? (detalle8[4].brixEle ?:0) : 0 
-        return v2 ? Calculo.instance.porcCon(v1, v2): 0
+        
+        BigDecimal v1 = detalle8[0] ? (detalle8[0].brixEle ?:0) : 0 
+        BigDecimal v2 = detalle8[4] ? (detalle8[4].brixEle ?:0) : 0 
+        BigDecimal v  = v2 ? Calculo.instance.porcCon(v1, v2): 0
+        //println ">>> detalle8: ${detalle8}"
+        // println ">>> v1: ${v1}"
+        // println ">>> v2: ${v2}"
+        // println ">>> v:  ${v}"
+
+        return v
     }
 
     void actualizar() throws ValidationException{

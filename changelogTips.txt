@@ -1,5 +1,8 @@
 Proyecto
 	* TODO:
+
+		Acumulado de paros
+
 		https://www.programcreek.com/java-api-examples/?class=org.apache.commons.math3.stat.regression.SimpleRegression&method=getIntercept
 		Tablas: Material, Unidad, etc.
 
@@ -12,6 +15,8 @@ Proyecto
 
 		Módulo para control de inventario por código de barras
 		
+        // println ">>> getKeyValues(): " + getView().getKeyValues()
+        // println ">>> getKeyValuesWithValue(): " + getView().getKeyValuesWithValue()
 		//println("\n>>> Root View values:\n" + getView().getRoot().getValues());
 		//println("\n>>> View values:\n" + getView().getValues());
 
@@ -46,6 +51,9 @@ Proyecto
 		https://gist.github.com/bcremer/6111530
 
 	* Importar datos:
+		# psql -U postgres -d ingenio -a -f /home/carper/local/project/workspace/Ingenio/etc/sql/insert.sql
+		INSERT INTO ingenio.ingenio.unidad ("id", descripcion) VALUES ('04', '%/ TCM');
+
 		csv: Tablas de configuración por el usuario (importGroovy y *.csv)
 		sql: Transacciones de prueba (insert.sql)
 

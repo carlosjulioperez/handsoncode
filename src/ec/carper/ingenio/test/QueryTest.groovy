@@ -32,8 +32,9 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
+        getListaOrdenadaParoDetalle()
         //getCto24H() //DESCARTADO
-        getDiaTrabajo()
+        //getDiaTrabajo()
         //isDiaTrabajoCerrado()
         //getTrashCanaDiaTrabajoCerrado()
         //getTrashCanaDetalle2()
@@ -43,9 +44,6 @@ class QueryTest extends ModuleTestBase {
     void getDiaTrabajo(){
         DiaTrabajo diaTrabajo = getManager().find( DiaTrabajo.class, Aux.instance.diaTrabajoId) 
         println diaTrabajo.fecha
-    }
-
-    void getBlcDetalle1(){
     }
 
     void isDiaTrabajoCerrado(){
@@ -59,7 +57,6 @@ class QueryTest extends ModuleTestBase {
             .getSingleResult()
 
         println cerrado
-
     }
 
     void getTrashCanaDetalle2(){
@@ -101,6 +98,14 @@ class QueryTest extends ModuleTestBase {
             println ("**************************************************")
             println (o.pd11)
             println (o.pd12)
+        }
+    }
+    
+    void getListaOrdenadaParoDetalle(){
+        Query query = getManager().createQuery("from ParoDetalle o where paro.id= :id order by area.id")
+        query.setParameter("id", "ff808081738e55b401738e567b880000")
+        query.resultList.each{
+            println it.area.id + " " + it.totalParo 
         }
     }
     
