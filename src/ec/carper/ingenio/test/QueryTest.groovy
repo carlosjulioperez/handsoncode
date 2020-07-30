@@ -32,7 +32,9 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getListaOrdenadaParoDetalle()
+        getParoTotal()
+        //unSoloRegistro()
+        //getListaOrdenadaParoDetalle()
         //getCto24H() //DESCARTADO
         //getDiaTrabajo()
         //isDiaTrabajoCerrado()
@@ -41,9 +43,27 @@ class QueryTest extends ModuleTestBase {
         //getNativo()
     }
 
+    void getParoTotal(){
+        def lista = getManager().createQuery("FROM Paro where diaTrabajo.id= :id")
+                                .setParameter("id", Aux.instance.diaTrabajoId).resultList
+        lista.each{
+            it.total.each{
+                println it.area.descripcion + " " + it.totalParo
+            }
+        }
+    }
+
     void getDiaTrabajo(){
         DiaTrabajo diaTrabajo = getManager().find( DiaTrabajo.class, Aux.instance.diaTrabajoId) 
         println diaTrabajo.fecha
+    }
+
+    void unSoloRegistro(){
+        def modulo = "Paro"
+        Query query = getManager().createQuery("select count(*) from ${modulo} where diaTrabajo.id= :id")
+        query.setParameter("id", Aux.instance.diaTrabajoId)
+        def numero = (Integer)query.getSingleResult()
+        println numero
     }
 
     void isDiaTrabajoCerrado(){

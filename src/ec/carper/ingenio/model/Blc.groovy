@@ -1,5 +1,7 @@
 package ec.carper.ingenio.model
 
+import ec.carper.ingenio.calculators.*
+
 import java.time.LocalDate
 import javax.persistence.*
 import org.openxava.annotations.*
@@ -18,6 +20,7 @@ import static org.openxava.jpa.XPersistence.*
     diaTrabajo;
     datos {
         datosDia { detalle1 }
+        tiempos { paroTotal }
     }
 """)
 class Blc extends DiaTrabajoEditable {
@@ -27,6 +30,17 @@ class Blc extends DiaTrabajoEditable {
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL)
     @EditOnly
     Collection<BlcDetalle1>detalle1
+    
+    @DefaultValueCalculator(
+        value=BlcParoTotalCalculator.class, // Esta clase calcula el valor inicia
+        properties=@PropertyValue(
+            name="diaTrabajoId", // La propiedad del calculador...
+            from="super.diaTrabajo.id" // ... se llena con el valor de la entidad
+        ) 
+    )
+    @ElementCollection @ReadOnly @Transient
+    @ListProperties(""" area.descripcion,totalParo """)
+    Collection<ParoTotal> paroTotal 
 
     void cargarItems() throws ValidationException{
         try{
@@ -40,8 +54,9 @@ class Blc extends DiaTrabajoEditable {
 
     void cargarDetalles(Blc blc){
         try{
-            def lista = getManager().createQuery("FROM BlcPDetalle1 WHERE blcP.id = 1 ORDER BY orden").getResultList()
 
+            // datosDia
+            def lista = getManager().createQuery("FROM BlcPDetalle1 WHERE blcP.id = 1 ORDER BY orden").getResultList()
             lista.each{
                 def d1      = new BlcDetalle1()
                 d1.id       = null
@@ -51,6 +66,18 @@ class Blc extends DiaTrabajoEditable {
                 d1.unidad2  = it.unidad2
                 getManager().persist(d1)
             }
+
+            // tiempos
+            // lista = getManager().createQuery("FROM Paro where diaTrabajo.id= :id")
+            //                         .setParameter("id", super.diaTrabajo.id).resultList
+            // lista.each{
+            //     it.total.each{
+            //         //def p = new ParoTotal()
+            //         paroTotal.add( new ParoTotal (area: it.area, totalParo: it.totalParo) )
+            //         //println it.area.descripcion + " " + it.totalParo
+            //     }
+            // }
+
         }catch(Exception ex){
             throw new SystemException("items_no_cargados", ex)
         }

@@ -1,5 +1,7 @@
 package ec.carper.ingenio.model
 
+import ec.carper.ingenio.actions.*
+
 import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.model.*
@@ -9,7 +11,7 @@ class DiaTrabajoEditable extends Identifiable{
 
     @ManyToOne(fetch=FetchType.LAZY)
     @DescriptionsList @NoCreate @NoModify
-    //@DescriptionsList(descriptionProperties="numeroDia,fecha") @NoCreate @NoModify
+    @OnChange(DiaTrabajoEditableAction.class)
     DiaTrabajo diaTrabajo
 
     BigDecimal getPromedio(def detalle, String propiedad, int escala){
@@ -22,21 +24,4 @@ class DiaTrabajoEditable extends Identifiable{
         return lista.size()>0 ? ( lista.sum() / lista.size() ).setScale(escala, BigDecimal.ROUND_HALF_UP) : 0
     }
 
-    // @PrePersist
-    // void execute() throws Exception{
-    //     //TODO Ejemplo para ejecutar queries desde Groovy
-    //     def modulo = getClass().getSimpleName()
-    //     println ( ">>>>>>>>>>>" + modulo )
-    //     Query query = getManager().createQuery("select count(*) from ${modulo}")
-    //     def numero = (Integer)query.getSingleResult()
-    //     //System.out.println(numero)
-    //
-    //     if ( numero >0 ){
-    //         return
-    //         // addMessage ("solo_crear_un_registro")
-    //         //
-    //         // resetDescriptionsCache()
-    //         // getView().clear()
-    //     }
-    // }
 }

@@ -1,3 +1,13 @@
+2020-07-29 
+	Crear DiaTrabajoEditableAction para validar un solo registro +ingenio
+
+2020-07-28 
+	Renombrar DiaTrabajoEditableAction a DiaTrabajoSaveAction +ingenio
+	Test para validar un solo registro por diaTrabajo
+	Informe de avance del sistema +ingenio
+	ParoTest +ingenio
+	Tabla paros +ingenio
+
 2020-07-25 
 	Cto24HTest
 
