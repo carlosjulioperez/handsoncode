@@ -86,6 +86,9 @@ Proyecto
 	* Nota 3:
 	En las propiedades calculadas no se deben hacer setters a otros miembros de clase. Eso provoca un ConcurrentException.
 
+	* Nota 4:
+	No se pueden usar totales colecciones que vienen de propidades calculadas.
+
 	https://trello.com/b/lZwKk47m/fabrica
 	Locale: iso-8859-1
 

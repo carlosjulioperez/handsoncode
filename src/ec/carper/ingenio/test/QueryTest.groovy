@@ -1,8 +1,9 @@
 package ec.carper.ingenio.test
  
-import javax.persistence.Query;
-
 import ec.carper.ingenio.model.*
+import ec.carper.ingenio.util.*
+
+import javax.persistence.Query;
 import org.apache.commons.logging.*
 import org.openxava.tests.*
 import static org.openxava.jpa.XPersistence.*;
@@ -32,7 +33,8 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getParoTotal()
+        getValorCampo()
+        //getParoTotal()
         //unSoloRegistro()
         //getListaOrdenadaParoDetalle()
         //getCto24H() //DESCARTADO
@@ -41,6 +43,10 @@ class QueryTest extends ModuleTestBase {
         //getTrashCanaDiaTrabajoCerrado()
         //getTrashCanaDetalle2()
         //getNativo()
+    }
+
+    void getValorCampo(){
+        println SqlUtil.instance.getCampo(Aux.instance.diaTrabajoId, "Paro" , "totalParada")
     }
 
     void getParoTotal(){

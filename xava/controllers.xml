@@ -24,6 +24,9 @@
         <action name="cargarItems" mode="detail" 
         	class="ec.carper.ingenio.actions.BlcCargarItemsAction">
     	</action>
+        <action name="consultarDatos" mode="detail" 
+        	class="ec.carper.ingenio.actions.BlcConsultarDatosAction">
+    	</action>
     </controller>   
 
     <controller name="BrixDensidadTitSus">

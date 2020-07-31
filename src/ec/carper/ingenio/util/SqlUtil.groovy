@@ -17,6 +17,12 @@ class SqlUtil{
         return query.resultList[0]?: 0
     }
 
+    String getCampo(String diaTrabajoId, String modulo, String campo){
+        Query query = getManager().createQuery("SELECT ${campo} FROM ${modulo} WHERE diaTrabajo.id = :diaTrabajoId")
+        query.setParameter("diaTrabajoId", diaTrabajoId)
+        return query.resultList[0]?: ""
+    }
+
     def getDiaTrabajo(String diaTrabajoId){
         return getManager().find(DiaTrabajo.class, diaTrabajoId)
     }

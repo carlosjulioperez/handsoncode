@@ -1,6 +1,7 @@
 package ec.carper.ingenio.model
 
 import ec.carper.ingenio.calculators.*
+import ec.carper.ingenio.util.*
 
 import java.time.LocalDate
 import javax.persistence.*
@@ -18,10 +19,8 @@ import static org.openxava.jpa.XPersistence.*
 """)
 @View(members="""
     diaTrabajo;
-    datos {
-        datosDia { detalle1 }
-        tiempos { paroTotal }
-    }
+    datosDia { detalle1 }
+    tiempos { paroTotal }
 """)
 class Blc extends DiaTrabajoEditable {
     
@@ -31,17 +30,10 @@ class Blc extends DiaTrabajoEditable {
     @EditOnly
     Collection<BlcDetalle1>detalle1
     
-    @DefaultValueCalculator(
-        value=BlcParoTotalCalculator.class, // Esta clase calcula el valor inicia
-        properties=@PropertyValue(
-            name="diaTrabajoId", // La propiedad del calculador...
-            from="super.diaTrabajo.id" // ... se llena con el valor de la entidad
-        ) 
-    )
     @ElementCollection @ReadOnly @Transient
-    @ListProperties(""" area.descripcion,totalParo """)
+    @ListProperties(""" area.descripcion,totalParo[blc.totalParada] """)
     Collection<ParoTotal> paroTotal 
-
+    
     void cargarItems() throws ValidationException{
         try{
             this.itemsCargados = true
@@ -54,7 +46,6 @@ class Blc extends DiaTrabajoEditable {
 
     void cargarDetalles(Blc blc){
         try{
-
             // datosDia
             def lista = getManager().createQuery("FROM BlcPDetalle1 WHERE blcP.id = 1 ORDER BY orden").getResultList()
             lista.each{
@@ -66,21 +57,32 @@ class Blc extends DiaTrabajoEditable {
                 d1.unidad2  = it.unidad2
                 getManager().persist(d1)
             }
-
-            // tiempos
-            // lista = getManager().createQuery("FROM Paro where diaTrabajo.id= :id")
-            //                         .setParameter("id", super.diaTrabajo.id).resultList
-            // lista.each{
-            //     it.total.each{
-            //         //def p = new ParoTotal()
-            //         paroTotal.add( new ParoTotal (area: it.area, totalParo: it.totalParo) )
-            //         //println it.area.descripcion + " " + it.totalParo
-            //     }
-            // }
-
         }catch(Exception ex){
             throw new SystemException("items_no_cargados", ex)
         }
+    }
+
+    void consultarDatos() throws ValidationException{
+        try{ 
+            consultarParoTotal()
+        }catch(Exception ex){
+            throw new SystemException("datos_no_consultados", ex)
+        }
+    }
+    
+    def consultarParoTotal(){
+        paroTotal = new ArrayList<ParoTotal>();
+        def lista = getManager().createQuery("FROM Paro where diaTrabajo.id = :id")
+                                .setParameter("id", diaTrabajo.id).resultList
+        lista.each{
+            it.total.each{
+                paroTotal.add( new ParoTotal (area: it.area, totalParo: it.totalParo) )
+            }
+        }
+    }
+
+    String getTotalParada(){
+        return SqlUtil.instance.getCampo(diaTrabajo.id, "Paro" , "totalParada")
     }
 
 }

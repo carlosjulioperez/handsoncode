@@ -1,8 +1,14 @@
+2020-07-31 
+	Controlador BlcConsultarAction
+
+2020-07-30 
+	Propiedad calculada para colecciones
+
 2020-07-29 
-	Crear DiaTrabajoEditableAction para validar un solo registro +ingenio
+	Crear DiaTrabajoEditableAction para validar un solo registro
 
 2020-07-28 
-	Renombrar DiaTrabajoEditableAction a DiaTrabajoSaveAction +ingenio
+	Renombrar DiaTrabajoEditableAction a DiaTrabajoSaveAction
 	Test para validar un solo registro por diaTrabajo
 	Informe de avance del sistema +ingenio
 	ParoTest +ingenio
