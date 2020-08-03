@@ -2,6 +2,7 @@ package ec.carper.ingenio.util
 
 import ec.carper.ingenio.model.*
 
+import groovy.time.TimeCategory
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -108,4 +109,25 @@ class Util{
         return toTimestamp(strFecha+" "+hora+":00")
     }
 
-}
+    String getDiferenciaHoras(def horaInicial, def horaFinal){
+        def valor = "00:00:00"
+        try{
+            def dateI = Date.parse("HH:mm:ss", horaInicial)
+            def dateF = Date.parse("HH:mm:ss", horaFinal)
+            
+            def duration = TimeCategory.minus(dateF, dateI)
+            //"${duration.hours}".padLeft(2, '0' )
+            valor = String.format("%02d:%02d:%02d", duration.hours, duration.minutes, duration.seconds )
+        }catch(Exception e){}
+        return valor 
+    }
+
+    BigDecimal getFraccionTiempo(def hora){
+        def valor = 0
+        try{
+            def date = Date.parse("HH:mm:ss",hora) 
+            valor = Calculo.instance.redondear(date.hours + date.minutes/60, 2)
+        }catch(Exception e){}
+        return valor 
+    }
+} 

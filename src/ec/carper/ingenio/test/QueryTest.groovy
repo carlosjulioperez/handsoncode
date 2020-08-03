@@ -46,7 +46,8 @@ class QueryTest extends ModuleTestBase {
     }
 
     void getValorCampo(){
-        println SqlUtil.instance.getCampo(Aux.instance.diaTrabajoId, "Paro" , "totalParada")
+        //println SqlUtil.instance.getCampo(Aux.instance.diaTrabajoId, "Paro" , "totalParada")
+        println SqlUtil.instance.getValorCampoBlc(Aux.instance.diaTrabajoId, "BlcDetalle1" , "canaDia")
     }
 
     void getParoTotal(){

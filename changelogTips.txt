@@ -1,17 +1,8 @@
 Proyecto
 	* TODO:
 
-		Acumulado de paros
-
 		https://www.programcreek.com/java-api-examples/?class=org.apache.commons.math3.stat.regression.SimpleRegression&method=getIntercept
 		Tablas: Material, Unidad, etc.
-
-		Blc: @EditOnly
-		Crear detalles como TrashCana.crearTrash()
-
-		DROP TABLE ingenio.blcdetalle1;
-		DROP TABLE ingenio.blc;
-		DROP TABLE ingenio.blcplantilla;
 
 		Módulo para control de inventario por código de barras
 		
@@ -52,6 +43,7 @@ Proyecto
 
 	* Importar datos:
 		# psql -U postgres -d ingenio -a -f /home/carper/local/project/workspace/Ingenio/etc/sql/insert.sql
+		# COPY material           FROM '/tmp/material.csv'           DELIMITER  ',' CSV HEADER;
 		INSERT INTO ingenio.ingenio.unidad ("id", descripcion) VALUES ('04', '%/ TCM');
 
 		csv: Tablas de configuración por el usuario (importGroovy y *.csv)

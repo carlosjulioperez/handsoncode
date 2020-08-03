@@ -1,3 +1,7 @@
+2020-08-03 
+	Blc sección: Tiempos
+	Agregar campo a entidad Material
+
 2020-07-31 
 	Controlador BlcConsultarAction
 

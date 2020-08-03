@@ -9,5 +9,8 @@ class Material extends Identifiable{
 
     @Column(length=30) @Required
     String descripcion
+    
+    @Column(length=30)
+    String campo 
 
 }
