@@ -7,6 +7,5 @@
 -- PostgreSQL
 --DROP SCHEMA ingenio CASCADE;
 
-DROP TABLE ingenio.paro_total;
-DROP TABLE ingenio.parodetalle;
-DROP TABLE ingenio.paro;
+DROP TABLE ingenio.blcdetalle1;
+DROP TABLE ingenio.blc;

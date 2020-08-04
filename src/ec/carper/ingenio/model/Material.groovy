@@ -7,7 +7,7 @@ import org.openxava.model.*
 @Entity
 class Material extends Identifiable{
 
-    @Column(length=30) @Required
+    @Column(length=100) @Required
     String descripcion
     
     @Column(length=30)

@@ -265,6 +265,68 @@ INSERT INTO ingenio.ingenio.blcpdetalle1("id", orden, blcp_codigo, material_id, 
 INSERT INTO ingenio.ingenio.blcpdetalle1("id", orden, blcp_codigo, material_id, unidad_id, unidad2_id) VALUES ('ff80808172c59e050172c5a814a3000b', 12, 1, '012', '01', null);
 INSERT INTO ingenio.ingenio.blcpdetalle1("id", orden, blcp_codigo, material_id, unidad_id, unidad2_id) VALUES ('ff80808172c59e050172c5a86494000c', 13, 1, '013', '03', '01');
 
+INSERT INTO ingenio.ingenio.blcpdetalle21("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7967b0173b7af4e670000', 1, 1, '019', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle21("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7967b0173b7afa3450001', 2, 1, '020', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle21("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7967b0173b7afe1900002', 3, 1, '021', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle21("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7967b0173b7b01f7a0003', 4, 1, '022', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle21("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7967b0173b7b04b940004', 5, 1, '023', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle21("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7967b0173b7b113d50005', 6, 1, '024', '05');
+
+INSERT INTO ingenio.ingenio.blcpdetalle22("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7967b0173b7b559f00006', 1, 1, '025', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle22("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7967b0173b7b57ca30007', 2, 1, '026', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle22("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7967b0173b7b59ce80008', 3, 1, '027', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle22("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7967b0173b7b5c6dd0009', 4, 1, '023', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle22("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7967b0173b7b61327000a', 5, 1, '028', '04');
+
+INSERT INTO ingenio.ingenio.blcpdetalle3("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7e4410173b7e51afc0000', 1, 1, '029', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle3("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7e4410173b7e54f2d0001', 2, 1, '030', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle3("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7e4410173b7e581970002', 3, 1, '031', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle3("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7e4410173b7e5aa7a0003', 4, 1, '032', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle3("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7e4410173b7e611020005', 6, 1, '034', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle3("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7e4410173b7e5d3ae0004', 5, 1, '033', '06');
+
+INSERT INTO ingenio.ingenio.blcpdetalle4("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7e4410173b7e8ec010006', 1, 1, '035', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle4("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7e4410173b7e91c9b0007', 2, 1, '036', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle4("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7e4410173b7e953400008', 3, 1, '037', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle4("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7e4410173b7e9d1ae0009', 4, 1, '038', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle4("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7e4410173b7ea1994000a', 5, 1, '039', null);
+INSERT INTO ingenio.ingenio.blcpdetalle4("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b7e4410173b7ea6cc4000b', 6, 1, '040', null);
+
+INSERT INTO ingenio.ingenio.blcpdetalle5("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b802280173b80495770000', 1, 1, '041', '07');
+INSERT INTO ingenio.ingenio.blcpdetalle5("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b802280173b804cbc80001', 2, 1, '042', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle5("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b802280173b804f9040002', 3, 1, '043', '08');
+INSERT INTO ingenio.ingenio.blcpdetalle5("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b802280173b805372f0003', 4, 1, '003', '04');
+INSERT INTO ingenio.ingenio.blcpdetalle5("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b802280173b805aaca0004', 5, 1, '044', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle5("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b802280173b805e4470005', 6, 1, '045', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle5("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b802280173b8060e9d0006', 7, 1, '046', '05');
+
+INSERT INTO ingenio.ingenio.blcpdetalle6("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b812310173b813f0ee0000', 1, 1, '050', '09');
+INSERT INTO ingenio.ingenio.blcpdetalle6("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b812310173b81431800001', 2, 1, '043', '08');
+INSERT INTO ingenio.ingenio.blcpdetalle6("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b812310173b81478a60002', 3, 1, '051', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle6("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b812310173b814aae00003', 4, 1, '052', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle6("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b812310173b814d6840004', 5, 1, '053', '05');
+
+INSERT INTO ingenio.ingenio.blcpdetalle7("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b812310173b81628ca0005', 1, 1, '054', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle7("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b812310173b8164ebd0006', 2, 1, '055', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle7("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b812310173b8167dce0007', 3, 1, '056', '05');
+
+INSERT INTO ingenio.ingenio.blcpdetalle8("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b812310173b81713510008', 1, 1, '057', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle8("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b812310173b81748940009', 2, 1, '058', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle8("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b812310173b8176f37000a', 3, 1, '059', '05');
+
+INSERT INTO ingenio.ingenio.blcpdetalle9("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b812310173b8180fc1000b', 1, 1, '047', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle9("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b812310173b8183dd6000c', 2, 1, '048', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle9("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b812310173b818bb9c000d', 3, 1, '049', '05');
+
+INSERT INTO ingenio.ingenio.blcpdetalle101("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b821a40173b8227c2f0000', 1, 1, '060', '10');
+INSERT INTO ingenio.ingenio.blcpdetalle101("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b821a40173b822aef30001', 2, 1, '050', '10');
+INSERT INTO ingenio.ingenio.blcpdetalle101("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b821a40173b822e0010002', 3, 1, '061', '05');
+INSERT INTO ingenio.ingenio.blcpdetalle101("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b821a40173b823100a0003', 4, 1, '062', '05');
+
+INSERT INTO ingenio.ingenio.blcpdetalle102("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b821a40173b82385e70004', 1, 1, '060', '10');
+INSERT INTO ingenio.ingenio.blcpdetalle102("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b821a40173b82402620005', 2, 1, '050', '10');
+INSERT INTO ingenio.ingenio.blcpdetalle102("id", orden, blcp_codigo, material_id, unidad_id) VALUES ('ff80808173b821a40173b82435ef0006', 3, 1, '062', '05');
+
 -- **************************************************
 -- **************************************************
 -- **************************************************

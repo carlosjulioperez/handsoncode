@@ -12,6 +12,9 @@ class BlcDetalle1 extends Identifiable{
     @ManyToOne
     Blc blc
     
+    @Column(length=2)
+    int orden
+   
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @ReadOnly
     Material material
    

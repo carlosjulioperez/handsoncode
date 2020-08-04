@@ -27,7 +27,7 @@ class Blc extends DiaTrabajoEditable {
     boolean itemsCargados
 
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL)
-    @XOrderBy("material.id") @EditOnly
+    @XOrderBy("orden") @EditOnly
     Collection<BlcDetalle1>detalle1
     
     @Column(length=8)
@@ -66,6 +66,7 @@ class Blc extends DiaTrabajoEditable {
                 def d1      = new BlcDetalle1()
                 d1.id       = null
                 d1.blc      = blc
+                d1.orden    = it.orden
                 d1.material = it.material
                 d1.unidad   = it.unidad
                 d1.unidad2  = it.unidad2
