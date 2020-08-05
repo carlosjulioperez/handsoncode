@@ -53,7 +53,9 @@ class DiaTrabajoSaveAction extends ViewBaseAction implements IChainAction{
                             method.invoke(instance)
                             getView().refresh()
                             addMessage("registro_actualizado")
+                            println "**************************************************"
                             println ">>> Ejecutando ${modulo}.actualizar()... "
+                            println "**************************************************"
                         }
                     } 
                     nextAction = "CRUD.save"

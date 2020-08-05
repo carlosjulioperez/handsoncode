@@ -26,6 +26,15 @@ class SqlUtil{
         return query.resultList[0]?: 0
     }
 
+    BigDecimal getValorDetalleCampo(String diaTrabajoId, String maestro, String detalle, String campo){
+        Query query = getManager().createQuery("""
+            SELECT ${campo} FROM ${detalle}
+            WHERE ${maestro}.diaTrabajo.id = :diaTrabajoId
+        """)
+        query.setParameter("diaTrabajoId", diaTrabajoId)
+        return query.resultList[0]?: 0
+    }
+    
     String getCampo(String diaTrabajoId, String modulo, String campo){
         Query query = getManager().createQuery("SELECT ${campo} FROM ${modulo} WHERE diaTrabajo.id = :diaTrabajoId")
         query.setParameter("diaTrabajoId", diaTrabajoId)

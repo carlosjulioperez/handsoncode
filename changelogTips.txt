@@ -1,5 +1,7 @@
 Proyecto
 	* TODO:
+		ReadOnly dinámicos:
+			https://sourceforge.net/p/openxava/discussion/419690/thread/f89a2800/
 
 		https://www.programcreek.com/java-api-examples/?class=org.apache.commons.math3.stat.regression.SimpleRegression&method=getIntercept
 		Tablas: Material, Unidad, etc.

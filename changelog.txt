@@ -1,3 +1,6 @@
+2020-08-04 
+	Blc grabar totales de paro
+
 2020-08-03 
 	Blc sección: Tiempos
 	Agregar campo a entidad Material
