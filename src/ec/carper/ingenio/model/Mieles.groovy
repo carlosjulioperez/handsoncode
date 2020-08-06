@@ -19,8 +19,11 @@ import static org.openxava.jpa.XPersistence.*
     mrBri, mrPol, mrSac, mrPur, mrBri2;
     mpBri, mpPol, mpSac, mpPur, mpBri2
 """)
-@View(members=  """diaTrabajo;detalle""")
-class Mieles extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo;
+    titAnaMatProMie { detalle }
+""")
+class Mieles extends Formulario {
 
     BigDecimal maBri
     BigDecimal maPol
@@ -48,7 +51,7 @@ class Mieles extends DiaTrabajoEditable {
     BigDecimal mpPur
     BigDecimal mpBri2
 
-    @OneToMany (mappedBy="mieles", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="mieles", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,
         maBri  [mieles.promMaBri],

@@ -14,16 +14,13 @@ class Cto24HTest extends ModuleTestBase {
         login("admin", "admin")
         
         execute("CRUD.new")
-        
         setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
-        setValue("fFelining"     , "0.997")
-        setValue("descripcion"   , "JUNIT")
         execute ("CRUD.save")
         assertNoErrors()
 
-        setValue   ("descripcion", "JUNIT")
+        setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
         execute    ("CRUD.refresh")
-        assertValue("descripcion", "JUNIT")
+        assertValue("diaTrabajo.descripcion", "3 07/08/2019")
         execute    ("Cto24H.cargarDetalles")
         
         // Detalle 1

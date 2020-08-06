@@ -15,8 +15,11 @@ import static org.openxava.jpa.XPersistence.*
     diaTrabajo.descripcion,
     bri, pol, sac, pur, bri2
 """)
-@View(members=  """diaTrabajo;detalle""")
-class TqFundidor extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo;
+    titAnaMatProMie{ detalle }
+""")
+class TqFundidor extends Formulario {
 
     BigDecimal bri
     BigDecimal pol
@@ -24,7 +27,7 @@ class TqFundidor extends DiaTrabajoEditable {
     BigDecimal pur
     BigDecimal bri2
 
-    @OneToMany (mappedBy="tqFundidor", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="tqFundidor", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,
         bri  [tqFundidor.promBri],

@@ -16,9 +16,7 @@ class TurbiedadTest extends ModuleTestBase {
         setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle1", 0) // La colección esta vacía 
-        assertCollectionRowCount("detalle2", 0) // La colección esta vacía 
-
-        execute("Collection.new"  , "viewObject=xava_view_detalle1")
+        execute("Collection.new"   , "viewObject=xava_view_section0_detalle1")
         assertDialog()
         setValue    ("horaS"      , "09:00")
         assertValue ("hora"       , "07/08/2019 09:00")
@@ -29,7 +27,9 @@ class TurbiedadTest extends ModuleTestBase {
         assertCollectionRowCount("detalle1", 1)
         
         
-        execute("Collection.new"   , "viewObject=xava_view_detalle2")
+        execute("Sections.change", "activeSection=1")
+        assertCollectionRowCount("detalle2", 0) // La colección esta vacía 
+        execute("Collection.new"    , "viewObject=xava_view_section1_detalle2")
         assertDialog()
         setValue    ("horaS"      , "06:00")
         assertValue ("hora"       , "07/08/2019 06:00")

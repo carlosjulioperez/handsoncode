@@ -12,12 +12,12 @@ import org.openxava.validators.*
 import static org.openxava.jpa.XPersistence.*
 
 @Entity
-@Tab(properties="""diaTrabajo.descripcion, descripcion""")
+@Tab(properties="""diaTrabajo.descripcion""")
 @View(members="""
-    diaTrabajo, fFelining;
-    descripcion;
+    diaTrabajo;
 
     Cto24H_atr {
+        fFelining;       
         detalle1
     }
     Cto24H_psi {
@@ -43,16 +43,13 @@ import static org.openxava.jpa.XPersistence.*
         detalle8
     }
 """)
-class Cto24H extends DiaTrabajoEditable {
+class Cto24H extends Formulario {
     
     boolean detallesCargados
     
-    @Digits(integer=3, fraction=3) @DisplaySize(6) @Required
+    @Digits(integer=3, fraction=3) @DisplaySize(6) @ReadOnly
     BigDecimal fFelining
 
-    @Column(length=50) @Required
-    String descripcion
-    
     // ==================================================
     // AZÚCARES TOTALES REDUCTORES A.T.R.
     // ==================================================
@@ -250,7 +247,6 @@ class Cto24H extends DiaTrabajoEditable {
 
         def v4 = o4 ? ( (BigDecimal)Eval.x(o4, "x."+propiedad)?:0 ) : 0
 
-
         switch (totalFilaNo){
             case 1: 
                 valor = (o1 && o2) ? calcC20 (v1, v2) : 0
@@ -309,8 +305,8 @@ class Cto24H extends DiaTrabajoEditable {
     // ==================================================
     // ACIDEZ VOLATIL
     // ==================================================
-    @Digits(integer=6,fraction=3) @DisplaySize(6)
-    BigDecimal fr
+    @Digits(integer=6,fraction=3) @DisplaySize(6) @ReadOnly
+    BigDecimal fr 
     
     BigDecimal mlTitu
     BigDecimal fd
@@ -398,7 +394,7 @@ class Cto24H extends DiaTrabajoEditable {
             this.fd         = promFd
             this.ppm        = promPpm
             
-            XPersistence.getManager().persist(this)
+            getManager().persist(this)
 
         }catch(Exception ex){
             throw new SystemException("registro_no_actualizado", ex)
@@ -475,6 +471,12 @@ class Cto24H extends DiaTrabajoEditable {
 
                 this.detalle8.add(d8)
             }
+
+            // Consultar los parámetros
+            def parametro = new Parametro()
+            fFelining     = new BigDecimal(parametro.obtenerValor("CTO24H_FACTOR_FELINING"))
+            fr            = new BigDecimal(parametro.obtenerValor("CTO24H_FR"))
+            
             getManager().persist(cto24H)
 
         }catch(Exception ex){

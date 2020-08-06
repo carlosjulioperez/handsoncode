@@ -14,12 +14,9 @@ class MasasTest extends ModuleTestBase {
         execute("CRUD.new")
 
         setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
-        
-        assertCollectionRowCount("detalle1", 0) // La colección esta vacía 
-        assertCollectionRowCount("detalle2", 0) // La colección esta vacía 
-        assertCollectionRowCount("detalle3", 0) // La colección esta vacía 
 
-        execute("Collection.new" , "viewObject=xava_view_detalle1")
+        assertCollectionRowCount("detalle1", 0) // La colección esta vacía 
+        execute("Collection.new", "viewObject=xava_view_section0_section0_detalle1")
         assertDialog()
         setValue    ( "horaS" , "08:00")
         assertValue ( "hora"  , "07/08/2019 08:00")
@@ -32,7 +29,9 @@ class MasasTest extends ModuleTestBase {
         assertNoErrors()
         assertCollectionRowCount("detalle1", 1)
 
-        execute("Collection.new" , "viewObject=xava_view_detalle2")
+        execute("Sections.change", "activeSection=1,viewObject=xava_view_section0")
+        assertCollectionRowCount("detalle2", 0) // La colección esta vacía 
+        execute("Collection.new", "viewObject=xava_view_section0_section1_detalle2")
         assertDialog()
         setValue    ( "horaS" , "11:37")
         assertValue ( "hora"  , "07/08/2019 11:37")
@@ -45,7 +44,9 @@ class MasasTest extends ModuleTestBase {
         assertNoErrors()
         assertCollectionRowCount("detalle2", 1)
 
-        execute("Collection.new" , "viewObject=xava_view_detalle3")
+        execute("Sections.change", "activeSection=2,viewObject=xava_view_section0")
+        assertCollectionRowCount("detalle3", 0) // La colección esta vacía 
+        execute("Collection.new"    , "viewObject=xava_view_section0_section2_detalle3")
         assertDialog()
         setValue    ( "horaS" , "04:30")
         assertValue ( "hora"  , "08/08/2019 04:30")
@@ -58,7 +59,9 @@ class MasasTest extends ModuleTestBase {
         assertNoErrors()
         assertCollectionRowCount("detalle3", 1)
 
-        execute("Collection.new" , "viewObject=xava_view_detalle4")
+        execute("Sections.change", "activeSection=3,viewObject=xava_view_section0")
+        assertCollectionRowCount("detalle4", 0) // La colección esta vacía 
+        execute("Collection.new"    , "viewObject=xava_view_section0_section3_detalle4")
         assertDialog()
         setValue    ( "horaS" , "15:30")
         assertValue ( "hora"  , "07/08/2019 15:30")
@@ -71,7 +74,9 @@ class MasasTest extends ModuleTestBase {
         assertNoErrors()
         assertCollectionRowCount("detalle4", 1)
 
-        execute("Collection.new" , "viewObject=xava_view_detalle5")
+        execute("Sections.change", "activeSection=4,viewObject=xava_view_section0")
+        assertCollectionRowCount("detalle5", 0) // La colección esta vacía 
+        execute("Collection.new"    , "viewObject=xava_view_section0_section4_detalle5")
         assertDialog()
         setValue    ( "horaS" , "19:35")
         assertValue ( "hora"  , "07/08/2019 19:35")
@@ -84,7 +89,9 @@ class MasasTest extends ModuleTestBase {
         assertNoErrors()
         assertCollectionRowCount("detalle5", 1)
 
-        execute("Collection.new" , "viewObject=xava_view_detalle6")
+        execute("Sections.change", "activeSection=5,viewObject=xava_view_section0")
+        assertCollectionRowCount("detalle6", 0) // La colección esta vacía 
+        execute("Collection.new"    , "viewObject=xava_view_section0_section5_detalle6")
         assertDialog()
         setValue    ( "horaS" , "22:30")
         assertValue ( "hora"  , "07/08/2019 22:30")
@@ -97,7 +104,9 @@ class MasasTest extends ModuleTestBase {
         assertNoErrors()
         assertCollectionRowCount("detalle6", 1)
 
-        execute("Collection.new" , "viewObject=xava_view_detalle7")
+        execute("Sections.change", "activeSection=6,viewObject=xava_view_section0")
+        assertCollectionRowCount("detalle7", 0) // La colección esta vacía 
+        execute("Collection.new"    , "viewObject=xava_view_section0_section6_detalle7")
         assertDialog()
         setValue    ( "horaS" , "01:00")
         assertValue ( "hora"  , "08/08/2019 01:00")
@@ -110,7 +119,9 @@ class MasasTest extends ModuleTestBase {
         assertNoErrors()
         assertCollectionRowCount("detalle7", 1)
 
-        execute("Collection.new" , "viewObject=xava_view_detalle8")
+        execute("Sections.change", "activeSection=7,viewObject=xava_view_section0")
+        assertCollectionRowCount("detalle8", 0) // La colección esta vacía 
+        execute("Collection.new"    , "viewObject=xava_view_section0_section7_detalle8")
         assertDialog()
         setValue    ( "horaS" , "03:40")
         assertValue ( "hora"  , "08/08/2019 03:40")

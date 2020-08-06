@@ -24,7 +24,7 @@ class JugoTest extends ModuleTestBase {
         setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle", 0) // La colección esta vacía 
-        execute("Collection.new" , "viewObject=xava_view_detalle")
+        execute("Collection.new"   , "viewObject=xava_view_section0_detalle")
         assertDialog()
         
         setValue("horaS"      , "06:00")

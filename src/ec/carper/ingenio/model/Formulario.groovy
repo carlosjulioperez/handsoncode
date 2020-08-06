@@ -7,11 +7,11 @@ import org.openxava.annotations.*
 import org.openxava.model.*
 
 @MappedSuperclass
-class DiaTrabajoEditable extends Identifiable{
+class Formulario extends Identifiable{
 
     @ManyToOne(fetch=FetchType.LAZY)
     @DescriptionsList @NoCreate @NoModify
-    @OnChange(DiaTrabajoEditableAction.class)
+    //@OnChange(FormularioDiaTrabajoAction.class)
     DiaTrabajo diaTrabajo
 
     BigDecimal getPromedio(def detalle, String propiedad, int escala){

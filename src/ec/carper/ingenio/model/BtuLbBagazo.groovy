@@ -18,9 +18,9 @@ import static org.openxava.jpa.XPersistence.*
 @Tab(properties="""diaTrabajo.descripcion""")
 @View(members="""#
     diaTrabajo;
-    pHum,pCrisol;pCriCen,pMtra;porcHumedad,porcCenBs;porcCenBh,pcBtuLb
+    titMatPriQueCan {#pHum,pCrisol;pCriCen,pMtra;porcHumedad,porcCenBs;porcCenBh,pcBtuLb}
 """)
-class BtuLbBagazo extends DiaTrabajoEditable {
+class BtuLbBagazo extends Formulario {
 
     @OnChange(BtuLbBagazoAction.class) @Digits(integer=2, fraction=3) 
     @DisplaySize(6) @Required

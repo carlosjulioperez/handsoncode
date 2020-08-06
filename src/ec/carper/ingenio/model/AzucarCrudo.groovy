@@ -16,8 +16,11 @@ import static org.openxava.jpa.XPersistence.*
     briCorr, bri, absFiltrada, absSinFiltrar, celda, rho,
     cedilla, briEle, color, turb
 """)
-@View(members=  """diaTrabajo;detalle""")
-class AzucarCrudo extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo;
+    titAnaEspAzuProTer { detalle }
+""")
+class AzucarCrudo extends Formulario {
 
     BigDecimal briCorr
     BigDecimal bri
@@ -30,7 +33,7 @@ class AzucarCrudo extends DiaTrabajoEditable {
     BigDecimal color
     BigDecimal turb
     
-    @OneToMany (mappedBy="azucarCrudo", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="azucarCrudo", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,    
         briCorr        [azucarCrudo.promBriCorr],

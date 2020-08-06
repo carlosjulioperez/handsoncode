@@ -20,8 +20,11 @@ import static org.openxava.jpa.XPersistence.*
     jrBri, jrPol, jrSac, jrPur,
     jfBri, jfPol, jfSac, jfPur
 """)
-@View(members=  """diaTrabajo;detalle""")
-class Jugo extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo;
+    titAnaMatProJug { detalle }
+""")
+class Jugo extends Formulario {
 
     BigDecimal jeBri
     BigDecimal jePol
@@ -48,7 +51,7 @@ class Jugo extends DiaTrabajoEditable {
     BigDecimal jfSac
     BigDecimal jfPur
 
-    @OneToMany (mappedBy="jugo", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="jugo", cascade=CascadeType.ALL) @XOrderBy("hora") 
     @ListProperties("""
         hora,
         jeBri [jugo.promJeBri],

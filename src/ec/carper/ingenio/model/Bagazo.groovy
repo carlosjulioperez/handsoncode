@@ -28,8 +28,11 @@ import java.time.LocalDate
     porcSacJR,
     gradosAguaMac
 """)
-@View(members=  """diaTrabajo;detalle""")
-class Bagazo extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo;
+    titAnaBag { detalle }
+""")
+class Bagazo extends Formulario {
 
     BigDecimal wH2O
     BigDecimal wBagazo
@@ -46,7 +49,7 @@ class Bagazo extends DiaTrabajoEditable {
     BigDecimal porcSacJR
     BigDecimal gradosAguaMac
     
-    @OneToMany (mappedBy="bagazo", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="bagazo", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,
         wH2O           [bagazo.promWH2O],

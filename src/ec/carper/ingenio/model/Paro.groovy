@@ -12,8 +12,11 @@ import static org.openxava.jpa.XPersistence.*;
 
 @Entity
 @Tab(properties="""diaTrabajo.descripcion,totalParada""")
-@View(members=  """diaTrabajo;detalle;total""")
-class Paro extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo;
+    titParFab { detalle;total }
+""")
+class Paro extends Formulario {
 
     @OneToMany (mappedBy="paro", cascade=CascadeType.ALL)
     @ListProperties(""" fechaInicio,fechaFin,area.descripcion,descripcion,totalParo[paro.sumaParo] """)

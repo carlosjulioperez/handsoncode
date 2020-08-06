@@ -17,9 +17,7 @@ class CanaTest extends ModuleTestBase {
         setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle1", 0) // La colección esta vacía 
-        assertCollectionRowCount("detalle2", 0) // La colección esta vacía 
-
-        execute("Collection.new","viewObject=xava_view_detalle1")
+        execute("Collection.new"   , "viewObject=xava_view_section0_detalle1")
         assertDialog()
         setValue("horaS"           , "06:00")
         assertValue("hora"         , "07/08/2019 06:00")
@@ -28,10 +26,8 @@ class CanaTest extends ModuleTestBase {
         setValue("brixExtracto"    , "4.46")
         setValue("polExtracto"     , "15.57")
         assertValue("polReal"      , "3.99")
-
         setValue("tamizVacioM0"    , "540.1")
         assertValue("muestraHumM1" , "590.10")
-
         setValue("muestraSecaM2"   , "556.9")
         assertValue("porcHumedad"  , "66.40")
         assertValue("brix"         , "16.91")
@@ -45,18 +41,18 @@ class CanaTest extends ModuleTestBase {
         assertNoErrors()
         assertCollectionRowCount("detalle1", 1)
 
-        execute("Collection.new","viewObject=xava_view_detalle2")
+        execute("Sections.change", "activeSection=1")
+        assertCollectionRowCount("detalle2", 0) // La colección esta vacía 
+        execute("Collection.new"   , "viewObject=xava_view_section1_detalle2")
         assertDialog()
         setValue("horaSD"          , "06:00")
         setValue("horaDesde"       , "07/08/2019 06:00")
         setValue("horaSH"          , "11:00")
         setValue("horaHasta"       , "07/08/2019 11:00")
         assertValue("porcHumedad"  , "66.43")
-
         setValue("brixExtracto"    , "3.1")
         assertValue("brix"         , "11.55")
         assertValue("porcFibra"    , "22.02")
-
         setValue("polExtracto"     , "5.05")
         assertValue("polReal"      , "1.30")
         assertValue("porcSacarosa" , "4.84")

@@ -23,8 +23,11 @@ import java.time.LocalDate
     mClarificada,
     tJClaro
 """)
-@View(members=  """diaTrabajo;detalle""")
-class Ph extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo;
+    titAnaMatProPh {detalle}
+""")
+class Ph extends Formulario {
 
     BigDecimal j1Extracto
     BigDecimal jDiluido
@@ -35,7 +38,7 @@ class Ph extends DiaTrabajoEditable {
     BigDecimal mClarificada
     BigDecimal tJClaro
 
-    @OneToMany (mappedBy="ph", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="ph", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,
         j1Extracto   [ph.promJ1Extracto],

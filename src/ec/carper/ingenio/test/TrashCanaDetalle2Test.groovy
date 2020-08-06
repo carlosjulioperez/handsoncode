@@ -7,7 +7,6 @@ import org.openxava.model.*
 import static org.openxava.jpa.XPersistence.*
 
 import ec.carper.ingenio.model.TrashCanaDetalle2
-import ec.carper.ingenio.model.DiaTrabajo
 
 import ec.carper.ingenio.util.Util
 import org.apache.commons.logging.*

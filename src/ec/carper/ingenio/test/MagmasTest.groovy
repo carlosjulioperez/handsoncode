@@ -38,15 +38,15 @@ class MagmasTest extends ModuleTestBase {
         setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle", 0) // La colección esta vacía 
-        execute("Collection.new" , "viewObject=xava_view_detalle")
+        execute("Collection.new", "viewObject=xava_view_section0_detalle")
         assertDialog()
         
-        setValue    ( "horaS" , "08:00")
-        assertValue ( "hora"  , "07/08/2019 08:00")
+        setValue    ( "horaS"  , "08:00")
+        assertValue ( "hora"   , "07/08/2019 08:00")
 
-        setValue    ( "mbBri" , "15.16")
-        setValue    ( "mbPol" , "59.74")
-        assertValue ( "mbSac" , "88.02")
+        setValue    ( "mbBri"  , "15.16")
+        setValue    ( "mbPol"  , "59.74")
+        assertValue ( "mbSac"  , "88.02")
         assertValue ( "mbPur"  , "96.77")
         assertValue ( "mbBri2" , "90.96")
 

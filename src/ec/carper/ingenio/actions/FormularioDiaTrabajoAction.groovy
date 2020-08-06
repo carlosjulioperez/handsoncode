@@ -8,7 +8,7 @@ import org.openxava.actions.*
 import org.openxava.jpa.*
 import static org.openxava.jpa.XPersistence.*;
 
-class DiaTrabajoEditableAction extends OnChangePropertyBaseAction{
+class FormularioDiaTrabajoAction extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
         

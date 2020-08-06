@@ -31,8 +31,12 @@ import org.openxava.validators.*
     aR,
     porcArNsac
 """)
-@View(members=  """diaTrabajo;detalle1;detalle2""")
-class Cana extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo;
+    titAnaCan { detalle1 }
+    titTalCog { detalle2 }
+""")
+class Cana extends Formulario {
 
     BigDecimal wH2O
     BigDecimal wCana
@@ -51,7 +55,7 @@ class Cana extends DiaTrabajoEditable {
     BigDecimal aR
     BigDecimal porcArNsac
     
-    @OneToMany (mappedBy="cana", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="cana", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,
         wH2O           [cana.promWH2O],
@@ -122,7 +126,7 @@ class Cana extends DiaTrabajoEditable {
         return super.getPromedio(detalle1, "porcArNsac", 2)
     }
     
-    @OneToMany (mappedBy="cana", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="cana", cascade=CascadeType.ALL) @XOrderBy("horaDesde")
     @ListProperties("""
         horaDesde, horaHasta,
         polReal,

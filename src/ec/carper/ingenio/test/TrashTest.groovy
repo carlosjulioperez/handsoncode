@@ -14,7 +14,7 @@ class TrashTest extends ModuleTestBase {
         assertListNotEmpty()
         execute("List.viewDetail", "row=0")
         execute("List.orderBy"   , "property=hora,collection=detalle")
-        execute("Collection.edit", "row=0,viewObject=xava_view_detalle")
+        execute("Collection.edit", "row=0,viewObject=xava_view_section0_detalle")
         
         assertDialog()
 

@@ -7,23 +7,21 @@ import org.openxava.actions.*
 import org.openxava.jpa.*
 import static org.openxava.jpa.XPersistence.*
 
-class DiaTrabajoSaveAction extends ViewBaseAction implements IChainAction{
+class IngenioSaveAction extends ViewBaseAction implements IChainAction{
 
     private String nextAction = null // Para guardar la siguiente acción a ejecutar
 
     void execute() throws Exception{
+        def modulo = getModelName()
+        def map = getView().getKeyValues()
+        // println (">>>>>>>>>>>>>>>>>>>>>>> " + modulo)
+        // println ("*********************** " + map)
+
         // containsMetaProperty, containsMetaReference
         if (!getView().getMetaModel().containsMetaReference("diaTrabajo")) {
             nextAction = "CRUD.save"
             return
         }else{
-
-            // Validar CRUD.save
-            def modulo = getModelName()
-            def map = getView().getKeyValues()
-            // println (">>>>>>>>>>>>>>>>>>>>>>> " + modulo)
-            // println ("*********************** " + map)
-
             if (map){ //actualizar objeto
                 boolean cerrado = (boolean) getManager()
                     .createQuery("""
@@ -53,9 +51,9 @@ class DiaTrabajoSaveAction extends ViewBaseAction implements IChainAction{
                             method.invoke(instance)
                             getView().refresh()
                             addMessage("registro_actualizado")
-                            println "**************************************************"
-                            println ">>> Ejecutando ${modulo}.actualizar()... "
-                            println "**************************************************"
+                            // println "**************************************************"
+                            // println ">>> Ejecutando ${modulo}.actualizar()... "
+                            // println "**************************************************"
                         }
                     } 
                     nextAction = "CRUD.save"

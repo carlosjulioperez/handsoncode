@@ -8,19 +8,19 @@
         <extends controller="Typical"/>
         <action name="save" mode="detail" by-default="if-possible"
             icon="content-save" keystroke="Control S"
-        	class="ec.carper.ingenio.actions.DiaTrabajoSaveAction">
+        	class="ec.carper.ingenio.actions.IngenioSaveAction">
     	</action>
     </controller>
 
     <controller name="TrashCana">
-        <extends controller="Typical"/>
+        <extends controller="Ingenio"/>
         <action name="crearTrash" mode="detail" 
         	class="ec.carper.ingenio.actions.TrashCanaCrearTrashAction">
     	</action>
     </controller>   
 
     <controller name="Blc">
-        <extends controller="Typical"/>
+        <extends controller="Ingenio"/>
         <action name="cargarItems" mode="detail" 
         	class="ec.carper.ingenio.actions.BlcCargarItemsAction">
     	</action>
@@ -30,7 +30,7 @@
     </controller>   
 
     <controller name="BrixDensidadTitSus">
-        <extends controller="Typical"/>
+        <extends controller="Ingenio"/>
         <action name="delete" mode="detail" confirm="true" 
             icon="delete" available-on-new="false" keystroke="Control D" 
             class="ec.carper.ingenio.actions.RestringirDeleteAction"/>
@@ -41,7 +41,7 @@
     </controller>   
 
     <controller name="BrixDensidadWp">
-        <extends controller="Typical"/>
+        <extends controller="Ingenio"/>
         <action name="delete" mode="detail" confirm="true" 
             icon="delete" available-on-new="false" keystroke="Control D" 
             class="ec.carper.ingenio.actions.RestringirDeleteAction"/>
@@ -52,7 +52,7 @@
     </controller>   
 
     <controller name="Cto24H">
-        <extends controller="Typical"/>
+        <extends controller="Ingenio"/>
         <action name="cargarDetalles" mode="detail" 
         	class="ec.carper.ingenio.actions.Cto24HCargarDetallesAction">
     	</action>

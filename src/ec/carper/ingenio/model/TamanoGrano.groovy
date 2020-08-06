@@ -12,8 +12,11 @@ import static org.openxava.jpa.XPersistence.*
 
 @Entity
 @Tab(properties="""diaTrabajo.descripcion""")
-@View(members=  """diaTrabajo;detalle""")
-class TamanoGrano extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo;
+    titTamGra { detalle }
+""")
+class TamanoGrano extends Formulario {
 
     @OneToMany (mappedBy="tamanoGrano", cascade=CascadeType.ALL)
     @ListProperties("""tipo, aberturaMedia, coeficienteVariacion""")

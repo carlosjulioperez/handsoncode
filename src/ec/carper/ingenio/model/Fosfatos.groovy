@@ -15,8 +15,12 @@ import static org.openxava.jpa.XPersistence.*
 @Tab(properties="""
     diaTrabajo.descripcion, cteN1, cteN2, jdFosfatos, jcFosfatos
 """)
-@View(members= """diaTrabajo; cteN1, cteN2; detalle""")
-class Fosfatos extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo; 
+    cteN1, cteN2; 
+    titAnaMatProFosJug { detalle }
+""")
+class Fosfatos extends Formulario {
 
     @Digits(integer=3, fraction=4)
     BigDecimal cteN1 
@@ -30,7 +34,7 @@ class Fosfatos extends DiaTrabajoEditable {
     @Digits(integer=3, fraction=3)
     BigDecimal jcFosfatos
 
-    @OneToMany (mappedBy="fosfatos", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="fosfatos", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,
         jdAbsorbancia, jdMlMuestra, jdMgP, jdFosfatos [fosfatos.promJdFosfatos],

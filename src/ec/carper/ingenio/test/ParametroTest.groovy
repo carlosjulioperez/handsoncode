@@ -12,6 +12,9 @@ class ParametroTest extends ModuleTestBase {
     void testGetSusRed(){
         def valor = (String)new Parametro().obtenerValor("TAMIZ1_NUMERO")
         assertEquals(valor, "18")
+        
+        assertEquals((String)new Parametro().obtenerValor("CTO24H_FACTOR_FELINING"), "0.997")
+        assertEquals((String)new Parametro().obtenerValor("CTO24H_FR"), "0.641")
     }
 
 }

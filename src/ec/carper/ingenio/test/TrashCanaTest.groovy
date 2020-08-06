@@ -16,9 +16,7 @@ class TrashCanaTest extends ModuleTestBase {
         setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
         
         assertCollectionRowCount("detalle1", 0) // La colección esta vacía 
-        assertCollectionRowCount("detalle2", 0) // La colección esta vacía 
-
-        execute("Collection.new"   , "viewObject=xava_view_detalle1")
+        execute("Collection.new"   , "viewObject=xava_view_section0_detalle1")
         assertDialog()
         setValue("horaS"           , "06:00")
         assertValue("hora"         , "07/08/2019 06:00")
@@ -29,19 +27,19 @@ class TrashCanaTest extends ModuleTestBase {
         setValue("netaCana"        , "24.3")
         assertValue("calTrashCana" , "2.500")
         assertValue("calPorcTrash" , "9.328")
-        
         execute("Collection.save")
         assertNoErrors()
         assertCollectionRowCount("detalle1", 1)
 
-        execute("Collection.new"    , "viewObject=xava_view_detalle2")
+        execute("Sections.change", "activeSection=1")
+        assertCollectionRowCount("detalle2", 0) // La colección esta vacía 
+        execute("Collection.new"    , "viewObject=xava_view_section1_detalle2")
         assertDialog()
         setValue("horaS"            , "07:00")
         setValue("mlReductores"     , "37.6")
         assertValue("hora"          , "07/08/2019 07:00")
         assertValue("calTab7SusRed" , "9.40")
         assertValue("calPorcAzuRed" , "0.500")
-
         execute("Collection.save")
         assertNoErrors()
         assertCollectionRowCount("detalle2", 1)

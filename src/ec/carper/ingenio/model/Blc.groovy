@@ -30,7 +30,7 @@ import static org.openxava.jpa.XPersistence.*
     }
 
 """)
-class Blc extends DiaTrabajoEditable {
+class Blc extends Formulario {
     
     boolean itemsCargados
 

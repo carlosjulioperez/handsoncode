@@ -13,10 +13,14 @@ import java.time.LocalDate
 
 @Entity
 @Tab(properties="""diaTrabajo.descripcion,promCantCana,promNetaCana,promTrashCana,promPorcTrash,promPorcAzuRed""")
-@View(members=  """diaTrabajo;detalle1;detalle2""")
-class TrashCana extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo;
+    titAnaTraCan { detalle1 }
+    titAnaAzuRed { detalle2 }
+""")
+class TrashCana extends Formulario {
 
-    @OneToMany (mappedBy="trashCana", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="trashCana", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,modulo.descripcion,turno.descripcion,variedad.descripcion,
         cantidadCana[trashCana.promCantCana],netaCana[trashCana.promNetaCana],calTrashCana[trashCana.promTrashCana], calPorcTrash[trashCana.promPorcTrash]
@@ -51,7 +55,7 @@ class TrashCana extends DiaTrabajoEditable {
     @Digits(integer=4, fraction=3)
     BigDecimal avgPorcTrash
 
-    @OneToMany (mappedBy="trashCana", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="trashCana", cascade=CascadeType.ALL) @XOrderBy("hora") 
     @ListProperties("""hora,mlReductores,calTab7SusRed,calPorcAzuRed[trashCana.promPorcAzuRed]""")
     Collection<TrashCanaDetalle2>detalle2
 

@@ -24,8 +24,11 @@ import java.time.LocalDate
     promTrashCana, promPorcTrash,
     promCanaInfectada, promPorcCanaInfectada
 """)
-@View(members=  """diaTrabajo;detalle""")
-class Trash extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo;
+    titAnaTraCan { detalle }
+""")
+class Trash extends Formulario {
 
     BigDecimal avgCantCana
 
@@ -54,7 +57,7 @@ class Trash extends DiaTrabajoEditable {
     BigDecimal avgCanaInfectada
     BigDecimal avgPorcCanaInfectada
 
-    @OneToMany (mappedBy="trash", cascade=CascadeType.ALL) @EditOnly
+    @OneToMany (mappedBy="trash", cascade=CascadeType.ALL) @EditOnly @XOrderBy("hora")
     @ListProperties("""
         hora,modulo.descripcion,turno.descripcion,variedad.descripcion,
         cantidadCana[trash.promCantCana],netaCana[trash.promNetaCana],

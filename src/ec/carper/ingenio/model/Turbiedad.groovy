@@ -15,15 +15,19 @@ import static org.openxava.jpa.XPersistence.*
 @Tab(properties="""
     diaTrabajo.descripcion, abs900Nm, turJClaro, polCachaza
 """)
-@View(members=  """diaTrabajo;detalle1;detalle2""")
-class Turbiedad extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo;
+    titAnaJugCla {detalle1}
+    titAnaCac {detalle2}
+""")
+class Turbiedad extends Formulario {
 
     @Digits(integer=4, fraction=3) 
     BigDecimal abs900Nm
     BigDecimal turJClaro
     BigDecimal polCachaza
 
-    @OneToMany (mappedBy="turbiedad", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="turbiedad", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,
         abs900Nm  [turbiedad.promAbs900Nm],
@@ -34,7 +38,7 @@ class Turbiedad extends DiaTrabajoEditable {
     BigDecimal getPromAbs900Nm () { return super.getPromedio(detalle1, "abs900Nm", 3) }
     BigDecimal getPromTurJClaro() { return super.getPromedio(detalle1, "turJClaro", 2) }
     
-    @OneToMany (mappedBy="turbiedad", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="turbiedad", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,
         polCachaza [turbiedad.promPolCachaza]

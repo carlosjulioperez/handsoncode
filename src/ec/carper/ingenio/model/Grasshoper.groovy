@@ -16,8 +16,11 @@ import static org.openxava.jpa.XPersistence.*
     briCorr, bri, absFiltrada, absSinFiltrar, celda, rho,
     cedilla, briEle, color, turb, pol, humedad
 """)
-@View(members=  """diaTrabajo;detalle""")
-class Grasshoper extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo;
+    titAnaEspAzuProTer{ detalle }
+""")
+class Grasshoper extends Formulario {
 
     BigDecimal briCorr
     BigDecimal bri
@@ -32,7 +35,7 @@ class Grasshoper extends DiaTrabajoEditable {
     BigDecimal pol
     BigDecimal humedad
     
-    @OneToMany (mappedBy="grasshoper", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="grasshoper", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,    
         briCorr        [grasshoper.promBriCorr],

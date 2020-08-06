@@ -17,8 +17,20 @@ import static org.openxava.jpa.XPersistence.*
     mbBri, mbPol, mbSac, mbPur, mbBri2,
     mcBri, mcPol, mcSac, mcPur, mcBri2
 """)
-@View(members=  """diaTrabajo;detalle1;detalle2;detalle3;detalle4;detalle5;detalle6;detalle7;detalle8""")
-class Masas extends DiaTrabajoEditable {
+@View(members="""
+    diaTrabajo;
+    titAnaMatProMas {
+        titMasA { detalle1 }
+        titMasB { detalle2 }
+        titMasC { detalle3 }
+        titPriB { detalle4 }
+        titProC { detalle5 }
+        titDesB { detalle6 }
+        titDesC { detalle7 }
+        titCri  { detalle8 }
+    }
+""")
+class Masas extends Formulario {
 
     BigDecimal maBri
     BigDecimal maPol
@@ -38,7 +50,7 @@ class Masas extends DiaTrabajoEditable {
     BigDecimal mcPur
     BigDecimal mcBri2
 
-    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,
         bri  [masas.promMaBri],
@@ -49,7 +61,7 @@ class Masas extends DiaTrabajoEditable {
     """)
     Collection<MasasDetalle1>detalle1
     
-    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,
         bri  [masas.promMbBri],
@@ -60,7 +72,7 @@ class Masas extends DiaTrabajoEditable {
     """)
     Collection<MasasDetalle2>detalle2
     
-    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,
         bri  [masas.promMcBri],
@@ -71,23 +83,23 @@ class Masas extends DiaTrabajoEditable {
     """)
     Collection<MasasDetalle3>detalle3
     
-    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties(""" hora, bri, pol, sac, pur, bri2 """)
     Collection<MasasDetalle4>detalle4
 
-    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties(""" hora, bri, pol, sac, pur, bri2 """)
     Collection<MasasDetalle5>detalle5
 
-    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties(""" hora, bri, pol, sac, pur, bri2 """)
     Collection<MasasDetalle6>detalle6
 
-    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties(""" hora, bri, pol, sac, pur, bri2 """)
     Collection<MasasDetalle7>detalle7
 
-    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="masas", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties(""" hora, bri, pol, sac, pur, bri2 """)
     Collection<MasasDetalle8>detalle8
     
