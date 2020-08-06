@@ -10,7 +10,7 @@ import org.openxava.model.*
 class Formulario extends Identifiable{
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @DescriptionsList @NoCreate @NoModify
+    @DescriptionsList @NoCreate @NoModify @Required
     //@OnChange(FormularioDiaTrabajoAction.class)
     DiaTrabajo diaTrabajo
 

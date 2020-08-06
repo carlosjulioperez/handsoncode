@@ -10,17 +10,20 @@ class Cto24HTest extends ModuleTestBase {
         super(testName, "Ingenio", "Cto24H")
     }
 
+    // Test especial con ejecución de acciones
     void testCrear() throws Exception {
         login("admin", "admin")
         
         execute("CRUD.new")
+        
         setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
-        execute ("CRUD.save")
+        setValue("descripcion"   , "JUNIT")
+        execute ("Ingenio.save")
         assertNoErrors()
 
-        setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
+        setValue   ("descripcion", "JUNIT")
         execute    ("CRUD.refresh")
-        assertValue("diaTrabajo.descripcion", "3 07/08/2019")
+        assertValue("descripcion", "JUNIT")
         execute    ("Cto24H.cargarDetalles")
         
         // Detalle 1

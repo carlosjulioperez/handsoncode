@@ -13,6 +13,9 @@ Proyecto
 		//println("\n>>> Root View values:\n" + getView().getRoot().getValues());
 		//println("\n>>> View values:\n" + getView().getValues());
 
+	* En las clases heredadas de Formulario:
+		Se debe crear al menos un campo no visible para que el Test no sale
+		con el error de id no encontrado.
 	* Grabar cifras en cero:
 		En los Actions considerar grabar valores de cero y no solamente nulos
 

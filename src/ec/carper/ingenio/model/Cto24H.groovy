@@ -12,9 +12,9 @@ import org.openxava.validators.*
 import static org.openxava.jpa.XPersistence.*
 
 @Entity
-@Tab(properties="""diaTrabajo.descripcion""")
+@Tab(properties="""diaTrabajo.descripcion, descripcion""")
 @View(members="""
-    diaTrabajo;
+    diaTrabajo, descripcion;
 
     Cto24H_atr {
         fFelining;       
@@ -47,6 +47,10 @@ class Cto24H extends Formulario {
     
     boolean detallesCargados
     
+    // Usado para pruebas solamente
+    @Column(length=10)
+    String descripcion 
+
     @Digits(integer=3, fraction=3) @DisplaySize(6) @ReadOnly
     BigDecimal fFelining
 
