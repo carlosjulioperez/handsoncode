@@ -28,7 +28,7 @@ Proyecto
 
 	* Tests:
 		$ ant test -Dnombre_clase=QueryTest
-		$ ant test -Dnombre_clase=TurbiedadDetalle1Test
+		$ ant test -Dnombre_clase=TrashCanaTest
 
 	* i18n:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/34508380/
@@ -47,6 +47,9 @@ Proyecto
 		# psql -U postgres -d ingenio -a -f /home/carper/local/project/workspace/Ingenio/etc/sql/insert.sql
 		# COPY material           FROM '/tmp/material.csv'           DELIMITER  ',' CSV HEADER;
 		INSERT INTO ingenio.ingenio.unidad ("id", descripcion) VALUES ('04', '%/ TCM');
+
+		INSERT INTO ingenio.ingenio.parametro ("id", nombre, valor) VALUES ('009', 'CTO24H_FACTOR_FELINING', '0.997');
+		INSERT INTO ingenio.ingenio.parametro ("id", nombre, valor) VALUES ('010', 'CTO24H_FR', '0.641');
 
 		csv: Tablas de configuración por el usuario (importGroovy y *.csv)
 		sql: Transacciones de prueba (insert.sql)
