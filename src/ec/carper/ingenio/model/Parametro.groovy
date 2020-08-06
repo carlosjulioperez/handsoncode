@@ -8,7 +8,7 @@ import static org.openxava.jpa.XPersistence.*
 @Entity
 class Parametro extends Identifiable{
 
-    @Column(length=30) @Required
+    @Column(length=100) @Required
     String nombre
 
     @Column(length=30) @Required

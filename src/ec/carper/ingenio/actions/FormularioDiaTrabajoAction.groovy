@@ -18,7 +18,8 @@ class FormularioDiaTrabajoAction extends OnChangePropertyBaseAction{
         
         // Determina si el id de la tx vigente es nulo (nuevo registro) para validar que no exista un 
         // registro previamente asignado con el mismo diaTrabajoId
-        if (!map.id){
+        def diaTrabajoUnRegistro = new Parametro().obtenerValor("DIA_TRABAJO_UN_REGISTRO")
+        if (!map.id && diaTrabajoUnRegistro=="S"){
             //println ">>>map.id: ${map.id}"
             //println ">>>diaTrabajoId: ${diaTrabajoId}"
             Query query = getManager().createQuery("select count(*) from ${modulo} where diaTrabajo.id= :dtId")

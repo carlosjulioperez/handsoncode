@@ -53,6 +53,7 @@ Proyecto
 
 		INSERT INTO ingenio.ingenio.parametro ("id", nombre, valor) VALUES ('009', 'CTO24H_FACTOR_FELINING', '0.997');
 		INSERT INTO ingenio.ingenio.parametro ("id", nombre, valor) VALUES ('010', 'CTO24H_FR', '0.641');
+		INSERT INTO ingenio.ingenio.parametro ("id", nombre, valor) VALUES ('011', 'DIA_TRABAJO_UN_REGISTRO', 'S');
 
 		csv: Tablas de configuración por el usuario (importGroovy y *.csv)
 		sql: Transacciones de prueba (insert.sql)

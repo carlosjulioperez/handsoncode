@@ -11,7 +11,7 @@ class Formulario extends Identifiable{
 
     @ManyToOne(fetch=FetchType.LAZY)
     @DescriptionsList @NoCreate @NoModify @Required
-    //@OnChange(FormularioDiaTrabajoAction.class)
+    @OnChange(FormularioDiaTrabajoAction.class)
     DiaTrabajo diaTrabajo
 
     BigDecimal getPromedio(def detalle, String propiedad, int escala){
