@@ -33,7 +33,7 @@ class BlcCargarItemsAction extends ViewBaseAction implements IHideActionAction{
     }
 
     String getActionToHide(){
-        return hideAction ? "Blc.cargarItems": null
+        return hideAction ? "Blc.cargarItems": ""
     }
 }
 

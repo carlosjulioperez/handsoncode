@@ -1,4 +1,6 @@
 2020-08-06 
+	Agregar registros en DescriptionsList	
+	Parametro DIA_TRABAJO_UN_REGISTRO (S/N)
 	Ajustes en Cto24H
 	Modificar Test para escoger secciones
 	Parametrizar factor felining y fr

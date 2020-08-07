@@ -36,7 +36,8 @@ class ParoDetalle extends Identifiable {
     String totalParo
     
     @ManyToOne(fetch=FetchType.LAZY)
-    @DescriptionsList @NoCreate @NoModify @Required
+    //@DescriptionsList @NoCreate @NoModify @Required
+    @DescriptionsList @Required
     Area area
 
     @Column(length=100) @DisplaySize(50) @Required

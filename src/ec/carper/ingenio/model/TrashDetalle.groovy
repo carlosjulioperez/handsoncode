@@ -35,15 +35,15 @@ class TrashDetalle extends Identifiable {
     java.sql.Timestamp hora
 
     @ReadOnly
-    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
+    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList
     Modulo modulo
 
     @ReadOnly
-    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
+    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList
     Turno turno
     
     @ReadOnly
-    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
+    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList
     Variedad variedad
 
     @ReadOnly @DisplaySize(6)

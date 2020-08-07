@@ -75,6 +75,8 @@ class QueryTest extends ModuleTestBase {
         
         //cto24H
         println SqlUtil.instance.getValorDetalleCampo(Aux.instance.diaTrabajoId, "cto24H", "Cto24HDetalle5" , "porcCenizas")
+        
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cto24H", "mielF2")
         //g184 miel final melaza 7.5
     }
 

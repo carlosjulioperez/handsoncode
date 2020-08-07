@@ -26,13 +26,13 @@ class TrashCanaDetalle1 extends Identifiable {
     @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
 
-    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
+    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList
     Modulo modulo
 
-    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
+    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList
     Turno turno
     
-    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
+    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList
     Variedad variedad
 
     @OnChange(TrashCanaDetalle1Action.class) @DisplaySize(6)

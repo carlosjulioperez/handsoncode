@@ -21,10 +21,10 @@ class Cto24HDetalle7 extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Cto24H cto24H
 
-    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
+    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList
     Modulo modulo
 
-    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
+    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList
     Turno turno
     
     @Stereotype("TIME") @OnChange(Cto24HDetalle7Action.class) @Required

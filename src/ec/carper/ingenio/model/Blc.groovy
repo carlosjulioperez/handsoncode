@@ -1,9 +1,9 @@
 package ec.carper.ingenio.model
 
-import ec.carper.ingenio.calculators.*
+import ec.carper.ingenio.actions.*
 import ec.carper.ingenio.util.*
 
-import java.time.LocalDate
+//import java.time.LocalDate
 import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.calculators.*
@@ -19,19 +19,22 @@ import static org.openxava.jpa.XPersistence.*
 """)
 @View(members="""
     diaTrabajo;
-    datosDia { detalle1 }
-    tiempos { 
+    titDatDia { detalle1 }
+    titTie { 
         paroTotal;
     }
-    variablesPrimarias {
-       cana   { detalle21; detalle22 }
-       bagazo { detalle3 }
-       mielFinaMelaza { detalle4 }
+    titVarPri {
+        cana { 
+            titMetLabCan { detalle21 }
+            titMetBal { detalle22 }
+        }
+        bagazo { detalle3 }
+        mielFinaMelaza { detalle4 }
     }
-
 """)
 class Blc extends Formulario {
     
+    @OnChange(BlcShowHideCargarItemsAction.class)
     boolean itemsCargados
 
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL)
@@ -235,6 +238,14 @@ class Blc extends Formulario {
                     def sac  = SqlUtil.instance.getValorCampoBlc(diaTrabajo.id, "BlcDetalle4" , "sacMf")
                     def brix = SqlUtil.instance.getValorCampoBlc(diaTrabajo.id, "BlcDetalle4" , "brixMf")
                     it.valor = brix ? Calculo.instance.redondear(sac/brix*100,2): 0
+                    break 
+                case "cenMf":
+                    it.valor = SqlUtil.instance.getValorDetalleCampo(diaTrabajo.id, "cto24H", "Cto24HDetalle5" , "porcCenizas")
+                    break 
+                case "arAsh":
+                    def cenMf  = SqlUtil.instance.getValorCampoBlc(diaTrabajo.id, "BlcDetalle4" , "cenMf")
+                    def mielF2 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H", "mielF2")
+                    it.valor   = cenMf ? Calculo.instance.redondear(mielF2/cenMf,2): 0
                     break 
             }
             getManager().persist(it)
