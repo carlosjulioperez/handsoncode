@@ -1,3 +1,8 @@
+2020-08-07 
+	Cambiar tamano hora en instancias de Formulario
+	Módulo TurnoTrabajo
+	Parametrizar turnos en DisTrabajo
+
 2020-08-06 
 	Agregar registros en DescriptionsList	
 	Parametro DIA_TRABAJO_UN_REGISTRO (S/N)

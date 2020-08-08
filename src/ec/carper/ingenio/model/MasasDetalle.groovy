@@ -11,7 +11,7 @@ import ec.carper.ingenio.actions.*
 @View(members="""horaS,hora;bri,pol,sac,pur,bri2""")
 class MasasDetalle extends Identifiable {
 
-    @Stereotype("TIME") @OnChange(MasasDetalleAction.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(MasasDetalleAction.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required

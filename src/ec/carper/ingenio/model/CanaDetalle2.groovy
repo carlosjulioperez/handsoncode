@@ -23,13 +23,13 @@ class CanaDetalle2 extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Cana cana
     
-    @Stereotype("TIME") @OnChange(CanaDetalle2Action.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(CanaDetalle2Action.class) @Required
     String horaSD
 
     @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp horaDesde
 
-    @Stereotype("TIME") @OnChange(CanaDetalle2Action.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(CanaDetalle2Action.class) @Required
     String horaSH
 
     @Stereotype("DATETIME") @ReadOnly @Required

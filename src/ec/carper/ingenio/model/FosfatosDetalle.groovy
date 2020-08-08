@@ -19,7 +19,7 @@ class FosfatosDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Fosfatos fosfatos
 
-    @Stereotype("TIME") @OnChange(FosfatosDetalleAction.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(FosfatosDetalleAction.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required

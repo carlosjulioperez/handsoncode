@@ -27,7 +27,7 @@ class PhDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Ph ph
     
-    @Stereotype("TIME") @OnChange(PhDetalleAction.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(PhDetalleAction.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required
@@ -54,7 +54,7 @@ class PhDetalle extends Identifiable {
     @DisplaySize(6)
     BigDecimal mClarificada
     
-    @Stereotype("TIME") @OnChange(PhDetalleAction.class)
+    @Stereotype("TIME") @Column(length=5) @OnChange(PhDetalleAction.class)
     String horaSTJClaro
 
     @Stereotype("DATETIME") @ReadOnly

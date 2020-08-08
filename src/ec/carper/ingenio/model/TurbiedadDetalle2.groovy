@@ -17,7 +17,7 @@ class TurbiedadDetalle2 extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Turbiedad turbiedad
 
-    @Stereotype("TIME") @OnChange(TurbiedadDetalle2Action.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(TurbiedadDetalle2Action.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required

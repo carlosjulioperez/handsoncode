@@ -27,7 +27,7 @@ class Cto24HDetalle7 extends Identifiable {
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList
     Turno turno
     
-    @Stereotype("TIME") @OnChange(Cto24HDetalle7Action.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(Cto24HDetalle7Action.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required

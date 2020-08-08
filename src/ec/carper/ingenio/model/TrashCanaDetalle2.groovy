@@ -22,7 +22,7 @@ class TrashCanaDetalle2 extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     TrashCana trashCana  
 
-    @Stereotype("TIME") @OnChange(TrashCanaDetalle2Action.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(TrashCanaDetalle2Action.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required

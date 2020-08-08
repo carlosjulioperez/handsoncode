@@ -19,7 +19,7 @@ class MeladuraDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Meladura meladura
 
-    @Stereotype("TIME") @OnChange(MeladuraDetalleAction.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(MeladuraDetalleAction.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required

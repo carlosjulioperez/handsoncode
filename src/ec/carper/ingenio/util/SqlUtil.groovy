@@ -3,6 +3,7 @@ package ec.carper.ingenio.util
 import ec.carper.ingenio.model.*
 
 import javax.persistence.*
+import java.time.format.*
 import org.openxava.jpa.*
 import org.openxava.model.*
 import static org.openxava.jpa.XPersistence.*
@@ -44,4 +45,20 @@ class SqlUtil{
     def getDiaTrabajo(String diaTrabajoId){
         return getManager().find(DiaTrabajo.class, diaTrabajoId)
     }
+    
+    def obtenerFecha(def hora, def diaTrabajoId){
+        def h1 = (hora.split(":")[0] + hora.split(":")[1]) as int
+        
+        def d  = getDiaTrabajo(diaTrabajoId)
+        def hora2 = d.turnoTrabajo.horaHasta
+        def fecha = d.fecha
+        def h2 = (hora2.split(":")[0] + hora2.split(":")[1]) as int
+
+        if (h1 >=0 && h1 <=h2)
+            fecha = fecha.plusDays(1);
+
+        def strFecha = fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) 
+        return Util.instance.toTimestamp(strFecha+" "+hora+":00")
+    }
+
 }

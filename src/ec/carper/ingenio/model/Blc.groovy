@@ -3,10 +3,9 @@ package ec.carper.ingenio.model
 import ec.carper.ingenio.actions.*
 import ec.carper.ingenio.util.*
 
-//import java.time.LocalDate
 import javax.persistence.*
 import org.openxava.annotations.*
-import org.openxava.calculators.*
+//import org.openxava.calculators.*
 import org.openxava.jpa.*
 import org.openxava.model.*
 import org.openxava.util.*
@@ -21,7 +20,7 @@ import static org.openxava.jpa.XPersistence.*
     diaTrabajo;
     titDatDia { detalle1 }
     titTie { 
-        paroTotal;
+        paroTotal
     }
     titVarPri {
         cana { 
@@ -30,6 +29,7 @@ import static org.openxava.jpa.XPersistence.*
         }
         bagazo { detalle3 }
         mielFinaMelaza { detalle4 }
+        jugoDiluido { detalle5 }
     }
 """)
 class Blc extends Formulario {
@@ -70,6 +70,9 @@ class Blc extends Formulario {
 
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
     Collection<BlcDetalle4> detalle4
+
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    Collection<BlcDetalle5> detalle5
 
     void cargarItems() throws ValidationException{
         try{
@@ -119,6 +122,13 @@ class Blc extends Formulario {
                 getManager().persist(d)
             }
 
+            // Jugo diluido
+            lista = getManager().createQuery("FROM BlcPDetalle5 WHERE blcP.id = 1 ORDER BY orden").getResultList()
+            lista.each{
+                def d = new BlcDetalle5(blc: blc, orden: it.orden, material: it.material, unidad: it.unidad)
+                getManager().persist(d)
+            }
+
         }catch(Exception ex){
             throw new SystemException("items_no_cargados", ex)
         }
@@ -131,6 +141,7 @@ class Blc extends Formulario {
             consultarMetBal()
             consultarBagazo()
             consultarMielFinaMelaza()
+            consultarJugoDiluido()
         }catch(Exception ex){
             throw new SystemException("datos_no_consultados", ex)
         }
@@ -252,6 +263,17 @@ class Blc extends Formulario {
         }
     }
     
+    def consultarJugoDiluido(){
+        detalle4.each{
+            def campo = it.material.campo ?: ""
+            switch (campo){
+                case "rhoJugDil":
+                break
+            }
+            getManager().persist(it)
+        }
+    }
+    
     // Si un total es de tipo String, todos los demás también deben serlo.
     String getTiempoPerdidoTotal(){
         return diaTrabajo ? SqlUtil.instance.getCampo(diaTrabajo.id, "Paro" , "totalParada"): "00:00:00"
@@ -262,7 +284,7 @@ class Blc extends Formulario {
     }
     
     String getFraccionTiempo(){
-        return Util.instance.getFraccionTiempo(tiempoMoliendaReal)
+        return Calculo.instance.getFraccionTiempo(tiempoMoliendaReal)
     }
 
     String getRataMolienda(){
@@ -284,10 +306,6 @@ class Blc extends Formulario {
         try{
 
             // this.fldTiempoPerdidoTotal = tiempoPerdidoTotal
-            // this.fldTiempoMoliendaReal = tiempoMoliendaReal
-            // this.fldFraccionTiempo     = new BigDecimal(fraccionTiempo)
-            // this.fldRataMolienda       = new BigDecimal(rataMolienda)
-            // this.fldPorcTot            = new BigDecimal(porcTot)
 
             getManager().persist(this)
 

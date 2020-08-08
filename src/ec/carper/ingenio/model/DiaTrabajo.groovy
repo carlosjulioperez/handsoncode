@@ -23,6 +23,10 @@ class DiaTrabajo extends Identifiable{
     @Column(length=2) @Required
     int numeroDia
     
+    @ManyToOne(fetch=FetchType.LAZY)
+    @DescriptionsList @NoCreate @NoModify @Required
+    TurnoTrabajo turnoTrabajo
+
     @Required
     boolean cerrado
 

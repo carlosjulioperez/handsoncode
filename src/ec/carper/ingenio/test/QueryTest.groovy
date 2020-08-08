@@ -33,7 +33,8 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getValorCampo()
+        obtenerFecha()
+        //getValorCampo()
         //getParoTotal()
         //unSoloRegistro()
         //getListaOrdenadaParoDetalle()
@@ -43,6 +44,10 @@ class QueryTest extends ModuleTestBase {
         //getTrashCanaDiaTrabajoCerrado()
         //getTrashCanaDetalle2()
         //getNativo()
+    }
+    
+    void obtenerFecha(){
+        println SqlUtil.instance.obtenerFecha("06:30", Aux.instance.diaTrabajoId)
     }
 
     void getValorCampo(){
@@ -78,6 +83,8 @@ class QueryTest extends ModuleTestBase {
         
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cto24H", "mielF2")
         //g184 miel final melaza 7.5
+
+
     }
 
     void getParoTotal(){

@@ -7,17 +7,20 @@ import org.openxava.model.*
 @Entity
 @View(members="""
     codigo, descripcion
-    datosDia { detalle1 }
-    variablesPrimarias {
-       cana   { detalle21; detalle22 }
-       bagazo { detalle3 }
-       mielFinaMelaza { detalle4 }
-       jugoDiluido { detalle5 }
-       jugoClaro { detalle6 }
-       jugoPrimeraExtraccion { detalle7 }
-       jugoResidual { detalle8 }
-       cachaza { detalle9 }
-       azucarGranel { detalle101; detalle102 }
+    titDatDia { detalle1 }
+    titVarPri {
+        cana { 
+            titMetLabCan { detalle21 }
+            titMetBal { detalle22 }
+        }
+        bagazo { detalle3 }
+        mielFinaMelaza { detalle4 }
+        jugoDiluido { detalle5 }
+        jugoClaro { detalle6 }
+        jugoPrimeraExtraccion { detalle7 }
+        jugoResidual { detalle8 }
+        cachaza { detalle9 }
+        azucarGranel { detalle101; detalle102 }
     }
 """)
 class BlcP{

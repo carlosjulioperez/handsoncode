@@ -1,8 +1,7 @@
 package ec.carper.ingenio.test
 
-import ec.carper.ingenio.util.Util
+import ec.carper.ingenio.util.*
 
-import groovy.time.TimeCategory
 import java.time.LocalDate
 import java.time.format.*
 
@@ -10,7 +9,7 @@ class CodigoTest extends GroovyTestCase {
 
     // https://groovy-lang.org/testing.html
     /*
-    void testAssertions() {
+    Hvoid testAssertions() {
         assertTrue(1 == 1)
         assertEquals("test", "test")
 
@@ -32,8 +31,15 @@ class CodigoTest extends GroovyTestCase {
     // https://www.leveluplunch.com/java/examples/subtract-hours-from-date/
     void getDiferenciaHoras(){
         //println Util.instance.getDiferenciaHoras("02:15:55", "24:00:00")
-        println Util.instance.getFraccionTiempo("20:17:00")
-        println Util.instance.getFraccionTiempo("00:00:00")
+        println Calculo.instance.getFraccionTiempo("20:17:00")
+        println Calculo.instance.getFraccionTiempo("00:00:00")
+        
+        // Restar un minuto a un hora
+        use (groovy.time.TimeCategory) {
+            def horaInicio = Date.parse("HH:mm", "07:00")
+            def horaFin = horaInicio-1.minutes
+            println horaFin.format("HH:mm")
+        }
     }
 
     void _testTimestamp() {

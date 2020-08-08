@@ -48,7 +48,7 @@ class Cto24H extends Formulario {
     boolean detallesCargados
     
     // Usado para pruebas solamente
-    @Column(length=10)
+    @Column(length=10) @Hidden
     String descripcion 
 
     @Digits(integer=3, fraction=3) @DisplaySize(6) @ReadOnly

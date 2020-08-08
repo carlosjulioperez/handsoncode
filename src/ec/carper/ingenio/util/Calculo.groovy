@@ -1,5 +1,7 @@
 package ec.carper.ingenio.util
 
+import groovy.time.TimeCategory
+
 @Singleton
 class Calculo{
 
@@ -60,5 +62,14 @@ class Calculo{
 
     BigDecimal porcCon(def valor1, def valor2){
         return redondear((valor2-valor1)/valor2*100, 2)
+    }
+    
+    BigDecimal getFraccionTiempo(def hora){
+        def valor = 0
+        try{
+            def date = Date.parse("HH:mm:ss",hora) 
+            valor = redondear(date.hours + date.minutes/60, 2)
+        }catch(Exception e){}
+        return valor 
     }
 }

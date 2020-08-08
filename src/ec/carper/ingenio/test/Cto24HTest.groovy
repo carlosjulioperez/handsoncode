@@ -1,7 +1,5 @@
 package ec.carper.ingenio.test
  
-//import ec.carper.ingenio.util.*
-
 import org.openxava.tests.*
 
 class Cto24HTest extends ModuleTestBase {

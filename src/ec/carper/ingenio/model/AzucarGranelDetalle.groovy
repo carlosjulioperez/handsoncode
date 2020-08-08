@@ -24,7 +24,7 @@ class AzucarGranelDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     AzucarGranel azucarGranel
 
-    @Stereotype("TIME") @OnChange(AzucarGranelDetalleAction.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(AzucarGranelDetalleAction.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required

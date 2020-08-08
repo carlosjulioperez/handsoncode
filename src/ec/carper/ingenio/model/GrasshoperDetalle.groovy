@@ -23,7 +23,7 @@ class GrasshoperDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Grasshoper grasshoper
 
-    @Stereotype("TIME") @OnChange(GrasshoperDetalleAction.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(GrasshoperDetalleAction.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required

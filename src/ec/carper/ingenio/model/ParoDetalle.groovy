@@ -20,13 +20,13 @@ class ParoDetalle extends Identifiable {
     Paro paro
     
     // https://github.com/mariuszs/openxava/blob/master/source/src/test/java/org/openxava/test/model/Clerk.java
-    @Stereotype("TIME") @OnChange(ParoDetalleAction.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(ParoDetalleAction.class) @Required
     String horaI
 
     @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp fechaInicio
 
-    @Stereotype("TIME") @OnChange(ParoDetalleAction.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(ParoDetalleAction.class) @Required
     String horaF
 
     @Stereotype("DATETIME") @ReadOnly @Required

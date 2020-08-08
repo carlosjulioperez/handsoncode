@@ -28,7 +28,7 @@ class BagazoDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Bagazo bagazo
     
-    @Stereotype("TIME") @OnChange(BagazoDetalleAction.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(BagazoDetalleAction.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required
@@ -70,7 +70,7 @@ class BagazoDetalle extends Identifiable {
     @ReadOnly @DisplaySize(6)
     BigDecimal porcSacarosa
     
-    @Stereotype("TIME") @OnChange(BagazoDetalleAction.class)
+    @Stereotype("TIME") @Column(length=5) @OnChange(BagazoDetalleAction.class)
     String horaSPorcSacJR
 
     @Stereotype("DATETIME") @ReadOnly

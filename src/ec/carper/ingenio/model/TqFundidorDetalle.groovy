@@ -18,7 +18,7 @@ class TqFundidorDetalle extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     TqFundidor tqFundidor
 
-    @Stereotype("TIME") @OnChange(TqFundidorDetalleAction.class) @Required
+    @Stereotype("TIME") @Column(length=5) @OnChange(TqFundidorDetalleAction.class) @Required
     String horaS
 
     @Stereotype("DATETIME") @ReadOnly @Required
