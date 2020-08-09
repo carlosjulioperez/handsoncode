@@ -31,7 +31,7 @@ Proyecto
 
 	* Tests:
 		$ ant test -Dnombre_clase=QueryTest
-		$ ant test -Dnombre_clase=TrashCanaTest
+		$ ant test -Dnombre_clase=CanaTest
 
 	* i18n:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/34508380/

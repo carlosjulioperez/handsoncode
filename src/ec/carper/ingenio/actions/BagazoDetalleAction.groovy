@@ -11,14 +11,13 @@ class BagazoDetalleAction extends OnChangePropertyBaseAction{
     void execute() throws Exception{
 
         def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
-        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(diaTrabajoId)
         String horaS = (String)getView().getValue("horaS")
         if (horaS)
-            getView().setValue("hora", Util.instance.toTimestamp(horaS, diaTrabajo.fecha)) 
+            getView().setValue("hora", SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId)) 
         
         String horaSPorcSacJR = (String)getView().getValue("horaSPorcSacJR")
         if (horaSPorcSacJR)
-            getView().setValue("horaPorcSacJR", Util.instance.toTimestamp(horaSPorcSacJR, diaTrabajo.fecha)) 
+            getView().setValue("horaPorcSacJR", SqlUtil.instance.obtenerFecha(horaSPorcSacJR, diaTrabajoId)) 
         def horaPorcSacJR  = (Timestamp)getView().getValue("horaPorcSacJR")
 
         BigDecimal wH2O          = (BigDecimal)getView().getValue("wH2O")

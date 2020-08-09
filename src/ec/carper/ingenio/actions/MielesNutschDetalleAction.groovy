@@ -11,10 +11,9 @@ class MielesNutschDetalleAction extends OnChangePropertyBaseAction{
     void execute() throws Exception{
 
         def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
-        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(diaTrabajoId)
         String horaS = (String)getView().getValue("horaS")
         if (horaS)
-            getView().setValue("hora", Util.instance.toTimestamp(horaS, diaTrabajo.fecha)) 
+            getView().setValue("hora", SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId)) 
         
         BigDecimal maBri  = (BigDecimal)getView().getValue("maBri")
         BigDecimal maBri2 = (BigDecimal)getView().getValue("maBri2")

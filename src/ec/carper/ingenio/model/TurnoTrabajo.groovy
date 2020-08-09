@@ -7,6 +7,7 @@ import org.openxava.annotations.*
 import org.openxava.model.*
 
 @Entity
+@Tab(properties="horaDesde,horaHasta", defaultOrder="horaDesde")
 class TurnoTrabajo extends Identifiable{
 
     @Stereotype("TIME") @Column(length=5)

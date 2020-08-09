@@ -13,10 +13,9 @@ class CanaDetalle1Action extends OnChangePropertyBaseAction{
         String diaTrabajoId = getView().getRoot().getValue("diaTrabajo.id")
 
         def hora = (Timestamp)getView().getValue("hora")
-        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(diaTrabajoId)
         String horaS = (String)getView().getValue("horaS")
         if (horaS)
-            getView().setValue("hora", Util.instance.toTimestamp(horaS, diaTrabajo.fecha)) 
+            getView().setValue("hora", SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId)) 
 
         BigDecimal wH2O          = (BigDecimal)getView().getValue("wH2O")
         BigDecimal wCana         = (BigDecimal)getView().getValue("wCana")

@@ -11,14 +11,13 @@ class CanaDetalle2Action extends OnChangePropertyBaseAction{
     void execute() throws Exception{
 
         String diaTrabajoId     = (String)getView().getRoot().getValue("diaTrabajo.id")
-        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(diaTrabajoId)
         String horaSD = (String)getView().getValue("horaSD")
         if (horaSD)
-            getView().setValue("horaDesde", Util.instance.toTimestamp(horaSD, diaTrabajo.fecha)) 
+            getView().setValue("horaDesde", SqlUtil.instance.obtenerFecha(horaSD, diaTrabajoId)) 
         
         String horaSH = (String)getView().getValue("horaSH")
         if (horaSH)
-            getView().setValue("horaHasta", Util.instance.toTimestamp(horaSH, diaTrabajo.fecha)) 
+            getView().setValue("horaHasta", SqlUtil.instance.obtenerFecha(horaSH, diaTrabajoId)) 
         
         Timestamp horaDesde     = (Timestamp)getView().getValue("horaDesde")
         Timestamp horaHasta     = (Timestamp)getView().getValue("horaHasta")

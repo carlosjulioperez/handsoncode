@@ -42,12 +42,6 @@ class CodigoTest extends GroovyTestCase {
         }
     }
 
-    void _testTimestamp() {
-        def hora = "23:20"
-        def fecha = LocalDate.of(2019, 8, 7)
-        println Util.instance.toTimestamp(hora, fecha)
-    }
-
     void _testTimestampPlantilla() {
         def fecha = LocalDate.of(2019, 8, 7)
         def hora = "02:20"

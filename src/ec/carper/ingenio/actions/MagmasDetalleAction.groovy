@@ -11,10 +11,9 @@ class MagmasDetalleAction extends OnChangePropertyBaseAction{
     void execute() throws Exception{
 
         def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
-        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(diaTrabajoId)
         String horaS = (String)getView().getValue("horaS")
         if (horaS)
-            getView().setValue("hora", Util.instance.toTimestamp(horaS, diaTrabajo.fecha)) 
+            getView().setValue("hora", SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId))
         
         BigDecimal mbBri  = (BigDecimal)getView().getValue("mbBri")
         BigDecimal mbBri2 = (BigDecimal)getView().getValue("mbBri2")

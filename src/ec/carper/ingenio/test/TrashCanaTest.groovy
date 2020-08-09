@@ -18,8 +18,8 @@ class TrashCanaTest extends ModuleTestBase {
         assertCollectionRowCount("detalle1", 0) // La colección esta vacía 
         execute("Collection.new"   , "viewObject=xava_view_section0_detalle1")
         assertDialog()
-        setValue("horaS"           , "06:00")
-        assertValue("hora"         , "07/08/2019 06:00")
+        setValue("horaS"           , "08:00")
+        assertValue("hora"         , "07/08/2019 08:00")
         setValue("modulo.id"       , "01")
         setValue("turno.id"        , "1")
         setValue("variedad.id"     , "01")

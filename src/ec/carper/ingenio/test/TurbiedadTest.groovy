@@ -31,8 +31,8 @@ class TurbiedadTest extends ModuleTestBase {
         assertCollectionRowCount("detalle2", 0) // La colección esta vacía 
         execute("Collection.new"    , "viewObject=xava_view_section1_detalle2")
         assertDialog()
-        setValue    ("horaS"      , "06:00")
-        assertValue ("hora"       , "07/08/2019 06:00")
+        setValue    ("horaS"      , "08:00")
+        assertValue ("hora"       , "07/08/2019 08:00")
         setValue    ( "polCachaza" , "3.31")
         execute("Collection.save")
         assertNoErrors()

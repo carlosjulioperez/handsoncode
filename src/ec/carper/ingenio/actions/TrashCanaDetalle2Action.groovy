@@ -11,10 +11,10 @@ class TrashCanaDetalle2Action extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
 
-        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(getView().getRoot().getValue("diaTrabajo.id"))
+        def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
         String horaS = (String)getView().getValue("horaS")
         if (horaS)
-            getView().setValue("hora", Util.instance.toTimestamp(horaS, diaTrabajo.fecha)) 
+            getView().setValue("hora", SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId)) 
 
         BigDecimal mlReductores = (BigDecimal)getView().getValue("mlReductores")
 

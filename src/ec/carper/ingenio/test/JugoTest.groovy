@@ -27,8 +27,8 @@ class JugoTest extends ModuleTestBase {
         execute("Collection.new"   , "viewObject=xava_view_section0_detalle")
         assertDialog()
         
-        setValue("horaS"      , "06:00")
-        assertValue("hora"    , "07/08/2019 06:00")
+        setValue("horaS"      , "08:00")
+        assertValue("hora"    , "07/08/2019 08:00")
         
         setValue    ( "jeBri" , "18.17")
         setValue    ( "jePol" , "63.36")

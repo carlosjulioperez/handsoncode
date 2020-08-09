@@ -7,7 +7,8 @@ import org.openxava.actions.*
 import org.openxava.jpa.*
 import static org.openxava.jpa.XPersistence.*
 
-class IngenioSaveAction extends ViewBaseAction implements IChainAction{
+// https://sourceforge.net/p/openxava/discussion/437013/thread/39699fc4/?limit=25#b43b/c2a7
+class IngenioSaveAction extends ViewBaseAction implements IChainAction, IChangeModeAction{
 
     private String nextAction = null // Para guardar la siguiente acción a ejecutar
 
@@ -66,6 +67,10 @@ class IngenioSaveAction extends ViewBaseAction implements IChainAction{
     // Obligatorio por causa de 'IChainAction'
     String getNextAction() throws Exception {
         return nextAction // Si es nulo no se encadena con ninguna acción
+    }
+
+    String getNextMode() {
+        return IChangeModeAction.LIST;
     }
 }
 

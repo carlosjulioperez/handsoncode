@@ -11,14 +11,13 @@ class PhDetalleAction extends OnChangePropertyBaseAction{
     void execute() throws Exception{
         
         def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
-        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(diaTrabajoId)
         String horaS = (String)getView().getValue("horaS")
         if (horaS)
-            getView().setValue("hora", Util.instance.toTimestamp(horaS, diaTrabajo.fecha)) 
+            getView().setValue("hora", SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId)) 
         
         String horaSTJClaro = (String)getView().getValue("horaSTJClaro")
         if (horaSTJClaro)
-            getView().setValue("horaTJClaro", Util.instance.toTimestamp(horaSTJClaro, diaTrabajo.fecha)) 
+            getView().setValue("horaTJClaro", SqlUtil.instance.obtenerFecha(horaSTJClaro, diaTrabajoId))
         
         def horaTJClaro = (Timestamp)getView().getValue("horaTJClaro")
 

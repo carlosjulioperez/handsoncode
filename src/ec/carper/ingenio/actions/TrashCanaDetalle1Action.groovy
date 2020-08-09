@@ -10,13 +10,10 @@ import static org.openxava.jpa.XPersistence.*
 class TrashCanaDetalle1Action extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
-        // TODO: Obtener objeto DiaTrabajo
-        // String diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
-        // DiaTrabajo diaTrabajo = SqlUtil.instance.getDiaTrabajo(diaTrabajoId)
-        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(getView().getRoot().getValue("diaTrabajo.id"))
+        def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
         String horaS = (String)getView().getValue("horaS")
         if (horaS)
-            getView().setValue("hora", Util.instance.toTimestamp(horaS, diaTrabajo.fecha)) 
+            getView().setValue("hora", SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId))
 
         BigDecimal cantidadCana = (BigDecimal)getView().getValue("cantidadCana") //getNewValue()
         BigDecimal netaCana     = (BigDecimal)getView().getValue("netaCana") //getNewValue()

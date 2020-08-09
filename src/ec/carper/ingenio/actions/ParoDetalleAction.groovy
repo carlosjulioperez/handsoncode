@@ -11,14 +11,13 @@ class ParoDetalleAction extends OnChangePropertyBaseAction{
     void execute() throws Exception{
 
         def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
-        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(diaTrabajoId)
         String horaI = (String)getView().getValue("horaI")
         if (horaI)
-            getView().setValue("fechaInicio", Util.instance.toTimestamp(horaI, diaTrabajo.fecha)) 
+            getView().setValue("fechaInicio", SqlUtil.instance.obtenerFecha(horaI, diaTrabajoId)) 
         
         String horaF = (String)getView().getValue("horaF")
         if (horaF)
-            getView().setValue("fechaFin", Util.instance.toTimestamp(horaF, diaTrabajo.fecha)) 
+            getView().setValue("fechaFin", SqlUtil.instance.obtenerFecha(horaF, diaTrabajoId)) 
         
         Timestamp fechaInicio = (Timestamp)getView().getValue("fechaInicio")
         Timestamp fechaFin    = (Timestamp)getView().getValue("fechaFin")

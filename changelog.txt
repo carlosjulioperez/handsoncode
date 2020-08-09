@@ -1,3 +1,9 @@
+2020-08-09 
+	Mostrar listado después de Ingenio.save
+
+2020-08-08 
+	Reemplazo de Util.instance.toTimestamp(hora, fecha) por SqlUtil.instance.obtenerFecha(hora, diaTrabajoId)
+
 2020-08-07 
 	Cambiar tamano hora en instancias de Formulario
 	Módulo TurnoTrabajo
