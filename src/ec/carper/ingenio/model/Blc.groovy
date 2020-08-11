@@ -13,11 +13,9 @@ import org.openxava.validators.*
 import static org.openxava.jpa.XPersistence.*
 
 @Entity
-@Tab(properties="""
-    diaTrabajo.descripcion
-""")
+@Tab(properties="diaTrabajo.descripcion, descripcion")
 @View(members="""
-    diaTrabajo;
+    diaTrabajo, descripcion;
     titDatDia { detalle1 }
     titTie { 
         paroTotal
@@ -36,6 +34,10 @@ class Blc extends Formulario {
     
     @OnChange(BlcShowHideCargarItemsAction.class)
     boolean itemsCargados
+    
+    // Usado para pruebas solamente
+    @Column(length=10)
+    String descripcion 
 
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL)
     @XOrderBy("orden") @EditOnly

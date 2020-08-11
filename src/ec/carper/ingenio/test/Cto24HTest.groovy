@@ -19,8 +19,10 @@ class Cto24HTest extends ModuleTestBase {
         execute ("Ingenio.save")
         assertNoErrors()
 
-        setValue   ("descripcion", "JUNIT")
-        execute    ("CRUD.refresh")
+        setConditionValues("", "JUNIT"); // Establece los valores para filtrar los datos
+        setConditionComparators("=", "contains_comparator"); // Pone los comparadores para filtrar los datos
+        execute("List.filter"); 
+        execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila
         assertValue("descripcion", "JUNIT")
         execute    ("Cto24H.cargarDetalles")
         

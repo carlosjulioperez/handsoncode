@@ -31,7 +31,7 @@ Proyecto
 
 	* Tests:
 		$ ant test -Dnombre_clase=QueryTest
-		$ ant test -Dnombre_clase=CanaTest
+		$ ant test -Dnombre_clase=Cto24HTest
 
 	* i18n:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/34508380/

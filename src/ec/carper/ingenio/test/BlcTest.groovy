@@ -1,12 +1,6 @@
 package ec.carper.ingenio.test
 
-import ec.carper.ingenio.model.*
-
-import javax.persistence.Query;
 import org.openxava.tests.*
-import org.openxava.validators.*
-import org.openxava.util.*
-import static org.openxava.jpa.XPersistence.*;
 
 class BlcTest extends ModuleTestBase {
 
@@ -14,39 +8,29 @@ class BlcTest extends ModuleTestBase {
         super(testName, "Ingenio", "Blc")
     }
 
-    // Ejemplo JPA
-    void cargarItems() throws ValidationException{
-        try{
-            Blc blc           = new Blc()
-            blc.id            = null
+    void testCrear() throws Exception {
+        login("admin", "admin")
+        
+        execute("CRUD.new")
+        
+        setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
+        setValue("descripcion"   , "JUNIT")
+        execute ("Ingenio.save")
+        assertNoErrors()
+        
+        setConditionValues("", "JUNIT"); // Establece los valores para filtrar los datos
+        setConditionComparators("=", "contains_comparator"); // Pone los comparadores para filtrar los datos
+        execute("List.filter"); 
+        execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila
+        assertValue("descripcion", "JUNIT")
+        execute    ("Blc.cargarItems")
+        assertCollectionRowCount("detalle1", 10)
 
-            //blc.diaTrabajo  = this.diaTrabajo
-            // TODO optimizar codigo groovy
-            def diaTrabajo    = new DiaTrabajo()
-            diaTrabajo.id     = Aux.instance.diaTrabajoId
-
-            blc.diaTrabajo    = diaTrabajo
-            blc.itemsCargados = true
-            getManager().persist(blc)
-
-            def lista = getManager().createQuery("FROM BlcPDetalle1 WHERE blcP.id = 1 ORDER BY orden").getResultList()
-
-            lista.each{
-                def d1      = new BlcDetalle1()
-                d1.id       = null
-                d1.blc      = blc
-                d1.material = it.material
-                d1.unidad   = it.unidad
-                d1.unidad2  = it.unidad2
-                getManager().persist(d1)
-            }
-        }catch(Exception ex){
-            throw new SystemException("items_no_cargados", ex)
-        }
+        execute("Sections.change", "activeSection=2")
+        assertCollectionRowCount("detalle21", 6)
+        
+        // FINALIZAR
+        execute    ("CRUD.delete")
+        assertNoErrors()
     }
-
-    void test() throws Exception {
-        cargarItems()
-    }
-
 }

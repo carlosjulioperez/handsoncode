@@ -173,6 +173,37 @@ class QueryTest extends ModuleTestBase {
         }
     }
     
+    // Ejemplo JPA
+    void cargarItems(){
+        try{
+            Blc blc           = new Blc()
+            blc.id            = null
+
+            //blc.diaTrabajo  = this.diaTrabajo
+            // TODO optimizar codigo groovy
+            def diaTrabajo    = new DiaTrabajo()
+            diaTrabajo.id     = Aux.instance.diaTrabajoId
+
+            blc.diaTrabajo    = diaTrabajo
+            blc.itemsCargados = true
+            getManager().persist(blc)
+
+            def lista = getManager().createQuery("FROM BlcPDetalle1 WHERE blcP.id = 1 ORDER BY orden").getResultList()
+
+            lista.each{
+                def d1      = new BlcDetalle1()
+                d1.id       = null
+                d1.blc      = blc
+                d1.material = it.material
+                d1.unidad   = it.unidad
+                d1.unidad2  = it.unidad2
+                getManager().persist(d1)
+            }
+        }catch(Exception ex){
+            ex.printStackTrace()
+        }
+    }
+
     /*
     void getNativo(){
         Query q = em.createNativeQuery("SELECT o.diaTrabajo.cerrado FROM TrashCana o WHERE o.id= :id ")
