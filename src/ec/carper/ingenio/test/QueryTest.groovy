@@ -33,8 +33,8 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        obtenerFecha()
-        //getValorCampo()
+        getValorCampo()
+        //obtenerFecha()
         //getParoTotal()
         //unSoloRegistro()
         //getListaOrdenadaParoDetalle()
@@ -54,6 +54,7 @@ class QueryTest extends ModuleTestBase {
         //println SqlUtil.instance.getCampo(Aux.instance.diaTrabajoId, "Paro" , "totalParada")
         //println SqlUtil.instance.getValorCampoBlc(Aux.instance.diaTrabajoId, "BlcDetalle1" , "canaDia")
         
+        /*
         // BLC
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Trash" , "avgPorcTrash")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cana" , "brix")
@@ -83,8 +84,23 @@ class QueryTest extends ModuleTestBase {
         
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cto24H", "mielF2")
         //g184 miel final melaza 7.5
+        */
 
-
+        // Jugo Diluido
+        def brixJDil = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "brixJDil")
+        def pJDil = new BrixDensidadWp().getP(brixJDil)
+        println brixJDil
+        println pJDil
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cto24H", "porcInso")
+        
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Fosfatos", "jdFosfatos")
+        
+        def jdSac = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jdSac")
+        println jdSac
+       
+        // =+F10*100/D8
+        def pzaJDil = brixJDil ? Calculo.instance.redondear(jdSac*100/brixJDil,2): 0
+        println pzaJDil 
     }
 
     void getParoTotal(){

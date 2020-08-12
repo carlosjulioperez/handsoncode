@@ -14,8 +14,7 @@ class TamanoGranoDetalleAction extends OnChangePropertyBaseAction{
         BigDecimal pesoTamiz        = (BigDecimal)getView().getValue("pesoTamiz${it}")
         BigDecimal pesoTamizMuestra = (BigDecimal)getView().getValue("pesoTamizMuestra${it}")
 
-        if (pesoTamiz && pesoTamizMuestra)
-            getView().setValue("porcRetenido${it}", (pesoTamizMuestra-pesoTamiz))
+        getView().setValue("porcRetenido${it}", (pesoTamiz && pesoTamizMuestra) ? (pesoTamizMuestra-pesoTamiz): null)
         
         BigDecimal porcAcumulado = (BigDecimal)getView().getValue("porcAcumulado${it}")
         BigDecimal porcRetenido = (BigDecimal)getView().getValue("porcRetenido${it}")
@@ -69,11 +68,8 @@ class TamanoGranoDetalleAction extends OnChangePropertyBaseAction{
             def aberMed       = (50-intercept)/slope
             def coefVar       = ( ( (16-intercept)/slope - (84-intercept)/slope ) / (2*aberMed))*100
 
-            if (aberMed)
-                getView().setValue("aberturaMedia", Calculo.instance.redondear(aberMed,2))
-
-            if (coefVar)
-                getView().setValue("coeficienteVariacion", Calculo.instance.redondear(coefVar,2))
+            getView().setValue("aberturaMedia", aberMed ? Calculo.instance.redondear(aberMed,2): null)
+            getView().setValue("coeficienteVariacion", coefVar ? Calculo.instance.redondear(coefVar,2): null)
 
         }
     }

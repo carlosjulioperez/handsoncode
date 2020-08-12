@@ -22,7 +22,6 @@ import static org.openxava.jpa.XPersistence.*
 """)
 class BtuLbBagazo extends Formulario {
 
-    @OnChange(BtuLbBagazoAction.class) @Digits(integer=2, fraction=3) 
     @DisplaySize(6) @Required
     BigDecimal pHum
 

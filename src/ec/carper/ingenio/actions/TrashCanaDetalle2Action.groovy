@@ -13,8 +13,7 @@ class TrashCanaDetalle2Action extends OnChangePropertyBaseAction{
 
         def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
         String horaS = (String)getView().getValue("horaS")
-        if (horaS)
-            getView().setValue("hora", SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId)) 
+        getView().setValue("hora", (diaTrabajoId && horaS) ? SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId): null) 
 
         BigDecimal mlReductores = (BigDecimal)getView().getValue("mlReductores")
 
@@ -24,6 +23,9 @@ class TrashCanaDetalle2Action extends OnChangePropertyBaseAction{
 
             getView().setValue("calTab7SusRed", tab7SusRed)
             getView().setValue("calPorcAzuRed", porcAzuRed)
+        }else{
+            getView().setValue("calTab7SusRed", null)
+            getView().setValue("calPorcAzuRed", null)
         }
     }
 

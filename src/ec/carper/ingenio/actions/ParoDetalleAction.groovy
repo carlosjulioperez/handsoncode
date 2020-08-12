@@ -12,12 +12,10 @@ class ParoDetalleAction extends OnChangePropertyBaseAction{
 
         def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
         String horaI = (String)getView().getValue("horaI")
-        if (horaI)
-            getView().setValue("fechaInicio", SqlUtil.instance.obtenerFecha(horaI, diaTrabajoId)) 
+        getView().setValue("fechaInicio", (diaTrabajoId && horaI) ? SqlUtil.instance.obtenerFecha(horaI, diaTrabajoId): null)
         
         String horaF = (String)getView().getValue("horaF")
-        if (horaF)
-            getView().setValue("fechaFin", SqlUtil.instance.obtenerFecha(horaF, diaTrabajoId)) 
+        getView().setValue("fechaFin", (diaTrabajoId && horaF) ? SqlUtil.instance.obtenerFecha(horaF, diaTrabajoId): null)
         
         Timestamp fechaInicio = (Timestamp)getView().getValue("fechaInicio")
         Timestamp fechaFin    = (Timestamp)getView().getValue("fechaFin")
@@ -28,7 +26,8 @@ class ParoDetalleAction extends OnChangePropertyBaseAction{
             //log.warn ("Start: ${startTime}, end: ${endTime} ")
             
             getView().setValue("totalParo", Util.instance.getDurationAsString(startTime, endTime)) 
-        }
+        }else
+            getView().setValue("totalParo", null) 
 
     }
 }

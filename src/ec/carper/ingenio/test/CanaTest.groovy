@@ -36,7 +36,7 @@ class CanaTest extends ModuleTestBase {
         assertValue("pureza"       , "89.47")
         assertValue("nSac"         , "1.78")
         assertValue("aR"           , "0.45")
-        assertValue("porcArNsac"   , "25.28089888")
+        assertValue("porcArNsac"   , "25.28")
         execute("Collection.save")
         assertNoErrors()
         assertCollectionRowCount("detalle1", 1)

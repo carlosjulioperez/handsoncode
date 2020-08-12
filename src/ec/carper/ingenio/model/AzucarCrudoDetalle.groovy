@@ -28,7 +28,7 @@ class AzucarCrudoDetalle extends Identifiable {
     @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal briCorr
 
     @OnChange(AzucarCrudoDetalleAction.class) @DisplaySize(6)

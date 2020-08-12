@@ -11,8 +11,7 @@ class FosfatosDetalleAction extends OnChangePropertyBaseAction{
 
         def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
         String horaS = (String)getView().getValue("horaS")
-        if (horaS)
-            getView().setValue("hora", SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId))
+        getView().setValue("hora", (horaS && diaTrabajoId) ? SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId): null)
 
         BigDecimal cteN1         = (BigDecimal)getView().getRoot().getValue("cteN1")
         BigDecimal cteN2         = (BigDecimal)getView().getRoot().getValue("cteN2")
@@ -21,25 +20,21 @@ class FosfatosDetalleAction extends OnChangePropertyBaseAction{
         BigDecimal jdMlMuestra   = (BigDecimal)getView().getValue("jdMlMuestra")
 
         // =+C21*$K$3-$K$4
-        if (jdAbsorbancia && cteN1 && cteN2)
-            getView().setValue("jdMgP", (jdAbsorbancia * cteN1 - cteN2).setScale(3, BigDecimal.ROUND_HALF_UP))
+        getView().setValue("jdMgP", (jdAbsorbancia && cteN1 && cteN2) ? Calculo.instance.redondear(jdAbsorbancia * cteN1 - cteN2, 3): null)
         
         // =+E21*(1000/D21)
         BigDecimal jdMgP = (BigDecimal)getView().getValue("jdMgP")
-        if (jdMgP && jdMlMuestra)
-            getView().setValue("jdFosfatos", (jdMgP*(1000/jdMlMuestra)).setScale(3, BigDecimal.ROUND_HALF_UP))
+        getView().setValue("jdFosfatos", (jdMgP && jdMlMuestra) ? Calculo.instance.redondear(jdMgP*(1000/jdMlMuestra) ,3): null)
         
         BigDecimal jcAbsorbancia = (BigDecimal)getView().getValue("jcAbsorbancia")
         BigDecimal jcMlMuestra   = (BigDecimal)getView().getValue("jcMlMuestra")
 
         // =+C21*$K$3-$K$4
-        if (jcAbsorbancia && cteN1 && cteN2)
-            getView().setValue("jcMgP", (jcAbsorbancia * cteN1 - cteN2).setScale(3, BigDecimal.ROUND_HALF_UP))
+        getView().setValue("jcMgP", (jcAbsorbancia && cteN1 && cteN2) ? Calculo.instance.redondear(jcAbsorbancia * cteN1 - cteN2, 3): null)
         
         // =+E21*(1000/D21)
         BigDecimal jcMgP = (BigDecimal)getView().getValue("jcMgP")
-        if (jcMgP && jcMlMuestra)
-            getView().setValue("jcFosfatos", (jcMgP*(1000/jcMlMuestra)).setScale(3, BigDecimal.ROUND_HALF_UP))
+        getView().setValue("jcFosfatos", (jcMgP && jcMlMuestra) ? Calculo.instance.redondear(jcMgP*(1000/jcMlMuestra), 3): null)
     }
     
 }

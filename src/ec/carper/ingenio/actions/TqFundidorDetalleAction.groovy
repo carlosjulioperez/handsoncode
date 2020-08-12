@@ -12,21 +12,16 @@ class TqFundidorDetalleAction extends OnChangePropertyBaseAction{
 
         def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
         String horaS = (String)getView().getValue("horaS")
-        if (horaS)
-            getView().setValue("hora", SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId)) 
+        getView().setValue("hora", (diaTrabajoId && horaS) ? SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId): null) 
         
         BigDecimal bri  = (BigDecimal)getView().getValue("bri")
         BigDecimal bri2 = (BigDecimal)getView().getValue("bri2")
         BigDecimal pol  = (BigDecimal)getView().getValue("pol")
-        if (bri && pol)
-            getView().setValue("sac", Calculo.instance.getSac(bri, pol, 6, 2))
+        getView().setValue("sac", (bri && pol) ? Calculo.instance.getSac(bri, pol, 6, 2): null)
         
         BigDecimal sac = (BigDecimal)getView().getValue("sac")
-        if (sac && bri2)
-            getView().setValue("pur", Calculo.instance.getPorc(sac, bri2, 2))
-        
-        if (bri)
-            getView().setValue("bri2", (bri*6).setScale(2, BigDecimal.ROUND_HALF_UP))
+        getView().setValue("pur", (sac && bri2) ? Calculo.instance.getPorc(sac, bri2, 2): null)
+        getView().setValue("bri2", bri ? Calculo.instance.redondear(bri*6, 2): null)
 
     }
     

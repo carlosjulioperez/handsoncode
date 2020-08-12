@@ -65,6 +65,17 @@ class BlcTest extends ModuleTestBase {
         assertValueInCollection("detalle4" , 3 , 2 , "0.00")
         assertValueInCollection("detalle4" , 4 , 2 , "0.00")
 
+        // Jugo Diluido
+        execute("Sections.change", "activeSection=3,viewObject=xava_view_section2")
+        assertCollectionRowCount("detalle5", 7)
+        assertValueInCollection("detalle5" , 0 , 2 , "1055.317")
+        assertValueInCollection("detalle5" , 1 , 2 , "-0.53")
+        assertValueInCollection("detalle5" , 2 , 2 , "230.167")
+        //assertValueInCollection("detalle5" , 3 , 2 , "PENDIENTE")
+        assertValueInCollection("detalle5" , 4 , 2 , "14.12")
+        assertValueInCollection("detalle5" , 5 , 2 , "12.09")
+        assertValueInCollection("detalle5" , 6 , 2 , "85.62")
+
         // FINALIZAR
         execute    ("CRUD.delete")
         assertNoErrors()

@@ -12,8 +12,7 @@ class AzucarCrudoDetalleAction extends OnChangePropertyBaseAction{
 
         def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
         String horaS = (String)getView().getValue("horaS")
-        if (horaS)
-            getView().setValue("hora", SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId)) 
+        getView().setValue("hora", (horaS && diaTrabajoId) ? SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId): null)
         
         BigDecimal briCorr       = (BigDecimal)getView().getValue("briCorr")
         BigDecimal bri           = (BigDecimal)getView().getValue("bri")
@@ -21,29 +20,21 @@ class AzucarCrudoDetalleAction extends OnChangePropertyBaseAction{
         BigDecimal absSinFiltrar = (BigDecimal)getView().getValue("absSinFiltrar")
         BigDecimal celda         = (BigDecimal)getView().getValue("celda")
         
-        if (bri){
-            getView().setValue("rho", new BrixDensidadWp().getP(bri))
-            getView().setValue("briCorr", (bri*0.99718).setScale(2, BigDecimal.ROUND_HALF_UP))
-        }
+        getView().setValue("rho"    , bri ? new BrixDensidadWp().getP(bri): null)
+        getView().setValue("briCorr", bri ? Calculo.instance.redondear(bri*0.99718,2): null)
         
         // =+(C7*H7)/100000
         BigDecimal rho = (BigDecimal)getView().getValue("rho")
-        if (briCorr){
-            if (rho)
-                getView().setValue("cedilla", Calculo.instance.getCedilla(briCorr, rho, 6))
-
-            getView().setValue("briEle", (bri*2).setScale(2, BigDecimal.ROUND_HALF_UP))
-        }
+        getView().setValue("cedilla", (briCorr && rho) ? Calculo.instance.getCedilla(briCorr, rho, 6): null)
+        getView().setValue("briEle",  bri ? Calculo.instance.redondear(bri*2, 2): null)
 
         // =+(1000*D7)/(F7*G7)
         BigDecimal cedilla = (BigDecimal)getView().getValue("cedilla")
-        if (absFiltrada && celda && cedilla)
-            getView().setValue("color", Calculo.instance.getColor(absFiltrada, celda, cedilla, 2))
+        getView().setValue("color", (absFiltrada && celda && cedilla) ? Calculo.instance.getColor(absFiltrada, celda, cedilla, 2): null)
         
         // =+((1000*E7)/(F7*G7))-I7
         BigDecimal color = (BigDecimal)getView().getValue("color")
-        if (absSinFiltrar && celda && cedilla && color)
-            getView().setValue("turb", Calculo.instance.getColor(absSinFiltrar, celda, cedilla, 2) - color)
+        getView().setValue("turb", (absSinFiltrar && celda && cedilla && color) ? (Calculo.instance.getColor(absSinFiltrar, celda, cedilla, 2) - color): null)
         
     }
     

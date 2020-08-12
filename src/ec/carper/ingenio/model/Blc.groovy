@@ -266,11 +266,30 @@ class Blc extends Formulario {
     }
     
     def consultarJugoDiluido(){
-        detalle4.each{
+        def brixJDil = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "brixJDil")
+        def sacJDil  = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jdSac")
+        
+        detalle5.each{
             def campo = it.material.campo ?: ""
             switch (campo){
                 case "rhoJugDil":
-                break
+                    it.valor = new BrixDensidadWp().getP(brixJDil)
+                    break
+                case "solInsol":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H", "porcInso")
+                    break
+                case "fosfatos":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Fosfatos", "jdFosfatos")
+                    break
+                case "brixJDil":
+                    it.valor = brixJDil
+                    break
+                case "sacJDil":
+                    it.valor = sacJDil
+                    break
+                case "pzaJDil":
+                    it.valor = brixJDil ? Calculo.instance.redondear(sacJDil*100/brixJDil,2): 0
+                    break
             }
             getManager().persist(it)
         }

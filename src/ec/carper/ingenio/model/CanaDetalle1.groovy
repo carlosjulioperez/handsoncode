@@ -37,53 +37,52 @@ class CanaDetalle1 extends Identifiable {
     //@Stereotype("FECHAHORA") @Required
     java.sql.Timestamp hora
 
-    @OnChange(CanaDetalle1Action.class)
+    @OnChange(CanaDetalle1Action.class) @DisplaySize(6)
     BigDecimal wH2O
 
-    @OnChange(CanaDetalle1Action.class)
+    @OnChange(CanaDetalle1Action.class) @DisplaySize(6)
     BigDecimal wCana
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal polReal
 
-    @OnChange(CanaDetalle1Action.class)
+    @OnChange(CanaDetalle1Action.class) @DisplaySize(6)
     BigDecimal brixExtracto
     
-    @OnChange(CanaDetalle1Action.class)
+    @OnChange(CanaDetalle1Action.class) @DisplaySize(6)
     BigDecimal polExtracto
 
-    @OnChange(CanaDetalle1Action.class)
+    @OnChange(CanaDetalle1Action.class) @DisplaySize(6)
     BigDecimal tamizVacioM0
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal muestraHumM1
     
-    @OnChange(CanaDetalle1Action.class)
+    @OnChange(CanaDetalle1Action.class) @DisplaySize(6)
     BigDecimal muestraSecaM2
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal porcHumedad
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal brix
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal porcFibra
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal porcSacarosa
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal pureza
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal nSac
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal aR
     
-    @Digits(integer=6, fraction=8)
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal porcArNsac
 
     BigDecimal getPromPorcHumedad(String diaTrabajoId, java.sql.Timestamp horaDesde, java.sql.Timestamp horaHasta){

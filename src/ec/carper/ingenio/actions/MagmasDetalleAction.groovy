@@ -12,47 +12,31 @@ class MagmasDetalleAction extends OnChangePropertyBaseAction{
 
         def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
         String horaS = (String)getView().getValue("horaS")
-        if (horaS)
-            getView().setValue("hora", SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId))
+        getView().setValue("hora", (diaTrabajoId && horaS) ? SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId): null)
         
         BigDecimal mbBri  = (BigDecimal)getView().getValue("mbBri")
         BigDecimal mbBri2 = (BigDecimal)getView().getValue("mbBri2")
         BigDecimal mbPol  = (BigDecimal)getView().getValue("mbPol")
-        if (mbBri && mbPol)
-            getView().setValue("mbSac", Calculo.instance.getSac(mbBri, mbPol, 6, 2))
-        
+        getView().setValue("mbSac", (mbBri && mbPol) ? Calculo.instance.getSac(mbBri, mbPol, 6, 2): null)
         BigDecimal mbSac = (BigDecimal)getView().getValue("mbSac")
-        if (mbSac && mbBri2)
-            getView().setValue("mbPur", Calculo.instance.getPorc(mbSac, mbBri2, 2))
-
-        if (mbBri)
-            getView().setValue("mbBri2", (mbBri*6).setScale(2, BigDecimal.ROUND_HALF_UP))
+        getView().setValue("mbPur", (mbSac && mbBri2) ? Calculo.instance.getPorc(mbSac, mbBri2, 2): null)
+        getView().setValue("mbBri2", mbBri ? Calculo.instance.redondear(mbBri*6, 2): null)
 
         BigDecimal mcBri  = (BigDecimal)getView().getValue("mcBri")
         BigDecimal mcBri2 = (BigDecimal)getView().getValue("mcBri2")
         BigDecimal mcPol  = (BigDecimal)getView().getValue("mcPol")
-        if (mcBri && mcPol)
-            getView().setValue("mcSac", Calculo.instance.getSac(mcBri, mcPol, 6, 2))
-        
+        getView().setValue("mcSac", (mcBri && mcPol) ? Calculo.instance.getSac(mcBri, mcPol, 6, 2): null)
         BigDecimal mcSac = (BigDecimal)getView().getValue("mcSac")
-        if (mcSac && mcBri2)
-            getView().setValue("mcPur", Calculo.instance.getPorc(mcSac, mcBri2, 2))
-
-        if (mcBri)
-            getView().setValue("mcBri2", (mcBri*6).setScale(2, BigDecimal.ROUND_HALF_UP))
+        getView().setValue("mcPur", (mcSac && mcBri2) ? Calculo.instance.getPorc(mcSac, mcBri2, 2): null)
+        getView().setValue("mcBri2", mcBri ? Calculo.instance.redondear(mcBri*6, 2): null)
 
         BigDecimal mrBri  = (BigDecimal)getView().getValue("mrBri")
         BigDecimal mrBri2 = (BigDecimal)getView().getValue("mrBri2")
         BigDecimal mrPol  = (BigDecimal)getView().getValue("mrPol")
-        if (mrBri && mrPol)
-            getView().setValue("mrSac", Calculo.instance.getSac(mrBri, mrPol, 6, 2))
-        
+        getView().setValue("mrSac", (mrBri && mrPol) ? Calculo.instance.getSac(mrBri, mrPol, 6, 2): null)
         BigDecimal mrSac = (BigDecimal)getView().getValue("mrSac")
-        if (mrSac && mrBri2)
-            getView().setValue("mrPur", Calculo.instance.getPorc(mrSac, mrBri2, 2))
-
-        if (mrBri)
-            getView().setValue("mrBri2", (mrBri*6).setScale(2, BigDecimal.ROUND_HALF_UP))
+        getView().setValue("mrPur", (mrSac && mrBri2) ? Calculo.instance.getPorc(mrSac, mrBri2, 2): null)
+        getView().setValue("mrBri2", mrBri ? Calculo.instance.redondear(mrBri*6, 2): null)
 
     }
     

@@ -11,14 +11,12 @@ class TurbiedadDetalle1Action extends OnChangePropertyBaseAction{
 
         def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
         String horaS = (String)getView().getValue("horaS")
-        if (horaS)
-            getView().setValue("hora", SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId)) 
+        getView().setValue("hora", (diaTrabajoId && horaS) ? SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId): null)
         
         BigDecimal abs900Nm = (BigDecimal)getView().getValue("abs900Nm")
-        println("values=" + getView().getValues());
+        //println("values=" + getView().getValues());
 
-        if (abs900Nm)
-            getView().setValue("turJClaro", (abs900Nm*100).setScale(2, BigDecimal.ROUND_HALF_UP))
+        getView().setValue("turJClaro", abs900Nm ? Calculo.instance.redondear(abs900Nm*100, 2): false)
         
     }
 

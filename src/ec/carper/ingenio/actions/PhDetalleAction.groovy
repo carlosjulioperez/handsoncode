@@ -12,20 +12,14 @@ class PhDetalleAction extends OnChangePropertyBaseAction{
         
         def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
         String horaS = (String)getView().getValue("horaS")
-        if (horaS)
-            getView().setValue("hora", SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId)) 
+        getView().setValue("hora", (diaTrabajoId && horaS) ? SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId): null) 
         
         String horaSTJClaro = (String)getView().getValue("horaSTJClaro")
-        if (horaSTJClaro)
-            getView().setValue("horaTJClaro", SqlUtil.instance.obtenerFecha(horaSTJClaro, diaTrabajoId))
+            getView().setValue("horaTJClaro", (diaTrabajoId && horaSTJClaro) ? SqlUtil.instance.obtenerFecha(horaSTJClaro, diaTrabajoId): null)
         
         def horaTJClaro = (Timestamp)getView().getValue("horaTJClaro")
 
-        if (diaTrabajoId && horaTJClaro ){
-            getView().setValue("tJClaro", (
-                new TurbiedadDetalle1().getValorTurJClaro(diaTrabajoId, horaTJClaro) 
-            ).setScale(2, BigDecimal.ROUND_HALF_UP))
-        }
+        getView().setValue("tJClaro", (diaTrabajoId && horaTJClaro ) ? new TurbiedadDetalle1().getValorTurJClaro(diaTrabajoId, horaTJClaro): null)
     }
 
 }
