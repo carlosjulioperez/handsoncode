@@ -10,10 +10,23 @@
 -- DROP TABLE ingenio.blcdetalle1;
 -- DROP TABLE ingenio.blc;
 
-DROP TABLE ingenio.blcdetalle5;
-DROP TABLE ingenio.blcdetalle4;
-DROP TABLE ingenio.blcdetalle3;
-DROP TABLE ingenio.blcdetalle22;
-DROP TABLE ingenio.blcdetalle21;
-DROP TABLE ingenio.blcdetalle1;
-DROP TABLE ingenio.blc;
+-- ALTER TABLE ingenio.ingenio.cto24h ALTER COLUMN descripcion TYPE varchar(10);
+
+-- DROP TABLE ingenio.blcdetalle5;
+-- DROP TABLE ingenio.blcdetalle4;
+-- DROP TABLE ingenio.blcdetalle3;
+-- DROP TABLE ingenio.blcdetalle22;
+-- DROP TABLE ingenio.blcdetalle21;
+-- DROP TABLE ingenio.blcdetalle1;
+-- DROP TABLE ingenio.blc;
+
+DROP TABLE ingenio.cto24h_detalle8;
+DROP TABLE ingenio.cto24hdetalle7;
+DROP TABLE ingenio.cto24hdetalle6;
+DROP TABLE ingenio.cto24hdetalle5;
+DROP TABLE ingenio.cto24h_detalle42;
+DROP TABLE ingenio.cto24h_detalle41;
+DROP TABLE ingenio.cto24hdetalle3;
+DROP TABLE ingenio.cto24hdetalle2;
+DROP TABLE ingenio.cto24hdetalle1;
+DROP TABLE ingenio.cto24h;

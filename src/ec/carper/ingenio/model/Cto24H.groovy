@@ -332,6 +332,8 @@ class Cto24H extends Formulario {
     // ==================================================
     // % CONCENTRACION TOT LINEA EVAPORACION
     // ==================================================
+    BigDecimal porcConTotLinEva
+
     @ElementCollection @EditOnly
     @ListProperties("""
         filaNo,descripcion,brixRef,brixEle,
@@ -398,6 +400,7 @@ class Cto24H extends Formulario {
             this.fd         = promFd
             this.ppm        = promPpm
             
+            this.porcConTotLinEva = pd8
             getManager().persist(this)
 
         }catch(Exception ex){

@@ -5,7 +5,6 @@ import ec.carper.ingenio.util.*
 
 import javax.persistence.*
 import org.openxava.annotations.*
-//import org.openxava.calculators.*
 import org.openxava.jpa.*
 import org.openxava.model.*
 import org.openxava.util.*
@@ -18,7 +17,7 @@ import static org.openxava.jpa.XPersistence.*
     diaTrabajo, descripcion;
     titDatDia { detalle1 }
     titTie { 
-        paroTotal
+        detalleParo
     }
     titVarPri {
         cana { 
@@ -28,6 +27,14 @@ import static org.openxava.jpa.XPersistence.*
         bagazo { detalle3 }
         mielFinaMelaza { detalle4 }
         jugoDiluido { detalle5 }
+        jugoClaro { detalle6 }
+        jugoPrimeraExtraccion { detalle7 }
+        jugoResidual { detalle8 }
+        cachaza { detalle9 }
+        azucarGranel { 
+            azucarGranel { detalle101 }
+            grasshoper { detalle102 }
+        }
     }
 """)
 class Blc extends Formulario {
@@ -59,7 +66,7 @@ class Blc extends Formulario {
     @ListProperties(""" 
         area.descripcion,
         totalParo [ blc.tiempoPerdidoTotal, blc.tiempoMoliendaReal, blc.fraccionTiempo, blc.rataMolienda, blc.porcTot ] """)
-    Collection<ParoTotal> paroTotal 
+    Collection<ParoTotal> detalleParo 
     
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
     Collection<BlcDetalle21> detalle21
@@ -75,6 +82,24 @@ class Blc extends Formulario {
 
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
     Collection<BlcDetalle5> detalle5
+
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    Collection<BlcDetalle6> detalle6
+
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    Collection<BlcDetalle7> detalle7
+
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    Collection<BlcDetalle8> detalle8
+
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    Collection<BlcDetalle9> detalle9
+
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    Collection<BlcDetalle101> detalle101
+
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    Collection<BlcDetalle102> detalle102
 
     void cargarItems() throws ValidationException{
         try{
@@ -131,6 +156,48 @@ class Blc extends Formulario {
                 getManager().persist(d)
             }
 
+            // Jugo Claro
+            lista = getManager().createQuery("FROM BlcPDetalle6 WHERE blcP.id = 1 ORDER BY orden").getResultList()
+            lista.each{
+                def d = new BlcDetalle6(blc: blc, orden: it.orden, material: it.material, unidad: it.unidad)
+                getManager().persist(d)
+            }
+
+            // Jugo Primera Extracción
+            lista = getManager().createQuery("FROM BlcPDetalle7 WHERE blcP.id = 1 ORDER BY orden").getResultList()
+            lista.each{
+                def d = new BlcDetalle7(blc: blc, orden: it.orden, material: it.material, unidad: it.unidad)
+                getManager().persist(d)
+            }
+
+            // Jugo Residual
+            lista = getManager().createQuery("FROM BlcPDetalle8 WHERE blcP.id = 1 ORDER BY orden").getResultList()
+            lista.each{
+                def d = new BlcDetalle8(blc: blc, orden: it.orden, material: it.material, unidad: it.unidad)
+                getManager().persist(d)
+            }
+
+            // Cachaza
+            lista = getManager().createQuery("FROM BlcPDetalle9 WHERE blcP.id = 1 ORDER BY orden").getResultList()
+            lista.each{
+                def d = new BlcDetalle9(blc: blc, orden: it.orden, material: it.material, unidad: it.unidad)
+                getManager().persist(d)
+            }
+
+            // Azucar granel
+            lista = getManager().createQuery("FROM BlcPDetalle101 WHERE blcP.id = 1 ORDER BY orden").getResultList()
+            lista.each{
+                def d = new BlcDetalle101(blc: blc, orden: it.orden, material: it.material, unidad: it.unidad)
+                getManager().persist(d)
+            }
+
+            // Grasshoper
+            lista = getManager().createQuery("FROM BlcPDetalle102 WHERE blcP.id = 1 ORDER BY orden").getResultList()
+            lista.each{
+                def d = new BlcDetalle102(blc: blc, orden: it.orden, material: it.material, unidad: it.unidad)
+                getManager().persist(d)
+            }
+
         }catch(Exception ex){
             throw new SystemException("items_no_cargados", ex)
         }
@@ -144,18 +211,23 @@ class Blc extends Formulario {
             consultarBagazo()
             consultarMielFinaMelaza()
             consultarJugoDiluido()
+            consultarJugoClaro()
+            consultarJugoPrimeraExtraccion()
+            consultarJugoResidual()
+            consultarCachaza()
+            consultarAzucarGranelGrasshoper()
         }catch(Exception ex){
             throw new SystemException("datos_no_consultados", ex)
         }
     }
     
     def consultarParoTotal(){
-        paroTotal = new ArrayList<ParoTotal>();
+        detalleParo = new ArrayList<ParoTotal>();
         def lista = getManager().createQuery("FROM Paro where diaTrabajo.id = :id")
                                 .setParameter("id", diaTrabajo.id).resultList
         lista.each{
             it.total.each{
-                paroTotal.add( new ParoTotal (area: it.area, totalParo: it.totalParo) )
+                detalleParo.add( new ParoTotal (area: it.area, totalParo: it.totalParo) )
             }
         }
         // Actualizar los totales del paro en la cabecera
@@ -266,7 +338,7 @@ class Blc extends Formulario {
     }
     
     def consultarJugoDiluido(){
-        def brixJDil = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "brixJDil")
+        def brixJDil = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jdBri")
         def sacJDil  = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jdSac")
         
         detalle5.each{
@@ -295,6 +367,122 @@ class Blc extends Formulario {
         }
     }
     
+    def consultarJugoClaro(){
+        detalle6.each{
+            def campo = it.material.campo ?: ""
+            switch (campo){
+                case "turbiedad":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Turbiedad", "turJClaro")
+                    break
+                case "fosfatos":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Fosfatos", "jcFosfatos")
+                    break
+                case "brixJClaro":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jcBri")
+                    break
+                case "sacJClaro":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jcSac")
+                    break
+                case "pzaJClaro":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jcPur")
+                    break
+            }
+            getManager().persist(it)
+        }
+    }
+    
+    def consultarJugoPrimeraExtraccion(){
+        detalle7.each{
+            def campo = it.material.campo ?: ""
+            switch (campo){
+                case "brixJPEx":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jeBri")
+                    break
+                case "sacJPEx":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jeSac")
+                    break
+                case "pzaJPEx":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jePur")
+                    break
+            }
+            getManager().persist(it)
+        }
+    }
+    
+    def consultarJugoResidual(){
+        detalle8.each{
+            def campo = it.material.campo ?: ""
+            switch (campo){
+                case "brixJRes":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jcBri")
+                    break
+                case "sacJRes":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jcSac")
+                    break
+                case "pzaJRes":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jcPur")
+                    break
+            }
+            getManager().persist(it)
+        }
+    }
+    
+    def consultarCachaza(){
+        detalle9.each{
+            def campo = it.material.campo ?: ""
+            switch (campo){
+                case "polCachaza":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Turbiedad", "polCachaza")
+                    break
+                case "rataEvap":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H", "porcConTotLinEva")
+                    break
+                case "ip":
+                    it.valor = SqlUtil.instance.getValorDetalleCampo(diaTrabajo.id, "cto24H", "Cto24HDetalle6" , "porc")
+                    break
+            }
+            getManager().persist(it)
+        }
+    }
+
+    def consultarAzucarGranelGrasshoper(){
+        detalle101.each{
+            def campo = it.material.campo ?: ""
+            switch (campo){
+                case "color":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "AzucarGranel", "color")
+                    break
+                case "turbiedad":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "AzucarGranel", "turb")
+                    break
+                case "polAzucar":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "AzucarGranel", "pol")
+                    break
+                case "humedad":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "AzucarGranel", "humedad")
+                    break
+            }
+            getManager().persist(it)
+        }
+
+        detalle102.each{
+            def campo = it.material.campo ?: ""
+            switch (campo){
+                case "color":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Grasshoper", "color")
+                    break
+                case "turbiedad":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Grasshoper", "turb")
+                    break
+                case "humedad":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Grasshoper", "humedad")
+                    break
+            }
+            getManager().persist(it)
+        }
+
+    }
+
     // Si un total es de tipo String, todos los demás también deben serlo.
     String getTiempoPerdidoTotal(){
         return diaTrabajo ? SqlUtil.instance.getCampo(diaTrabajo.id, "Paro" , "totalParada"): "00:00:00"

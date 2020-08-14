@@ -18,14 +18,15 @@ class Cto24HTest extends ModuleTestBase {
         setValue("descripcion"   , "JUNIT")
         execute ("Ingenio.save")
         assertNoErrors()
-
+        
         setConditionValues("", "JUNIT"); // Establece los valores para filtrar los datos
-        setConditionComparators("=", "contains_comparator"); // Pone los comparadores para filtrar los datos
-        execute("List.filter"); 
-        execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila
+        setConditionComparators("=", "contains_comparator"); // Pone los comparadores para filtrar los datosprintHtml()
+
+        execute("List.filter");
+        printHtml()
+        execute("List.viewDetail", "row=1") // Para test con BD datos de prueba
         assertValue("descripcion", "JUNIT")
         execute    ("Cto24H.cargarDetalles")
-        
         // Detalle 1
         assertCollectionRowCount("detalle1", 1)
         execute("Collection.edit" , "row=0,viewObject=xava_view_section0_detalle1")

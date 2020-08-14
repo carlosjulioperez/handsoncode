@@ -20,7 +20,10 @@ import org.openxava.model.*
         jugoPrimeraExtraccion { detalle7 }
         jugoResidual { detalle8 }
         cachaza { detalle9 }
-        azucarGranel { detalle101; detalle102 }
+        azucarGranel { 
+            azucarGranel { detalle101 }
+            grasshoper { detalle102 }
+        }
     }
 """)
 class BlcP{

@@ -1,3 +1,12 @@
+2020-08-13 
+	Blc Variables primarias Azúcar Granel
+	Blc Variables primarias Cachaza
+	Blc Variables primarias Jugo Residual
+	Blc Variables primarias Jugo Primera Extracción
+	Blc Variables primarias Jugo Claro
+	Blc Variables primarias Jugo Diluido
+	Ajuste Cto24HTest
+
 2020-08-09 
 	Mostrar listado después de Ingenio.save
 
@@ -52,6 +61,7 @@
 	Cto24HTest
 
 2020-07-22 
+	Agregar consultarDatos() en Cto24H
 	Cto24HDetalle8
 	Rediseñar Cto24H
 	Crear @Embedded Cto24HDetalle4
