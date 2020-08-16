@@ -1,3 +1,6 @@
+2020-08-14 
+	Indicador.groovy copia de Material
+
 2020-08-13 
 	Blc Variables primarias Azúcar Granel
 	Blc Variables primarias Cachaza

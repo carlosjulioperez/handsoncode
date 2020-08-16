@@ -26,6 +26,7 @@ def lista = [
     "AREA",
     "BRIXDENSIDADTITSUS",
     "BRIXDENSIDADWP",
+    "INDICADOR",
     "MATERIAL",
     "MODULO",
     "PARAMETRO",
