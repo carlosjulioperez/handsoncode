@@ -33,3 +33,6 @@
 
 DROP TABLE ingenio.stockfabricapdetalle1;
 DROP TABLE ingenio.stockfabricap;
+
+DROP TABLE ingenio.stockfabricadetalle1;
+DROP TABLE ingenio.stockfabrica;

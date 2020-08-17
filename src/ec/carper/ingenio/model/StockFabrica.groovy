@@ -43,7 +43,7 @@ class StockFabrica extends Formulario {
         try{
             def lista = getManager().createQuery("FROM StockFabricaPDetalle1 WHERE stockFabricaP.id = 1 ORDER BY orden").getResultList()
             lista.each{
-                def d = new StockFabricaDetalle1(stockFabrica: stockFabrica, orden: it.orden, indicador: it.indicador, valor: it.valor, unidad: it.unidad)
+                def d = new StockFabricaDetalle1(stockFabrica: stockFabrica, orden: it.orden, indicador: it.indicador, unidad: it.unidad, valor: it.valor, modificable: it.modificable)
                 getManager().persist(d)
             }
         }catch(Exception ex){

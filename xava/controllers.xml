@@ -64,7 +64,7 @@
             class="ec.carper.ingenio.actions.StockFabricaCargarItemsAction"/>
         <action name="consultarDatos" mode="detail" 
             class="ec.carper.ingenio.actions.StockFabricaConsultarDatosAction"/>
-		<action name="editDetail" hidden="true" 
+		<action name="editDetail" hidden="true" image="edit.gif"
 			class="ec.carper.ingenio.actions.StockFabricaEditDetailAction"/>
     </controller>   
 

@@ -5,7 +5,7 @@ import org.openxava.annotations.*
 import org.openxava.model.*
 
 @MappedSuperclass
-@View(members="orden,indicador,valor,unidad")
+@View(members="#orden,indicador,unidad;valor,modificable")
 class StockFabricaPDetalle extends Identifiable{
    
     @ManyToOne
@@ -19,6 +19,8 @@ class StockFabricaPDetalle extends Identifiable{
     
     @DisplaySize(5)
     BigDecimal valor 
+    
+    boolean modificable
    
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList
     Unidad unidad
