@@ -19,16 +19,6 @@
     	</action>
     </controller>   
 
-    <controller name="Blc">
-        <extends controller="Ingenio"/>
-        <action name="cargarItems" mode="detail" 
-        	class="ec.carper.ingenio.actions.BlcCargarItemsAction">
-    	</action>
-        <action name="consultarDatos" mode="detail" 
-        	class="ec.carper.ingenio.actions.BlcConsultarDatosAction">
-    	</action>
-    </controller>   
-
     <controller name="BrixDensidadTitSus">
         <extends controller="Ingenio"/>
         <action name="delete" mode="detail" confirm="true" 
@@ -56,6 +46,26 @@
         <action name="cargarDetalles" mode="detail" 
         	class="ec.carper.ingenio.actions.Cto24HCargarDetallesAction">
     	</action>
+    </controller>   
+
+    <controller name="Blc">
+        <extends controller="Ingenio"/>
+        <action name="cargarItems" mode="detail" 
+        	class="ec.carper.ingenio.actions.BlcCargarItemsAction">
+    	</action>
+        <action name="consultarDatos" mode="detail" 
+        	class="ec.carper.ingenio.actions.BlcConsultarDatosAction">
+    	</action>
+    </controller>   
+
+    <controller name="StockFabrica">
+        <extends controller="Ingenio"/>
+        <action name="cargarItems" mode="detail" 
+            class="ec.carper.ingenio.actions.StockFabricaCargarItemsAction"/>
+        <action name="consultarDatos" mode="detail" 
+            class="ec.carper.ingenio.actions.StockFabricaConsultarDatosAction"/>
+		<action name="editDetail" hidden="true" 
+			class="ec.carper.ingenio.actions.StockFabricaEditDetailAction"/>
     </controller>   
 
 </controllers>
