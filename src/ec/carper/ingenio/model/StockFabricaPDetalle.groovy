@@ -1,5 +1,7 @@
 package ec.carper.ingenio.model
 
+import ec.carper.ingenio.actions.*
+
 import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.model.*
@@ -17,7 +19,7 @@ class StockFabricaPDetalle extends Identifiable{
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList
     Indicador indicador
     
-    @DisplaySize(5)
+    @OnChange(StockFabricaDetalleAction.class) @DisplaySize(5)
     BigDecimal valor 
     
     boolean modificable

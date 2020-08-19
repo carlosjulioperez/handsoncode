@@ -19,8 +19,7 @@ class StockFabricaDetalle extends Identifiable{
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @ReadOnly
     Indicador indicador
     
-    //@OnChange(StockFabricaDetalleAction.class)
-    @DisplaySize(5)
+    @OnChange(StockFabricaDetalleAction.class) @DisplaySize(5)
     BigDecimal valor 
  
     @ReadOnly

@@ -42,6 +42,18 @@ class SqlUtil{
         return query.resultList[0]?: ""
     }
 
+    String getCampoPorId(String id, String modulo, String campo){
+        return (String)getManager()
+            .createQuery("SELECT ${campo} FROM ${modulo} WHERE id= :id")
+            .setParameter("id", id).singleResult
+    }
+
+    def getRegistros(String padreId, String modulo, campoFk){
+        return getManager()
+            .createQuery("FROM ${modulo} where ${campoFk} = :id")
+            .setParameter("id", padreId).resultList
+    }
+    
     def getDiaTrabajo(String diaTrabajoId){
         return getManager().find(DiaTrabajo.class, diaTrabajoId)
     }
