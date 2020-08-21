@@ -65,6 +65,22 @@ class StockFabricaTest extends ModuleTestBase {
         assertValueInCollection("detalle2" , 12 , 2, "20.00") 
         assertValueInCollection("detalle2" , 13 , 2, "1,060.45") 
 
+        execute("Sections.change", "activeSection=2")
+        assertCollectionRowCount("detalle3", 8)
+        execute("StockFabrica.editDetail" , "row=6,viewObject=xava_view_section2_detalle3")
+        assertDialog()
+        setValue    ( "valor" , "100")
+        execute("Collection.save")
+        assertNoErrors()
+        assertValueInCollection("detalle3" ,  0 , 2, "1.98") 
+        assertValueInCollection("detalle3" ,  1 , 2, "1.82") 
+        assertValueInCollection("detalle3" ,  2 , 2, "5.60") 
+        assertValueInCollection("detalle3" ,  3 , 2, "15.32") 
+        assertValueInCollection("detalle3" ,  4 , 2, "13.21") 
+        assertValueInCollection("detalle3" ,  5 , 2, "0.78") 
+        assertValueInCollection("detalle3" ,  6 , 2, "100.00") 
+        assertValueInCollection("detalle3" ,  7 , 2, "1,060.45") 
+
         // FINALIZAR
         execute    ("CRUD.delete")
         assertNoErrors()

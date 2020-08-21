@@ -114,8 +114,7 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                     // =+(AQ4*AQ3*AQ2)*AV5/100
                     v1 = Calculo.instance.redondear((h3*h2*h1)*porcN/100, 2)
                     // =(3,1416*((AQ6/2)*(AQ6/2))*AQ7)*AV6/100
-                    v2 = Calculo.instance.redondear((3.1416*((o1/2)*(o1/2))*h)*porcV/100
- , 2)
+                    v2 = Calculo.instance.redondear((3.1416*((o1/2)*(o1/2))*h)*porcV/100, 2)
                     vt = v1 + v2
                     // =(AQ9*AV7/1000)*(AJ4/100)
                     tonSacJCla = Calculo.instance.redondear((vt*p/1000) * (sac/100),2)
@@ -127,6 +126,44 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                             case "V2"         : it.valor=v2         ; getManager().persist(it) ; break ;
                             case "VT"         : it.valor=vt         ; getManager().persist(it) ; break ;
                             case "TonSacJCla" : it.valor=tonSacJCla ; getManager().persist(it) ; break ;
+                        }
+                    }
+                }
+                break
+            
+            case "StockFabricaDetalle3":
+                def (o1, h2) = [0, 0]
+                def brix = SqlUtil.instance.getValorCampo(diaTrabajoId, "Jugo", "jnBri")
+                def sac  = SqlUtil.instance.getValorCampo(diaTrabajoId, "Jugo", "jnSac")
+                def p    = new BrixDensidadWp().getP(brix)
+
+                lista.each{
+                    def campo = it.indicador.campo ?: ""
+                    switch (campo){
+                        case "o1": o1 = it.valor; break;
+                        case "H2": h2 = it.valor; break;
+                        
+                        case "Brix": it.valor = brix; getManager().persist(it); break;
+                        case "Sac" : it.valor = sac ; getManager().persist(it); break;
+                        case "p"   : it.valor = p   ; getManager().persist(it); break;
+                    }
+                }
+
+                // Ahora realizar los cálculos
+                def porc = valor 
+                def (vt, tonSacJSulf) = [0, 0]
+                if (porc){
+                    // =+(K5*K4*K3)*W5/100
+                    // =(3,1416*((J10/2)*(J10/2))*J11)*O13/100
+                    vt = Calculo.instance.redondear((3.1416*((o1/2)*(o1/2))*h2)*porc/100,2)
+                    // =+((J12*O14)/1000)*(J14/100)
+                    tonSacJSulf = Calculo.instance.redondear((vt*p/1000) * (sac/100),2)
+                    
+                    lista.each{
+                        def campo = it.indicador.campo ?: ""
+                        switch (campo){
+                            case "Vt"         : it.valor=vt         ; getManager().persist(it) ; break ;
+                            case "TonSacJSulf" : it.valor=tonSacJSulf ; getManager().persist(it) ; break ;
                         }
                     }
                 }

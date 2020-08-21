@@ -11,6 +11,6 @@ where d.material_id = m.id
 order by orden
 
 select i.descripcion, valor, i.campo
-from ingenio.stockfabricadetalle1 d, ingenio.indicador i
+from ingenio.stockfabricapdetalle1 d, ingenio.indicador i
 where d.indicador_id = i.id
 order by orden

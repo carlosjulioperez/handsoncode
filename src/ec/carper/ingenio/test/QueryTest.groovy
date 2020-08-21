@@ -33,8 +33,8 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getCampoPorId()
-        //getValorCampo()
+        //getCampoPorId()
+        getValorCampo()
         //obtenerFecha()
         //getParoTotal()
         //unSoloRegistro()
@@ -144,6 +144,11 @@ class QueryTest extends ModuleTestBase {
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Grasshoper", "color")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Grasshoper", "turb")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Grasshoper", "humedad")
+        
+        println ">>> Jugo Encalado"
+        println ""
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jnBri")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jnSac")
     }
 
     void getParoTotal(){

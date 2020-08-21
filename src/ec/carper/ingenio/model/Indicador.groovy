@@ -7,10 +7,10 @@ import org.openxava.model.*
 @Entity
 class Indicador extends Identifiable{
 
-    @Column(length=20) @Required
+    @Column(length=50) @Required
     String descripcion
     
-    @Column(length=10)
+    @Column(length=20)
     String campo 
 
 }
