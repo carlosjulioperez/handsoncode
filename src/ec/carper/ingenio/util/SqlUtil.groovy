@@ -48,14 +48,25 @@ class SqlUtil{
             .setParameter("id", id).singleResult
     }
 
-    def getRegistros(String padreId, String modulo, campoFk){
+    def getRegistros(String padreId, String modulo, String campoFk){
         return getManager()
             .createQuery("FROM ${modulo} where ${campoFk} = :id")
             .setParameter("id", padreId).resultList
     }
     
+    def getValorDetallePorIndicador(def padreId, def modulo, def campoFk, def indicador){
+        return (BigDecimal)getManager()
+            .createQuery("SELECT valor FROM ${modulo} WHERE ${campoFk} = :id AND indicador.campo = :indicador")
+            .setParameter("id", padreId)
+            .setParameter("indicador", indicador).singleResult
+    }
+
     def getDiaTrabajo(String diaTrabajoId){
         return getManager().find(DiaTrabajo.class, diaTrabajoId)
+    }
+    
+    def getIndicador(String indicadorId){
+        return getManager().find(Indicador.class, indicadorId)
     }
     
     def obtenerFecha(def hora, def diaTrabajoId){

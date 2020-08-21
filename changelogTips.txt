@@ -12,6 +12,9 @@ Proyecto
         // println ">>> getKeyValuesWithValue(): " + getView().getKeyValuesWithValue()
 		//println("\n>>> Root View values:\n" + getView().getRoot().getValues());
 		//println("\n>>> View values:\n" + getView().getValues());
+
+		// POS
+		// https://sourceforge.net/p/openxava/discussion/419690/thread/9f09f088/?limit=25#6b90/88a1
 	
 	* Formas de funcionamiento de colecciones:
 		https://sourceforge.net/p/openxava/discussion/437013/thread/08010ce3/?limit=25#e1a6

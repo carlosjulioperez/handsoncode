@@ -13,7 +13,7 @@ class StockFabricaEditDetailAction extends EditElementInCollectionAction{
         // src/org/openxava/test/actions/EditInvoiceDetailAction.java
         
         View view = getCollectionElementView()
-		//println("\n>>> View values:\n" + view.getValues())
+		// println("\n>>> View values:\n" + view.getValues())
 
         Boolean modificable = (Boolean)view.getValue("modificable")
         view.setEditable("valor", modificable)

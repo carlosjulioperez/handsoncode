@@ -31,8 +31,9 @@
 -- DROP TABLE ingenio.cto24hdetalle1;
 -- DROP TABLE ingenio.cto24h;
 
-DROP TABLE ingenio.stockfabricapdetalle1;
-DROP TABLE ingenio.stockfabricap;
+-- DROP TABLE ingenio.stockfabricapdetalle1;
+-- DROP TABLE ingenio.stockfabricap;
 
+DROP TABLE ingenio.stockfabricadetalle2;
 DROP TABLE ingenio.stockfabricadetalle1;
 DROP TABLE ingenio.stockfabrica;

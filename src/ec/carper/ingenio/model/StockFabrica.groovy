@@ -16,6 +16,7 @@ import static org.openxava.jpa.XPersistence.*
 @View(members="""
     diaTrabajo, descripcion;
     titTqJDil { detalle1 }
+    titTqJCla { detalle2 }
 """)
 class StockFabrica extends Formulario {
     
@@ -29,6 +30,10 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle1> detalle1
 
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle2> detalle2
+
     void cargarItems() throws ValidationException{
         try{
             this.itemsCargados = true
@@ -41,13 +46,29 @@ class StockFabrica extends Formulario {
 
     void cargarDetalles(StockFabrica stockFabrica){
         try{
-            def lista = getManager().createQuery("FROM StockFabricaPDetalle1 WHERE stockFabricaP.id = 1 ORDER BY orden").getResultList()
-            lista.each{
-                def d = new StockFabricaDetalle1(stockFabrica: stockFabrica, orden: it.orden, indicador: it.indicador, unidad: it.unidad, valor: it.valor, modificable: it.modificable)
-                getManager().persist(d)
+            (1..2).each{
+                cargarDetalle(stockFabrica, "StockFabricaDetalle${it}", "StockFabricaPDetalle${it}")
             }
         }catch(Exception ex){
             throw new SystemException("items_no_cargados", ex)
+        }
+    }
+
+    private void cargarDetalle(StockFabrica stockFabrica, String modulo, String moduloP){
+        def lista = getManager().createQuery("FROM ${moduloP} WHERE stockFabricaP.id = 1 ORDER BY orden").getResultList()
+        //println ">>> ${lista}"
+        lista.each{
+            def instance = new groovy.lang.GroovyClassLoader().loadClass( 
+                "ec.carper.ingenio.model.${modulo}", true, false )?.newInstance()
+            
+            instance.stockFabrica = stockFabrica
+            instance.orden        = it.orden
+            instance.indicador    = it.indicador
+            instance.unidad       = it.unidad
+            instance.valor        = it.valor
+            instance.modificable  = it.modificable
+
+            getManager().persist(instance)
         }
     }
 

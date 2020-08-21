@@ -8,6 +8,7 @@ import org.openxava.model.*
 @View(members="""
     codigo, descripcion;
     titTqJDil { detalle1 }
+    titTqJCla { detalle2 }
 """)
 class StockFabricaP{
     @Id
@@ -18,4 +19,7 @@ class StockFabricaP{
 
     @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
     Collection<StockFabricaPDetalle1> detalle1
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle2> detalle2
 }

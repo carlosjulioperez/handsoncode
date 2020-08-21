@@ -7,8 +7,70 @@ class StockFabricaTest extends ModuleTestBase {
     StockFabricaTest(String testName) {
         super(testName, "Ingenio", "StockFabrica")
     }
+    
+    void testCrear() throws Exception {
+        login("admin", "admin")
+        
+        execute("CRUD.new")
+        
+        setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
+        setValue("descripcion"   , "JUNIT")
+        execute ("Ingenio.save")
+        assertNoErrors()
+        
+        execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila
+        execute    ("StockFabrica.cargarItems")
+        assertNoErrors()
+        
+        assertCollectionRowCount("detalle1", 9)
+        execute("StockFabrica.editDetail" , "row=7,viewObject=xava_view_section0_detalle1")
+        assertDialog()
+        setValue    ( "valor" , "16")
+        execute("Collection.save")
+        assertNoErrors()
+        assertValueInCollection("detalle1" , 0 , 2, "3.05") 
+        assertValueInCollection("detalle1" , 1 , 2, "5.65") 
+        assertValueInCollection("detalle1" , 2 , 2, "2.33") 
+        assertValueInCollection("detalle1" , 3 , 2, "6.42") 
+        assertValueInCollection("detalle1" , 4 , 2, "14.12") 
+        assertValueInCollection("detalle1" , 5 , 2, "12.09") 
+        assertValueInCollection("detalle1" , 6 , 2, "0.82") 
+        assertValueInCollection("detalle1" , 7 , 2, "16.00") 
+        assertValueInCollection("detalle1" , 8 , 2, "1,055.32") 
 
-    void testLectura() throws Exception {
+        execute("Sections.change", "activeSection=1")
+        assertCollectionRowCount("detalle2", 14)
+        execute("StockFabrica.editDetail" , "row=11,viewObject=xava_view_section1_detalle2")
+        assertDialog()
+        setValue    ( "valor" , "20")
+        execute("Collection.save")
+        assertNoErrors()
+        execute("StockFabrica.editDetail" , "row=12,viewObject=xava_view_section1_detalle2")
+        assertDialog()
+        setValue    ( "valor" , "20")
+        execute("Collection.save")
+        assertNoErrors()
+        assertValueInCollection("detalle2" ,  0 , 2, "4.00") 
+        assertValueInCollection("detalle2" ,  1 , 2, "4.00") 
+        assertValueInCollection("detalle2" ,  2 , 2, "3.10") 
+        assertValueInCollection("detalle2" ,  3 , 2, "9.92") 
+        assertValueInCollection("detalle2" ,  4 , 2, "1.02") 
+        assertValueInCollection("detalle2" ,  5 , 2, "8.00") 
+        assertValueInCollection("detalle2" ,  6 , 2, "1.31") 
+        assertValueInCollection("detalle2" ,  7 , 2, "11.23") 
+        assertValueInCollection("detalle2" ,  8 , 2, "15.38") 
+        assertValueInCollection("detalle2" ,  9 , 2, "13.24") 
+        assertValueInCollection("detalle2" , 10 , 2, "1.58") 
+        assertValueInCollection("detalle2" , 11 , 2, "20.00") 
+        assertValueInCollection("detalle2" , 12 , 2, "20.00") 
+        assertValueInCollection("detalle2" , 13 , 2, "1,060.45") 
+
+        // FINALIZAR
+        execute    ("CRUD.delete")
+        assertNoErrors()
+    }
+
+    void _testLectura() throws Exception {
         login("admin", "admin")
         
         execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila
