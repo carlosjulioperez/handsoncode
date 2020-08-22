@@ -33,8 +33,9 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        //getCampoPorId()
-        getValorCampo()
+        getCampoPorId()
+        //getDetallePorIndicador()
+        //getValorCampo()
         //obtenerFecha()
         //getParoTotal()
         //unSoloRegistro()
@@ -45,6 +46,19 @@ class QueryTest extends ModuleTestBase {
         //getTrashCanaDiaTrabajoCerrado()
         //getTrashCanaDetalle2()
         //getNativo()
+    }
+
+    void getDetallePorIndicador(){
+        def padreId = "ff8080817412320d01741232f6f20000"
+        def modulo  = "StockFabricaDetalle2"
+        def campoFk = "stockFabrica.id"
+        def campo   = "porcN"
+        def d = SqlUtil.instance.getDetallePorIndicador(padreId, modulo, campoFk, campo)
+
+        println "valor anterior : ${d.valor}"
+        d.valor = 100
+        getManager().persist(d)
+        println "valor nuevo    : ${d.valor}"
     }
     
     void getCampoPorId(){
@@ -149,6 +163,11 @@ class QueryTest extends ModuleTestBase {
         println ""
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jnBri")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jnSac")
+        
+        println ">>> Jugo Filtrado"
+        println ""
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jfBri")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jfSac")
     }
 
     void getParoTotal(){

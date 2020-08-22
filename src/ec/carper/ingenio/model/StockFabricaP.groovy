@@ -10,6 +10,13 @@ import org.openxava.model.*
     titTqJDil { detalle1 }
     titTqJCla { detalle2 }
     titTqJEnc { detalle3 }
+    titTqJFil { detalle4 }
+    titClaJug { detalle5 }
+    titTorSul {
+        titTorSulJug{ detalle6 }
+        titTorSulMel{ detalle7 }
+    }
+
 """)
 class StockFabricaP{
     @Id
@@ -26,4 +33,16 @@ class StockFabricaP{
 
     @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
     Collection<StockFabricaPDetalle3> detalle3
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle4> detalle4
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle5> detalle5
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle6> detalle6
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle7> detalle7
 }
