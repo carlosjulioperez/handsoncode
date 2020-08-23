@@ -33,9 +33,9 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getCampoPorId()
+        //getCampoPorId()
         //getDetallePorIndicador()
-        //getValorCampo()
+        getValorCampo()
         //obtenerFecha()
         //getParoTotal()
         //unSoloRegistro()
@@ -61,18 +61,6 @@ class QueryTest extends ModuleTestBase {
         println "valor nuevo    : ${d.valor}"
     }
     
-    void getCampoPorId(){
-        // def stockFabricaId = SqlUtil.instance.getCampoPorId("ff80808173feaddb0173feb2dec40010", "StockFabricaDetalle1", "stockFabrica.id")
-        //
-        // SqlUtil.instance.getRegistros(stockFabricaId, "StockFabricaDetalle1", "stockFabrica.id").each{
-        //     println it.indicador.descripcion
-        // }
-
-        println SqlUtil.instance.getValorDetallePorIndicador("ff8080817409e8ea017409e95e500000", "StockFabricaDetalle2", "stockFabrica.id", "porcN")
-        println SqlUtil.instance.getValorDetallePorIndicador("ff8080817409e8ea017409e95e500000", "StockFabricaDetalle2", "stockFabrica.id", "porcV")
-
-    }
-
     void obtenerFecha(){
         println SqlUtil.instance.obtenerFecha("06:30", Aux.instance.diaTrabajoId)
     }
@@ -168,6 +156,11 @@ class QueryTest extends ModuleTestBase {
         println ""
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jfBri")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jfSac")
+        
+        println ">>> Meladura"
+        println ""
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Meladura", "mcrBri2")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Meladura", "mcrSac")
     }
 
     void getParoTotal(){

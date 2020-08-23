@@ -54,13 +54,6 @@ class SqlUtil{
             .setParameter("id", padreId).resultList
     }
     
-    def getValorDetallePorIndicador(def padreId, def modulo, def campoFk, def indicador){
-        return (BigDecimal)getManager()
-            .createQuery("SELECT valor FROM ${modulo} WHERE ${campoFk} = :id AND indicador.campo = :indicador")
-            .setParameter("id", padreId)
-            .setParameter("indicador", indicador).singleResult
-    }
-    
     def getDetallePorIndicador(def padreId, def modulo, def campoFk, def indicador){
         return getManager()
             .createQuery("FROM ${modulo} WHERE ${campoFk} = :id AND indicador.campo = :indicador")

@@ -21,6 +21,7 @@ import static org.openxava.jpa.XPersistence.*
     titTqJFil { detalle4 }
     titClaJug { detalle5 }
     titTorSul {
+        fldTonSacTorSul;
         titTorSulJug{ detalle6 }
         titTorSulMel{ detalle7 }
     }
@@ -53,6 +54,9 @@ class StockFabrica extends Formulario {
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle5> detalle5
+
+    @ReadOnly @DisplaySize(6)
+    BigDecimal fldTonSacTorSul
 
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
@@ -121,14 +125,23 @@ class StockFabrica extends Formulario {
         }
     }
     
-    // void actualizar() throws ValidationException{
-    //     try{
-    //
-    //         // this.fldTiempoPerdidoTotal = tiempoPerdidoTotal
-    //         getManager().persist(this)
-    //
-    //     }catch(Exception ex){
-    //         throw new SystemException("registro_no_actualizado", ex)
-    //     }
-    // }
+    void actualizar() throws ValidationException{
+        try{
+            this.fldTonSacTorSul = tonSacTorSul
+            getManager().persist(this)
+        }catch(Exception ex){
+            throw new SystemException("registro_no_actualizado", ex)
+        }
+    }
+
+    BigDecimal getTonSacTorSul(){
+        def padreId = this.id
+        def campoFk = "stockFabrica.id"
+        if (padreId){
+
+            def d1 = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle6", campoFk, "TonSacJSulf")
+            def d2 = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle7", campoFk, "TonSacMel")
+            return d1.valor + d2.valor
+        }
+    }
 }

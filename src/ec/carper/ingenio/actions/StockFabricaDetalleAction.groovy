@@ -164,8 +164,48 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 setValor("TonSacClar", tonSacClar)
                 break
             
-            // case "StockFabricaDetalle6":
-            //     break
+            case "StockFabricaDetalle6":
+            case "StockFabricaDetalle7":
+                //println ">>> modulo: ${modulo}"
+                def (tmpTab, tmpBri, tmpSac, tmpTon) = ['', '', '', '']
+                if (modulo=="StockFabricaDetalle6"){
+                    tmpTab = "Jugo"
+                    tmpBri = "jnBri"
+                    tmpSac = "jnSac"
+                    tmpTon = "TonSacJSulf"
+                }else{
+                    tmpTab = "Meladura"
+                    tmpBri = "mcrBri2"
+                    tmpSac = "mcrSac"
+                    tmpTon = "TonSacMel"
+                }
+
+                def brix = SqlUtil.instance.getValorCampo(diaTrabajoId, tmpTab, tmpBri)
+                def sac  = SqlUtil.instance.getValorCampo(diaTrabajoId, tmpTab, tmpSac)
+
+                def p    = new BrixDensidadWp().getP(brix)
+                def o1   = getValor("o1")
+                def o2   = getValor("o2")
+                def h1   = getValor("H1")
+                def h3   = getValor("H3")
+                
+                setValor("Brix" , brix)
+                setValor("Sac"  , sac)
+                setValor("p"    , p)
+                
+                def porc = valor 
+                def va = Calculo.instance.redondear(3.1416*((o1/2)*(o1/2))*h1, 2)
+                // =(J24*3,1416/3)*(((J22/2)*(J22/2))+((J23/2)*(J23/2)+((J22/2)*(J23/2))))
+                def vc = Calculo.instance.redondear( (h3*3.1416/3)*(((o1/2)*(o1/2))+((o2/2)*(o2/2)+((o1/2)*(o2/2)))), 2)
+                // =(+J25+J21)*I31/100 
+                def vTot = porc ? Calculo.instance.redondear((vc+va)*porc/100, 2): 0
+                def tonSac = Calculo.instance.redondear((vTot*p/1000) * (sac/100),2)
+                
+                setValor("Va", va)
+                setValor("VC", vc)
+                setValor("VTot", vTot)
+                setValor(tmpTon, tonSac)
+                break
             }
         }
     }
