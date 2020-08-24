@@ -206,6 +206,39 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 setValor("VTot", vTot)
                 setValor(tmpTon, tonSac)
                 break
+            
+            case "StockFabricaDetalle8":
+            case "StockFabricaDetalle9":
+            case "StockFabricaDetalle10":
+            case "StockFabricaDetalle11":
+            case "StockFabricaDetalle12":
+                def (tmpBri, tmpSac) = ['', '']
+                
+                if (modulo == "StockFabricaDetalle8"){
+                    tmpBri = "jcBri"; tmpSac = "jcSac";
+                }else{
+                    tmpBri = "jdBri"; tmpSac = "jdSac";
+                }
+                
+                def brix = SqlUtil.instance.getValorCampo(diaTrabajoId, "Jugo", tmpBri)
+                def sac  = SqlUtil.instance.getValorCampo(diaTrabajoId, "Jugo", tmpSac)
+                def p    = new BrixDensidadWp().getP(brix)
+                def o1   = getValor("o1")
+                def h2   = getValor("H2")
+                
+                setValor("Brix" , brix)
+                setValor("Sac"  , sac)
+                setValor("p"    , p)
+                
+                def porc = valor 
+                // =(3,1416*((AF20/2)*(AF20/2))*AF21)*AE27/100
+                def vt = porc ? Calculo.instance.redondear((3.1416*((o1/2)*(o1/2))*h2)*porc/100, 2): 0
+                // =+((AF22*AE28)/1000)*(AF24/100)
+                def tonSac = Calculo.instance.redondear((vt*p/1000) * (sac/100), 2)
+                setValor("Vt", vt)
+                setValor("TonSacJC", tonSac)
+                break            
+
             }
         }
     }

@@ -14,3 +14,6 @@ select i.descripcion, valor, i.campo, modificable
 from ingenio.stockfabricapdetalle1 d, ingenio.indicador i
 where d.indicador_id = i.id
 order by orden
+
+INSERT INTO ingenio.ingenio.stockfabricapdetalle9 
+SELECT * FROM ingenio.ingenio.stockfabricapdetalle8;

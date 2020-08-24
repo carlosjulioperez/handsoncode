@@ -55,10 +55,14 @@ class SqlUtil{
     }
     
     def getDetallePorIndicador(def padreId, def modulo, def campoFk, def indicador){
-        return getManager()
-            .createQuery("FROM ${modulo} WHERE ${campoFk} = :id AND indicador.campo = :indicador")
-            .setParameter("id", padreId)
-            .setParameter("indicador", indicador).singleResult
+        def valor = null
+        try{
+            valor = getManager()
+                .createQuery("FROM ${modulo} WHERE ${campoFk} = :id AND indicador.campo = :indicador")
+                .setParameter("id", padreId)
+                .setParameter("indicador", indicador).singleResult
+        }catch(Exception ex){ }
+        return valor
     }
 
     def getDiaTrabajo(String diaTrabajoId){

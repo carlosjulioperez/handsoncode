@@ -21,14 +21,22 @@ import static org.openxava.jpa.XPersistence.*
     titTqJFil { detalle4 }
     titClaJug { detalle5 }
     titTorSul {
-        fldTonSacTorSul;
+        tonSacTorSul;
         titTorSulJug{ detalle6 }
         titTorSulMel{ detalle7 }
+    }
+    titCalJug{
+        tonSacTraJug, tonSacCal;
+        titCalJug1 { detalle8  }
+        titCalJug2 { detalle9  }
+        titCalJug3 { detalle10 }
+        titCalJug4 { detalle11 }
+        titCalJug5 { detalle12 }
     }
 
 """)
 class StockFabrica extends Formulario {
-    
+
     boolean itemsCargados
     
     // Usado para pruebas solamente
@@ -55,8 +63,9 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle5> detalle5
 
-    @ReadOnly @DisplaySize(6)
     BigDecimal fldTonSacTorSul
+    BigDecimal fldTonSacTraJug
+    BigDecimal fldTonSacCal
 
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
@@ -65,6 +74,26 @@ class StockFabrica extends Formulario {
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle7> detalle7
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle8> detalle8
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle9> detalle9
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle10> detalle10
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle11> detalle11
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle12> detalle12
 
     void cargarItems() throws ValidationException{
         try{
@@ -78,7 +107,7 @@ class StockFabrica extends Formulario {
 
     void cargarDetalles(StockFabrica stockFabrica){
         try{
-            (1..7).each{
+            (1..12).each{
                 cargarDetalle(stockFabrica, "StockFabricaDetalle${it}", "StockFabricaPDetalle${it}")
             }
         }catch(Exception ex){
@@ -112,36 +141,46 @@ class StockFabrica extends Formulario {
         }
     }
     
-    def consultarTqJDil(){
-        detalle1.each{
-            def campo = it.indicador.campo ?: ""
-            switch (campo){
-                case "":
-                    //it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Turbiedad", "turJClaro")
-                    it.valor = 0
-                    break
-            }
-            getManager().persist(it)
-        }
-    }
-    
     void actualizar() throws ValidationException{
         try{
             this.fldTonSacTorSul = tonSacTorSul
+            this.fldTonSacTraJug = tonSacTraJug 
+            this.fldTonSacCal    = tonSacCal
             getManager().persist(this)
         }catch(Exception ex){
             throw new SystemException("registro_no_actualizado", ex)
         }
     }
 
-    BigDecimal getTonSacTorSul(){
-        def padreId = this.id
+    def getSumaValores(def desde, def hasta, def campos){
+        def valor = 0
         def campoFk = "stockFabrica.id"
-        if (padreId){
-
-            def d1 = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle6", campoFk, "TonSacJSulf")
-            def d2 = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle7", campoFk, "TonSacMel")
-            return d1.valor + d2.valor
+        if (this.id){
+            def i = 0
+            (desde..hasta).each{
+                def d = SqlUtil.instance.getDetallePorIndicador(this.id, "StockFabricaDetalle${it}", campoFk, campos[i++])
+                if (d)
+                    valor += d.valor ?: 0
+            }
         }
+        return valor
+    }
+
+    @DisplaySize(6)
+    BigDecimal getTonSacTorSul(){
+        return getSumaValores(6, 7, ["TonSacJSulf", "TonSacMel"])
+    }
+
+    @DisplaySize(6)
+    BigDecimal getTonSacTraJug(){
+        return getSumaValores(1, 5, ["TonSacJDil", "TonSacJCla", "TonSacJSulf", "TonSacJFiltr", "TonSacClar"])
+    }
+
+    @DisplaySize(6)
+    BigDecimal getTonSacCal(){
+        def lista = []
+        (1..5).each{ lista << "TonSacJC" }
+        return getSumaValores(8, 12, lista)
+        //return getSumaValores(8, 12, ["TonSacJC", "TonSacJC", "TonSacJC", "TonSacJC", "TonSacJC"])
     }
 }
