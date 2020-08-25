@@ -33,7 +33,14 @@ import static org.openxava.jpa.XPersistence.*
         titCalJug4 { detalle11 }
         titCalJug5 { detalle12 }
     }
-
+    titLinEva{
+        tonSacEva;
+        titLinEva1 { detalle13 }
+        titLinEva2 { detalle14 }
+        titLinEva3 { detalle15 }
+        titLinEva4 { detalle16 }
+        titLinEva5 { detalle17 }
+    }
 """)
 class StockFabrica extends Formulario {
 
@@ -95,6 +102,27 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle12> detalle12
 
+    BigDecimal fldTonSacEva
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle13> detalle13
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle14> detalle14
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle15> detalle15
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle16> detalle16
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle17> detalle17
+
     void cargarItems() throws ValidationException{
         try{
             this.itemsCargados = true
@@ -107,7 +135,7 @@ class StockFabrica extends Formulario {
 
     void cargarDetalles(StockFabrica stockFabrica){
         try{
-            (1..12).each{
+            (1..17).each{
                 cargarDetalle(stockFabrica, "StockFabricaDetalle${it}", "StockFabricaPDetalle${it}")
             }
         }catch(Exception ex){
@@ -146,6 +174,7 @@ class StockFabrica extends Formulario {
             this.fldTonSacTorSul = tonSacTorSul
             this.fldTonSacTraJug = tonSacTraJug 
             this.fldTonSacCal    = tonSacCal
+            this.fldTonSacEva    = tonSacEva
             getManager().persist(this)
         }catch(Exception ex){
             throw new SystemException("registro_no_actualizado", ex)
@@ -181,6 +210,13 @@ class StockFabrica extends Formulario {
         def lista = []
         (1..5).each{ lista << "TonSacJC" }
         return getSumaValores(8, 12, lista)
-        //return getSumaValores(8, 12, ["TonSacJC", "TonSacJC", "TonSacJC", "TonSacJC", "TonSacJC"])
     }
+    
+    @DisplaySize(6)
+    BigDecimal getTonSacEva(){
+        def lista = []
+        (1..5).each{ lista << "TonSacMel" }
+        return getSumaValores(13, 17, lista)
+    }
+
 }

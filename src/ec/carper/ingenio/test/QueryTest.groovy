@@ -33,10 +33,10 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getSumaValorDetallesPorIndicador()
+        getValorCampo()
+        //getSumaValorDetallesPorIndicador()
         //getDetallePorIndicador()
         //getCampoPorId()
-        //getValorCampo()
         //obtenerFecha()
         //getParoTotal()
         //unSoloRegistro()
@@ -50,15 +50,10 @@ class QueryTest extends ModuleTestBase {
     }
 
     void getSumaValorDetallesPorIndicador(){
-        def padreId = "ff808081741db3e901741ddb6d7d00df"
+        def padreId = "ff808081741e971601741eae21040009"
         def campoFk = "stockFabrica.id"
-        
-        def d1 = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle1", campoFk, "TonSacJDil")
-        def d2 = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle2", campoFk, "TonSacJCla")
-        def d3 = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle3", campoFk, "TonSacJSulf")
-        def d4 = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle4", campoFk, "TonSacJFiltr")
-        def d5 = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle5", campoFk, "TonSacClar")
-        println d1.valor + d2.valor + d3.valor + d4.valor + d5.valor
+        def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle13", campoFk, "Va")
+        println ">>> Indicador: ${d.indicador.descripcion}, valor: ${d.valor}"
     }
 
     void getDetallePorIndicador(){

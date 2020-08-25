@@ -3,6 +3,7 @@ package ec.carper.ingenio.model
 import ec.carper.ingenio.actions.*
 
 import javax.persistence.*
+import javax.validation.constraints.Digits
 import org.openxava.annotations.*
 import org.openxava.model.*
 
@@ -19,7 +20,8 @@ class StockFabricaDetalle extends Identifiable{
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @ReadOnly
     Indicador indicador
     
-    @OnChange(StockFabricaDetalleAction.class) @DisplaySize(5)
+    @OnChange(StockFabricaDetalleAction.class)
+    @Digits(integer=6, fraction=3) @DisplaySize(6)
     BigDecimal valor 
  
     @ReadOnly

@@ -213,7 +213,6 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
             case "StockFabricaDetalle11":
             case "StockFabricaDetalle12":
                 def (tmpBri, tmpSac) = ['', '']
-                
                 if (modulo == "StockFabricaDetalle8"){
                     tmpBri = "jcBri"; tmpSac = "jcSac";
                 }else{
@@ -237,8 +236,73 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 def tonSac = Calculo.instance.redondear((vt*p/1000) * (sac/100), 2)
                 setValor("Vt", vt)
                 setValor("TonSacJC", tonSac)
-                break            
+                break
 
+            case "StockFabricaDetalle13":
+            case "StockFabricaDetalle14":
+            case "StockFabricaDetalle15":
+            case "StockFabricaDetalle16":
+            case "StockFabricaDetalle17":
+                def (brix, sac) = [0, 0]
+
+                switch(modulo){
+                case "StockFabricaDetalle13":
+                    brix = SqlUtil.instance.getValorCampo(diaTrabajoId, "Jugo", "jcBri")
+                    sac  = SqlUtil.instance.getValorCampo(diaTrabajoId, "Jugo", "jcSac")
+                    break   
+                
+                case "StockFabricaDetalle14":
+                case "StockFabricaDetalle15":
+                    brix = getValor("Brix")
+
+                    def d1 = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle13", campoFk, "Brix")
+                    def d2 = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle13", campoFk, "Sac")
+                    def v1 = d1 ? d1.valor?:0 : 0
+                    def v2 = d2 ? d2.valor?:0 : 0
+
+                    sac = v1>0 ? Calculo.instance.redondear(v2*brix/v1, 2): 0
+                    //println "v1: ${v1}, v2: ${v2}, Sac: ${sac}"
+
+                    setValor("Sac", sac)
+                    break
+                
+                case "StockFabricaDetalle16":
+                case "StockFabricaDetalle17":
+                    brix = SqlUtil.instance.getValorCampo(diaTrabajoId, "Meladura", "mcrBri2")
+                    sac  = SqlUtil.instance.getValorCampo(diaTrabajoId, "Meladura", "mcrSac")
+                    break
+                } 
+                
+                def p  = new BrixDensidadWp().getP(brix)
+                
+                def o1 = getValor("o1")
+                def o2 = getValor("o2")
+                def h2 = getValor("H2")
+                def h3 = getValor("H3")
+                setValor("Brix" , brix)
+                setValor("Sac"  , sac)
+                setValor("p"    , p)
+                
+                def h1 = valor 
+                // =3,1416*((J41/2)*(J41/2))*J42
+                def va = h1 ? Calculo.instance.redondear(3.1416*((o1/2)*(o1/2))*h1, 3): 0
+
+                //println ">>>va: ${va}, h1: ${h1}, o1: ${o1}"
+
+                // =3,1416*((J44/2)*(J44/2))*J45
+                def vb = Calculo.instance.redondear(3.1416*((o1/2)*(o1/2))*h2, 3)
+                // =(J49*3,1416/3)*(((J47/2)*(J47/2))+((J48/2)*(J48/2)+((J47/2)*(J48/2))))
+                def vc = Calculo.instance.redondear( (h3*3.1416/3)*(((o1/2)*(o1/2))+((o2/2)*(o2/2)+((o1/2)*(o2/2)))), 3)
+                def vTot = va + vb + vc
+                // =+((J51*I56)/1000)*(J53/100)
+                def tonSac = Calculo.instance.redondear((vTot*p/1000) * (sac/100),2)
+                setValor("Va", va)
+                setValor("Vb", vb)
+                setValor("VC", vc)
+                setValor("VTot", vTot)
+                setValor("TonSacMel", tonSac)
+                
+                break
             }
         }
     }
@@ -248,10 +312,11 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
         return d.valor
     }
 
-    void setValor(def campo, def valor){
+    void setValor(def campo, def nuevoValor){
         //println ">>> ${padreId} ${modulo} ${campoFk} ${campo}"
         def d = SqlUtil.instance.getDetallePorIndicador(padreId, modulo, campoFk, campo)
-        d.valor = valor
+        //println ">>> Indicador: ${d.indicador.descripcion}, valor: ${d.valor}"
+        d.setValor(nuevoValor)
         getManager().persist(d)
     }
 }
