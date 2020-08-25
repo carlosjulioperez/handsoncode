@@ -146,22 +146,43 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 break
             
             case "StockFabricaDetalle5":
-                def brix = SqlUtil.instance.getValorCampo(diaTrabajoId, "Jugo", "jcBri")
-                def sac  = SqlUtil.instance.getValorCampo(diaTrabajoId, "Jugo", "jcSac")
-                def p    = new BrixDensidadWp().getP(brix)
+            case "StockFabricaDetalle18":
+            case "StockFabricaDetalle19":
+            case "StockFabricaDetalle20":
                 
+                def porc = valor 
+                def (tmpTab, tmpBri, tmpSac, tmpTon, vTot) = ['', '', '', '', 0]
+
+                switch(modulo){
+                case "StockFabricaDetalle5":
+                    tmpTab = "Jugo"; tmpBri = "jcBri"; tmpSac = "jcSac"; tmpTon = "TonSacClar";
+                    // =259,29*AZ17/100
+                    vTot = porc ? Calculo.instance.redondear(259.29*porc/100, 2): 0
+                    break   
+                case "StockFabricaDetalle18":
+                    tmpTab = "Meladura"; tmpBri = "mcrBri2"; tmpSac = "mcrSac"; tmpTon = "TonSacTqMelCru";
+                    // =8,1*AY51/100
+                    vTot = porc ? Calculo.instance.redondear(8.1*porc/100, 2): 0
+                    break
+                case "StockFabricaDetalle19":
+                case "StockFabricaDetalle20":
+                    tmpTab = "Meladura"; tmpBri = "mcrBri2"; tmpSac = "mcrSac"; tmpTon = "TonSacCal";
+                    // =0,55*N64/100
+                    vTot = porc ? Calculo.instance.redondear(0.55*porc/100, 2): 0
+                    break
+                }
+                
+                def brix = SqlUtil.instance.getValorCampo(diaTrabajoId, tmpTab, tmpBri)
+                def sac  = SqlUtil.instance.getValorCampo(diaTrabajoId, tmpTab, tmpSac)
+                def p    = new BrixDensidadWp().getP(brix)
                 setValor("Brix" , brix)
                 setValor("Sac"  , sac)
                 setValor("p"    , p)
 
-                // Ahora realizar los cálculos
-                def porc = valor 
-                // =259,29*AZ17/100
-                def vTot = porc ? Calculo.instance.redondear(259.29*porc/100, 2): 0
                 // =+BA12*(BA18/1000)*(BA14/100)
-                def tonSacClar = Calculo.instance.redondear((vTot*p/1000) * (sac/100),2)
+                def tonSac = Calculo.instance.redondear((vTot*p/1000) * (sac/100),2)
                 setValor("VTot", vTot)
-                setValor("TonSacClar", tonSacClar)
+                setValor(tmpTon, tonSac)
                 break
             
             case "StockFabricaDetalle6":

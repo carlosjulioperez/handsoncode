@@ -41,6 +41,11 @@ import static org.openxava.jpa.XPersistence.*
         titLinEva4 { detalle16 }
         titLinEva5 { detalle17 }
     }
+    titTqMCru { detalle18 }
+    titCalMel { 
+        titCalMel1 { detalle19 }
+        titCalMel2 { detalle20 }
+    }
 """)
 class StockFabrica extends Formulario {
 
@@ -123,6 +128,18 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle17> detalle17
 
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle18> detalle18
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle19> detalle19
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle20> detalle20
+
     void cargarItems() throws ValidationException{
         try{
             this.itemsCargados = true
@@ -135,7 +152,7 @@ class StockFabrica extends Formulario {
 
     void cargarDetalles(StockFabrica stockFabrica){
         try{
-            (1..17).each{
+            (1..20).each{
                 cargarDetalle(stockFabrica, "StockFabricaDetalle${it}", "StockFabricaPDetalle${it}")
             }
         }catch(Exception ex){
