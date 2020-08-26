@@ -78,7 +78,7 @@ class QueryTest extends ModuleTestBase {
         println SqlUtil.instance.getValorCampoBlc(Aux.instance.diaTrabajoId, "BlcDetalle1" , "canaDia")
         
         // BLC
-        println ">>> BLC"
+        println "\n>>> BLC"
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Trash" , "avgPorcTrash")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cana" , "brix")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cana" , "porcSacarosa")
@@ -89,7 +89,7 @@ class QueryTest extends ModuleTestBase {
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cana" , "porcFibra")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cana" , "porcHumedad")
 
-        println ">>> Bagazo"
+        println "\n>>> Bagazo"
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Bagazo" , "porcSacarosa")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Bagazo" , "porcFibra")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Bagazo" , "porcHumedad")
@@ -98,15 +98,16 @@ class QueryTest extends ModuleTestBase {
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "BtuLbBagazo" , "pcBtuLb")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "BtuLbBagazo" , "porcCenBs")
 
-        println ">>> Miel Fina Melaza"
+        println "\n>>> Miel Fina Melaza"
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles" , "mfBri2")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles" , "mfSac")
         
-        println ">>> cto24H"
+        println "\n>>> cto24H"
         println SqlUtil.instance.getValorDetalleCampo(Aux.instance.diaTrabajoId, "cto24H", "Cto24HDetalle5" , "porcCenizas")
         
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cto24H", "mielF2")
-        println ">>> Jugo Diluido"
+        
+        println "\n>>> Jugo Diluido"
         def brixJDil = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jdBri")
         def pJDil = new BrixDensidadWp().getP(brixJDil)
         println brixJDil
@@ -119,34 +120,29 @@ class QueryTest extends ModuleTestBase {
         def pzaJDil = brixJDil ? Calculo.instance.redondear(jdSac*100/brixJDil,2): 0
         println pzaJDil 
 
-        println ">>> Jugo Claro"
-        println ""
+        println "\n>>> Jugo Claro"
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Turbiedad", "turJClaro")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Fosfatos", "jcFosfatos")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jcBri")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jcSac")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jcPur")
 
-        println ">>> Jugo Primera Extracción"
-        println ""
+        println "\n>>> Jugo Primera Extracción"
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jeBri")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jeSac")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jePur")
         
-        println ">>> Jugo Residual"
-        println ""
+        println "\n>>> Jugo Residual"
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jcBri")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jcSac")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jcPur")
 
-        println ">>> Cachaza"
-        println ""
+        println "\n>>> Cachaza"
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Turbiedad", "polCachaza")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cto24H", "porcConTotLinEva")
         println SqlUtil.instance.getValorDetalleCampo(Aux.instance.diaTrabajoId, "cto24H", "Cto24HDetalle6" , "porc")
         
-        println ">>> Azucar granel y grasshoper"
-        println ""
+        println "\n>>> Azucar granel y grasshoper"
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "AzucarGranel", "color")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "AzucarGranel", "turb")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "AzucarGranel", "pol")
@@ -155,22 +151,39 @@ class QueryTest extends ModuleTestBase {
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Grasshoper", "turb")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Grasshoper", "humedad")
         
-        println ">>> Jugo Encalado"
-        println ""
+        println "\n>>> Jugo Encalado"
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jnBri")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jnSac")
         
-        println ">>> Jugo Filtrado"
-        println ""
+        println "\n>>> Jugo Filtrado"
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jfBri")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jfSac")
         
-        println ">>> Meladura"
-        println ""
+        println "\n>>> Meladura"
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Meladura", "mcrBri2")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Meladura", "mcrSac")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Meladura", "mclBri2")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Meladura", "mclSac")
+        
+        println "\n>>> Masas"
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Masas", "maBri2")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Masas", "maSac")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Masas", "mbBri2")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Masas", "mbSac")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Masas", "mcBri2")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Masas", "mcSac")
+        
+        println "\n>>> Tq Fundidor"
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "TqFundidor", "bri2")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "TqFundidor", "sac")
+        
+        println "\n>>> Mieles"
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles", "maBri2")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles", "maSac")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles", "mbBri2")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles", "mbSac")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles", "mrBri2")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles", "mrSac")
     }
 
     void getParoTotal(){

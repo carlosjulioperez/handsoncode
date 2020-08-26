@@ -151,37 +151,64 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
             case "StockFabricaDetalle20":
             case "StockFabricaDetalle21":
             case "StockFabricaDetalle22":
+            case "StockFabricaDetalle29":
+            case "StockFabricaDetalle30":
+            case "StockFabricaDetalle31":
+            case "StockFabricaDetalle32":
+            case "StockFabricaDetalle33":
+            case "StockFabricaDetalle34":
+            case "StockFabricaDetalle35":
+            case "StockFabricaDetalle36":
+            case "StockFabricaDetalle37":
+            case "StockFabricaDetalle38":
+            case "StockFabricaDetalle39":
                 
                 def porc = valor 
-                def (tmpTab, tmpBri, tmpSac, tmpTon, vTot) = ['', '', '', '', 0]
+                def (tmpTab, tmpBri, tmpSac, tmpTon, factor) = ['', '', '', '', 0]
 
                 switch(modulo){
                 case "StockFabricaDetalle5":
-                    tmpTab = "Jugo"; tmpBri = "jcBri"; tmpSac = "jcSac"; tmpTon = "TonSacClar";
-                    // =259,29*AZ17/100
-                    vTot = porc ? Calculo.instance.redondear(259.29*porc/100, 2): 0
-                    break   
+                    tmpTab = "Jugo"; tmpBri = "jcBri"; tmpSac = "jcSac"; tmpTon = "TonSacClar"; factor = 259.29; break;
+                
                 case "StockFabricaDetalle18":
-                    tmpTab = "Meladura"; tmpBri = "mcrBri2"; tmpSac = "mcrSac"; tmpTon = "TonSacTqMelCru";
-                    // =8,1*AY51/100
-                    vTot = porc ? Calculo.instance.redondear(8.1*porc/100, 2): 0
-                    break
+                    tmpTab = "Meladura"; tmpBri = "mcrBri2"; tmpSac = "mcrSac"; tmpTon = "TonSacTqMelCru"; factor = 8.1; break;
+                
                 case "StockFabricaDetalle19":
                 case "StockFabricaDetalle20":
-                    tmpTab = "Meladura"; tmpBri = "mcrBri2"; tmpSac = "mcrSac"; tmpTon = "TonSacCal";
-                    // =0,55*N64/100
-                    vTot = porc ? Calculo.instance.redondear(0.55*porc/100, 2): 0
-                    break
+                    tmpTab = "Meladura"; tmpBri = "mcrBri2"; tmpSac = "mcrSac"; tmpTon = "TonSacCal"; factor = 0.55; break;
+                
                 case "StockFabricaDetalle21":
-                    tmpTab = "Meladura"; tmpBri = "mclBri2"; tmpSac = "mclSac"; tmpTon = "TonSacClaMel";
-                    // =7,4*AN63/100
-                    vTot = porc ? Calculo.instance.redondear(7.4*porc/100, 2): 0
-                    break
+                    tmpTab = "Meladura"; tmpBri = "mclBri2"; tmpSac = "mclSac"; tmpTon = "TonSacClaMel"; factor = 7.4; break;
+                
                 case "StockFabricaDetalle22":
-                    tmpTab = "Meladura"; tmpBri = "mcrBri2"; tmpSac = "mcrSac"; tmpTon = "TonSacVasR";
-                    // =1,12*AY63/100
-                    vTot = porc ? Calculo.instance.redondear(1.12*porc/100, 2): 0
-                    break
+                    tmpTab = "Meladura"; tmpBri = "mcrBri2"; tmpSac = "mcrSac"; tmpTon = "TonSacVasR"; factor = 1.12; break;
+
+                case "StockFabricaDetalle29":
+                    tmpTab = "Meladura"; tmpBri = "mclBri2"; tmpSac = "mclSac"; tmpTon = "TonSacTkMel"; factor = 30; break;
+                
+                case "StockFabricaDetalle30":
+                case "StockFabricaDetalle31":
+                    tmpTab = "Meladura"; tmpBri = "mclBri2"; tmpSac = "mclSac"; tmpTon = "TonSacTkMel"; factor = 20.4; break;
+                
+                case "StockFabricaDetalle32":
+                    tmpTab = "TqFundidor"; tmpBri = "bri2"; tmpSac = "sac"; tmpTon = "TonSacFun"; factor = 20.4; break;
+                case "StockFabricaDetalle33":
+                    tmpTab = "TqFundidor"; tmpBri = "bri2"; tmpSac = "sac"; tmpTon = "TonSacFun"; factor = 10.2; break;
+
+                case "StockFabricaDetalle34":
+                    tmpTab = "Mieles"; tmpBri = "maBri2"; tmpSac = "maSac"; tmpTon = "TonSacMieB"; factor = 20.4; break;
+                case "StockFabricaDetalle35":
+                    tmpTab = "Mieles"; tmpBri = "maBri2"; tmpSac = "maSac"; tmpTon = "TonSacMieB"; factor = 10.2; break;
+                
+                case "StockFabricaDetalle36":
+                    tmpTab = "Mieles"; tmpBri = "mbBri2"; tmpSac = "mbSac"; tmpTon = "TonSacMieB"; factor = 20.4; break;
+                case "StockFabricaDetalle37":
+                    tmpTab = "Mieles"; tmpBri = "mrBri2"; tmpSac = "mrSac"; tmpTon = "TonSacMieB"; factor = 10.2; break;
+
+                case "StockFabricaDetalle38":
+                    tmpTab = "Mieles"; tmpBri = "mbBri2"; tmpSac = "mbSac"; tmpTon = "TonSacMieB"; factor = 20; break;
+                case "StockFabricaDetalle39":
+                    tmpTab = "Mieles"; tmpBri = "mrBri2"; tmpSac = "mrSac"; tmpTon = "TonSacMieB"; factor = 19; break;
                 }
                 
                 def brix = SqlUtil.instance.getValorCampo(diaTrabajoId, tmpTab, tmpBri)
@@ -190,7 +217,8 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 setValor("Brix" , brix)
                 setValor("Sac"  , sac)
                 setValor("p"    , p)
-
+                
+                def vTot = porc ? Calculo.instance.redondear(factor*porc/100, 2): 0
                 // =+BA12*(BA18/1000)*(BA14/100)
                 def tonSac = Calculo.instance.redondear((vTot*p/1000) * (sac/100),2)
                 setValor("VTot", vTot)
@@ -334,7 +362,48 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 setValor("VC", vc)
                 setValor("VTot", vTot)
                 setValor("TonSacMel", tonSac)
+                break
+            
+            case "StockFabricaDetalle23":
+            case "StockFabricaDetalle24":
+            case "StockFabricaDetalle25":
+            case "StockFabricaDetalle26":
+            case "StockFabricaDetalle27":
+            case "StockFabricaDetalle28":
+                def (tmpBri, tmpSac) = ['', '']
+
+                switch(modulo){
+                case "StockFabricaDetalle23":
+                case "StockFabricaDetalle24":
+                    tmpBri = "maBri2"; tmpSac = "maSac"; break;
                 
+                case "StockFabricaDetalle25":
+                case "StockFabricaDetalle26":
+                    tmpBri = "mbBri2"; tmpSac = "mbSac"; break;
+                
+                case "StockFabricaDetalle27":
+                case "StockFabricaDetalle28":
+                    tmpBri = "mcBri2"; tmpSac = "mcSac"; break;
+                }
+
+                def brix = SqlUtil.instance.getValorCampo(diaTrabajoId, "Masas", tmpBri)
+                def sac  = SqlUtil.instance.getValorCampo(diaTrabajoId, "Masas", tmpSac)
+                def p    = new BrixDensidadWp().getP(brix)
+
+                setValor("Brix" , brix)
+                setValor("Sac"  , sac)
+                setValor("p"    , p)
+
+                // Ahora realizar los cálculos
+                def porc = valor 
+                def factorFt3 = new BigDecimal(new Parametro().obtenerValor("FT3"))
+                def vtFt3 = getValor("VtFt3")
+                // =+(K69*$R$77)*K75/100
+                def vt = porc ? Calculo.instance.redondear((vtFt3*factorFt3)*porc/100, 2): 0
+                //=((K6*X6/1000)*(Q5/100))
+                def tonSacMas = Calculo.instance.redondear((vt*p/1000) * (sac/100),2)
+                setValor("Vt", vt)
+                setValor("TonSacMas", tonSacMas)
                 break
             }
         }

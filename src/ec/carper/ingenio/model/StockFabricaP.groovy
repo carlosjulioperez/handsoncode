@@ -37,6 +37,36 @@ import org.openxava.model.*
     }
     titClaMel { detalle21 }
     titVasRea { detalle22 }
+    titCri{
+        titTac1 { 
+            titMasA { detalle23 }
+        }
+        titTac2 { 
+            titMasA { detalle24 }
+            titMasB { detalle25 }
+        }
+        titTac3 { 
+            titMasB { detalle26 }
+            titMasC { detalle27 }
+        }
+        titTac4 { 
+            titMasC { detalle28 }
+        }
+    }
+    titTanAlm{
+        titTanAlm01 { detalle29 }
+        titTanAlm02 { detalle30 }
+        titTanAlm03 { detalle31 }
+        titTanAlm04 { detalle32 }
+        titTanAlm05 { detalle33 }
+        titTanAlm06 { detalle34 }
+        titTanAlm07 { detalle35 }
+        titTanAlm08 { detalle36 }
+        titTanAlm09 { detalle37 }
+        titTanAlm10 { detalle38 }
+        titTanAlm11 { detalle39 }
+    }
+
 """)
 class StockFabricaP{
     @Id
@@ -110,4 +140,55 @@ class StockFabricaP{
 
     @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
     Collection<StockFabricaPDetalle22> detalle22
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle23> detalle23
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle24> detalle24
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle25> detalle25
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle26> detalle26
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle27> detalle27
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle28> detalle28
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle29> detalle29
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle30> detalle30
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle31> detalle31
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle32> detalle32
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle33> detalle33
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle34> detalle34
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle35> detalle35
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle36> detalle36
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle37> detalle37
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle38> detalle38
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle39> detalle39
 }

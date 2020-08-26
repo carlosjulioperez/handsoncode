@@ -1,12 +1,13 @@
 id,descripcion
-01,TON
-02,M³
-03,QQ
-04,%/ TCM
-05,%
-06,BTU/H
-07,Kg/M³
-08,PPM
-09,ABS
-10,UI
-11,M
+01,"TON"
+02,"M³"
+03,"QQ"
+04,"%/ TCM"
+05,"%"
+06,"BTU/H"
+07,"Kg/M³"
+08,"PPM"
+09,"ABS"
+10,"UI"
+11,"M"
+12,"Ft³"

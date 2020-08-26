@@ -15,6 +15,8 @@ class ParametroTest extends ModuleTestBase {
         
         assertEquals((String)new Parametro().obtenerValor("CTO24H_FACTOR_FELINING"), "0.997")
         assertEquals((String)new Parametro().obtenerValor("CTO24H_FR"), "0.641")
+        assertEquals((String)new Parametro().obtenerValor("FT3"), "0.02831685")
+
         //assertEquals((String)new Parametro().obtenerValor("DIA_TRABAJO_UN_REGISTRO"), "S")
     }
 

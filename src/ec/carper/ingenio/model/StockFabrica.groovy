@@ -47,8 +47,42 @@ import static org.openxava.jpa.XPersistence.*
         titCalMel1 { detalle19 }
         titCalMel2 { detalle20 }
     }
-    titClaMel { detalle21 }
+    titClaMel { 
+        tonSacClaMel;
+        detalle21 
+    }
     titVasRea { detalle22 }
+    titCri{
+        ft3, tonSacCri;
+        titTac1 { 
+            titMasA { detalle23 }
+        }
+        titTac2 { 
+            titMasA { detalle24 }
+            titMasB { detalle25 }
+        }
+        titTac3 { 
+            titMasB { detalle26 }
+            titMasC { detalle27 }
+        }
+        titTac4 { 
+            titMasC { detalle28 }
+        }
+    }
+    titTanAlm{
+        tonSacTqAlm;
+        titTanAlm01 { detalle29 }
+        titTanAlm02 { detalle30 }
+        titTanAlm03 { detalle31 }
+        titTanAlm04 { detalle32 }
+        titTanAlm05 { detalle33 }
+        titTanAlm06 { detalle34 }
+        titTanAlm07 { detalle35 }
+        titTanAlm08 { detalle36 }
+        titTanAlm09 { detalle37 }
+        titTanAlm10 { detalle38 }
+        titTanAlm11 { detalle39 }
+    }
 """)
 class StockFabrica extends Formulario {
 
@@ -145,6 +179,7 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle20> detalle20
 
+    BigDecimal fldTonSacClaMel
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle21> detalle21
@@ -153,6 +188,83 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle22> detalle22
 
+    @DisplaySize(10)
+    String getFt3(){
+       return new Parametro().obtenerValor("FT3")
+    }
+    
+    BigDecimal fldTonSacCri
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle23> detalle23
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle24> detalle24
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle25> detalle25
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle26> detalle26
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle27> detalle27
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle28> detalle28
+    
+    BigDecimal fldTonSacTqAlm
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle29> detalle29
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle30> detalle30
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle31> detalle31
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle32> detalle32
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle33> detalle33
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle34> detalle34
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle35> detalle35
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle36> detalle36
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle37> detalle37
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle38> detalle38
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle39> detalle39
+    
     void cargarItems() throws ValidationException{
         try{
             this.itemsCargados = true
@@ -165,7 +277,7 @@ class StockFabrica extends Formulario {
 
     void cargarDetalles(StockFabrica stockFabrica){
         try{
-            (1..22).each{
+            (1..39).each{
                 cargarDetalle(stockFabrica, "StockFabricaDetalle${it}", "StockFabricaPDetalle${it}")
             }
         }catch(Exception ex){
@@ -202,10 +314,14 @@ class StockFabrica extends Formulario {
     void actualizar() throws ValidationException{
         try{
             this.fldTonSacTorSul = tonSacTorSul
-            this.fldTonSacTraJug = tonSacTraJug 
+            this.fldTonSacTraJug = tonSacTraJug
             this.fldTonSacCal    = tonSacCal
             this.fldTonSacEva    = tonSacEva
             this.fldTonSacCalMel = tonSacCalMel
+            this.fldTonSacClaMel = tonSacClaMel
+            this.fldTonSacCri    = tonSacCri
+            this.fldTonSacTqAlm  = tonSacTqAlm
+
             getManager().persist(this)
         }catch(Exception ex){
             throw new SystemException("registro_no_actualizado", ex)
@@ -256,5 +372,29 @@ class StockFabrica extends Formulario {
         (1..2).each{ lista << "TonSacCal" }
         return getSumaValores(19, 20, lista)
     }
+    
+    @DisplaySize(6)
+    BigDecimal getTonSacClaMel(){
+        return  tonSacCalMel + 
+                getSumaValores(21, 21, ["TonSacClaMel"]) + 
+                getSumaValores(22, 22, ["TonSacVasR"]) + 
+                getSumaValores(18, 18, ["TonSacTqMelCru"])
+    }
 
+    @DisplaySize(6)
+    BigDecimal getTonSacCri(){
+        def lista = []
+        (1..6).each{ lista << "TonSacMas" }
+        return getSumaValores(23, 28, lista)
+    }
+    
+    @DisplaySize(6)
+    BigDecimal getTonSacTqAlm(){
+        def lista = []
+        (1..3).each{ lista << "TonSacTkMel" }
+        (1..2).each{ lista << "TonSacFun" }
+        (1..6).each{ lista << "TonSacMieB" }
+        return getSumaValores(29, 39, lista)
+    }
+    
 }

@@ -38,6 +38,7 @@ Proyecto
 	* Tests:
 		$ ant test -Dnombre_clase=QueryTest
 		$ ant test -Dnombre_clase=Cto24HTest
+		$ ant test -Dnombre_clase=ParametroTest
 
 	* i18n:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/34508380/

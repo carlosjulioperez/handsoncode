@@ -35,3 +35,7 @@ id,descripcion,campo
 34,"Ton Sac Calent","TonSacCal"
 35,"Ton Sac Clarif Mel","TonSacClaMel"
 36,"Ton Sac Vaso R","TonSacVasR"
+37,"Vt (Ft³)","VtFt3"
+38,"Ton Sac Tk Mela","TonSacTkMel"
+39,"Ton Sac Fundido","TonSacFun"
+40,"Ton Sac Miel B","TonSacMieB"
