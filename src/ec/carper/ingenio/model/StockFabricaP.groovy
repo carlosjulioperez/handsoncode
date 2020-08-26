@@ -35,6 +35,8 @@ import org.openxava.model.*
         titCalMel1 { detalle19 }
         titCalMel2 { detalle20 }
     }
+    titClaMel { detalle21 }
+    titVasRea { detalle22 }
 """)
 class StockFabricaP{
     @Id
@@ -102,4 +104,10 @@ class StockFabricaP{
 
     @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
     Collection<StockFabricaPDetalle20> detalle20
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle21> detalle21
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle22> detalle22
 }

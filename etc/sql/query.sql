@@ -15,8 +15,8 @@ from ingenio.stockfabricapdetalle1 d, ingenio.indicador i
 where d.indicador_id = i.id
 order by orden
 
-INSERT INTO ingenio.ingenio.stockfabricapdetalle14
-SELECT * FROM ingenio.ingenio.stockfabricapdetalle13;
+INSERT INTO ingenio.ingenio.stockfabricapdetalle20
+SELECT * FROM ingenio.ingenio.stockfabricapdetalle19;
 
 ALTER TABLE ingenio.ingenio.stockfabricapdetalle1  ALTER COLUMN valor TYPE numeric(19,3);
 ALTER TABLE ingenio.ingenio.stockfabricapdetalle2  ALTER COLUMN valor TYPE numeric(19,3);

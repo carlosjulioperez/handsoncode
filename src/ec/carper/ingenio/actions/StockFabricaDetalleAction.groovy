@@ -149,6 +149,8 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
             case "StockFabricaDetalle18":
             case "StockFabricaDetalle19":
             case "StockFabricaDetalle20":
+            case "StockFabricaDetalle21":
+            case "StockFabricaDetalle22":
                 
                 def porc = valor 
                 def (tmpTab, tmpBri, tmpSac, tmpTon, vTot) = ['', '', '', '', 0]
@@ -169,6 +171,16 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                     tmpTab = "Meladura"; tmpBri = "mcrBri2"; tmpSac = "mcrSac"; tmpTon = "TonSacCal";
                     // =0,55*N64/100
                     vTot = porc ? Calculo.instance.redondear(0.55*porc/100, 2): 0
+                    break
+                case "StockFabricaDetalle21":
+                    tmpTab = "Meladura"; tmpBri = "mclBri2"; tmpSac = "mclSac"; tmpTon = "TonSacClaMel";
+                    // =7,4*AN63/100
+                    vTot = porc ? Calculo.instance.redondear(7.4*porc/100, 2): 0
+                    break
+                case "StockFabricaDetalle22":
+                    tmpTab = "Meladura"; tmpBri = "mcrBri2"; tmpSac = "mcrSac"; tmpTon = "TonSacVasR";
+                    // =1,12*AY63/100
+                    vTot = porc ? Calculo.instance.redondear(1.12*porc/100, 2): 0
                     break
                 }
                 

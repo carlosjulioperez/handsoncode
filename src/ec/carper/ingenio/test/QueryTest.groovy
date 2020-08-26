@@ -169,6 +169,8 @@ class QueryTest extends ModuleTestBase {
         println ""
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Meladura", "mcrBri2")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Meladura", "mcrSac")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Meladura", "mclBri2")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Meladura", "mclSac")
     }
 
     void getParoTotal(){

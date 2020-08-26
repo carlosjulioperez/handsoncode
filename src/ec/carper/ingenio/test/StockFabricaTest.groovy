@@ -387,6 +387,36 @@ class StockFabricaTest extends ModuleTestBase {
         assertValueInCollection("detalle20" ,  4 , 2, "0.000") 
         assertValueInCollection("detalle20" ,  5 , 2, "1,310.490") 
         
+        // Clarificador Mel
+        execute("Sections.change", "activeSection=10")
+        assertCollectionRowCount("detalle21", 6)
+        execute("StockFabrica.editDetail" , "row=4,viewObject=xava_view_section10_detalle21")
+        assertDialog()
+        setValue    ( "valor" , "100")
+        execute("Collection.save")
+        assertNoErrors()
+        assertValueInCollection("detalle21" ,  0 , 2, "7.400") 
+        assertValueInCollection("detalle21" ,  1 , 2, "64.860") 
+        assertValueInCollection("detalle21" ,  2 , 2, "54.410") 
+        assertValueInCollection("detalle21" ,  3 , 2, "5.300") 
+        assertValueInCollection("detalle21" ,  4 , 2, "100.000") 
+        assertValueInCollection("detalle21" ,  5 , 2, "1,315.340") 
+
+        // Vaso Reacción
+        execute("Sections.change", "activeSection=11")
+        assertCollectionRowCount("detalle22", 6)
+        execute("StockFabrica.editDetail" , "row=4,viewObject=xava_view_section11_detalle22")
+        assertDialog()
+        setValue    ( "valor" , "100")
+        execute("Collection.save")
+        assertNoErrors()
+        assertValueInCollection("detalle22" ,  0 , 2, "1.120") 
+        assertValueInCollection("detalle22" ,  1 , 2, "64.050") 
+        assertValueInCollection("detalle22" ,  2 , 2, "55.060") 
+        assertValueInCollection("detalle22" ,  3 , 2, "0.810") 
+        assertValueInCollection("detalle22" ,  4 , 2, "100.000") 
+        assertValueInCollection("detalle22" ,  5 , 2, "1,310.490") 
+
         // FINALIZAR
         //execute    ("CRUD.delete")
         assertNoErrors()
