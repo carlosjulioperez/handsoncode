@@ -405,6 +405,48 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 setValor("Vt", vt)
                 setValor("TonSacMas", tonSacMas)
                 break
+            
+            case "StockFabricaDetalle40":
+            case "StockFabricaDetalle41":
+            case "StockFabricaDetalle42":
+            case "StockFabricaDetalle43":
+                def tmpTon = ""
+                
+                def brix = getValor("Brix") 
+                def sac  = getValor("Sac") 
+
+                switch(modulo){
+                case "StockFabricaDetalle40":
+                    brix = SqlUtil.instance.getValorCampo(diaTrabajoId, "Masas", "mcBri2")
+                    sac  = SqlUtil.instance.getValorCampo(diaTrabajoId, "Masas", "mcSac")
+                    tmpTon = "TonSacSemA"
+                    break
+                case "StockFabricaDetalle41":
+                    tmpTon = "TonSacSemB"
+                    break
+                case "StockFabricaDetalle42":
+                case "StockFabricaDetalle43":
+                    tmpTon = "TonSacSemC"
+                    break
+                }
+
+                def p    = new BrixDensidadWp().getP(brix)
+                def o1   = getValor("o1")
+                def h2   = getValor("H2")
+                
+                setValor("Brix" , brix)
+                setValor("Sac"  , sac)
+                setValor("p"    , p)
+                
+                def porc = valor 
+                // =(3,1416*((K90/2)*(K90/2))*K91)*J97/100
+                def vt = porc ? Calculo.instance.redondear((3.1416*((o1/2)*(o1/2))*h2)*porc/100, 2): 0
+                //  =+((K92*J98)/1000)*(K94/100)
+                def tonSac = Calculo.instance.redondear((vt*p/1000) * (sac/100), 2)
+                setValor("Vt", vt)
+                setValor(tmpTon, tonSac)
+                break
+            
             }
         }
     }

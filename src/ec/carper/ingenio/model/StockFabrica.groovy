@@ -83,6 +83,13 @@ import static org.openxava.jpa.XPersistence.*
         titTanAlm10 { detalle38 }
         titTanAlm11 { detalle39 }
     }
+    titSemVac{
+        tonSacCriVac;
+        titSemVac1 { detalle40 }
+        titSemVac2 { detalle41 }
+        titSemVac3 { detalle42 }
+        titSemVac4 { detalle43 }
+    }
 """)
 class StockFabrica extends Formulario {
 
@@ -265,6 +272,24 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle39> detalle39
     
+    BigDecimal fldTonSacCriVac
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle40> detalle40
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle41> detalle41
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle42> detalle42
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle43> detalle43
+
     void cargarItems() throws ValidationException{
         try{
             this.itemsCargados = true
@@ -277,7 +302,7 @@ class StockFabrica extends Formulario {
 
     void cargarDetalles(StockFabrica stockFabrica){
         try{
-            (1..39).each{
+            (1..43).each{
                 cargarDetalle(stockFabrica, "StockFabricaDetalle${it}", "StockFabricaPDetalle${it}")
             }
         }catch(Exception ex){
@@ -321,6 +346,7 @@ class StockFabrica extends Formulario {
             this.fldTonSacClaMel = tonSacClaMel
             this.fldTonSacCri    = tonSacCri
             this.fldTonSacTqAlm  = tonSacTqAlm
+            this.fldTonSacCriVac = tonSacCriVac
 
             getManager().persist(this)
         }catch(Exception ex){
@@ -396,5 +422,10 @@ class StockFabrica extends Formulario {
         (1..6).each{ lista << "TonSacMieB" }
         return getSumaValores(29, 39, lista)
     }
-    
+ 
+    @DisplaySize(6)
+    BigDecimal getTonSacCriVac(){
+        return getSumaValores(40, 43, ["TonSacSemA", "TonSacSemB", "TonSacSemC", "TonSacSemC"])
+    }
+
 }
