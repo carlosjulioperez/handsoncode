@@ -1,3 +1,7 @@
+2020-08-28 
+	StockFabrica: Recibidores de Magmas - Planta Baja +ingenio
+	StockFabrica: Alimentadores de la centrifugas +ingenio
+
 2020-08-27 
 	StockFabrica: Recibidores de Magma B y Masas A - B - C
 	Cambio de indicador VT(13) por Vt(12)

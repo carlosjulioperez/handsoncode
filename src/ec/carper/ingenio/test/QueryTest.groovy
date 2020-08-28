@@ -33,8 +33,8 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        //getValorCampo()
-        getSumaValorDetallesPorIndicador()
+        getValorCampo()
+        //getSumaValorDetallesPorIndicador()
         //getDetallePorIndicador()
         //getCampoPorId()
         //obtenerFecha()
@@ -189,6 +189,10 @@ class QueryTest extends ModuleTestBase {
         println "\n>>> Magmas"
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Magmas", "mbBri2")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Magmas", "mbSac")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Magmas", "mcBri2")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Magmas", "mcSac")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Magmas", "mrBri2")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Magmas", "mrSac")
     }
 
     void getParoTotal(){

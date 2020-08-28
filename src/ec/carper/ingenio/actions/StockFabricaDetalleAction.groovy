@@ -162,9 +162,18 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
             case "StockFabricaDetalle37":
             case "StockFabricaDetalle38":
             case "StockFabricaDetalle39":
+            case "StockFabricaDetalle51":
+            case "StockFabricaDetalle52":
+            case "StockFabricaDetalle53":
+            case "StockFabricaDetalle54":
+            case "StockFabricaDetalle55":
+            case "StockFabricaDetalle56":
+            case "StockFabricaDetalle57":
+            case "StockFabricaDetalle58":
                 
                 def porc = valor 
                 def (tmpTab, tmpBri, tmpSac, tmpTon, factor) = ['', '', '', '', 0]
+                def (brix, sac) = [0, 0]
 
                 switch(modulo){
                 case "StockFabricaDetalle5":
@@ -209,10 +218,44 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                     tmpTab = "Mieles"; tmpBri = "mbBri2"; tmpSac = "mbSac"; tmpTon = "TonSacMieB"; factor = 20; break;
                 case "StockFabricaDetalle39":
                     tmpTab = "Mieles"; tmpBri = "mrBri2"; tmpSac = "mrSac"; tmpTon = "TonSacMieB"; factor = 19; break;
+                
+                // Alimentadores de la centrifugas
+                case "StockFabricaDetalle51":
+                    tmpTab = "Masas"; tmpBri = "maBri2"; tmpSac = "maSac"; tmpTon = "TonSacJC"; factor = 5; break;
+                
+                case "StockFabricaDetalle52":
+                    tmpTab = "Masas"; tmpBri = "mbBri2"; tmpSac = "mbSac"; tmpTon = "TonSacJC"; factor = 1.2; break;
+                
+                case "StockFabricaDetalle53":
+                    tmpTab = "Magmas"; tmpBri = "mcBri2"; tmpSac = "mcSac"; tmpTon = "TonSacJC"; factor = 1.2; break;
+                
+                case "StockFabricaDetalle54":
+                    tmpTab = "Masas"; tmpBri = "mcBri2"; tmpSac = "mcSac"; tmpTon = "TonSacJC"; factor = 2; break;
+
+                // Recibidores de Magmas - Planta Baja
+                case "StockFabricaDetalle55":
+                    tmpTab = "Magmas"; tmpBri = "mbBri2"; tmpSac = "mbSac"; tmpTon = "TonSacMagB"; factor = 2.62; break;
+                
+                case "StockFabricaDetalle56":
+                    tmpTab = "Magmas"; tmpBri = "mrBri2"; tmpSac = "mrSac"; tmpTon = "TonSacMagR"; factor = 2.4; break;
+                
+                case "StockFabricaDetalle57":
+                    tmpTab = "Magmas"; tmpBri = "mcBri2"; tmpSac = "mcSac"; tmpTon = "TonSacMagC"; factor = 2.7; break;
+                
+                case "StockFabricaDetalle58":
+                    tmpTon = "TonSacTer"; factor = 2.85; break;
+                
                 }
                 
-                def brix = SqlUtil.instance.getValorCampo(diaTrabajoId, tmpTab, tmpBri)
-                def sac  = SqlUtil.instance.getValorCampo(diaTrabajoId, tmpTab, tmpSac)
+                // Constantes para Rec Terron FS
+                if (modulo=="StockFabricaDetalle58"){
+                    brix = getValor("Brix") 
+                    sac  = getValor("Sac") 
+                }else{
+                    brix = SqlUtil.instance.getValorCampo(diaTrabajoId, tmpTab, tmpBri)
+                    sac  = SqlUtil.instance.getValorCampo(diaTrabajoId, tmpTab, tmpSac)
+                }
+                
                 def p    = new BrixDensidadWp().getP(brix)
                 setValor("Brix" , brix)
                 setValor("Sac"  , sac)

@@ -81,7 +81,18 @@ import org.openxava.model.*
         titRecMagMas6 { detalle49 }
         titRecMagMas7 { detalle50 }
     }
-
+    titAliCen{
+        titAliCen1 { detalle51 }
+        titAliCen2 { detalle52 }
+        titAliCen3 { detalle53 }
+        titAliCen4 { detalle54 }
+    }
+    titRecMag{
+        titRecMag1 { detalle55 }
+        titRecMag2 { detalle56 }
+        titRecMag3 { detalle57 }
+        titRecMag4 { detalle58 }
+    }
 """)
 class StockFabricaP{
     @Id
@@ -239,4 +250,29 @@ class StockFabricaP{
 
     @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
     Collection<StockFabricaPDetalle50> detalle50
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle51> detalle51
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle52> detalle52
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle53> detalle53
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle54> detalle54
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle55> detalle55
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle56> detalle56
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle57> detalle57
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle58> detalle58
+
 }
