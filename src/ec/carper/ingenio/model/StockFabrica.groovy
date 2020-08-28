@@ -114,6 +114,20 @@ import static org.openxava.jpa.XPersistence.*
         titRecMag3 { detalle57 }
         titRecMag4 { detalle58 }
     }
+    titRecMieCen{
+        tonSacRecMieCen;
+        titRecMieCen1 { detalle59 }
+        titRecMieCen2 { detalle60 }
+        titRecMieCen3 { detalle61 }
+        titRecMieCen4 { detalle62 }
+    }
+    titFun{
+        tonSacFunCriVer;
+        titFun1 { detalle63 }
+        titFun2 { detalle64 }
+    }
+    titCriVer { detalle65 }
+
 """)
 class StockFabrica extends Formulario {
 
@@ -380,6 +394,38 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle58> detalle58
 
+    BigDecimal fldTonSacRecMieCen
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle59> detalle59
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle60> detalle60
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle61> detalle61
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle62> detalle62
+
+    BigDecimal fldTonSacFunCriVer
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle63> detalle63
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle64> detalle64
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle65> detalle65
+
     void cargarItems() throws ValidationException{
         try{
             this.itemsCargados = true
@@ -392,7 +438,7 @@ class StockFabrica extends Formulario {
 
     void cargarDetalles(StockFabrica stockFabrica){
         try{
-            (1..58).each{
+            (1..65).each{
                 cargarDetalle(stockFabrica, "StockFabricaDetalle${it}", "StockFabricaPDetalle${it}")
             }
         }catch(Exception ex){
@@ -428,18 +474,20 @@ class StockFabrica extends Formulario {
     
     void actualizar() throws ValidationException{
         try{
-            this.fldTonSacTorSul = tonSacTorSul
-            this.fldTonSacTraJug = tonSacTraJug
-            this.fldTonSacCal    = tonSacCal
-            this.fldTonSacEva    = tonSacEva
-            this.fldTonSacCalMel = tonSacCalMel
-            this.fldTonSacClaMel = tonSacClaMel
-            this.fldTonSacCri    = tonSacCri
-            this.fldTonSacTqAlm  = tonSacTqAlm
-            this.fldTonSacCriVac = tonSacCriVac
-            this.fldTonSacRecMas = tonSacRecMas
-            this.fldTonSacRecMat = tonSacRecMat
-            this.fldTonSacRecCen = tonSacRecCen
+            this.fldTonSacTorSul    = tonSacTorSul
+            this.fldTonSacTraJug    = tonSacTraJug
+            this.fldTonSacCal       = tonSacCal
+            this.fldTonSacEva       = tonSacEva
+            this.fldTonSacCalMel    = tonSacCalMel
+            this.fldTonSacClaMel    = tonSacClaMel
+            this.fldTonSacCri       = tonSacCri
+            this.fldTonSacTqAlm     = tonSacTqAlm
+            this.fldTonSacCriVac    = tonSacCriVac
+            this.fldTonSacRecMas    = tonSacRecMas
+            this.fldTonSacRecMat    = tonSacRecMat
+            this.fldTonSacRecCen    = tonSacRecCen
+            this.fldTonSacRecMieCen = tonSacRecMieCen
+            this.fldTonSacFunCriVer = tonSacFunCriVer
 
             getManager().persist(this)
         }catch(Exception ex){
@@ -536,6 +584,16 @@ class StockFabrica extends Formulario {
     @DisplaySize(6)
     BigDecimal getTonSacRecCen(){
         return getSumaValores(55, 58, ["TonSacMagB", "TonSacMagR", "TonSacMagC", "TonSacTer"])
+    }
+    
+    @DisplaySize(6)
+    BigDecimal getTonSacRecMieCen(){
+        return getSumaValores(59, 62, ["TonSacMieA", "TonSacMieA", "TonSacMieB", "TonSacMieCRep"])
+    }
+    
+    @DisplaySize(6)
+    BigDecimal getTonSacFunCriVer(){
+        return getSumaValores(63, 65, ["TonSacEnFun", "TonSacEnFun", "TonSacMasCV"])
     }
 
 }

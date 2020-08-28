@@ -170,6 +170,12 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
             case "StockFabricaDetalle56":
             case "StockFabricaDetalle57":
             case "StockFabricaDetalle58":
+            case "StockFabricaDetalle59":
+            case "StockFabricaDetalle60":
+            case "StockFabricaDetalle61":
+            case "StockFabricaDetalle62":
+            case "StockFabricaDetalle63":
+            case "StockFabricaDetalle64":
                 
                 def porc = valor 
                 def (tmpTab, tmpBri, tmpSac, tmpTon, factor) = ['', '', '', '', 0]
@@ -245,15 +251,40 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 case "StockFabricaDetalle58":
                     tmpTon = "TonSacTer"; factor = 2.85; break;
                 
+                case "StockFabricaDetalle59":
+                case "StockFabricaDetalle60":
+                    tmpTab = "Mieles"; tmpBri = "maBri2"; tmpSac = "maSac"; tmpTon = "TonSacMieA"; factor = 2; break;
+                
+                case "StockFabricaDetalle61":
+                    tmpTab = "Mieles"; tmpBri = "mbBri2"; tmpSac = "mbSac"; tmpTon = "TonSacMieB"; factor = 2; break;
+                
+                case "StockFabricaDetalle62":
+                    tmpTon = "TonSacMieCRep"; factor = 2; break;
+                
+                case "StockFabricaDetalle63":
+                    tmpTab = "TqFundidor"; tmpBri = "bri2"; tmpSac = "sac"; tmpTon = "TonSacEnFun"; factor = 8.59; break;
+                
+                case "StockFabricaDetalle64":
+                    tmpTab = "TqFundidor"; tmpBri = "bri2"; tmpSac = "sac"; tmpTon = "TonSacEnFun"; factor = 6.06; break;
+                
                 }
                 
-                // Constantes para Rec Terron FS
-                if (modulo=="StockFabricaDetalle58"){
+                // Constantes para Brix y Sac 
+                switch(modulo){
+                case "StockFabricaDetalle58":
+                case "StockFabricaDetalle62":
                     brix = getValor("Brix") 
                     sac  = getValor("Sac") 
-                }else{
+                    break
+                default:
                     brix = SqlUtil.instance.getValorCampo(diaTrabajoId, tmpTab, tmpBri)
                     sac  = SqlUtil.instance.getValorCampo(diaTrabajoId, tmpTab, tmpSac)
+                    break
+                }
+
+                // Constantes para Rec Terron FS
+                if (modulo=="StockFabricaDetalle58"){
+                }else{
                 }
                 
                 def p    = new BrixDensidadWp().getP(brix)
@@ -316,15 +347,20 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
             case "StockFabricaDetalle10":
             case "StockFabricaDetalle11":
             case "StockFabricaDetalle12":
-                def (tmpBri, tmpSac) = ['', '']
-                if (modulo == "StockFabricaDetalle8"){
-                    tmpBri = "jcBri"; tmpSac = "jcSac";
-                }else{
-                    tmpBri = "jdBri"; tmpSac = "jdSac";
+            case "StockFabricaDetalle65":
+
+                def (tmpTab, tmpBri, tmpSac, tmpTon) = ['Jugo', 'jdBri', 'jdSac', 'TonSacJC']
+                
+                switch(modulo){
+                case "StockFabricaDetalle8":
+                    tmpBri = "jcBri"; tmpSac = "jcSac"; break;
+
+                case "StockFabricaDetalle65":
+                    tmpTab="Masas"; tmpBri = "mcBri2"; tmpSac = "mcSac"; tmpTon="TonSacMasCV"; break;
                 }
                 
-                def brix = SqlUtil.instance.getValorCampo(diaTrabajoId, "Jugo", tmpBri)
-                def sac  = SqlUtil.instance.getValorCampo(diaTrabajoId, "Jugo", tmpSac)
+                def brix = SqlUtil.instance.getValorCampo(diaTrabajoId, tmpTab, tmpBri)
+                def sac  = SqlUtil.instance.getValorCampo(diaTrabajoId, tmpTab, tmpSac)
                 def p    = new BrixDensidadWp().getP(brix)
                 def o1   = getValor("o1")
                 def h2   = getValor("H2")
@@ -339,7 +375,7 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 // =+((AF22*AE28)/1000)*(AF24/100)
                 def tonSac = Calculo.instance.redondear((vt*p/1000) * (sac/100), 2)
                 setValor("Vt", vt)
-                setValor("TonSacJC", tonSac)
+                setValor(tmpTon, tonSac)
                 break
 
             case "StockFabricaDetalle13":
