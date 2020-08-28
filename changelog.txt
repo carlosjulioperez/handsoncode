@@ -1,3 +1,7 @@
+2020-08-27 
+	StockFabrica: Recibidores de Magma B y Masas A - B - C
+	Cambio de indicador VT(13) por Vt(12)
+
 2020-08-14 
 	Indicador.groovy copia de Material
 

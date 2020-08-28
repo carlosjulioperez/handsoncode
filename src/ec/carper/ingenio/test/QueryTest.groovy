@@ -33,8 +33,8 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getValorCampo()
-        //getSumaValorDetallesPorIndicador()
+        //getValorCampo()
+        getSumaValorDetallesPorIndicador()
         //getDetallePorIndicador()
         //getCampoPorId()
         //obtenerFecha()
@@ -50,10 +50,11 @@ class QueryTest extends ModuleTestBase {
     }
 
     void getSumaValorDetallesPorIndicador(){
-        def padreId = "ff808081741e971601741eae21040009"
+        def padreId = "ff8080817431ea2c017431ebc7a40000"
         def campoFk = "stockFabrica.id"
-        def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle13", campoFk, "Va")
-        println ">>> Indicador: ${d.indicador.descripcion}, valor: ${d.valor}"
+        def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle1", campoFk, "TonSacJDil")
+        if (d)
+            println ">>> Indicador: ${d.indicador.descripcion}, valor: ${d.valor}"
     }
 
     void getDetallePorIndicador(){
@@ -184,6 +185,10 @@ class QueryTest extends ModuleTestBase {
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles", "mbSac")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles", "mrBri2")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles", "mrSac")
+        
+        println "\n>>> Magmas"
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Magmas", "mbBri2")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Magmas", "mbSac")
     }
 
     void getParoTotal(){
