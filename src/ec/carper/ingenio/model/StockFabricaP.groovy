@@ -104,7 +104,16 @@ import org.openxava.model.*
         titFun2 { detalle64 }
     }
     titCriVer { detalle65 }
-
+    titSilProTer{
+        titSilProTer1 { detalle66 }
+        titSilProTer2 { detalle67 }
+        titSilProTer3 { detalle68 }
+    }
+    titRecMieFinMel{
+        titRecMieFinMel1 { detalle69 }
+        titRecMieFinMel2 { detalle70 }
+        titRecMieFinMel3 { detalle71 }
+    }
 """)
 class StockFabricaP{
     @Id
@@ -307,5 +316,23 @@ class StockFabricaP{
 
     @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
     Collection<StockFabricaPDetalle65> detalle65
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle66> detalle66
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle67> detalle67
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle68> detalle68
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle69> detalle69
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle70> detalle70
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle71> detalle71
 
 }

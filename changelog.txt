@@ -1,4 +1,9 @@
 2020-08-28 
+	StockFabrica: Recibidores de Mieles en las Centrifugas
+	StockFabrica: Fundidores
+	StockFabrica: Cristaliz Vertical
+
+2020-08-28 
 	StockFabrica: Recibidores de Magmas - Planta Baja
 	StockFabrica: Alimentadores de la centrifugas
 
