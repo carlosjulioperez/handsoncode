@@ -50,7 +50,8 @@ class IngenioSaveAction extends ViewBaseAction implements IChainAction, IChangeM
                     instance.metaClass.methods.each { method ->
                         if (method.name == 'actualizar'){
                             method.invoke(instance)
-                            getView().refresh()
+                            // No se deben limpiar los campos antes de grabar
+                            //getView().refresh()
                             addMessage("registro_actualizado")
                             // println "**************************************************"
                             // println ">>> Ejecutando ${modulo}.actualizar()... "

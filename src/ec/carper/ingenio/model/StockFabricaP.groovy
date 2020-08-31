@@ -114,6 +114,10 @@ import org.openxava.model.*
         titRecMieFinMel2 { detalle70 }
         titRecMieFinMel3 { detalle71 }
     }
+    titTotales{
+        titTotTonSac { detalle72 }
+        titTotGen { detalle73 }
+    }
 """)
 class StockFabricaP{
     @Id
@@ -334,5 +338,11 @@ class StockFabricaP{
 
     @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
     Collection<StockFabricaPDetalle71> detalle71
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle72> detalle72
+
+    @OneToMany (mappedBy="stockFabricaP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<StockFabricaPDetalle73> detalle73
 
 }

@@ -62,8 +62,8 @@
         <extends controller="Ingenio"/>
         <action name="cargarItems" mode="detail" 
             class="ec.carper.ingenio.actions.StockFabricaCargarItemsAction"/>
-        <action name="consultarDatos" mode="detail" 
-            class="ec.carper.ingenio.actions.StockFabricaConsultarDatosAction"/>
+        <action name="calcular" mode="detail" 
+            class="ec.carper.ingenio.actions.StockFabricaCalcularAction"/>
 		<action name="editDetail" hidden="true" image="edit.gif"
 			class="ec.carper.ingenio.actions.StockFabricaEditDetailAction"/>
     </controller>   

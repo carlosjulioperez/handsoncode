@@ -6,7 +6,7 @@ import org.openxava.jpa.*
 import org.openxava.model.*
 import ec.carper.ingenio.model.*
 
-class StockFabricaConsultarDatosAction extends ViewBaseAction {
+class StockFabricaCalcularAction extends ViewBaseAction {
 
     void execute() throws Exception{
         def id = getView().getValue("id")
@@ -20,7 +20,7 @@ class StockFabricaConsultarDatosAction extends ViewBaseAction {
         )
 
         StockFabrica stockFabrica = XPersistence.getManager().find( StockFabrica.class, getView().getValue("id") )
-        stockFabrica.consultarDatos()
+        stockFabrica.calcular()
         getView().refresh()
         addMessage("datos_consultados")
     }

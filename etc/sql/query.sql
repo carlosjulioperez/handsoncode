@@ -5,11 +5,6 @@
 
 SELECT * FROM ingenio.material;
 
-select m.descripcion, valor, m.campo
-from ingenio.blcpdetalle6 d, ingenio.material m
-where d.material_id = m.id
-order by orden
-
 select i.descripcion, valor, i.campo, modificable
 from ingenio.stockfabricapdetalle1 d, ingenio.indicador i
 where d.indicador_id = i.id

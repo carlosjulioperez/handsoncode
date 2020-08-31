@@ -20,7 +20,7 @@ class StockFabricaPDetalle extends Identifiable{
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
     Indicador indicador
     
-    @Digits(integer=6, fraction=3) @DisplaySize(6)
+    @Digits(integer=10, fraction=3) @DisplaySize(6)
     BigDecimal valor 
     
     boolean modificable

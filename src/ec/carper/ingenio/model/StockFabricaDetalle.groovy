@@ -21,7 +21,7 @@ class StockFabricaDetalle extends Identifiable{
     Indicador indicador
     
     @OnChange(StockFabricaDetalleAction.class)
-    @Digits(integer=6, fraction=3) @DisplaySize(6)
+    @Digits(integer=10, fraction=3) @DisplaySize(6)
     BigDecimal valor 
  
     @ReadOnly

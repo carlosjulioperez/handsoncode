@@ -33,7 +33,8 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getValorCampo()
+        getTotalesStockFabrica()
+        //getValorCampo()
         //getSumaValorDetallesPorIndicador()
         //getDetallePorIndicador()
         //getCampoPorId()
@@ -47,6 +48,115 @@ class QueryTest extends ModuleTestBase {
         //getTrashCanaDiaTrabajoCerrado()
         //getTrashCanaDetalle2()
         //getNativo()
+    }
+    
+    def getSumaValores(def desde, def hasta, String indicador){
+        def padreId = "ff8080817438ed5b0174391063400231"
+        def campoFk = "stockFabrica.id"
+        def (suma, i) = [0, 0]
+        (desde..hasta).each{
+            def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle${it}", campoFk, indicador)
+            suma += d ? d.valor: 0
+            // if (indicador=="Vt" || indicador=="VTot")
+            //     println "${it}, ${d.valor}"
+        }
+        return suma
+    }
+    
+    void getTotalesStockFabrica(){
+        // **************************************************
+        // BG149: Prom Solidos (Brix) Total/día
+        // Brix:  1..28, 30..38, 40..42, 44..47, 49..49, 51..65
+        // Bx  : 66..68
+        // =+(Q4+AJ3+J13+AB15+BA13+J27+Q27+AF23+AL23+AR23+AF33+AL33+J52+Q52+X52+AE52+AL52+AZ47+O60+U60+AO59+AZ59+L71+R71+X71+AD71+AJ71+AP71+N81+T81+Z81+AF81+AL81+AR81+AX81+BD81+BJ81+K93+Q93+W93+AP97+AV97+BB97+BH97+BT97+J107+P107+V107+AB107+AM107+AS107+AY107+BE107+I120+O120+U120+AA120+AN120+AT120+BG121+K137+Q137+W137)/63
+        def bg149 = Calculo.instance.redondear((
+            getSumaValores(1 , 28, "Brix") + 
+            getSumaValores(30, 38, "Brix") +  
+            getSumaValores(40, 42, "Brix") +  
+            getSumaValores(44, 47, "Brix") +  
+            getSumaValores(49, 49, "Brix") +  
+            getSumaValores(51, 65, "Brix") +
+            getSumaValores(66, 68, "Bx")) / 63, 3
+        )
+        
+        // **************************************************
+        // BG150: Prom Sac (Pol) Total/día
+        // Sac:  1..28, 30..38, 40..42, 44..47, 49..49, 51..68
+        //
+        // =+(Q5+AJ4+J14+AB16+BA14+J28+Q28+AF24+AL24+AR24+AF34+AL34+J53+Q53+X53+AE53+AL53+AZ48+O61+U61+AO60+AZ60+L72+R72+X72+AD72+AJ72+AP72+N82+T82+Z82+AF82+AL82+AR82+AX82+BD82+BJ82+K94+Q94+W94+AP98+AV98+BB98+BH98+BT98+J108+P108+V108+AB108+AM108+AS108+AY108+BE108+I121+O121+U121+AA121+AN121+AT121+BG122+K133+Q133+W133)/63
+        def bg150 = Calculo.instance.redondear((
+            getSumaValores(1 , 28, "Sac") + 
+            getSumaValores(30, 38, "Sac") +  
+            getSumaValores(40, 42, "Sac") +  
+            getSumaValores(44, 47, "Sac") +  
+            getSumaValores(49, 49, "Sac") +  
+            getSumaValores(51, 68, "Sac")) / 63, 3
+        )
+
+        // BG151: Prom Pza Total/día
+        // =+BG150/BG149*100
+        def bg151 = Calculo.instance.redondear(bg149 ? bg150/bg149*100: 0, 3)
+        def bg152 = new BrixDensidadWp().getP(bg149)
+        
+        // **************************************************
+        // Peso Material Total/día (Tot)
+        // Vt: 1..4, 8..12, 23..28, 30..38, 40..42, 44..47, 49..49, 51..68
+        // VTot 5..7, 13..22
+        // =+(K6+AQ9+J12+AB14+BA12+J26+Q26+AF22+AL22+AR22+AF32+AL32+J51+Q51+X51+AE51+AL51+AZ46+O59+U59+AO58+AZ58+L70+R70+X70+AD70+AJ70+AP70+N80+T80+Z80+AF80+AL80+AR80+AX80+BD80+BJ80+K92+Q92+W92+AP96+AV96+BB96+BH96+BT96+J106+P106+V106+AB106+AM106+AS106+AY106+BE106+I119+O119+U119+AA119+AN119+AT119+BG120+K132+Q132+W132)*BG152/1000
+
+/*
+         =+(K6+AQ9+J12+AB14+
+        BA12+J26+Q26+AF22+AL22+
+        AR22+AF32+AL32+J51+Q51+X51+
+        AE51+AL51+AZ46+O59+U59+AO58+AZ58+L70+R70+X70+AD70+AJ70+AP70+N80+T80+Z80+AF80+AL80+AR80+AX80+BD80+BJ80+K92+Q92+W92+AP96+AV96+BB96+BH96+BT96+J106+P106+V106+AB106+AM106+AS106+AY106+BE106+I119+O119+U119+AA119+AN119+AT119+BG120+K132+Q132+W132)*BG152/1000
+*/
+        def bg147 = Calculo.instance.redondear((
+            getSumaValores( 1 , 4  , "Vt") +
+            getSumaValores( 8 , 12 , "Vt") +
+            getSumaValores(23 , 28 , "Vt") +
+            getSumaValores(40 , 42 , "Vt") +
+            getSumaValores(44 , 47 , "Vt") +
+            getSumaValores(49 , 49 , "Vt") +
+            getSumaValores(65 , 68 , "Vt") +
+            getSumaValores(5  , 7  , "VTot") +
+            getSumaValores(13 , 22 , "VTot") +
+            getSumaValores(30 , 38 , "VTot") +
+            getSumaValores(51 , 64 , "VTot") ) * (bg152/1000), 3
+        )
+        
+        def bg153 = Calculo.instance.redondear(bg147*bg149/100, 3)
+        def bg154 = Calculo.instance.redondear(bg147*bg150/100, 3)
+
+        def q133 = getSumaValores(67 , 67  , "Sac")
+        def u150 = getSumaValores(70 , 70  , "Pza")
+
+        def bg155 = Calculo.instance.redondear((q133*(bg151-u150))/(bg151*(q133-u150))*100 , 3)
+        
+        def bg156 = Calculo.instance.redondear(bg154*bg155/100, 3)
+        
+        def bg157 = Calculo.instance.redondear((bg156/q133)*100, 3)
+        def bg158 = Calculo.instance.redondear(bg154-bg156, 3)
+        
+        def u146 = getSumaValores(70 , 70  , "Sac")
+        def bg159 = Calculo.instance.redondear(bg158/u146*100 , 3)
+
+        println ""
+        println ">>> bg147: ${bg147}"
+        println ">>> bg149: ${bg149}"
+        println ">>> bg150: ${bg150}"
+        println ">>> bg151: ${bg151}"
+        println ">>> bg152: ${bg152}"
+        println ">>> bg153: ${bg153}"
+        println ">>> bg154: ${bg154}"
+        println ">>> bg155: ${bg155}"
+        println ">>> bg156: ${bg156}"
+        println ">>> bg157: ${bg157}"
+        println ">>> bg158: ${bg158}"
+        println ">>> bg159: ${bg159}"
+
+        // BG152: Densidad Kg/Mᶟ
+        // BrixDensidadWp (BG149)
+
     }
 
     void getSumaValorDetallesPorIndicador(){

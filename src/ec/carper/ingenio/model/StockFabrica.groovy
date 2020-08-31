@@ -4,6 +4,7 @@ import ec.carper.ingenio.actions.*
 import ec.carper.ingenio.util.*
 
 import javax.persistence.*
+import javax.validation.constraints.Digits
 import org.openxava.annotations.*
 import org.openxava.jpa.*
 import org.openxava.model.*
@@ -139,7 +140,10 @@ import static org.openxava.jpa.XPersistence.*
         titRecMieFinMel2 { detalle70 }
         titRecMieFinMel3 { detalle71 }
     }
-
+    titTotales{
+        titTotTonSac { detalle72 }
+        titTotGen { detalle73 }
+    }
 """)
 class StockFabrica extends Formulario {
 
@@ -466,6 +470,57 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle71> detalle71
 
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle72> detalle72
+
+    @EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockFabricaDetalle73> detalle73
+
+    @DisplaySize(6)
+    BigDecimal fldTonAzuDis
+
+    // Totales
+    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
+    BigDecimal fldTonSacTot
+    
+    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
+    BigDecimal fldPesMatTotDia
+    
+    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
+    BigDecimal fldProSolBriTotDia
+    
+    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
+    BigDecimal fldProSacPolTotDia
+    
+    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
+    BigDecimal fldProPzaTotDia   
+    
+    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
+    BigDecimal fldDenKgm         
+    
+    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
+    BigDecimal fldPesSolDia      
+    
+    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
+    BigDecimal fldPesPolDia
+    
+    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
+    BigDecimal fldSjmMatPro
+    
+    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
+    BigDecimal fldSacRecAz
+    
+    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
+    BigDecimal fldAzuRec
+    
+    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
+    BigDecimal fldSacMieFin
+    
+    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
+    BigDecimal fldMieFinRec
+
     void cargarItems() throws ValidationException{
         try{
             this.itemsCargados = true
@@ -478,7 +533,7 @@ class StockFabrica extends Formulario {
 
     void cargarDetalles(StockFabrica stockFabrica){
         try{
-            (1..71).each{
+            (1..73).each{
                 cargarDetalle(stockFabrica, "StockFabricaDetalle${it}", "StockFabricaPDetalle${it}")
             }
         }catch(Exception ex){
@@ -504,32 +559,26 @@ class StockFabrica extends Formulario {
         }
     }
 
-    void consultarDatos() throws ValidationException{
-        try{ 
-            consultarTqJDil()
-        }catch(Exception ex){
-            throw new SystemException("datos_no_consultados", ex)
-        }
-    }
-    
     void actualizar() throws ValidationException{
         try{
-            this.fldTonSacTorSul    = tonSacTorSul
-            this.fldTonSacTraJug    = tonSacTraJug
-            this.fldTonSacCal       = tonSacCal
-            this.fldTonSacEva       = tonSacEva
+            this.fldTonSacTorSul    = tonSacTorSul       //J35
+            this.fldTonSacTraJug    = tonSacTraJug       //AW22
+            this.fldTonSacCal       = tonSacCal          //AQ34
+            this.fldTonSacEva       = tonSacEva          //AR41
             this.fldTonSacCalMel    = tonSacCalMel
-            this.fldTonSacClaMel    = tonSacClaMel
-            this.fldTonSacCri       = tonSacCri
-            this.fldTonSacTqAlm     = tonSacTqAlm
-            this.fldTonSacCriVac    = tonSacCriVac
-            this.fldTonSacRecMas    = tonSacRecMas
-            this.fldTonSacRecMat    = tonSacRecMat
-            this.fldTonSacRecCen    = tonSacRecCen
-            this.fldTonSacRecMieCen = tonSacRecMieCen
-            this.fldTonSacFunCriVer = tonSacFunCriVer
-            this.fldTonSacSilAzu    = tonSacSilAzu  
+            this.fldTonSacClaMel    = tonSacClaMel       //AU67
+            this.fldTonSacCri       = tonSacCri          //AU71
+            this.fldTonSacTqAlm     = tonSacTqAlm        //AW76
+            this.fldTonSacCriVac    = tonSacCriVac       //C101
+            this.fldTonSacRecMas    = tonSacRecMas       //AC101
+            this.fldTonSacRecMat    = tonSacRecMat       //P115
+            this.fldTonSacRecCen    = tonSacRecCen       //AQ115
+            this.fldTonSacRecMieCen = tonSacRecMieCen    //R128
+            this.fldTonSacFunCriVer = tonSacFunCriVer    //AM128
+            this.fldTonSacSilAzu    = tonSacSilAzu       //L139
             this.fldTonTot          = tonTot
+
+            calcularTotales()
 
             getManager().persist(this)
         }catch(Exception ex){
@@ -549,6 +598,20 @@ class StockFabrica extends Formulario {
             }
         }
         return valor
+    }
+    
+    def getSumaValores(def desde, def hasta, String indicador){
+        def campoFk = "stockFabrica.id"
+        def (suma, i) = [0, 0]
+        if (this.id){
+            (desde..hasta).each{
+                def d = SqlUtil.instance.getDetallePorIndicador(this.id, "StockFabricaDetalle${it}", campoFk, indicador)
+                suma += d ? d.valor: 0
+                // if (indicador=="Vt" || indicador=="VTot")
+                //     println "${it}, ${d.valor}"
+            }
+        }
+        return suma
     }
 
     @DisplaySize(6)
@@ -649,5 +712,91 @@ class StockFabrica extends Formulario {
     BigDecimal getTonTot(){
         return getSumaValores(70, 71, ["TonMF", "TonMF"])
     }
+    
+    def calcularTotales(){
 
+        def bg144 = (tonSacTorSul + tonSacTraJug + tonSacCal + tonSacEva + tonSacClaMel + tonSacCri + tonSacTqAlm + tonSacCriVac + tonSacRecMas + tonSacRecMat + tonSacRecCen + tonSacRecMieCen + tonSacFunCriVer + tonSacSilAzu - (fldTonAzuDis?:0) )
+        //println ">>> tonAzu: ${tonAzu},  suma: ${suma}"
+        
+        def bg149 = Calculo.instance.redondear((
+            getSumaValores(1 , 28, "Brix") + 
+            getSumaValores(30, 38, "Brix") +  
+            getSumaValores(40, 42, "Brix") +  
+            getSumaValores(44, 47, "Brix") +  
+            getSumaValores(49, 49, "Brix") +  
+            getSumaValores(51, 65, "Brix") +
+            getSumaValores(66, 68, "Bx")) / 63, 3
+        )
+        
+        def bg150 = Calculo.instance.redondear((
+            getSumaValores(1 , 28, "Sac") + 
+            getSumaValores(30, 38, "Sac") +  
+            getSumaValores(40, 42, "Sac") +  
+            getSumaValores(44, 47, "Sac") +  
+            getSumaValores(49, 49, "Sac") +  
+            getSumaValores(51, 68, "Sac")) / 63, 3
+        )
+        
+        def bg151 = Calculo.instance.redondear(bg149 ? bg150/bg149*100: 0, 3)
+        def bg152 = new BrixDensidadWp().getP(bg149)
+        
+        def bg147 = Calculo.instance.redondear((
+            getSumaValores( 1 , 4  , "Vt") +
+            getSumaValores( 8 , 12 , "Vt") +
+            getSumaValores(23 , 28 , "Vt") +
+            getSumaValores(40 , 42 , "Vt") +
+            getSumaValores(44 , 47 , "Vt") +
+            getSumaValores(49 , 49 , "Vt") +
+            getSumaValores(65 , 68 , "Vt") +
+            getSumaValores(5  , 7  , "VTot") +
+            getSumaValores(13 , 22 , "VTot") +
+            getSumaValores(30 , 38 , "VTot") +
+            getSumaValores(51 , 64 , "VTot") ) * (bg152/1000), 3
+        )
+        
+        def bg153 = Calculo.instance.redondear(bg147*bg149/100, 3)
+        def bg154 = Calculo.instance.redondear(bg147*bg150/100, 3)
+
+        def q133 = getSumaValores(67 , 67  , "Sac")
+        def u150 = getSumaValores(70 , 70  , "Pza")
+        def bg155 = Calculo.instance.redondear((q133*(bg151-u150))/(bg151*(q133-u150))*100 , 3)
+        
+        def bg156 = Calculo.instance.redondear(bg154*bg155/100, 3)
+        def bg157 = Calculo.instance.redondear((bg156/q133)*100, 3)
+        def bg158 = Calculo.instance.redondear(bg154-bg156, 3)
+        
+        def u146 = getSumaValores(70 , 70  , "Sac")
+        def bg159 = Calculo.instance.redondear(bg158/u146*100, 3)
+        
+        this.fldTonSacTot       = bg144
+        this.fldPesMatTotDia    = bg147
+        this.fldProSolBriTotDia = bg149
+        this.fldProSacPolTotDia = bg150
+        this.fldProPzaTotDia    = bg151
+        this.fldDenKgm          = bg152
+        this.fldPesSolDia       = bg153
+        this.fldPesPolDia       = bg154
+        this.fldSjmMatPro       = bg155
+        this.fldSacRecAz        = bg156
+        this.fldAzuRec          = bg157
+        this.fldSacMieFin       = bg158
+        this.fldMieFinRec       = bg159
+        getManager().persist(this)
+
+        println ""
+        println ">>> bg147: ${bg147}"
+        println ">>> bg149: ${bg149}"
+        println ">>> bg150: ${bg150}"
+        println ">>> bg151: ${bg151}"
+        println ">>> bg152: ${bg152}"
+        println ">>> bg153: ${bg153}"
+        println ">>> bg154: ${bg154}"
+        println ">>> bg155: ${bg155}"
+        println ">>> bg156: ${bg156}"
+        println ">>> bg157: ${bg157}"
+        println ">>> bg158: ${bg158}"
+        println ">>> bg159: ${bg159}"
+
+    }
+    
 }
