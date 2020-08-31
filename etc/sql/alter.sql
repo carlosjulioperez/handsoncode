@@ -34,6 +34,7 @@
 -- DROP TABLE ingenio.stockfabricapdetalle1;
 -- DROP TABLE ingenio.stockfabricap;
 
+ALTER TABLE ingenio.ingenio.indicador ALTER COLUMN campo TYPE varchar(30)
 
 DROP TABLE ingenio.stockfabricadetalle9;
 DROP TABLE ingenio.stockfabricadetalle8;

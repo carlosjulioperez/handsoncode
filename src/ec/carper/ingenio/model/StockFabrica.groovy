@@ -22,12 +22,10 @@ import static org.openxava.jpa.XPersistence.*
     titTqJFil { detalle4 }
     titClaJug { detalle5 }
     titTorSul {
-        tonSacTorSul;
         titTorSulJug{ detalle6 }
         titTorSulMel{ detalle7 }
     }
     titCalJug{
-        tonSacTraJug, tonSacCal;
         titCalJug1 { detalle8  }
         titCalJug2 { detalle9  }
         titCalJug3 { detalle10 }
@@ -35,7 +33,6 @@ import static org.openxava.jpa.XPersistence.*
         titCalJug5 { detalle12 }
     }
     titLinEva{
-        tonSacEva;
         titLinEva1 { detalle13 }
         titLinEva2 { detalle14 }
         titLinEva3 { detalle15 }
@@ -44,17 +41,13 @@ import static org.openxava.jpa.XPersistence.*
     }
     titTqMCru { detalle18 }
     titCalMel { 
-        tonSacCalMel;
         titCalMel1 { detalle19 }
         titCalMel2 { detalle20 }
     }
-    titClaMel { 
-        tonSacClaMel;
-        detalle21 
-    }
+    titClaMel { detalle21 }
     titVasRea { detalle22 }
     titCri{
-        ft3, tonSacCri;
+        ft3;
         titTac1 { 
             titMasA { detalle23 }
         }
@@ -71,7 +64,6 @@ import static org.openxava.jpa.XPersistence.*
         }
     }
     titTanAlm{
-        tonSacTqAlm;
         titTanAlm01 { detalle29 }
         titTanAlm02 { detalle30 }
         titTanAlm03 { detalle31 }
@@ -85,14 +77,12 @@ import static org.openxava.jpa.XPersistence.*
         titTanAlm11 { detalle39 }
     }
     titSemVac{
-        tonSacCriVac;
         titSemVac1 { detalle40 }
         titSemVac2 { detalle41 }
         titSemVac3 { detalle42 }
         titSemVac4 { detalle43 }
     }
     titRecMagMas{
-        tonSacRecMas;
         titRecMagMas1 { detalle44 }
         titRecMagMas2 { detalle45 }
         titRecMagMas3 { detalle46 }
@@ -102,40 +92,34 @@ import static org.openxava.jpa.XPersistence.*
         titRecMagMas7 { detalle50 }
     }
     titAliCen{
-        tonSacRecMat;
         titAliCen1 { detalle51 }
         titAliCen2 { detalle52 }
         titAliCen3 { detalle53 }
         titAliCen4 { detalle54 }
     }
     titRecMag{
-        tonSacRecCen;
         titRecMag1 { detalle55 }
         titRecMag2 { detalle56 }
         titRecMag3 { detalle57 }
         titRecMag4 { detalle58 }
     }
     titRecMieCen{
-        tonSacRecMieCen;
         titRecMieCen1 { detalle59 }
         titRecMieCen2 { detalle60 }
         titRecMieCen3 { detalle61 }
         titRecMieCen4 { detalle62 }
     }
     titFun{
-        tonSacFunCriVer;
         titFun1 { detalle63 }
         titFun2 { detalle64 }
     }
     titCriVer { detalle65 }
     titSilProTer{
-        tonSacSilAzu;
         titSilProTer1 { detalle66 }
         titSilProTer2 { detalle67 }
         titSilProTer3 { detalle68 }
     }
     titRecMieFinMel{
-        tonTot;
         titRecMieFinMel1 { detalle69 }
         titRecMieFinMel2 { detalle70 }
         titRecMieFinMel3 { detalle71 }
@@ -173,10 +157,6 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle5> detalle5
 
-    BigDecimal fldTonSacTorSul
-    BigDecimal fldTonSacTraJug
-    BigDecimal fldTonSacCal
-
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle6> detalle6
@@ -205,7 +185,6 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle12> detalle12
 
-    BigDecimal fldTonSacEva
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle13> detalle13
@@ -230,8 +209,6 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle18> detalle18
 
-    BigDecimal fldTonSacCalMel
-
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle19> detalle19
@@ -240,7 +217,6 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle20> detalle20
 
-    BigDecimal fldTonSacClaMel
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle21> detalle21
@@ -253,8 +229,6 @@ class StockFabrica extends Formulario {
     String getFt3(){
        return new Parametro().obtenerValor("FT3")
     }
-    
-    BigDecimal fldTonSacCri
 
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
@@ -280,8 +254,6 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle28> detalle28
     
-    BigDecimal fldTonSacTqAlm
-
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle29> detalle29
@@ -326,8 +298,6 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle39> detalle39
     
-    BigDecimal fldTonSacCriVac
-
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle40> detalle40
@@ -343,8 +313,6 @@ class StockFabrica extends Formulario {
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle43> detalle43
-
-    BigDecimal fldTonSacRecMas
 
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
@@ -374,8 +342,6 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle50> detalle50
 
-    BigDecimal fldTonSacRecMat
-
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle51> detalle51
@@ -391,8 +357,6 @@ class StockFabrica extends Formulario {
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle54> detalle54
-
-    BigDecimal fldTonSacRecCen
 
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
@@ -410,8 +374,6 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle58> detalle58
 
-    BigDecimal fldTonSacRecMieCen
-
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle59> detalle59
@@ -428,8 +390,6 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle62> detalle62
 
-    BigDecimal fldTonSacFunCriVer
-
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle63> detalle63
@@ -441,8 +401,6 @@ class StockFabrica extends Formulario {
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle65> detalle65
-
-    BigDecimal fldTonSacSilAzu
 
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
@@ -456,8 +414,6 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle68> detalle68
 
-    BigDecimal fldTonTot
-
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle69> detalle69
@@ -470,56 +426,13 @@ class StockFabrica extends Formulario {
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle71> detalle71
 
-    @EditAction("StockFabrica.editDetail")
-    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    //@EditAction("StockFabrica.editDetail")
+    @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
     Collection<StockFabricaDetalle72> detalle72
 
     @EditAction("StockFabrica.editDetail")
     @OneToMany (mappedBy="stockFabrica", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<StockFabricaDetalle73> detalle73
-
-    @DisplaySize(6)
-    BigDecimal fldTonAzuDis
-
-    // Totales
-    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fldTonSacTot
-    
-    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fldPesMatTotDia
-    
-    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fldProSolBriTotDia
-    
-    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fldProSacPolTotDia
-    
-    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fldProPzaTotDia   
-    
-    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fldDenKgm         
-    
-    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fldPesSolDia      
-    
-    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fldPesPolDia
-    
-    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fldSjmMatPro
-    
-    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fldSacRecAz
-    
-    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fldAzuRec
-    
-    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fldSacMieFin
-    
-    @Digits(integer=6, fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fldMieFinRec
 
     void cargarItems() throws ValidationException{
         try{
@@ -559,244 +472,13 @@ class StockFabrica extends Formulario {
         }
     }
 
-    void actualizar() throws ValidationException{
-        try{
-            this.fldTonSacTorSul    = tonSacTorSul       //J35
-            this.fldTonSacTraJug    = tonSacTraJug       //AW22
-            this.fldTonSacCal       = tonSacCal          //AQ34
-            this.fldTonSacEva       = tonSacEva          //AR41
-            this.fldTonSacCalMel    = tonSacCalMel
-            this.fldTonSacClaMel    = tonSacClaMel       //AU67
-            this.fldTonSacCri       = tonSacCri          //AU71
-            this.fldTonSacTqAlm     = tonSacTqAlm        //AW76
-            this.fldTonSacCriVac    = tonSacCriVac       //C101
-            this.fldTonSacRecMas    = tonSacRecMas       //AC101
-            this.fldTonSacRecMat    = tonSacRecMat       //P115
-            this.fldTonSacRecCen    = tonSacRecCen       //AQ115
-            this.fldTonSacRecMieCen = tonSacRecMieCen    //R128
-            this.fldTonSacFunCriVer = tonSacFunCriVer    //AM128
-            this.fldTonSacSilAzu    = tonSacSilAzu       //L139
-            this.fldTonTot          = tonTot
+    // void actualizar() throws ValidationException{
+    //     try{
+    //         calcularTotales()
+    //         getManager().persist(this)
+    //     }catch(Exception ex){
+    //         throw new SystemException("registro_no_actualizado", ex)
+    //     }
+    // }
 
-            calcularTotales()
-
-            getManager().persist(this)
-        }catch(Exception ex){
-            throw new SystemException("registro_no_actualizado", ex)
-        }
-    }
-
-    def getSumaValores(def desde, def hasta, def campos){
-        def valor = 0
-        def campoFk = "stockFabrica.id"
-        if (this.id){
-            def i = 0
-            (desde..hasta).each{
-                def d = SqlUtil.instance.getDetallePorIndicador(this.id, "StockFabricaDetalle${it}", campoFk, campos[i++])
-                if (d)
-                    valor += d.valor ?: 0
-            }
-        }
-        return valor
-    }
-    
-    def getSumaValores(def desde, def hasta, String indicador){
-        def campoFk = "stockFabrica.id"
-        def (suma, i) = [0, 0]
-        if (this.id){
-            (desde..hasta).each{
-                def d = SqlUtil.instance.getDetallePorIndicador(this.id, "StockFabricaDetalle${it}", campoFk, indicador)
-                suma += d ? d.valor: 0
-                // if (indicador=="Vt" || indicador=="VTot")
-                //     println "${it}, ${d.valor}"
-            }
-        }
-        return suma
-    }
-
-    @DisplaySize(6)
-    BigDecimal getTonSacTorSul(){
-        return getSumaValores(6, 7, ["TonSacJSulf", "TonSacMel"])
-    }
-
-    @DisplaySize(6)
-    BigDecimal getTonSacTraJug(){
-        return getSumaValores(1, 5, ["TonSacJDil", "TonSacJCla", "TonSacJSulf", "TonSacJFiltr", "TonSacClar"])
-    }
-
-    @DisplaySize(6)
-    BigDecimal getTonSacCal(){
-        def lista = []
-        (1..5).each{ lista << "TonSacJC" }
-        return getSumaValores(8, 12, lista)
-    }
-    
-    @DisplaySize(6)
-    BigDecimal getTonSacEva(){
-        def lista = []
-        (1..5).each{ lista << "TonSacMel" }
-        return getSumaValores(13, 17, lista)
-    }
-
-    @DisplaySize(6)
-    BigDecimal getTonSacCalMel(){
-        def lista = []
-        (1..2).each{ lista << "TonSacCal" }
-        return getSumaValores(19, 20, lista)
-    }
-    
-    @DisplaySize(6)
-    BigDecimal getTonSacClaMel(){
-        return  tonSacCalMel + 
-                getSumaValores(21, 21, ["TonSacClaMel"]) + 
-                getSumaValores(22, 22, ["TonSacVasR"]) + 
-                getSumaValores(18, 18, ["TonSacTqMelCru"])
-    }
-
-    @DisplaySize(6)
-    BigDecimal getTonSacCri(){
-        def lista = []
-        (1..6).each{ lista << "TonSacMas" }
-        return getSumaValores(23, 28, lista)
-    }
-    
-    @DisplaySize(6)
-    BigDecimal getTonSacTqAlm(){
-        def lista = []
-        (1..3).each{ lista << "TonSacTkMel" }
-        (1..2).each{ lista << "TonSacFun" }
-        (1..6).each{ lista << "TonSacMieB" }
-        return getSumaValores(29, 39, lista)
-    }
- 
-    @DisplaySize(6)
-    BigDecimal getTonSacCriVac(){
-        return getSumaValores(40, 43, ["TonSacSemA", "TonSacSemB", "TonSacSemC", "TonSacSemC"])
-    }
-    
-    @DisplaySize(6)
-    BigDecimal getTonSacRecMas(){
-        return getSumaValores(44, 50, ["TonSacMagB", "TonSacMasAI", "TonSacMasAII", "TonSacMasB", "TonSacMasB", "TonSacMasC", "TonSacMasC"])
-    }
-
-    @DisplaySize(6)
-    BigDecimal getTonSacRecMat(){
-        def lista = []
-        (1..4).each{ lista << "TonSacJC" }
-        return getSumaValores(51, 54, lista)
-    }
-    
-    @DisplaySize(6)
-    BigDecimal getTonSacRecCen(){
-        return getSumaValores(55, 58, ["TonSacMagB", "TonSacMagR", "TonSacMagC", "TonSacTer"])
-    }
-    
-    @DisplaySize(6)
-    BigDecimal getTonSacRecMieCen(){
-        return getSumaValores(59, 62, ["TonSacMieA", "TonSacMieA", "TonSacMieB", "TonSacMieCRep"])
-    }
-    
-    @DisplaySize(6)
-    BigDecimal getTonSacFunCriVer(){
-        return getSumaValores(63, 65, ["TonSacEnFun", "TonSacEnFun", "TonSacMasCV"])
-    }
-
-    @DisplaySize(6)
-    BigDecimal getTonSacSilAzu(){
-        def lista = []
-        (1..3).each{ lista << "TonSacAzu" }
-        return getSumaValores(66, 68, lista)
-    }
-    
-    @DisplaySize(6)
-    BigDecimal getTonTot(){
-        return getSumaValores(70, 71, ["TonMF", "TonMF"])
-    }
-    
-    def calcularTotales(){
-
-        def bg144 = (tonSacTorSul + tonSacTraJug + tonSacCal + tonSacEva + tonSacClaMel + tonSacCri + tonSacTqAlm + tonSacCriVac + tonSacRecMas + tonSacRecMat + tonSacRecCen + tonSacRecMieCen + tonSacFunCriVer + tonSacSilAzu - (fldTonAzuDis?:0) )
-        //println ">>> tonAzu: ${tonAzu},  suma: ${suma}"
-        
-        def bg149 = Calculo.instance.redondear((
-            getSumaValores(1 , 28, "Brix") + 
-            getSumaValores(30, 38, "Brix") +  
-            getSumaValores(40, 42, "Brix") +  
-            getSumaValores(44, 47, "Brix") +  
-            getSumaValores(49, 49, "Brix") +  
-            getSumaValores(51, 65, "Brix") +
-            getSumaValores(66, 68, "Bx")) / 63, 3
-        )
-        
-        def bg150 = Calculo.instance.redondear((
-            getSumaValores(1 , 28, "Sac") + 
-            getSumaValores(30, 38, "Sac") +  
-            getSumaValores(40, 42, "Sac") +  
-            getSumaValores(44, 47, "Sac") +  
-            getSumaValores(49, 49, "Sac") +  
-            getSumaValores(51, 68, "Sac")) / 63, 3
-        )
-        
-        def bg151 = Calculo.instance.redondear(bg149 ? bg150/bg149*100: 0, 3)
-        def bg152 = new BrixDensidadWp().getP(bg149)
-        
-        def bg147 = Calculo.instance.redondear((
-            getSumaValores( 1 , 4  , "Vt") +
-            getSumaValores( 8 , 12 , "Vt") +
-            getSumaValores(23 , 28 , "Vt") +
-            getSumaValores(40 , 42 , "Vt") +
-            getSumaValores(44 , 47 , "Vt") +
-            getSumaValores(49 , 49 , "Vt") +
-            getSumaValores(65 , 68 , "Vt") +
-            getSumaValores(5  , 7  , "VTot") +
-            getSumaValores(13 , 22 , "VTot") +
-            getSumaValores(30 , 38 , "VTot") +
-            getSumaValores(51 , 64 , "VTot") ) * (bg152/1000), 3
-        )
-        
-        def bg153 = Calculo.instance.redondear(bg147*bg149/100, 3)
-        def bg154 = Calculo.instance.redondear(bg147*bg150/100, 3)
-
-        def q133 = getSumaValores(67 , 67  , "Sac")
-        def u150 = getSumaValores(70 , 70  , "Pza")
-        def bg155 = Calculo.instance.redondear((q133*(bg151-u150))/(bg151*(q133-u150))*100 , 3)
-        
-        def bg156 = Calculo.instance.redondear(bg154*bg155/100, 3)
-        def bg157 = Calculo.instance.redondear((bg156/q133)*100, 3)
-        def bg158 = Calculo.instance.redondear(bg154-bg156, 3)
-        
-        def u146 = getSumaValores(70 , 70  , "Sac")
-        def bg159 = Calculo.instance.redondear(bg158/u146*100, 3)
-        
-        this.fldTonSacTot       = bg144
-        this.fldPesMatTotDia    = bg147
-        this.fldProSolBriTotDia = bg149
-        this.fldProSacPolTotDia = bg150
-        this.fldProPzaTotDia    = bg151
-        this.fldDenKgm          = bg152
-        this.fldPesSolDia       = bg153
-        this.fldPesPolDia       = bg154
-        this.fldSjmMatPro       = bg155
-        this.fldSacRecAz        = bg156
-        this.fldAzuRec          = bg157
-        this.fldSacMieFin       = bg158
-        this.fldMieFinRec       = bg159
-        getManager().persist(this)
-
-        println ""
-        println ">>> bg147: ${bg147}"
-        println ">>> bg149: ${bg149}"
-        println ">>> bg150: ${bg150}"
-        println ">>> bg151: ${bg151}"
-        println ">>> bg152: ${bg152}"
-        println ">>> bg153: ${bg153}"
-        println ">>> bg154: ${bg154}"
-        println ">>> bg155: ${bg155}"
-        println ">>> bg156: ${bg156}"
-        println ">>> bg157: ${bg157}"
-        println ">>> bg158: ${bg158}"
-        println ">>> bg159: ${bg159}"
-
-    }
-    
 }

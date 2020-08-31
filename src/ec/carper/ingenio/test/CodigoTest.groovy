@@ -25,6 +25,12 @@ class CodigoTest extends GroovyTestCase {
         getDiferenciaHoras()
     }
 
+    void numerosDeString(){
+        def s = "StockFabricaDetalle20"
+        int numero = s.findAll(/\d+/)*.toInteger()[0]?:0
+        println numero
+    }
+
     // https://stackoverflow.com/questions/3909855/groovy-time-durations
     //
     // http://www.javamultiplex.com/2017/01/java-program-how-to-subtract-two-given-times.html

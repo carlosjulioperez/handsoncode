@@ -55,26 +55,37 @@ id,descripcion,campo
 54,"Ton Sac Magma C","TonSacMagC"
 55,"Ton Sac Terrón","TonSacTer"
 56,"Ton Sac Azúcar","TonSacAzu"
-57,
-58,
-59,
-60,
-61,
-62,
-63,
-64,
-65,
-66,
-67,
-68,
-69,
-70,
-71,
-72,
-73,
-74,
-75,
-76,
-77,
-78,
-79,
+57,"Ton Sac Tratamiento Jugo","tonSacTraJug"
+58,"Ton Sac Torre de Sulfitación","tonSacTorSul"
+59,"Ton Sac Calentamiento","tonSacCal"
+60,"Ton Sac Evaporación","tonSacEva"
+61,"Ton Sac Calentadores Mel","tonSacCalMel"
+62,"Ton Sac Clarfic Meladura","tonSacClaMel"
+63,"Ton Sac Cristalización","tonSacCri"
+64,"Ton Sac Tq Almacenamiento","tonSacTqAlm"
+65,"Ton Sac Cristaladores Vac","tonSacCriVac"
+66,"Ton Sac Recibidores de Masas","tonSacRecMas"
+67,"Ton Sac Recibidores Mat","tonSacRecMat"
+68,"Ton Sac Recibidores Centri","tonSacRecCen"
+69,"Ton Sac Rec Mieles Centri","tonSacRecMieCen"
+70,"Ton Sac Fundidor y Cris Ver","tonSacFunCriVer"
+71,"Ton Sac Silo Azucar","tonSacSilAzu"
+72,"Ton Total","tonTot"
+73,"Ton Azúcar Disuelta","tonAzuDis"
+74,"Ton Sacarosa Total","tonSacTot"
+75,"Peso Material Total/Día (Tot)","pesMatTotDia"
+76,"Prom Sólidos (Brix) Total/Día","proSolBriTotDia"
+77,"Prom Sac (Pol) Total/Día","proSacPolTotDia"
+78,"Prom Pza Total/Día","proPzaTotDia"
+79,"Densidad (Kg/M³)","denKgm"
+80,"Peso de Sólidos/Día","pesSolDia"
+81,"Peso de Pol/Día","pesPolDia"
+82,"S.J.M Mat Proceso","sjmMatPro"
+83,"Sac Recuperable en Az","sacRecAz"
+84,"Azúcar Recuperable","azuRec"
+85,"Sac Miel Final","sacMieFin"
+86,"Miel Final Recuperable","mieFinRec"
+87,"Toneladas Melaza vendidas","tonMelVen",
+88,"Toneladas Melaza Producida Total/zafra","tonMelProTotZaf"
+89,"Ton Melaza Producida Total Dia  Anterior","tonMelProTotDiaAnt"
+90,"Toneladas Melaza Producida Total/Día","tonMelProTotDia"

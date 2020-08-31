@@ -626,6 +626,192 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 break
 
             }
+
+            // Validación para actualizar los totales
+            // Totales Ton Sac
+            int numero = modulo.findAll(/\d+/)*.toInteger()[0]?:0
+            println ">>> numero: ${numero}"
+
+            if ( numero>=6 && numero<=7 )
+                setTotalValor(72, "tonSacTorSul", getSumaValores(6, 7, ["TonSacJSulf", "TonSacMel"]))
+            
+            if ( numero>=1 && numero<=5 )
+                setTotalValor(72, "tonSacTraJug", getSumaValores(1, 5, ["TonSacJDil", "TonSacJCla", "TonSacJSulf", "TonSacJFiltr", "TonSacClar"]))
+            
+            if ( numero>=8 && numero<=12 ){
+                def l = []
+                (1..5).each{ l << "TonSacJC" }
+                setTotalValor(72, "tonSacCal", getSumaValores(8, 12, l))
+            }
+
+            if ( numero>=13 && numero<=17 ){
+                def l = []
+                (1..5).each{ l << "TonSacMel" }
+                setTotalValor(72, "tonSacEva", getSumaValores(13, 17, l))
+            }
+
+            if ( numero>=19 && numero<=20 ){
+                def l = []
+                (1..2).each{ l << "TonSacCal" }
+                setTotalValor(72, "tonSacCalMel", getSumaValores(19, 20, l))
+            }
+
+            if ( numero==18 || numero==21 || numero==22 ){
+                def suma = getTotalValor(72, "tonSacCalMel") +
+                    getSumaValores(21, 21, ["TonSacClaMel"]) + 
+                    getSumaValores(22, 22, ["TonSacVasR"]) + 
+                    getSumaValores(18, 18, ["TonSacTqMelCru"])
+                
+                setTotalValor(72, "tonSacClaMel", suma)
+            }
+
+            if ( numero>=23 && numero<=28 ){
+                def l = []
+                (1..6).each{ l << "TonSacMas" }
+                setTotalValor(72, "tonSacCri", getSumaValores(23, 28, l))
+            }
+            
+            if ( numero>=29 && numero<=39 ){
+                def l = []
+                (1..3).each{ l << "TonSacTkMel" }
+                (1..2).each{ l << "TonSacFun" }
+                (1..6).each{ l << "TonSacMieB" }
+                setTotalValor(72, "tonSacTqAlm", getSumaValores(29, 39, l))
+            }
+            
+            if ( numero>=40 && numero<=43 )
+                setTotalValor(72, "tonSacCriVac", getSumaValores(40, 43, ["TonSacSemA", "TonSacSemB", "TonSacSemC", "TonSacSemC"]))
+            
+            if ( numero>=44 && numero<=50 )
+                setTotalValor(72, "tonSacRecMas", getSumaValores(44, 50, ["TonSacMagB", "TonSacMasAI", "TonSacMasAII", "TonSacMasB", "TonSacMasB", "TonSacMasC", "TonSacMasC"]))
+            
+            if ( numero>=51 && numero<=54 ){
+                def l = []
+                (1..4).each{ l << "TonSacJC" }
+                setTotalValor(72, "tonSacRecMat", getSumaValores(51, 54, l))
+            }
+
+            if ( numero>=55 && numero<=58 )
+                setTotalValor(72, "tonSacRecCen", getSumaValores(55, 58, ["TonSacMagB", "TonSacMagR", "TonSacMagC", "TonSacTer"]))
+
+            if ( numero>=59 && numero<=62 )
+                setTotalValor(72, "tonSacRecMieCen", getSumaValores(59, 62, ["TonSacMieA", "TonSacMieA", "TonSacMieB", "TonSacMieCRep"]))
+
+            if ( numero>=63 && numero<=65 )
+                setTotalValor(72, "tonSacFunCriVer", getSumaValores(63, 65, ["TonSacEnFun", "TonSacEnFun", "TonSacMasCV"]))
+
+            if ( numero>=66 && numero<=68 ){
+                def l = []
+                (1..3).each{ l << "TonSacAzu" }
+                setTotalValor(72, "tonSacSilAzu", getSumaValores(66, 68, l))
+            }
+
+            if ( numero>=70 && numero<=71 )
+                setTotalValor(72, "tonTot", getSumaValores(70, 71, ["TonMF", "TonMF"]))
+
+            // Totales generales
+            if ( numero==73 ){
+                if (indicador.campo == "tonMelVen" || indicador.campo == "tonAzuDis")
+                    setTotalValor(73, indicador.campo, valor)
+                    
+                def tonAzuDis = getTotalValor(73, "tonAzuDis")
+
+                // def bg144 = (tonSacTorSul + tonSacTraJug + tonSacCal + tonSacEva + tonSacClaMel + tonSacCri + tonSacTqAlm + tonSacCriVac + tonSacRecMas + tonSacRecMat + tonSacRecCen + tonSacRecMieCen + tonSacFunCriVer + tonSacSilAzu - (fldTonAzuDis?:0) )
+                def bg144 = 
+                    getTotalValor(72, "tonSacTraJug") +
+                    getTotalValor(72, "tonSacTorSul") +
+                    getTotalValor(72, "tonSacCal") +
+                    getTotalValor(72, "tonSacEva") +
+                    getTotalValor(72, "tonSacClaMel") +
+                    getTotalValor(72, "tonSacCri") +
+                    getTotalValor(72, "tonSacTqAlm") +
+                    getTotalValor(72, "tonSacCriVac") +
+                    getTotalValor(72, "tonSacRecMas") +
+                    getTotalValor(72, "tonSacRecMat") +
+                    getTotalValor(72, "tonSacRecCen") +
+                    getTotalValor(72, "tonSacRecMieCen") +
+                    getTotalValor(72, "tonSacFunCriVer") +
+                    getTotalValor(72, "tonSacSilAzu") - tonAzuDis
+                //println ">>> tonAzu: ${tonAzu},  suma: ${suma}"
+                
+                def bg149 = Calculo.instance.redondear((
+                    getSumaValores(1 , 28, "Brix") + 
+                    getSumaValores(30, 38, "Brix") +  
+                    getSumaValores(40, 42, "Brix") +  
+                    getSumaValores(44, 47, "Brix") +  
+                    getSumaValores(49, 49, "Brix") +  
+                    getSumaValores(51, 65, "Brix") +
+                    getSumaValores(66, 68, "Bx")) / 63, 3
+                )
+                
+                def bg150 = Calculo.instance.redondear((
+                    getSumaValores(1 , 28, "Sac") + 
+                    getSumaValores(30, 38, "Sac") +  
+                    getSumaValores(40, 42, "Sac") +  
+                    getSumaValores(44, 47, "Sac") +  
+                    getSumaValores(49, 49, "Sac") +  
+                    getSumaValores(51, 68, "Sac")) / 63, 3
+                )
+                
+                def bg151 = Calculo.instance.redondear(bg149 ? bg150/bg149*100: 0, 3)
+                def bg152 = new BrixDensidadWp().getP(bg149)
+                
+                def bg147 = Calculo.instance.redondear((
+                    getSumaValores( 1 , 4  , "Vt") +
+                    getSumaValores( 8 , 12 , "Vt") +
+                    getSumaValores(23 , 28 , "Vt") +
+                    getSumaValores(40 , 42 , "Vt") +
+                    getSumaValores(44 , 47 , "Vt") +
+                    getSumaValores(49 , 49 , "Vt") +
+                    getSumaValores(65 , 68 , "Vt") +
+                    getSumaValores(5  , 7  , "VTot") +
+                    getSumaValores(13 , 22 , "VTot") +
+                    getSumaValores(30 , 38 , "VTot") +
+                    getSumaValores(51 , 64 , "VTot") ) * (bg152/1000), 3
+                )
+                
+                def bg153 = Calculo.instance.redondear(bg147*bg149/100, 3)
+                def bg154 = Calculo.instance.redondear(bg147*bg150/100, 3)
+
+                def q133 = getSumaValores(67 , 67  , "Sac")
+                def u150 = getSumaValores(70 , 70  , "Pza")
+                def bg155 = Calculo.instance.redondear((q133*(bg151-u150))/(bg151*(q133-u150))*100 , 3)
+                
+                def bg156 = Calculo.instance.redondear(bg154*bg155/100, 3)
+                def bg157 = Calculo.instance.redondear((bg156/q133)*100, 3)
+                def bg158 = Calculo.instance.redondear(bg154-bg156, 3)
+                
+                def u146 = getSumaValores(70 , 70  , "Sac")
+                def bg159 = Calculo.instance.redondear(bg158/u146*100, 3)
+                
+                setTotalValor(73 , "tonSacTot"       , bg144)
+                setTotalValor(73 , "pesMatTotDia"    , bg147)
+                setTotalValor(73 , "proSolBriTotDia" , bg149)
+                setTotalValor(73 , "proSacPolTotDia" , bg150)
+                setTotalValor(73 , "proPzaTotDia"    , bg151)
+                setTotalValor(73 , "denKgm"          , bg152)
+                setTotalValor(73 , "pesSolDia"       , bg153)
+                setTotalValor(73 , "pesPolDia"       , bg154)
+                setTotalValor(73 , "sjmMatPro"       , bg155)
+                setTotalValor(73 , "sacRecAz"        , bg156)
+                setTotalValor(73 , "azuRec"          , bg157)
+                setTotalValor(73 , "sacMieFin"       , bg158)
+                setTotalValor(73 , "mieFinRec"       , bg159)
+
+                // println ""
+                // println ">>> bg147: ${bg147}"
+                // println ">>> bg149: ${bg149}"
+                // println ">>> bg150: ${bg150}"
+                // println ">>> bg151: ${bg151}"
+                // println ">>> bg152: ${bg152}"
+                // println ">>> bg153: ${bg153}"
+                // println ">>> bg154: ${bg154}"
+                // println ">>> bg155: ${bg155}"
+                // println ">>> bg156: ${bg156}"
+                // println ">>> bg157: ${bg157}"
+                // println ">>> bg158: ${bg158}"
+                // println ">>> bg159: ${bg159}"
+           }
         }
     }
 
@@ -640,5 +826,47 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
         //println ">>> Indicador: ${d.indicador.descripcion}, valor: ${d.valor}"
         d.setValor(nuevoValor)
         getManager().persist(d)
+    }
+    
+    // Totales, 72:Tom, 73:Generales **************************************************
+    def getTotalValor(def num, def campo){
+        def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle${num}", campoFk, campo)
+        return d.valor?:0
+    }
+    void setTotalValor(def num, def campo, def nuevoValor){
+        def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle${num}", campoFk, campo)
+        //println ">>> Indicador: ${d.indicador.descripcion}, valor: ${d.valor}"
+        d.setValor(nuevoValor)
+        getManager().persist(d)
+    }
+    // ********************************************************************************
+
+    // Vienen de la cabecera
+    def getSumaValores(def desde, def hasta, def campos){
+        def valor = 0
+        def campoFk = "stockFabrica.id"
+        if (padreId){
+            def i = 0
+            (desde..hasta).each{
+                def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle${it}", campoFk, campos[i++])
+                if (d)
+                    valor += d.valor ?: 0
+            }
+        }
+        return valor
+    }
+    
+    def getSumaValores(def desde, def hasta, String indicador){
+        def campoFk = "stockFabrica.id"
+        def (suma, i) = [0, 0]
+        if (padreId){
+            (desde..hasta).each{
+                def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle${it}", campoFk, indicador)
+                suma += d ? d.valor: 0
+                // if (indicador=="Vt" || indicador=="VTot")
+                //     println "${it}, ${d.valor}"
+            }
+        }
+        return suma
     }
 }

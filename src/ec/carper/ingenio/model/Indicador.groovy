@@ -10,7 +10,7 @@ class Indicador extends Identifiable{
     @Column(length=50) @Required
     String descripcion
     
-    @Column(length=20)
+    @Column(length=30)
     String campo 
 
 }
