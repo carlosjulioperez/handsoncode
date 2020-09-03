@@ -41,6 +41,17 @@
             class="ec.carper.ingenio.actions.RestringirDeleteSelectedAction"/>
     </controller>   
 
+    <controller name="FactorVolumen">
+        <extends controller="Ingenio"/>
+        <action name="delete" mode="detail" confirm="true" 
+            icon="delete" available-on-new="false" keystroke="Control D" 
+            class="ec.carper.ingenio.actions.RestringirDeleteAction"/>
+        <action name="deleteSelected" mode="list" confirm="true" keystroke="Control D" 
+            class="ec.carper.ingenio.actions.RestringirDeleteSelectedAction"/>
+        <action name="deleteRow" mode="NONE" confirm="true" icon="delete" in-each-row="true" 
+            class="ec.carper.ingenio.actions.RestringirDeleteSelectedAction"/>
+    </controller>   
+
     <controller name="Cto24H">
         <extends controller="Ingenio"/>
         <action name="cargarDetalles" mode="detail" 
@@ -62,10 +73,16 @@
         <extends controller="Ingenio"/>
         <action name="cargarItems" mode="detail" 
             class="ec.carper.ingenio.actions.StockFabricaCargarItemsAction"/>
-        <action name="calcular" mode="detail" 
-            class="ec.carper.ingenio.actions.StockFabricaCalcularAction"/>
 		<action name="editDetail" hidden="true" image="edit.gif"
 			class="ec.carper.ingenio.actions.StockFabricaEditDetailAction"/>
+    </controller>   
+
+    <controller name="StockProceso">
+        <extends controller="Ingenio"/>
+        <action name="cargarItems" mode="detail" 
+            class="ec.carper.ingenio.actions.StockProcesoCargarItemsAction"/>
+		<action name="editDetail" hidden="true" image="edit.gif"
+			class="ec.carper.ingenio.actions.StockProcesoEditDetailAction"/>
     </controller>   
 
 </controllers>

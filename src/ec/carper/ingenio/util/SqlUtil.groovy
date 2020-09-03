@@ -61,12 +61,36 @@ class SqlUtil{
                 .setParameter("indicador", indicador).resultList[0]
     }
 
+    def getDetValorPorDTI(def diaTrabajoId, String objMaestro, String detalle, def indicador){
+        return getManager() .createQuery("""
+            SELECT valor FROM ${detalle} 
+            WHERE ${objMaestro}.diaTrabajo.id = :diaTrabajoId
+            AND indicador.campo = :indicador
+        """)
+        .setParameter("diaTrabajoId", diaTrabajoId)
+        .setParameter("indicador", indicador).resultList[0]?:0
+    }
+
+    def getDetallePorDTM(def diaTrabajoId, String objMaestro, String detalle, def material){
+        return getManager() .createQuery("""
+            FROM ${detalle} 
+            WHERE ${objMaestro}.diaTrabajo.id = :diaTrabajoId
+            AND material.campo = :material
+        """)
+        .setParameter("diaTrabajoId", diaTrabajoId)
+        .setParameter("material", material).resultList[0]
+    }
+
     def getDiaTrabajo(String diaTrabajoId){
         return getManager().find(DiaTrabajo.class, diaTrabajoId)
     }
     
     def getIndicador(String indicadorId){
         return getManager().find(Indicador.class, indicadorId)
+    }
+    
+    def getMaterial(String materialId){
+        return getManager().find(Material.class, materialId)
     }
     
     def obtenerFecha(def hora, def diaTrabajoId){

@@ -56,7 +56,7 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 // Ahora realizar los cálculos
                 def porc = valor 
                 // =+(K5*K4*K3)*W5/100
-                def vt = porc ? Calculo.instance.redondear((h3*h2*h1)*porc/100, 2): 0
+                def vt = porc ? Calculo.instance.redondear((h3*h2*h1)*porc/100, 3): 0
                 //=((K6*X6/1000)*(Q5/100))
                 def tonSacJDil = Calculo.instance.redondear((vt*p/1000) * (sac/100),2)
                 setValor("Vt", vt)
@@ -88,9 +88,9 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 // println ">>> porcV: ${porcV}"
 
                 // =+(AQ4*AQ3*AQ2)*AV5/100
-                def v1 = porcN ? Calculo.instance.redondear((h3*h2*h1)*porcN/100, 2): 0
+                def v1 = porcN ? Calculo.instance.redondear((h3*h2*h1)*porcN/100, 3): 0
                 // =(3,1416*((AQ6/2)*(AQ6/2))*AQ7)*AV6/100
-                def v2 = porcV ? Calculo.instance.redondear((3.1416*((o1/2)*(o1/2))*h)*porcV/100, 2): 0
+                def v2 = porcV ? Calculo.instance.redondear((3.1416*((o1/2)*(o1/2))*h)*porcV/100, 3): 0
                 def vt = v1 + v2
                 // =(AQ9*AV7/1000)*(AJ4/100)
                 def tonSacJCla = Calculo.instance.redondear((vt*p/1000) * (sac/100),2)
@@ -115,7 +115,7 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 // Ahora realizar los cálculos
                 def porc = valor 
                 // =(3,1416*((J10/2)*(J10/2))*J11)*O13/100
-                def vt = porc ? Calculo.instance.redondear((3.1416*((o1/2)*(o1/2))*h2)*porc/100, 2): 0
+                def vt = porc ? Calculo.instance.redondear((3.1416*((o1/2)*(o1/2))*h2)*porc/100, 3): 0
                 // =+((J12*O14)/1000)*(J14/100)
                 def tonSacJSulf = Calculo.instance.redondear((vt*p/1000) * (sac/100), 2)
                 setValor ("Vt", vt)
@@ -138,7 +138,7 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 // Ahora realizar los cálculos
                 def porc = valor 
                 // =+(AB11*AB12*AB13)*AG14/100
-                def vt = porc ? Calculo.instance.redondear((h3*h2*h1)*porc/100, 2): 0
+                def vt = porc ? Calculo.instance.redondear((h3*h2*h1)*porc/100, 3): 0
                 // =+((AB14*AG15)/1000)*(AB16/100)
                 def tonSacJFiltr = Calculo.instance.redondear((vt*p/1000) * (sac/100),2)
                 setValor("Vt", vt)
@@ -291,7 +291,7 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 setValor("Sac"  , sac)
                 setValor("p"    , p)
                 
-                def vTot = porc ? Calculo.instance.redondear(factor*porc/100, 2): 0
+                def vTot = porc ? Calculo.instance.redondear(factor*porc/100, 3): 0
                 // =+BA12*(BA18/1000)*(BA14/100)
                 def tonSac = Calculo.instance.redondear((vTot*p/1000) * (sac/100),2)
                 setValor("VTot", vTot)
@@ -328,11 +328,11 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 setValor("p"    , p)
                 
                 def porc = valor 
-                def va = Calculo.instance.redondear(3.1416*((o1/2)*(o1/2))*h1, 2)
+                def va = Calculo.instance.redondear(3.1416*((o1/2)*(o1/2))*h1, 3)
                 // =(J24*3,1416/3)*(((J22/2)*(J22/2))+((J23/2)*(J23/2)+((J22/2)*(J23/2))))
-                def vc = Calculo.instance.redondear( (h3*3.1416/3)*(((o1/2)*(o1/2))+((o2/2)*(o2/2)+((o1/2)*(o2/2)))), 2)
+                def vc = Calculo.instance.redondear( (h3*3.1416/3)*(((o1/2)*(o1/2))+((o2/2)*(o2/2)+((o1/2)*(o2/2)))), 3)
                 // =(+J25+J21)*I31/100 
-                def vTot = porc ? Calculo.instance.redondear((vc+va)*porc/100, 2): 0
+                def vTot = porc ? Calculo.instance.redondear((vc+va)*porc/100, 3): 0
                 def tonSac = Calculo.instance.redondear((vTot*p/1000) * (sac/100),2)
                 
                 setValor("Va", va)
@@ -370,7 +370,7 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 
                 def porc = valor 
                 // =(3,1416*((AF20/2)*(AF20/2))*AF21)*AE27/100
-                def vt = porc ? Calculo.instance.redondear((3.1416*((o1/2)*(o1/2))*h2)*porc/100, 2): 0
+                def vt = porc ? Calculo.instance.redondear((3.1416*((o1/2)*(o1/2))*h2)*porc/100, 3): 0
                 // =+((AF22*AE28)/1000)*(AF24/100)
                 def tonSac = Calculo.instance.redondear((vt*p/1000) * (sac/100), 2)
                 setValor("Vt", vt)
@@ -477,7 +477,7 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 def factorFt3 = new BigDecimal(new Parametro().obtenerValor("FT3"))
                 def vtFt3 = getValor("VtFt3")
                 // =+(K69*$R$77)*K75/100
-                def vt = porc ? Calculo.instance.redondear((vtFt3*factorFt3)*porc/100, 2): 0
+                def vt = porc ? Calculo.instance.redondear((vtFt3*factorFt3)*porc/100, 3): 0
                 //=((K6*X6/1000)*(Q5/100))
                 def tonSacMas = Calculo.instance.redondear((vt*p/1000) * (sac/100),2)
                 setValor("Vt", vt)
@@ -518,7 +518,7 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 
                 def porc = valor 
                 // =(3,1416*((K90/2)*(K90/2))*K91)*J97/100
-                def vt = porc ? Calculo.instance.redondear((3.1416*((o1/2)*(o1/2))*h2)*porc/100, 2): 0
+                def vt = porc ? Calculo.instance.redondear((3.1416*((o1/2)*(o1/2))*h2)*porc/100, 3): 0
                 //  =+((K92*J98)/1000)*(K94/100)
                 def tonSac = Calculo.instance.redondear((vt*p/1000) * (sac/100), 2)
                 setValor("Vt", vt)
@@ -613,7 +613,7 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
 
                 // Ahora realizar los cálculos
                 // =3,1416*((U142/2)*(U142/2))*U143
-                def vt = h2 ? Calculo.instance.redondear(3.1416*(o1/2)*(o1/2)*h2, 2): 0
+                def vt = h2 ? Calculo.instance.redondear(3.1416*(o1/2)*(o1/2)*h2, 3): 0
                 // =+((U144*T149)/1000)*(U146/100)
                 def tonSac = Calculo.instance.redondear((vt*p/1000) * (sac/100), 2)
                 // =+U146/U145*100

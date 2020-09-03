@@ -6,7 +6,7 @@ import org.openxava.actions.*
 import org.openxava.jpa.*
 import org.openxava.model.*
 
-class BlcCargarItemsAction extends ViewBaseAction implements IHideActionAction{
+class StockProcesoCargarItemsAction extends ViewBaseAction implements IHideActionAction{
 
     private boolean hideAction = false
 
@@ -17,22 +17,22 @@ class BlcCargarItemsAction extends ViewBaseAction implements IHideActionAction{
             addError("items_no_cargados")
             return
         }
-        MapFacade.setValues("Blc",
+        MapFacade.setValues("StockProceso",
             getView().getKeyValues(), getView().getValues()
         )
 
-        Blc blc = XPersistence.getManager().find( Blc.class, getView().getValue("id") )
-        if (blc.itemsCargados){
+        StockProceso stockProceso = XPersistence.getManager().find( StockProceso.class, getView().getValue("id") )
+        if (stockProceso.itemsCargados){
             addError("items_ya_cargados")
             return
         }
-        blc.cargarItems()
+        stockProceso.cargarItems()
         getView().refresh()
         addMessage("items_cargados")
         hideAction = true
     }
 
     String getActionToHide(){
-        return hideAction ? "Blc.cargarItems": ""
+        return hideAction ? "StockProceso.cargarItems": ""
     }
 }

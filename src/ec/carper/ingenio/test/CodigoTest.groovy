@@ -29,6 +29,23 @@ class CodigoTest extends GroovyTestCase {
         def s = "StockFabricaDetalle20"
         int numero = s.findAll(/\d+/)*.toInteger()[0]?:0
         println numero
+
+        // Buscar un entero en una lista. Devuelve el número buscado caso contrario 0 (de null)
+        def l = [1, 6, 7, 16, 17, 58, 62]
+        println l.find {it==6} ?: 0
+
+        // Suma usando closures:
+        def a = { desde, hasta ->
+            def suma = 0
+            (desde..hasta).each{
+                suma += 10
+            }
+            suma
+        }
+
+        println a(1,2) // 20
+
+
     }
 
     // https://stackoverflow.com/questions/3909855/groovy-time-durations

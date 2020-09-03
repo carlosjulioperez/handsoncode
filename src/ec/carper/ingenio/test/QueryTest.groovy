@@ -33,7 +33,8 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getTotalesStockFabrica()
+        getValoresStockProceso()
+        //getTotalesStockFabrica()
         //getValorCampo()
         //getSumaValorDetallesPorIndicador()
         //getDetallePorIndicador()
@@ -49,7 +50,230 @@ class QueryTest extends ModuleTestBase {
         //getTrashCanaDetalle2()
         //getNativo()
     }
+
+    def suma (desde, hasta, objPadre, txtDet, indicador){
+        def suma = 0
+        (desde..hasta).each{
+            suma += SqlUtil.instance.getDetValorPorDTI(Aux.instance.diaTrabajoId, objPadre, "${txtDet}${it}", indicador)
+        }
+        return suma
+    }
     
+    def getValoresStockProceso(){
+        //getDetalleValorPorDiaTrabajoEIndicador
+
+        // Lectura temp=30 y eq=4
+        def calculos = { campo, temp, eq ->
+
+            def (num, volumen1) = [0, 0]
+            switch (campo){
+                case "tanJugDil" : num=1  ; break ;
+                case "tanJugCla" : num=2  ; break ;
+                case "tanJugEnc" : num=3  ; break ;
+                case "tanJugFil" : num=4  ; break ;
+                case "claJug"    : num=5  ; break ;
+                case "torSulJug" : num=6  ; break ;
+                case "calJugCla" : num=8  ; break ;
+                case "calJug"    : num=9  ; break ;
+                case "eva1"      : num=13 ; break ;
+                case "eva2"      : num=14 ; break ;
+                case "eva3"      : num=15 ; break ;
+                case "eva4"      : num=16 ; break ;
+                case "tanMelCru" : num=18 ; break ;
+                case "calMel"    : num=19 ; break ;
+                case "claMel"    : num=21 ; break ;
+                case "vasRea"    : num=22 ; break ;
+                case "tac1"      : num=23 ; break ;
+                case "tac2"      : num=24 ; break ;
+                case "tac3"      : num=26 ; break ;
+                case "tac4"      : num=28 ; break ;
+                case "tanMel1"   : num=30 ; break ;
+                case "tanMel2"   : num=31 ; break ;
+                case "tanMel3"   : num=29 ; break ;
+                case "tanFun1"   : num=32 ; break ;
+                case "tanFun2"   : num=33 ; break ;
+                case "tanMie1"   : num=34 ; break ;
+                case "tanMie2"   : num=35 ; break ;
+                case "tanMie3"   : num=36 ; break ;
+                case "tanMie4"   : num=37 ; break ;
+                case "tanPreMie" : num=38 ; break ;
+                case "tanMieClM" : num=39 ; break ;
+                case "sem1"      : num=40 ; break ;
+                case "sem2"      : num=41 ; break ;
+                case "sem3"      : num=42 ; break ;
+                case "sem4"      : num=43 ; break ;
+                case "recMag2"   : num=44 ; break ;
+                case "recMas1"   : num=45 ; break ;
+                case "recMas2"   : num=46 ; break ;
+                case "recMas3"   : num=47 ; break ;
+                case "recMas4"   : num=48 ; break ;
+                case "recMas5"   : num=49 ; break ;
+                case "recMas6"   : num=50 ; break ;
+                case "aliCen1"   : num=51 ; break ;
+                case "aliCen2"   : num=52 ; break ;
+                case "aliCen3"   : num=53 ; break ;
+                case "aliCen4"   : num=54 ; break ;
+                case "recMag1"   : num=55 ; break ;
+                case "recMag3"   : num=56 ; break ;
+                case "recMag4"   : num=57 ; break ;
+                case "recMie1"   : num=59 ; break ;
+                case "recMie2"   : num=60 ; break ;
+                case "recMie3"   : num=61 ; break ;
+                case "recMie4"   : num=61 ; break ; //Duplicado de recMie3
+                case "funVie1"   : num=63 ; break ;
+                case "funNue2"   : num=64 ; break ;
+                case "criVer"    : num=65 ; break ;
+                case "tol50K1"   : num=66 ; break ;
+                case "tol50K2"   : num=67 ; break ;
+                case "tolFam"    : num=68 ; break ;
+            }
+
+            def l = [5, 6, 13,14,15,16, 18,19,21,22, 29,30,31,32,33,34,35,36,37,38,39, 51,52,53,54,55,56,57, 59,60,61, 63,64] // Para no usar los engorrosos "if"
+            def ind1 = l.find {it==num} ? "VTot" : "Vt"
+
+            def objPadre = "stockFabrica"
+            def txtDet   = "StockFabricaDetalle"
+            def detalle  = "${txtDet}${num}"
+
+            def factor   = new FactorVolumen().getValor(temp, eq+1)
+
+            switch(num){
+                case 9:
+                    volumen1 = suma(9, 12, objPadre, txtDet, ind1); break;
+                case 19:
+                    volumen1 = suma(19, 20, objPadre, txtDet, ind1); break;
+                case 24:
+                    volumen1 = suma(24, 25, objPadre, txtDet, ind1); break;
+                case 26:
+                    volumen1 = suma(26, 27, objPadre, txtDet, ind1); break;
+                case 28:
+                    volumen1 = suma(28, 29, objPadre, txtDet, ind1); break;
+                default:
+                    volumen1 = SqlUtil.instance.getDetValorPorDTI(Aux.instance.diaTrabajoId, objPadre, detalle, ind1); break;
+            }
+            
+
+            def (porcBrix, densidad) = [0, 0]
+            if (campo=="tol50K1" || campo=="tol50K2" || campo=="tolFam"){
+                porcBrix = 100 - SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "AzucarGranel", "humedad")
+                densidad = 906.15199 
+                factor   = 1
+            }else{
+                porcBrix = SqlUtil.instance.getDetValorPorDTI(Aux.instance.diaTrabajoId, objPadre, detalle, "Brix")
+                densidad = new BrixDensidadWp().getP(porcBrix)
+            }
+            
+            def volumen2 = factor ? Calculo.instance.redondear(volumen1/factor, 3): 0
+            def peso     = Calculo.instance.redondear(densidad*volumen2/1000, 3)
+            def tonBrix  = Calculo.instance.redondear(peso*porcBrix/100, 3)
+            
+            // Caso especial (E60)
+            if (campo=="recMie4")
+                detalle  = "${txtDet}${num+1}"
+            
+            def porcSac = 0
+            if (campo=="tol50K1" || campo=="tol50K2" || campo=="tolFam")
+                porcSac  = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "AzucarGranel", "pol")
+            else    
+                porcSac  = SqlUtil.instance.getDetValorPorDTI(Aux.instance.diaTrabajoId, objPadre, detalle, "Sac")
+            
+            def tonSac   = Calculo.instance.redondear(peso*porcSac/100, 3)
+            def pureza   = porcBrix ? Calculo.instance.redondear(porcSac/porcBrix*100, 3): 0
+            
+            // Caso especial (J61, K61, L61)
+            if (campo=="funVie1"){
+                def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle1", "recMie4")
+                if (d){
+                    tonBrix = d.tonBrix ?:0
+                    porcSac = d.porcSac ?:0
+                    tonSac  = d.tonSac ?:0
+                    // println tonBrix
+                    // println porcSac
+                    // println tonSac
+                    pureza  = (porcSac && porcBrix) ? Calculo.instance.redondear(porcSac/porcBrix*100, 3): 0
+                }
+            }
+
+            // println ""
+            // println "temp     : ${temp}"
+            // println "volumen1 : ${volumen1}"
+            // println "volumen2 : ${volumen2}"
+            // println "peso     : ${peso}"
+            // println "porcBrix : ${porcBrix}"
+            // println "eq       : ${eq}"
+            // println "tonBrix  : ${tonBrix}"
+            // println "porcSac  : ${porcSac}"
+            // println "tonSac   : ${tonSac}"
+            // println "pureza   : ${pureza}"
+            // println "densidad : ${densidad}"
+            // println "factor   : ${factor}"
+
+            println "| ${temp} | ${volumen1} | ${volumen2} | ${peso} | ${porcBrix} | ${eq} | ${tonBrix} | ${porcSac} | ${tonSac} | ${pureza} | ${densidad} | ${factor}"
+        }
+       
+        println "\n"
+        calculos("tanJugDil" , 30  , 4)
+        calculos("tanJugCla" , 95  , 4)
+        calculos("tanJugEnc" , 60  , 4)
+        calculos("tanJugFil" , 45  , 4)
+        calculos("claJug"    , 95  , 4)
+        calculos("torSulJug" , 70  , 4)
+        calculos("calJugCla" , 100 , 4)
+        calculos("calJug"    , 85  , 4)
+        calculos("eva1"      , 100 , 4)
+        calculos("eva2"      , 100 , 6)
+        calculos("eva3"      , 90  , 8)
+        calculos("eva4"      , 65  , 14)
+        calculos("tanMelCru" , 65  , 13)
+        calculos("calMel"    , 75  , 13)
+        calculos("claMel"    , 70  , 13)
+        calculos("vasRea"    , 75  , 13)
+        calculos("tac1"      , 55  , 19)
+        calculos("tac2"      , 55  , 19)
+        calculos("tac3"      , 55  , 19)
+        calculos("tac4"      , 55  , 19)
+        calculos("tanMel1"   , 55  , 13)
+        calculos("tanMel2"   , 55  , 13)
+        calculos("tanMel3"   , 55  , 13)
+        calculos("tanFun1"   , 70  , 13)
+        calculos("tanFun2"   , 70  , 13)
+        calculos("tanMie1"   , 35  , 17)
+        calculos("tanMie2"   , 35  , 17)
+        calculos("tanMie3"   , 45  , 18)
+        calculos("tanMie4"   , 25  , 0 )
+        calculos("tanPreMie" , 25  , 18)
+        calculos("tanMieClM" , 25  , 0)
+        calculos("sem1"      , 50  , 0)
+        calculos("sem2"      , 40  , 0)
+        calculos("sem3"      , 40  , 19)
+        calculos("sem4"      , 40  , 0)
+        calculos("recMag2"   , 35  , 19)
+        calculos("recMas1"   , 55  , 19)
+        calculos("recMas2"   , 55  , 19)
+        calculos("recMas3"   , 50  , 19)
+        calculos("recMas4"   , 40  , 19)
+        calculos("recMas5"   , 50  , 19)
+        calculos("recMas6"   , 50  , 19)
+        calculos("aliCen1"   , 50  , 19)
+        calculos("aliCen2"   , 50  , 19)
+        calculos("aliCen3"   , 40  , 19)
+        calculos("aliCen4"   , 45  , 19)
+        calculos("recMag1"   , 35  , 19)
+        calculos("recMag3"   , 35  , 19)
+        calculos("recMag4"   , 40  , 19)
+        calculos("recMie1"   , 40  , 17)
+        calculos("recMie2"   , 40  , 17)
+        calculos("recMie3"   , 35  , 18)
+        calculos("recMie4"   , 35  , 18)
+        calculos("funVie1"   , 80  , 18)
+        calculos("funNue2"   , 85  , 0)
+        calculos("criVer"    , 45  , 19)
+        calculos("tol50K1"   , 35  , 0)
+        calculos("tol50K2"   , 35  , 0)
+        calculos("tolFam"    , 35  , 0)
+
+    }
+
     def getSumaValores(def desde, def hasta, String indicador){
         def padreId = "ff8080817438ed5b0174391063400231"
         def campoFk = "stockFabrica.id"
@@ -156,7 +380,6 @@ class QueryTest extends ModuleTestBase {
 
         // BG152: Densidad Kg/Mᶟ
         // BrixDensidadWp (BG149)
-
     }
 
     void getSumaValorDetallesPorIndicador(){
@@ -305,6 +528,13 @@ class QueryTest extends ModuleTestBase {
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Magmas", "mcSac")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Magmas", "mrBri2")
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Magmas", "mrSac")
+
+        println SqlUtil.instance.getValorDetalleCampo(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle1" , "1")
+
+        def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle1", "tanJugDil")
+        if (d)
+            println ">>> ${d.factor}"
+
     }
 
     void getParoTotal(){
