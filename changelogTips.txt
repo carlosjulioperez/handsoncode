@@ -15,6 +15,9 @@ Proyecto
 
 		// POS
 		// https://sourceforge.net/p/openxava/discussion/419690/thread/9f09f088/?limit=25#6b90/88a1
+	* Error:
+		user lacks privilege or object not found: PG_CLASS
+		Verificar si están bien configurados los tres archivos xml de hibernate
 	
 	* Formas de funcionamiento de colecciones:
 		https://sourceforge.net/p/openxava/discussion/437013/thread/08010ce3/?limit=25#e1a6
@@ -46,6 +49,9 @@ Proyecto
 	* DateFormatter:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/1f814c16/
         https://www.java67.com/2016/04/how-to-convert-string-to-localdatetime-in-java8-example.html
+
+	* Groovy compilación:
+		https://sourceforge.net/p/openxava/discussion/437013/thread/38b0270c5f/?limit=100#94e8
 
 	* Groovy Truth:
 		http://groovy-lang.org/semantics.html#Groovy-Truth

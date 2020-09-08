@@ -7,11 +7,15 @@
 tests/
 temp/
 web/*
+!web/WEB-INF/lib/commons-math3-3.6.1.jar
+!web/WEB-INF/lib/groovy-all.jar
+!web/WEB-INF/lib/postgresql-42.2.5.jar
 xava/*
 
 !xava/application.xml
 !xava/controllers.xml
 !xava/editors.xml
+!xava/tabs-default-values.xml
 
 # swap
 [._]*.s[a-v][a-z]
