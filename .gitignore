@@ -8,6 +8,7 @@ tests/
 temp/
 web/*
 xava/*
+i18n/portlets/
 
 !xava/application.xml
 !xava/controllers.xml

@@ -24,6 +24,10 @@ case $opt in
 			;;
 		"generatePortlets")
 			ant generatePortlets
+            # Creo una copia del war
+            cp ../../workspace.dist/Ingenio.dist/Ingenio.war ../../workspace.dist/Ingenio-portlets.war.d/
+            # Extraigo los jars para distribuir
+            zip -d ../../workspace.dist/Ingenio-portlets.war.d/Ingenio.war WEB-INF/lib/\*
             ;;
 		"codigo-test")
 			ant test -Dnombre_clase=CodigoTest
