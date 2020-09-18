@@ -15,6 +15,11 @@ Proyecto
 
 		// POS
 		// https://sourceforge.net/p/openxava/discussion/419690/thread/9f09f088/?limit=25#6b90/88a1
+
+	* i18n:
+		https://www.openxava.org/OpenXavaDoc/docs/i18n_en.html
+		https://sourceforge.net/p/openxava/discussion/419690/thread/34508380/
+
 	* Generar portlets con ISO-8859-1 en ox 6.3.2:
 		https://sourceforge.net/p/openxava/discussion/437013/thread/2bfec224/?limit=25#9f7a
 		Modificar ../OpenXava/build.xml línea 32
