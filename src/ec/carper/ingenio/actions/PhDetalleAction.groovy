@@ -19,7 +19,8 @@ class PhDetalleAction extends OnChangePropertyBaseAction{
         
         def horaTJClaro = (Timestamp)getView().getValue("horaTJClaro")
 
-        getView().setValue("tJClaro", (diaTrabajoId && horaTJClaro ) ? new TurbiedadDetalle1().getValorTurJClaro(diaTrabajoId, horaTJClaro): null)
+        //getView().setValue("tJClaro", (diaTrabajoId && horaTJClaro ) ? new TurbiedadDetalle1().getValorTurJClaro(diaTrabajoId, horaTJClaro): null)
+        getView().setValue("tJClaro", (diaTrabajoId && horaTJClaro ) ? SqlUtil.instance.getValorDetalleCampoXHora(diaTrabajoId, horaTJClaro, "turbiedad", "TurbiedadDetalle1", "turJClaro") : null)
     }
 
 }

@@ -33,7 +33,8 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getValoresStockProceso()
+        getValorDetalleCampoXHora()
+        //getValoresStockProceso()
         //getTotalesStockFabrica()
         //getValorCampo()
         //getSumaValorDetallesPorIndicador()
@@ -49,6 +50,14 @@ class QueryTest extends ModuleTestBase {
         //getTrashCanaDiaTrabajoCerrado()
         //getTrashCanaDetalle2()
         //getNativo()
+    }
+
+    def getValorDetalleCampoXHora(){
+        String hora      = "2019-08-07 08:00:00"
+        //def porcSacJR = new JugoDetalle().getPorcSacJR(Aux.instance.diaTrabajoId, Util.instance.toTimestamp(hora))
+
+        println SqlUtil.instance.getValorDetalleCampoXHora(Aux.instance.diaTrabajoId, Util.instance.toTimestamp(hora), "jugo", "JugoDetalle", "jdBri")
+
     }
 
     def suma (desde, hasta, objPadre, txtDet, indicador){

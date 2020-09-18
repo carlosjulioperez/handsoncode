@@ -34,13 +34,13 @@ class TurbiedadDetalle1 extends Identifiable {
     @Digits(integer=4, fraction=2) @DisplaySize(6) 
     BigDecimal turJClaro
     
-    BigDecimal getValorTurJClaro(String diaTrabajoId, java.sql.Timestamp hora){
-
-        Query query = getManager().createQuery("SELECT turJClaro FROM TurbiedadDetalle1 WHERE turbiedad.diaTrabajo.id = :diaTrabajoId AND hora = :hora ORDER BY hora")
-        query.setParameter("diaTrabajoId", diaTrabajoId)
-        query.setParameter("hora", hora)
-        
-        return query.resultList[0]?: 0
-    }
+    // BigDecimal getValorTurJClaro(String diaTrabajoId, java.sql.Timestamp hora){
+    //
+    //     Query query = getManager().createQuery("SELECT turJClaro FROM TurbiedadDetalle1 WHERE turbiedad.diaTrabajo.id = :diaTrabajoId AND hora = :hora ORDER BY hora")
+    //     query.setParameter("diaTrabajoId", diaTrabajoId)
+    //     query.setParameter("hora", hora)
+    //     
+    //     return query.resultList[0]?: 0
+    // }
     
 } 

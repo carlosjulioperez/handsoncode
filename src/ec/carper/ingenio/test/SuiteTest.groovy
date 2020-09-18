@@ -13,7 +13,6 @@ class SuiteTest extends TestCase{
        suite.addTestSuite(AreaTest.class)
        suite.addTestSuite(BrixDensidadTitSusTest.class)
        suite.addTestSuite(BrixDensidadWpTest.class)
-       suite.addTestSuite(MaterialTest.class)
        suite.addTestSuite(ModuloTest.class)
        suite.addTestSuite(ParametroTest.class)
        suite.addTestSuite(TurnoTest.class)
@@ -44,6 +43,9 @@ class SuiteTest extends TestCase{
        suite.addTestSuite(BtuLbBagazoTest.class)
        suite.addTestSuite(Cto24HTest.class)
        suite.addTestSuite(ParoTest.class)
+       
+       //suite.addTestSuite(StockFabricaTest.class)
+       //suite.addTestSuite(StockProcesoTest.class)
 
        return suite
     }

@@ -35,16 +35,16 @@ class FlujoJugoDetalle extends Identifiable {
     @DisplaySize(6)
     Integer fin 
     
-    @DisplaySize(6)
+    @DisplaySize(6) @ReadOnly
     Integer tot
     
-    @DisplaySize(6)
+    @DisplaySize(6) @ReadOnly
     BigDecimal brixJDil
     
-    @Digits(integer=10, fraction=3) @DisplaySize(6)
+    @Digits(integer=10, fraction=3) @DisplaySize(6) @ReadOnly
     BigDecimal p
 
-    @Digits(integer=12, fraction=6) @DisplaySize(6)
+    @Digits(integer=12, fraction=6) @DisplaySize(6) @ReadOnly
     BigDecimal tonJugo
     
 }

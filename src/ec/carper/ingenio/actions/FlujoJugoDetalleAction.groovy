@@ -14,8 +14,16 @@ class FlujoJugoDetalleAction extends OnChangePropertyBaseAction{
         String horaS = (String)getView().getValue("horaS")
         getView().setValue("hora", (diaTrabajoId && horaS) ? SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId): null) 
         
-    //     def horaTJClaro = (Timestamp)getView().getValue("horaTJClaro")
-    //     getView().setValue("tJClaro", (diaTrabajoId && horaTJClaro ) ? new TurbiedadDetalle1().getValorTurJClaro(diaTrabajoId, horaTJClaro): null)
+        def ini = getView().getValue("ini")
+        def fin = getView().getValue("fin")
+
+        def brixJDil = SqlUtil.instance.getValorCampo(diaTrabajoId, "Jugo", "jdBri")
+
+        getView().setValue("tot", (ini && fin) ? fin-ini: null)
+        getView().setValue("brixJDil", (ini && fin) ? fin-ini: null)
+
+        //getView().setValue("tot", (ini && fin) ? new TurbiedadDetalle1().getValorTurJClaro(diaTrabajoId, horaTJClaro): null)
+
     }
 
 }

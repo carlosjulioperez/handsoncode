@@ -107,5 +107,16 @@ class SqlUtil{
         def strFecha = fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) 
         return Util.instance.toTimestamp(strFecha+" "+hora+":00")
     }
+    
+    BigDecimal getValorDetalleCampoXHora(String diaTrabajoId, java.sql.Timestamp hora, String maestro, String detalle, String campo){
+        Query query = getManager().createQuery("""
+            SELECT ${campo} FROM ${detalle}
+            WHERE ${maestro}.diaTrabajo.id = :diaTrabajoId
+            AND hora = :hora ORDER BY hora 
+        """)
+        query.setParameter("diaTrabajoId", diaTrabajoId)
+        query.setParameter("hora", hora)
+        return query.resultList[0]?: 0
+    }
 
 }

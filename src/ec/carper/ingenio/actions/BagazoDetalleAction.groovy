@@ -50,6 +50,7 @@ class BagazoDetalleAction extends OnChangePropertyBaseAction{
         BigDecimal porcFibra = (BigDecimal)getView().getValue("porcFibra")
         getView().setValue("porcSacarosa", (polReal && wH2O && wBagazo && porcFibra) ? Calculo.instance.getPorcSacarosa(polReal, wBagazo, wH2O, porcFibra, 2): null)
 
-        getView().setValue("porcSacJR", (diaTrabajoId && horaPorcSacJR) ? Calculo.instance.redondear(new JugoDetalle().getPorcSacJR(diaTrabajoId, horaPorcSacJR), 2): null)
+        // getView().setValue("porcSacJR", (diaTrabajoId && horaPorcSacJR) ? Calculo.instance.redondear(new JugoDetalle().getPorcSacJR(diaTrabajoId, horaPorcSacJR), 2): null)
+        getView().setValue("porcSacJR", (diaTrabajoId && horaPorcSacJR) ? Calculo.instance.redondear( SqlUtil.instance.getValorDetalleCampoXHora(diaTrabajoId, Util.instance.toTimestamp(hora), "jugo", "JugoDetalle", "jrSac") , 2): null)
     }
 }

@@ -56,7 +56,7 @@ Proyecto
 	* Tests:
 		$ ant test -Dnombre_clase=QueryTest
 		$ ant test -Dnombre_clase=Cto24HTest
-		$ ant test -Dnombre_clase=ParametroTest
+		$ ant test -Dnombre_clase=TurbiedadDetalle1Test
 
 	* i18n:
 		https://sourceforge.net/p/openxava/discussion/419690/thread/34508380/

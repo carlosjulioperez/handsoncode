@@ -1,4 +1,7 @@
 package ec.carper.ingenio.test
+
+import ec.carper.ingenio.model.TurbiedadDetalle1
+import ec.carper.ingenio.util.*
  
 import java.sql.Timestamp
 
@@ -7,9 +10,6 @@ import org.openxava.jpa.*
 import org.openxava.model.*
 import static org.openxava.jpa.XPersistence.*
 import org.openxava.tests.*
-
-import ec.carper.ingenio.model.TurbiedadDetalle1
-import ec.carper.ingenio.util.Util
 
 class TurbiedadDetalle1Test extends ModuleTestBase {
 
@@ -22,7 +22,8 @@ class TurbiedadDetalle1Test extends ModuleTestBase {
     void testGetTurJClaro(){
         String hora      = "2019-08-07 09:00:00"
        
-        def turJClaro = new TurbiedadDetalle1().getValorTurJClaro(Aux.instance.diaTrabajoId, Util.instance.toTimestamp(hora))
+        //def turJClaro = new TurbiedadDetalle1().getValorTurJClaro(Aux.instance.diaTrabajoId, Util.instance.toTimestamp(hora))
+        def turJClaro = SqlUtil.instance.getValorDetalleCampoXHora(Aux.instance.diaTrabajoId, Util.instance.toTimestamp(hora), "turbiedad", "TurbiedadDetalle1", "turJClaro")
         println turJClaro 
     }
 }

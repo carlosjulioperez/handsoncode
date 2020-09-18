@@ -85,19 +85,20 @@ class JugoDetalle extends Identifiable {
     @ReadOnly @DisplaySize(6)
     BigDecimal jfPur
     
-    BigDecimal getPorcSacJR(String diaTrabajoId, java.sql.Timestamp hora){
-        BigDecimal valor = 0
-
-        Query query = getManager().createQuery("SELECT jrSac FROM JugoDetalle WHERE jugo.diaTrabajo.id = :diaTrabajoId AND hora = :hora ORDER BY hora")
-        query.setParameter("diaTrabajoId", diaTrabajoId)
-        query.setParameter("hora", hora)
-        
-        // TODO: Validación de nulo en primer elemento de listas
-        // List records = query.resultList
-        // println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-        // println records
-        // valor = records[0]?: 0
-        return query.resultList[0]?: 0
-    }
+    //TODO reeemplazar con getValorDetalleCampoXHora()
+    // BigDecimal getPorcSacJR(String diaTrabajoId, java.sql.Timestamp hora){
+    //     BigDecimal valor = 0
+    //
+    //     Query query = getManager().createQuery("SELECT jrSac FROM JugoDetalle WHERE jugo.diaTrabajo.id = :diaTrabajoId AND hora = :hora ORDER BY hora")
+    //     query.setParameter("diaTrabajoId", diaTrabajoId)
+    //     query.setParameter("hora", hora)
+    //     
+    //     // TODO: Validación de nulo en primer elemento de listas
+    //     // List records = query.resultList
+    //     // println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    //     // println records
+    //     // valor = records[0]?: 0
+    //     return query.resultList[0]?: 0
+    // }
 
 }
