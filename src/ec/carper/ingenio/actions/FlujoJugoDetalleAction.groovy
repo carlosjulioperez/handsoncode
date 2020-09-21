@@ -14,16 +14,22 @@ class FlujoJugoDetalleAction extends OnChangePropertyBaseAction{
         String horaS = (String)getView().getValue("horaS")
         getView().setValue("hora", (diaTrabajoId && horaS) ? SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId): null) 
         
-        def ini = getView().getValue("ini")
-        def fin = getView().getValue("fin")
+        String horaSBrixJDil = (String)getView().getValue("horaSBrixJDil")
+        getView().setValue("horaBrixJDil", (diaTrabajoId && horaSBrixJDil) ? SqlUtil.instance.obtenerFecha(horaSBrixJDil, diaTrabajoId): null ) 
+        
+        def ini          = getView().getValue("ini")
+        def fin          = getView().getValue("fin")
+        def horaBrixJDil = getView().getValue("horaBrixJDil")
 
-        def brixJDil = SqlUtil.instance.getValorCampo(diaTrabajoId, "Jugo", "jdBri")
+        getView().setValue("tot", (ini>=0 && fin>=0) ? fin-ini: null)
+        getView().setValue("brixJDil", horaBrixJDil ? SqlUtil.instance.getValorDetalleCampoXHora(diaTrabajoId, horaBrixJDil, "jugo", "JugoDetalle", "jdBri") : null)
+        
+        def brixJDil = getView().getValue("brixJDil")
+        getView().setValue("p", brixJDil>=0 ? new BrixDensidadWp().getP(brixJDil): null)
 
-        getView().setValue("tot", (ini && fin) ? fin-ini: null)
-        getView().setValue("brixJDil", (ini && fin) ? fin-ini: null)
-
-        //getView().setValue("tot", (ini && fin) ? new TurbiedadDetalle1().getValorTurJClaro(diaTrabajoId, horaTJClaro): null)
-
+        def tot = getView().getValue("tot")
+        def p   = getView().getValue("p")
+        getView().setValue("tonJugo", (tot>=0 && p>=0) ? Calculo.instance.redondear(tot*p/1000,6) : null)
     }
 
 }

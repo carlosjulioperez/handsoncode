@@ -24,8 +24,10 @@ import java.time.LocalDate
 """)
 class FlujoJugo extends Formulario {
 
-    BigDecimal tot
+    Integer tot
     BigDecimal brixJDil
+    
+    @Digits(integer=12, fraction=6)
     BigDecimal tonJugo
 
     @OneToMany (mappedBy="flujoJugo", cascade=CascadeType.ALL) @XOrderBy("hora")

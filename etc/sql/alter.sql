@@ -109,5 +109,5 @@
 -- DROP TABLE ingenio.stockfabricadetalle10;
 -- DROP TABLE ingenio.stockfabrica;
 
-DROP TABLE ingenio.stockprocesopdetalle;
-DROP TABLE ingenio.stockprocesop;
+DROP TABLE ingenio.flujojugodetalle;
+DROP TABLE ingenio.flujojugo;

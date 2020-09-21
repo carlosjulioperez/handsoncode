@@ -15,8 +15,11 @@ import ec.carper.ingenio.actions.*
 @Entity
 @View(members="""#
     horaS, hora;
-    ini, fin, tot;
-    brixJDil, p, tonJugo
+    ini, fin;
+    tot;
+    horaSBrixJDil, horaBrixJDil;
+    brixJDil;
+    p, tonJugo
 """)
 class FlujoJugoDetalle extends Identifiable {
     
@@ -29,14 +32,20 @@ class FlujoJugoDetalle extends Identifiable {
     @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
-    @DisplaySize(6)
+    @DisplaySize(6) @OnChange(FlujoJugoDetalleAction.class)
     Integer ini
     
-    @DisplaySize(6)
+    @DisplaySize(6) @OnChange(FlujoJugoDetalleAction.class)
     Integer fin 
     
     @DisplaySize(6) @ReadOnly
     Integer tot
+    
+    @Stereotype("TIME") @Column(length=5) @OnChange(FlujoJugoDetalleAction.class)
+    String horaSBrixJDil
+
+    @Stereotype("DATETIME") @ReadOnly
+    java.sql.Timestamp horaBrixJDil
     
     @DisplaySize(6) @ReadOnly
     BigDecimal brixJDil
@@ -44,7 +53,7 @@ class FlujoJugoDetalle extends Identifiable {
     @Digits(integer=10, fraction=3) @DisplaySize(6) @ReadOnly
     BigDecimal p
 
-    @Digits(integer=12, fraction=6) @DisplaySize(6) @ReadOnly
+    @Digits(integer=12, fraction=6) @DisplaySize(12) @ReadOnly
     BigDecimal tonJugo
     
 }
