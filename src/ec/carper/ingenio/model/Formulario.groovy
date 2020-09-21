@@ -28,7 +28,8 @@ class Formulario extends Identifiable{
         def lista = []
         detalle.each {
             def valor = (BigDecimal)Eval.x(it, "x."+propiedad)
-            if (valor >= 0) lista << valor
+            //if (valor >= 0) lista << valor
+            lista << valor
         }
         return lista.size()>0 ? lista.sum().setScale(escala, BigDecimal.ROUND_HALF_UP) : 0
     }
