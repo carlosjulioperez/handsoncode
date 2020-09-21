@@ -184,5 +184,16 @@
     <target name="deleteDatabaseFolder">
         <delete dir="data"/>
 	</target>
+    
+    <property name="backup.dir" value="/home/knoppix/local/respaldo/codigo" />
+	<tstamp>
+		<format property="fecha" pattern="yyyy.MM.dd-HH.mm.ss" locale="es,EC"/>
+	</tstamp>
+	<property name="zip.file" value="${backup.dir}/${ant.project.name}-${fecha}-src.zip" />
+    <target name="zip">
+		<zip destfile="${zip.file}">
+            <fileset dir="." excludes="i18n/portlets, data/, temp/, tests/, xava/dtds/, web/"/>
+		</zip>
+	</target>
 						
 </project>
