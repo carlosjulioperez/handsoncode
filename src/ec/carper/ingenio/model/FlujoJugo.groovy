@@ -13,16 +13,20 @@ import java.time.LocalDate
 
 @Entity
 @Tab(properties="""
-    diaTrabajo.descripcion,
+    diaTrabajo.descripcion, descripcion,
     tot,
     brixJDil,
     tonJugo 
 """)
 @View(members="""
-    diaTrabajo;
+    diaTrabajo, descripcion;
     titFluJugMol { detalle }
 """)
 class FlujoJugo extends Formulario {
+    
+    // Usado para pruebas solamente
+    @Column(length=10)
+    String descripcion 
 
     Integer tot
     BigDecimal brixJDil

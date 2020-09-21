@@ -29,7 +29,8 @@ class FlujoJugoDetalleAction extends OnChangePropertyBaseAction{
 
         def tot = getView().getValue("tot")
         def p   = getView().getValue("p")
-        getView().setValue("tonJugo", (tot>=0 && p>=0) ? Calculo.instance.redondear(tot*p/1000,6) : null)
+        def vTot = (tot != null) ? Math.abs(tot): 0
+        getView().setValue("tonJugo", (p>=0) ? Calculo.instance.redondear(tot*p/1000,6) : null)
     }
 
 }
