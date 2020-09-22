@@ -24,14 +24,13 @@ class Formulario extends Identifiable{
         return lista.size()>0 ? ( lista.sum() / lista.size() ).setScale(escala, BigDecimal.ROUND_HALF_UP) : 0
     }
 
-    BigDecimal getSuma(def detalle, String propiedad, int escala){
+    BigDecimal getSuma(def detalle, String propiedad){
         def lista = []
         detalle.each {
             def valor = (BigDecimal)Eval.x(it, "x."+propiedad)
-            //if (valor >= 0) lista << valor
-            lista << valor
+            if (valor != null) lista << valor
         }
-        return lista.size()>0 ? lista.sum().setScale(escala, BigDecimal.ROUND_HALF_UP) : 0
+        return lista.size()>0 ? lista.sum() : 0
     }
 
 }

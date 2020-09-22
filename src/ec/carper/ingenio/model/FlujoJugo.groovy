@@ -48,11 +48,11 @@ class FlujoJugo extends Formulario {
     }
     
     BigDecimal getSumTot(){
-        return super.getSuma(detalle, "tot", 2)
+        return super.getSuma(detalle, "tot")
     }
     
     BigDecimal getSumTonJugo(){
-        return super.getSuma(detalle, "tonJugo", 6)
+        return super.getSuma(detalle, "tonJugo")
     }
 
     void actualizar() throws ValidationException{

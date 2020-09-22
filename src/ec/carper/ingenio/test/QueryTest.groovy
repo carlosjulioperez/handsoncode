@@ -33,9 +33,9 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getValorDetalleCampoXHora()
+        //getValorDetalleCampoXHora()
         //getValoresStockProceso()
-        //getTotalesStockFabrica()
+        getTotalesStockFabrica()
         //getValorCampo()
         //getSumaValorDetallesPorIndicador()
         //getDetallePorIndicador()
@@ -284,7 +284,7 @@ class QueryTest extends ModuleTestBase {
     }
 
     def getSumaValores(def desde, def hasta, String indicador){
-        def padreId = "ff8080817438ed5b0174391063400231"
+        def padreId = "ff808081745219640174521b44410000"
         def campoFk = "stockFabrica.id"
         def (suma, i) = [0, 0]
         (desde..hasta).each{
@@ -297,6 +297,8 @@ class QueryTest extends ModuleTestBase {
     }
     
     void getTotalesStockFabrica(){
+        // Cambiar id en getSumaValores()
+
         // **************************************************
         // BG149: Prom Solidos (Brix) Total/día
         // Brix:  1..28, 30..38, 40..42, 44..47, 49..49, 51..65
@@ -363,6 +365,10 @@ class QueryTest extends ModuleTestBase {
         def q133 = getSumaValores(67 , 67  , "Sac")
         def u150 = getSumaValores(70 , 70  , "Pza")
 
+        // println ">>> bg151: ${bg151}"
+        // println ">>> q133 : ${q133}"
+        // println ">>> u150 : ${u150}"
+
         def bg155 = Calculo.instance.redondear((q133*(bg151-u150))/(bg151*(q133-u150))*100 , 3)
         
         def bg156 = Calculo.instance.redondear(bg154*bg155/100, 3)
@@ -372,8 +378,12 @@ class QueryTest extends ModuleTestBase {
         
         def u146 = getSumaValores(70 , 70  , "Sac")
         def bg159 = Calculo.instance.redondear(bg158/u146*100 , 3)
+        
+        def d = SqlUtil.instance.getDetallePorIndicador("ff808081745219640174521b44410000", "StockFabricaDetalle73", "stockFabrica.id", "tonAzuDis")
+        def bg142 = d.valor?:0
 
         println ""
+        println ">>> bg142: ${bg142}"
         println ">>> bg147: ${bg147}"
         println ">>> bg149: ${bg149}"
         println ">>> bg150: ${bg150}"
