@@ -44,8 +44,10 @@ class SuiteTest extends TestCase{
        suite.addTestSuite(Cto24HTest.class)
        suite.addTestSuite(ParoTest.class)
        
-       //suite.addTestSuite(StockFabricaTest.class)
-       //suite.addTestSuite(StockProcesoTest.class)
+       //TODO: Probar
+       // suite.addTestSuite(StockFabricaTest.class)
+       // suite.addTestSuite(StockProcesoTest.class)
+       // suite.addTestSuite(FlujoJugoTest.class)
 
        return suite
     }
