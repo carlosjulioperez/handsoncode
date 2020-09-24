@@ -16,7 +16,8 @@ import static org.openxava.jpa.XPersistence.*
 @Tab(properties="diaTrabajo.descripcion, descripcion")
 @View(members="""
     diaTrabajo, descripcion;
-    detalle { detalle1 }
+    titDetalle { detalle1 }
+    titTotales { detalle2 }
 """)
 class StockProceso extends Formulario {
 
@@ -40,6 +41,9 @@ class StockProceso extends Formulario {
         densidad,factor
     """)
     Collection<StockProcesoDetalle1> detalle1
+    
+    @OneToMany (mappedBy="stockProceso", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
+    Collection<StockProcesoDetalle2> detalle2
     
     BigDecimal getSumTonBrix() {
         // println ">>>id: ${this.id}"
@@ -78,6 +82,13 @@ class StockProceso extends Formulario {
                 def d = new StockProcesoDetalle1(stockProceso: stockProceso, orden: it.orden, material: it.material)
                 getManager().persist(d)
             }
+
+            lista = getManager().createQuery("FROM StockProcesoPDetalle2 WHERE stockProcesoP.id = 1 ORDER BY orden").getResultList()
+            lista.each{
+                def d = new StockProcesoDetalle2(stockProceso: stockProceso, orden: it.orden, material: it.material)
+                getManager().persist(d)
+            }
+
         }catch(Exception ex){
             throw new SystemException("items_no_cargados", ex)
         }

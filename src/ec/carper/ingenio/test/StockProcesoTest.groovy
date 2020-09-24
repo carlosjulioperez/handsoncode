@@ -212,6 +212,14 @@ class StockProcesoTest extends ModuleTestBase {
         execute("Collection.edit" , "row=61,viewObject=xava_view_section0_detalle1"); assertDialog()
         setValue ( "temp" , "35"); execute("Collection.save")
 
+        // Totales
+        execute('Sections.change','activeSection=1')
+        execute('Collection.edit','row=0,viewObject=xava_view_section1_detalle2'); assertDialog()
+        setValue ("volumen1" , "1207"); setValue ("eq" , "4"); execute("Collection.save")
+
+        execute('Collection.edit','row=1,viewObject=xava_view_section1_detalle2'); assertDialog()
+        setValue ("volumen1" , "423");  setValue ("eq" , "1"); execute("Collection.save")
+
         // assertValueInCollection("detalle1" , 0 , 2, "3.050") 
         // assertValueInCollection("detalle1" , 1 , 2, "5.650") 
 
