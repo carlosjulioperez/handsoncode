@@ -10,9 +10,14 @@
 -- WHERE    d.material_id = m.id
 -- ORDER BY orden;
 --
-select i.descripcion, valor, i.campo, modificable
-from ingenio.stockfabricadetalle73 d, ingenio.indicador i
-where d.indicador_id = i.id
-order by orden;
+-- select i.descripcion, valor, i.campo, modificable
+-- from ingenio.stockfabricadetalle73 d, ingenio.indicador i
+-- where d.indicador_id = i.id
+-- order by orden;
 
 -- select * from ingenio.jugodetalle;
+
+SELECT   orden, m.id, m.descripcion, m.campo
+FROM     ingenio.blcdetalle1 d, ingenio.material m
+WHERE    d.material_id = m.id
+ORDER BY orden;

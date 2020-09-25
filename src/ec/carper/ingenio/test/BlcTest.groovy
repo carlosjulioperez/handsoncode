@@ -24,7 +24,7 @@ class BlcTest extends ModuleTestBase {
         execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila
         assertValue("descripcion", "JUNIT")
         execute    ("Blc.cargarItems")
-        assertCollectionRowCount("detalle1", 10)
+        assertCollectionRowCount("detalle1", 13)
         execute    ("Blc.consultarDatos")
         assertNoErrors()
 
@@ -121,7 +121,7 @@ class BlcTest extends ModuleTestBase {
         assertValueInCollection("detalle102" , 2 , 2 , "0.04")
 
         // FINALIZAR
-        execute    ("CRUD.delete")
+        //execute    ("CRUD.delete")
         assertNoErrors()
     }
 }

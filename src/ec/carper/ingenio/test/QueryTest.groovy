@@ -35,8 +35,8 @@ class QueryTest extends ModuleTestBase {
     void test() throws Exception {
         //getValorDetalleCampoXHora()
         //getValoresStockProceso()
-        getTotalesStockFabrica()
-        //getValorCampo()
+        //getTotalesStockFabrica()
+        getValorCampo()
         //getSumaValorDetallesPorIndicador()
         //getDetallePorIndicador()
         //getCampoPorId()
@@ -551,8 +551,18 @@ class QueryTest extends ModuleTestBase {
         println SqlUtil.instance.getValorDetalleCampo(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle1" , "1")
 
         def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle1", "tanJugDil")
-        if (d)
-            println ">>> ${d.factor}"
+        if (d) println ">>> ${d.factor}"
+
+        d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "aguaM")
+        if (d) println ">>> StockProcesoDetalle2.peso: ${d.peso}"
+        
+        d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "blc", "BlcDetalle1", "aguaM")
+        println ">>> d: ${d}"
+        if (d){
+            d.setValor(100)
+            d.setCantidad(20)
+            getManager().persist(d)
+        }
 
     }
 

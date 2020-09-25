@@ -17,7 +17,7 @@ import static org.openxava.jpa.XPersistence.*
     diaTrabajo, descripcion;
     titDatDia { detalle1 }
     titTie { 
-        detalleParo
+        consultaParo
     }
     titVarPri {
         cana { 
@@ -46,6 +46,7 @@ class Blc extends Formulario {
     @Column(length=10)
     String descripcion 
 
+    @EditAction("Blc.editDetail")
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL)
     @XOrderBy("orden") @EditOnly
     Collection<BlcDetalle1>detalle1
@@ -66,7 +67,7 @@ class Blc extends Formulario {
     @ListProperties(""" 
         area.descripcion,
         totalParo [ blc.tiempoPerdidoTotal, blc.tiempoMoliendaReal, blc.fraccionTiempo, blc.rataMolienda, blc.porcTot ] """)
-    Collection<ParoTotal> detalleParo 
+    Collection<ParoTotal> consultaParo 
     
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
     Collection<BlcDetalle21> detalle21
@@ -116,7 +117,7 @@ class Blc extends Formulario {
             // DATOSDIA
             def lista = getManager().createQuery("FROM BlcPDetalle1 WHERE blcP.id = 1 ORDER BY orden").getResultList()
             lista.each{
-                def d = new BlcDetalle1(blc: blc, orden: it.orden, material: it.material, unidad: it.unidad, unidad2: it.unidad2)
+                def d = new BlcDetalle1(blc: blc, orden: it.orden, material: it.material, unidad: it.unidad, unidad2: it.unidad2, modificable: it.modificable)
                 getManager().persist(d)
             }
 
@@ -222,12 +223,12 @@ class Blc extends Formulario {
     }
     
     def consultarParoTotal(){
-        detalleParo = new ArrayList<ParoTotal>();
+        consultaParo = new ArrayList<ParoTotal>();
         def lista = getManager().createQuery("FROM Paro where diaTrabajo.id = :id")
                                 .setParameter("id", diaTrabajo.id).resultList
         lista.each{
             it.total.each{
-                detalleParo.add( new ParoTotal (area: it.area, totalParo: it.totalParo) )
+                consultaParo.add( new ParoTotal (area: it.area, totalParo: it.totalParo) )
             }
         }
         // Actualizar los totales del paro en la cabecera

@@ -1,20 +1,37 @@
 package ec.carper.ingenio.model
 
+import ec.carper.ingenio.actions.*
+
 import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.model.*
 
 @Entity
-@View(members="cantidad,unidad2", extendsView="super.DEFAULT")
-class BlcDetalle1 extends BlcDetalle{
+@View(members="orden,material;valor,unidad;cantidad,unidad2,modificable")
+class BlcDetalle1 extends Identifiable{
     
     @ManyToOne
     Blc blc
     
-    @DisplaySize(5)
+    @Column(length=2) @ReadOnly
+    int orden
+   
+    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @ReadOnly
+    Material material
+    
+    @OnChange(BlcDetalle1Action.class) @DisplaySize(5)
+    BigDecimal valor 
+   
+    @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @ReadOnly
+    Unidad unidad
+    
+    @DisplaySize(5) @ReadOnly
     BigDecimal cantidad 
 
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @ReadOnly
     Unidad unidad2
+    
+    @ReadOnly
+    boolean modificable
     
 }

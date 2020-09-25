@@ -62,11 +62,11 @@
     <controller name="Blc">
         <extends controller="Ingenio"/>
         <action name="cargarItems" mode="detail" 
-        	class="ec.carper.ingenio.actions.BlcCargarItemsAction">
-    	</action>
+            class="ec.carper.ingenio.actions.BlcCargarItemsAction"/>
         <action name="consultarDatos" mode="detail" 
-        	class="ec.carper.ingenio.actions.BlcConsultarDatosAction">
-    	</action>
+            class="ec.carper.ingenio.actions.BlcConsultarDatosAction"/>
+		<action name="editDetail" hidden="true" image="edit.gif"
+			class="ec.carper.ingenio.actions.BlcEditDetail1Action"/>
     </controller>   
 
     <controller name="StockFabrica">
@@ -81,8 +81,6 @@
         <extends controller="Ingenio"/>
         <action name="cargarItems" mode="detail" 
             class="ec.carper.ingenio.actions.StockProcesoCargarItemsAction"/>
-		<action name="editDetail" hidden="true" image="edit.gif"
-			class="ec.carper.ingenio.actions.StockProcesoEditDetailAction"/>
     </controller>   
 
 </controllers>
