@@ -118,5 +118,14 @@ class SqlUtil{
         query.setParameter("hora", hora)
         return query.resultList[0]?: 0
     }
+                
+    boolean isCerrado(def modulo, def id){
+        return (boolean) getManager()
+            .createQuery("""
+                SELECT d.cerrado 
+                FROM ${modulo} o, DiaTrabajo d
+                WHERE o.id = :id AND o.diaTrabajo.id = d.id
+            """).setParameter("id", id).getSingleResult()
+    }
 
 }

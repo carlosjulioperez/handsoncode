@@ -1,10 +1,11 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.model.*
+import ec.carper.ingenio.util.*
+
 import org.openxava.actions.*
 import org.openxava.jpa.*
 import org.openxava.model.*
-import ec.carper.ingenio.model.*
 
 class Cto24HCargarDetallesAction extends ViewBaseAction implements IHideActionAction{
 
@@ -20,6 +21,15 @@ class Cto24HCargarDetallesAction extends ViewBaseAction implements IHideActionAc
         MapFacade.setValues("Cto24H",
             getView().getKeyValues(), getView().getValues()
         )
+        
+        if ( SqlUtil.instance.isCerrado("Cto24H", id) ){
+            addMessage ("dia_trabajo_cerrado_administrador")
+            resetDescriptionsCache()
+            getView().clear()
+            getView().setEditable(false); // Dejamos la vista como no editable
+            hideAction = false
+            return
+        }
 
         Cto24H cto24H = XPersistence.getManager().find( Cto24H.class, getView().getValue("id") )
         if (cto24H.detallesCargados){

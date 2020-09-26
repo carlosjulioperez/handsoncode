@@ -1,8 +1,14 @@
+2020-09-25 
+	Renombrar InicioZafra a Zafra
+	Eliminar Preferencias
+
 2020-09-24 
 	Rediseñar BlcDetalle1
 	BlcDetalle1 campo editable
+	BLC ingresar datos como StockFabrica
 
 2020-09-23 
+	Agregar totales en StockProceso
 	Agregar totales en StockProcesoP
 	Plantilla para BLC en Datos Día
 

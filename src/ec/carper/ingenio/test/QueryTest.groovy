@@ -33,10 +33,12 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
+        getDiaTrabajoCerrado()
+        //getValoresBlc()
         //getValorDetalleCampoXHora()
         //getValoresStockProceso()
         //getTotalesStockFabrica()
-        getValorCampo()
+        //getValorCampo()
         //getSumaValorDetallesPorIndicador()
         //getDetallePorIndicador()
         //getCampoPorId()
@@ -50,6 +52,15 @@ class QueryTest extends ModuleTestBase {
         //getTrashCanaDiaTrabajoCerrado()
         //getTrashCanaDetalle2()
         //getNativo()
+    }
+
+    def getDiaTrabajoCerrado(){
+        println "\n>>> ¿DiaTrabajoCerrado?"
+        println "Cto24H       : " + SqlUtil.instance.isCerrado("Cto24H"       , "ff80808173e8b2c00173e8b80cab0007")
+        println "Blc          : " + SqlUtil.instance.isCerrado("Blc"          , "ff80808174c721790174c72a10c90000")
+        println "StockFabrica : " + SqlUtil.instance.isCerrado("StockFabrica" , "ff808081745219640174521b44410000")
+        println "StockProceso : " + SqlUtil.instance.isCerrado("StockProceso" , "ff80808174bd90450174bd9ee9310000")
+
     }
 
     def getValorDetalleCampoXHora(){
@@ -552,18 +563,53 @@ class QueryTest extends ModuleTestBase {
 
         def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle1", "tanJugDil")
         if (d) println ">>> ${d.factor}"
+    }
 
-        d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "aguaM")
-        if (d) println ">>> StockProcesoDetalle2.peso: ${d.peso}"
-        
-        d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "blc", "BlcDetalle1", "aguaM")
-        println ">>> d: ${d}"
-        if (d){
-            d.setValor(100)
-            d.setCantidad(20)
-            getManager().persist(d)
+    void getValoresBlc(){
+        def cdV = 1259.19
+        def (amV, jdV, jdC, bcV, bcC, bdV, bdC, cV, cC, mfV, mfC) = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        def (abV, abC, cnV, jnV, jnC, mV, mC, hV , sdV, sdC) = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+        println "\n>>> BLC"
+        def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "aguaM")
+        if (d) amV = d.peso
+
+        d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "jDiluidoBr")
+        if (d) {
+            jdV = d.volumen2
+            jdC = d.peso
         }
 
+        bdV = 292
+        cV  = 35.93
+
+        cnV = cdV - hV
+        bcV = cnV + amV - jdC
+        bcC = cdV ? Calculo.instance.redondear(bcV/cdV*100, 2): 0
+        bdC = cdV ? Calculo.instance.redondear(bdV*100/cdV, 2): 0
+        cC  = cdV ? Calculo.instance.redondear(cV*100/cdV, 2): 0
+
+        println "CAÑA/DIA           : ${cdV}"
+        println "AGUA MACERACION    : ${amV}"
+        println "JUGO DILUIDO (BR)  : ${jdV} ${jdC}"
+        println "BAGAZO (CALCULADO) : ${bcV} ${bcC}"
+        println "BAGAZO (DIRECTO)   : ${bdV} ${bdC}"
+        println "CACHAZA            : ${cV}  ${cC}"
+        println "MIEL FINAL MELAZA  : ${mfV} ${mfC}"
+        println "AZUCAR BLANCA      : ${abV} ${abC}"
+        println "CAÑA NETA          : ${cnV}" 
+        println "JUGO NETO          : ${jnV} ${jnC}"
+        println "MELADURA           : ${mV}  ${mC}"
+        println "HOJA DE CAÑA       : ${hV}  ${}"
+        println "SACOS DISUELTOS    : ${sdV} ${sdC}"
+        
+        // d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "blc", "BlcDetalle1", "aguaM")
+        // println ">>> d: ${d}"
+        // if (d){
+        //     d.setValor(100)
+        //     d.setCantidad(20)
+        //     getManager().persist(d)
+        // }
     }
 
     void getParoTotal(){

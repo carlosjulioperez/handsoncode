@@ -24,7 +24,7 @@ class Cto24HTest extends ModuleTestBase {
 
         execute("List.filter");
         printHtml()
-        execute("List.viewDetail", "row=1") // Para test con BD datos de prueba
+        execute("List.viewDetail", "row=0") // Para test con BD datos de prueba
         assertValue("descripcion", "JUNIT")
         execute    ("Cto24H.cargarDetalles")
         // Detalle 1
@@ -204,7 +204,7 @@ class Cto24HTest extends ModuleTestBase {
         //assertTotalInCollection("detalle8" , 0 , "porc" , "95.00")
 
         // FINALIZAR
-        execute    ("CRUD.delete")
+        //execute    ("CRUD.delete")
         assertNoErrors()
 
     }
