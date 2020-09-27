@@ -1,10 +1,11 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.model.*
+import ec.carper.ingenio.util.*
+
 import org.openxava.actions.*
 import org.openxava.jpa.*
 import org.openxava.model.*
-import ec.carper.ingenio.model.*
 
 class StockFabricaCargarItemsAction extends ViewBaseAction implements IHideActionAction{
 
@@ -20,6 +21,15 @@ class StockFabricaCargarItemsAction extends ViewBaseAction implements IHideActio
         MapFacade.setValues("StockFabrica",
             getView().getKeyValues(), getView().getValues()
         )
+
+        if ( SqlUtil.instance.isCerrado("StockFabrica", id) ){
+            addMessage ("dia_trabajo_cerrado_administrador")
+            resetDescriptionsCache()
+            getView().clear()
+            getView().setEditable(false); // Dejamos la vista como no editable
+            hideAction = false
+            return
+        }
 
         StockFabrica stockFabrica = XPersistence.getManager().find( StockFabrica.class, getView().getValue("id") )
         if (stockFabrica.itemsCargados){
