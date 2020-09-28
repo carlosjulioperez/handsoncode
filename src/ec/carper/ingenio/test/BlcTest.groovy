@@ -13,14 +13,16 @@ class BlcTest extends ModuleTestBase {
         
         execute("CRUD.new")
         
-        setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
+        //setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
+        setValue("diaTrabajo.id" ,"ff80808174d2eb750174d3129fca0001")
         setValue("descripcion"   , "JUNIT")
         execute ("Ingenio.save")
         assertNoErrors()
         
-        setConditionValues("", "JUNIT"); // Establece los valores para filtrar los datos
-        setConditionComparators("=", "contains_comparator"); // Pone los comparadores para filtrar los datos
-        execute("List.filter"); 
+        setConditionComparators(["contains_comparator"])
+        setConditionValues(["JUNIT"])
+        execute("List.filter") 
+        printHtml() 
         execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila
         assertValue("descripcion", "JUNIT")
         execute    ("Blc.cargarItems")

@@ -33,7 +33,8 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getDiaTrabajoCerrado()
+        getSum()
+        //getDiaTrabajoCerrado()
         //getValoresBlc()
         //getValorDetalleCampoXHora()
         //getValoresStockProceso()
@@ -52,6 +53,28 @@ class QueryTest extends ModuleTestBase {
         //getTrashCanaDiaTrabajoCerrado()
         //getTrashCanaDetalle2()
         //getNativo()
+    }
+
+    def getSum(){
+        // https://www.w3resource.com/sql/aggregate-functions/sum-with-group-by.php
+        // https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/jpql-group-by-having.html
+        def diaFin = 4
+        Query query = getManager().createQuery("""
+            SELECT  d.material.id, SUM(d.valor)
+            FROM    BlcDetalle1 d, Blc c, Parametro p, Zafra z, DiaTrabajo dT
+            WHERE   d.blc.id            = c.id
+                    AND p.valor         = z.codigo
+                    AND p.nombre        = 'ZAFRA_VIGENTE'
+                    AND c.diaTrabajo.id = dT.id
+                    AND dT.numeroDia BETWEEN z.diaTrabajoInicio.numeroDia AND :diaFin
+            GROUP BY d.material.id ORDER BY d.material.id
+        """)
+        query.setParameter("diaFin", diaFin)
+        println "\nBLC valores acumulados:"
+        query.resultList.each{
+            println ">>> material: ${it[0]}, suma: ${it[1]}"
+        }
+
     }
 
     def getDiaTrabajoCerrado(){

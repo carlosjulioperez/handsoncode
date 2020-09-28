@@ -1,3 +1,12 @@
+2020-09-27 
+	BlcDetalle1 sumatoria por material (día anterior)
+	Determinar campos de excel BLC
+	Agregar parámetro ZAFRA_VIGENTE
+	Agregar Zafra.codigo (int)
+
+2020-09-26 
+	Impedir CargarItems en DiaTrabajo cerrado
+
 2020-09-25 
 	Renombrar InicioZafra a Zafra
 	Eliminar Preferencias

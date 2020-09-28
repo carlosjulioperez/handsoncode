@@ -7,6 +7,9 @@ import org.openxava.model.*
 
 @Entity
 class Zafra extends Identifiable{
+    
+    @Column(length=10) @Required
+    String codigo 
 
     @Column(length=50) @Required
     String descripcion

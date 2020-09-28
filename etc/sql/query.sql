@@ -17,7 +17,7 @@
 
 -- select * from ingenio.jugodetalle;
 
-SELECT   orden, m.id, m.descripcion, m.campo
+SELECT   orden, m.id, m.descripcion, m.campo, valor
 FROM     ingenio.blcdetalle1 d, ingenio.material m
 WHERE    d.material_id = m.id
 ORDER BY orden;

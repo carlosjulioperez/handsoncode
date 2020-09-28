@@ -12,6 +12,8 @@ class DiaTrabajoTest extends ModuleTestBase {
     // 07/08/2019
     // https://www.javatpoint.com/java-localdate
     // https://mkyong.com/java8/java-8-convert-localdatetime-to-timestamp/
+    // https://thorben-janssen.com/persist-localdate-localdatetime-jpa/
+    // https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/between-clause.html
     public void test(){
         def fecha = LocalDate.of(2019, 8, 7)
     }
