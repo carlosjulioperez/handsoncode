@@ -14,7 +14,7 @@ class BlcTest extends ModuleTestBase {
         execute("CRUD.new")
         
         //setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
-        setValue("diaTrabajo.id" ,"ff80808174d2eb750174d3129fca0001")
+        setValue("diaTrabajo.id" ,"ff80808174d2eb750174d3096a920000")
         setValue("descripcion"   , "JUNIT")
         execute ("Ingenio.save")
         assertNoErrors()
@@ -64,8 +64,8 @@ class BlcTest extends ModuleTestBase {
         assertValueInCollection("detalle4" , 0 , 2 , "86.25")
         assertValueInCollection("detalle4" , 1 , 2 , "102.00")
         assertValueInCollection("detalle4" , 2 , 2 , "118.26")
-        assertValueInCollection("detalle4" , 3 , 2 , "0.00")
-        assertValueInCollection("detalle4" , 4 , 2 , "0.00")
+        assertValueInCollection("detalle4" , 3 , 2 , "100.00")
+        assertValueInCollection("detalle4" , 4 , 2 , "0.06")
 
         // Jugo Diluido
         execute("Sections.change", "activeSection=3,viewObject=xava_view_section2")
@@ -106,7 +106,7 @@ class BlcTest extends ModuleTestBase {
         assertCollectionRowCount("detalle9", 3)
         assertValueInCollection("detalle9" , 0 , 2 , "2.69")
         assertValueInCollection("detalle9" , 1 , 2 , "0.00")
-        assertValueInCollection("detalle9" , 2 , 2 , "0.00")
+        assertValueInCollection("detalle9" , 2 , 2 , "42.86")
 
         // AzucarGranel y Grasshoper
         execute("Sections.change", "activeSection=8,viewObject=xava_view_section2")

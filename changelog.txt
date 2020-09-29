@@ -1,3 +1,7 @@
+2020-09-28 
+	Query para consulta valores BLC acumulados por material
+	Agregar columna acumulado en BlcDetalle1
+
 2020-09-27 
 	BlcDetalle1 sumatoria por material (día anterior)
 	Determinar campos de excel BLC

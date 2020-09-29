@@ -37,6 +37,7 @@ case $opt in
 			;;
 		"unit-test")
 			ant test -Dnombre_clase=BlcTest
+			#ant test -Dnombre_clase=Cto24HTest
 			;;
 		"suite-test")
 			ant test -Dnombre_clase=SuiteTest

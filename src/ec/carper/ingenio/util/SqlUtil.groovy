@@ -128,4 +128,19 @@ class SqlUtil{
             """).setParameter("id", id).getSingleResult()
     }
 
+    BigDecimal getValMatBlcAcu(def materialId, def diaFin){
+        Query query = getManager().createQuery("""
+            SELECT  SUM(d.valor)
+            FROM    BlcDetalle1 d, Blc c, Parametro p, Zafra z, DiaTrabajo dT
+            WHERE   d.blc.id            = c.id
+                    AND d.material.id   = :materialId 
+                    AND p.valor         = z.codigo
+                    AND p.nombre        = 'ZAFRA_VIGENTE'
+                    AND c.diaTrabajo.id = dT.id
+                    AND dT.numeroDia BETWEEN z.diaTrabajoInicio.numeroDia AND :diaFin
+        """)
+        query.setParameter("materialId", materialId)
+        query.setParameter("diaFin", diaFin)
+        return query.resultList[0]?: 0
+    }
 }

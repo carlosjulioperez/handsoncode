@@ -33,13 +33,13 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getSum()
+        //getSum()
         //getDiaTrabajoCerrado()
-        //getValoresBlc()
+        getValoresBlc()
         //getValorDetalleCampoXHora()
         //getValoresStockProceso()
         //getTotalesStockFabrica()
-        //getValorCampo()
+        getValorCampo()
         //getSumaValorDetallesPorIndicador()
         //getDetallePorIndicador()
         //getCampoPorId()
@@ -58,7 +58,7 @@ class QueryTest extends ModuleTestBase {
     def getSum(){
         // https://www.w3resource.com/sql/aggregate-functions/sum-with-group-by.php
         // https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/jpql-group-by-having.html
-        def diaFin = 4
+        def diaFin = 6
         Query query = getManager().createQuery("""
             SELECT  d.material.id, SUM(d.valor)
             FROM    BlcDetalle1 d, Blc c, Parametro p, Zafra z, DiaTrabajo dT
@@ -588,10 +588,14 @@ class QueryTest extends ModuleTestBase {
         if (d) println ">>> ${d.factor}"
     }
 
+    def getCadena(def s1, def s2, def s3){
+        // https://dzone.com/articles/java-string-format-examples
+        return String.format("%12s|"*3, s1, s2, s3)
+    }
     void getValoresBlc(){
-        def cdV = 1259.19
-        def (amV, jdV, jdC, bcV, bcC, bdV, bdC, cV, cC, mfV, mfC) = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        def (abV, abC, cnV, jnV, jnC, mV, mC, hV , sdV, sdC) = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        def (cdV, cdA, amV, amA, jdV, jdC, jdA, bcV, bcC, bcA, bdV, bdC, cV, cC, cA)     = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        def (mfV, mfC, mfA, abV, abC, abA, cnV, cnA, jnV, jnC, jnA, mV , mC, mA, hV, hA) = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        def (sdV, sdC, sdA) = [0,0,0]
 
         println "\n>>> BLC"
         def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "aguaM")
@@ -602,37 +606,58 @@ class QueryTest extends ModuleTestBase {
             jdV = d.volumen2
             jdC = d.peso
         }
-
+        
+        def diaFin = 6
+        cdA = SqlUtil.instance.getValMatBlcAcu("001", diaFin)
+        amA = SqlUtil.instance.getValMatBlcAcu("002", diaFin)
+        jdA = SqlUtil.instance.getValMatBlcAcu("003", diaFin)
+        bcA = SqlUtil.instance.getValMatBlcAcu("004", diaFin)
+        cA  = SqlUtil.instance.getValMatBlcAcu("006", diaFin)
+        mfA = SqlUtil.instance.getValMatBlcAcu("007", diaFin)
+        abA = SqlUtil.instance.getValMatBlcAcu("008", diaFin)
+        cnA = SqlUtil.instance.getValMatBlcAcu("009", diaFin)
+        jnA = SqlUtil.instance.getValMatBlcAcu("010", diaFin)
+        mA  = SqlUtil.instance.getValMatBlcAcu("011", diaFin)
+        hA  = SqlUtil.instance.getValMatBlcAcu("012", diaFin)
+        sdA = SqlUtil.instance.getValMatBlcAcu("013", diaFin)
+        
+        cdV = 1259.19
         bdV = 292
         cV  = 35.93
-
         cnV = cdV - hV
         bcV = cnV + amV - jdC
         bcC = cdV ? Calculo.instance.redondear(bcV/cdV*100, 2): 0
         bdC = cdV ? Calculo.instance.redondear(bdV*100/cdV, 2): 0
         cC  = cdV ? Calculo.instance.redondear(cV*100/cdV, 2): 0
-
-        println "CAÑA/DIA           : ${cdV}"
-        println "AGUA MACERACION    : ${amV}"
-        println "JUGO DILUIDO (BR)  : ${jdV} ${jdC}"
-        println "BAGAZO (CALCULADO) : ${bcV} ${bcC}"
-        println "BAGAZO (DIRECTO)   : ${bdV} ${bdC}"
-        println "CACHAZA            : ${cV}  ${cC}"
-        println "MIEL FINAL MELAZA  : ${mfV} ${mfC}"
-        println "AZUCAR BLANCA      : ${abV} ${abC}"
-        println "CAÑA NETA          : ${cnV}" 
-        println "JUGO NETO          : ${jnV} ${jnC}"
-        println "MELADURA           : ${mV}  ${mC}"
-        println "HOJA DE CAÑA       : ${hV}  ${}"
-        println "SACOS DISUELTOS    : ${sdV} ${sdC}"
+                    
+        def solInsol = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cto24H", "porcInso")
+        jnV = Calculo.instance.redondear(jdC - (jdC*solInsol/100), 2)
+        jnC = cdV ? Calculo.instance.redondear(jnV*100/cdV, 2): 0
         
-        // d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "blc", "BlcDetalle1", "aguaM")
-        // println ">>> d: ${d}"
-        // if (d){
-        //     d.setValor(100)
-        //     d.setCantidad(20)
-        //     getManager().persist(d)
-        // }
+        // =(F10-(F10*D49/100))-((F10-(F10*D49/100))*(1-(H53/G200)))
+        def jcBri   = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jcBri")
+        def mcrBri2 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Meladura", "mcrBri2")
+        mV          = mcrBri2 ? Calculo.instance.redondear( (jdC-(jdC*solInsol/100))-((jdC-(jdC*solInsol/100))*(1-(jcBri/mcrBri2))) , 2): 0
+        mC          = cdV ? Calculo.instance.redondear(mV*100/cdV, 2): 0
+        
+        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonAzuDis")
+        def bg142 = d.valor?:0
+        sdC = bg142
+        sdV = Calculo.instance.redondear(sdC*20,2)
+
+        println "CAÑA/DIA           |" + getCadena(cdV , 0   , cdA)
+        println "AGUA MACERACION    |" + getCadena(amV , 0   , amA)
+        println "JUGO DILUIDO (BR)  |" + getCadena(jdV , jdC , jdA)
+        println "BAGAZO (CALCULADO) |" + getCadena(bcV , bcC , bcA)
+        println "BAGAZO (DIRECTO)   |" + getCadena(bdV , bdC , 0)
+        println "CACHAZA            |" + getCadena(cV  , cC  , cA)
+        println "MIEL FINAL MELAZA  |" + getCadena(mfV , mfC , mfA)
+        println "AZUCAR BLANCA      |" + getCadena(abV , abC , abA)
+        println "CAÑA NETA          |" + getCadena(cnV , 0   , cnA)
+        println "JUGO NETO          |" + getCadena(jnV , jnC , jnA)
+        println "MELADURA           |" + getCadena(mV  , mC  , mA)
+        println "HOJA DE CAÑA       |" + getCadena(hV  , 0   , hA)
+        println "SACOS DISUELTOS    |" + getCadena(sdV , sdC , sdA)
     }
 
     void getParoTotal(){

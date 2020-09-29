@@ -203,6 +203,7 @@ class Cto24HTest extends ModuleTestBase {
         
         //assertTotalInCollection("detalle8" , 0 , "porc" , "95.00")
 
+        execute ("Ingenio.save")
         // FINALIZAR
         //execute    ("CRUD.delete")
         assertNoErrors()
