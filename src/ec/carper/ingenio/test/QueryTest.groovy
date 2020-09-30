@@ -33,8 +33,8 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        //getValoresBlc()
-        getTotalesStockFabrica()
+        getValoresBlc()
+        //getTotalesStockFabrica()
         //getValorCampo()
 
         //getSum()
@@ -696,9 +696,12 @@ class QueryTest extends ModuleTestBase {
         mC          = cdV ? Calculo.instance.redondear(mV*100/cdV, 2): 0
         
         d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonAzuDis")
-        def bg142 = d.valor?:0
-        sdC = bg142
+        sdC = d.valor?:0
         sdV = Calculo.instance.redondear(sdC*20,2)
+        
+        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonMelProTotDia")
+        mfV = d.valor?:0
+        mfC = cdV ? Calculo.instance.redondear(mfV*100/cdV, 2): 0
 
         println "CAÑA/DIA           |" + getCadena(cdV , 0   , cdA)
         println "AGUA MACERACION    |" + getCadena(amV , 0   , amA)

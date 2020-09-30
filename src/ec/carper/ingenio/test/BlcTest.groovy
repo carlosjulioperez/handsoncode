@@ -13,8 +13,8 @@ class BlcTest extends ModuleTestBase {
         
         execute("CRUD.new")
         
-        //setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
-        setValue("diaTrabajo.id" ,"ff80808174d2eb750174d3096a920000")
+        setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
+        // setValue("diaTrabajo.id" ,"ff80808174d2eb750174d3096a920000")
         setValue("descripcion"   , "JUNIT")
         execute ("Ingenio.save")
         assertNoErrors()
@@ -121,8 +121,25 @@ class BlcTest extends ModuleTestBase {
         assertValueInCollection("detalle102" , 0 , 2 , "239.36")
         assertValueInCollection("detalle102" , 1 , 2 , "115.66")
         assertValueInCollection("detalle102" , 2 , 2 , "0.04")
+        
+        execute("Sections.change", "activeSection=3")
+        execute('Collection.new','viewObject=xava_view_section3_detalle11')
+        assertDialog()
+        setValue ( "orden"  , "10")
+        setValue ( "granel" , "1470")
+        setValue ( "k5"     , "1330")
+        // setValue ( "k2"     , "")
+        setValue ( "k1"     , "630")
+        // setValue ( "g500"   , "")
+        setValue ( "g250"   , "504")
+        // setValue ( "arroba" , "")
+        execute("Collection.save")
+        
+        assertValue("calQqTotalesDia", "3,682.00")
+        assertNoErrors()
 
         // FINALIZAR
+        execute ("Ingenio.save")
         //execute    ("CRUD.delete")
         assertNoErrors()
     }

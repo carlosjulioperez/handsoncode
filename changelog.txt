@@ -1,4 +1,6 @@
 2020-09-30 
+	BlcTest: Agregar Pestaña Presentación de azúcar por presentaciones
+	Pestaña Presentación de azúcar por presentaciones
 	Agregar StockFabrica.ax140
 	Ajustar getDetallePorIndicador() en StockFabricaDetalleAction
 	Agregar StockFabrica.ax132

@@ -36,6 +36,7 @@ import static org.openxava.jpa.XPersistence.*
             grasshoper { detalle102 }
         }
     }
+    titProAzuPre { calQqTotalesDia; detalle11 }
 """)
 class Blc extends Formulario {
     
@@ -101,6 +102,42 @@ class Blc extends Formulario {
 
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
     Collection<BlcDetalle102> detalle102
+
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden")
+    @ListProperties(""" 
+        orden,
+        granel [ blc.sumGranel ],
+        k5     [ blc.sumK5 ],
+        k2     [ blc.sumK2 ],
+        k1     [ blc.sumK1 ],
+        g500   [ blc.sumG500   , blc.calG500   ],
+        g250   [ blc.sumG250   , blc.calG250   ],
+        arroba [ blc.sumArroba , blc.calArroba ] """)
+    Collection<BlcDetalle11> detalle11
+    
+    BigDecimal granel
+    BigDecimal k5
+    BigDecimal k2
+    BigDecimal k1
+    BigDecimal g500
+    BigDecimal g250
+    BigDecimal arroba
+    BigDecimal g5002
+    BigDecimal g2502
+    BigDecimal arroba2
+    BigDecimal qqTotalesDia
+
+    BigDecimal getSumGranel()       { return super.getSuma(detalle11, "granel") }
+    BigDecimal getSumK5()           { return super.getSuma(detalle11, "k5") }
+    BigDecimal getSumK2()           { return super.getSuma(detalle11, "k2") }
+    BigDecimal getSumK1()           { return super.getSuma(detalle11, "k1") }
+    BigDecimal getSumG500()         { return super.getSuma(detalle11, "g500") }
+    BigDecimal getSumG250()         { return super.getSuma(detalle11, "g250") }
+    BigDecimal getSumArroba()       { return super.getSuma(detalle11, "arroba") }
+    BigDecimal getCalG500()         { return sumG500/2 }
+    BigDecimal getCalG250()         { return sumG250/2 }
+    BigDecimal getCalArroba()       { return Calculo.instance.redondear(sumArroba*11.34/50, 2) }
+    BigDecimal getCalQqTotalesDia() { return sumGranel + sumK5 + sumK2 + sumK1 + calG500 + calG250 + calArroba }
 
     void cargarItems() throws ValidationException{
         try{
@@ -515,8 +552,17 @@ class Blc extends Formulario {
     void actualizar() throws ValidationException{
         try{
 
-            // this.fldTiempoPerdidoTotal = tiempoPerdidoTotal
-
+            this.granel       = sumGranel
+            this.k5           = sumK5
+            this.k2           = sumK2
+            this.k1           = sumK1
+            this.g500         = sumG500
+            this.g250         = sumG250
+            this.arroba       = sumArroba
+            this.g5002        = calG500
+            this.g2502        = calG250
+            this.arroba2      = calArroba
+            this.qqTotalesDia = calQqTotalesDia
             getManager().persist(this)
 
         }catch(Exception ex){
