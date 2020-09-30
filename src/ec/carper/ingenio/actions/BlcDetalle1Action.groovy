@@ -28,42 +28,45 @@ class BlcDetalle1Action extends OnChangePropertyBaseAction{
             def (mfV, mfC, mfA, abV, abC, abA, cnV, cnA, jnV, jnC, jnA, mV , mC, mA, hV, hA) = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             def (sdV, sdC, sdA) = [0,0,0]
 
-            // Calculos generales 
-            def d = SqlUtil.instance.getDetallePorDTM(diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "aguaM")
-            if (d) amV = d.peso
-
-            d = SqlUtil.instance.getDetallePorDTM(diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "jDiluidoBr")
-            if (d) {
-                jdV = d.volumen2
-                jdC = d.peso
-            }
+            cdA = SqlUtil.instance.getValMatBlcAcu("canaDia"    , diaFin)
+            amA = SqlUtil.instance.getValMatBlcAcu("aguaM"      , diaFin)
+            jdA = SqlUtil.instance.getValMatBlcAcu("jDiluidoBr" , diaFin)
+            bcA = SqlUtil.instance.getValMatBlcAcu("bagazoC"    , diaFin)
+            cA  = SqlUtil.instance.getValMatBlcAcu("cachaza"    , diaFin)
+            mfA = SqlUtil.instance.getValMatBlcAcu("mielFM"     , diaFin)
+            abA = SqlUtil.instance.getValMatBlcAcu("azucarB"    , diaFin)
+            cnA = SqlUtil.instance.getValMatBlcAcu("canaNeta"   , diaFin)
+            jnA = SqlUtil.instance.getValMatBlcAcu("jugoNeto"   , diaFin)
+            mA  = SqlUtil.instance.getValMatBlcAcu("meladura"   , diaFin)
+            hA  = SqlUtil.instance.getValMatBlcAcu("hojaCana"   , diaFin)
+            sdA = SqlUtil.instance.getValMatBlcAcu("sacosD"     , diaFin)
             
-            
-            
-            
-            
-            
-            
-            
+            // Para los valores ingresados por el usuario se usa getView().setValue().
+            // Caso contrario, se modifica directamente en la tabla con set() y get()
             switch (material.campo){
             case "canaDia":
                 cdV = valor
-                cdA = SqlUtil.instance.getValMatBlcAcu(materialId, diaFin)
-                
-                getView().setValue("acumulado",  cdA ? Calculo.instance.redondear(bri*2, 2): null)
-                setValores(material.campo, cdV, 0, cdV + cdA)
-
-                //getView().setValue("briEle",  bri ? Calculo.instance.redondear(bri*2, 2): null)
+                getView().setValue("acumulado", cdV+cdA)
                 break
-
-            // case "aguaM":
-            //     def d = SqlUtil.instance.getDetallePorDTM(diaTrabajoId, "stockProceso", "StockProcesoDetalle2", material.campo)
-            //     if (d) {
-            //         def amA = SqlUtil.instance.getValMatBlcAcu(materialId, diaFin)
-            //         setValores(material.campo, d.peso, 0, amA)
-            //     }
-            //     break
             }
+
+            def campo = "aguaM"
+            def d = SqlUtil.instance.getDetallePorDTM(diaTrabajoId, "stockProceso", "StockProcesoDetalle2", campo)
+            if (d) {
+                amV = d.peso
+                setValores(campo, amV, 0, amV+amA)
+            }
+
+            campo = "jDiluidoBr"
+            d = SqlUtil.instance.getDetallePorDTM(diaTrabajoId, "stockProceso", "StockProcesoDetalle2", campo)
+            if (d) {
+                jdV = d.volumen2
+                jdC = d.peso
+                setValores(campo, jdV, jdC, jdV+jdA)
+            }
+
+            // modelo
+            //setValores(material.campo, cdV, 0, cdV + cdA)
 
         }
     }

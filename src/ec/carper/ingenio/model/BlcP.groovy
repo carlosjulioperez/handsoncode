@@ -6,7 +6,7 @@ import org.openxava.model.*
 
 @Entity
 @View(members="""
-    codigo, descripcion
+    codigo, descripcion;
     titDatDia { detalle1 }
     titVarPri {
         cana { 

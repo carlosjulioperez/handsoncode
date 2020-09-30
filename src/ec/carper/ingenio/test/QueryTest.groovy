@@ -653,14 +653,6 @@ class QueryTest extends ModuleTestBase {
         def (sdV, sdC, sdA) = [0,0,0]
 
         println "\n>>> BLC"
-        def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "aguaM")
-        if (d) amV = d.peso
-
-        d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "jDiluidoBr")
-        if (d) {
-            jdV = d.volumen2
-            jdC = d.peso
-        }
         
         def diaFin = 6
         cdA = SqlUtil.instance.getValMatBlcAcu("canaDia"    , diaFin)
@@ -675,14 +667,27 @@ class QueryTest extends ModuleTestBase {
         mA  = SqlUtil.instance.getValMatBlcAcu("meladura"   , diaFin)
         hA  = SqlUtil.instance.getValMatBlcAcu("hojaCana"   , diaFin)
         sdA = SqlUtil.instance.getValMatBlcAcu("sacosD"     , diaFin)
-        
+       
+        // Cálculos específicos
         cdV = 1259.19
-        bdV = 292
-        cV  = 35.93
+
+        def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "aguaM")
+        if (d) amV = d.peso
+
+        d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "jDiluidoBr")
+        if (d) {
+            jdV = d.volumen2
+            jdC = d.peso
+        }
+
         cnV = cdV - hV
         bcV = cnV + amV - jdC
         bcC = cdV ? Calculo.instance.redondear(bcV/cdV*100, 2): 0
+
+        bdV = 292
         bdC = cdV ? Calculo.instance.redondear(bdV*100/cdV, 2): 0
+
+        cV  = 35.93
         cC  = cdV ? Calculo.instance.redondear(cV*100/cdV, 2): 0
                     
         def solInsol = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cto24H", "porcInso")
@@ -702,6 +707,9 @@ class QueryTest extends ModuleTestBase {
         d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonMelProTotDia")
         mfV = d.valor?:0
         mfC = cdV ? Calculo.instance.redondear(mfV*100/cdV, 2): 0
+        
+        abV = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Blc" , "qqTotalesDia")
+        abC = Calculo.instance.redondear(abV/20, 2)
 
         println "CAÑA/DIA           |" + getCadena(cdV , 0   , cdA)
         println "AGUA MACERACION    |" + getCadena(amV , 0   , amA)
