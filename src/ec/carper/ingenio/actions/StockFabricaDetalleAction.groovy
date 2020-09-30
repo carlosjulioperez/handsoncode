@@ -10,27 +10,26 @@ import static org.openxava.jpa.XPersistence.*;
 
 class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
     
-    def padreId = ""
-    def modulo  = ""
-    def campoFk = ""
+    def modulo       = ""
+    def diaTrabajoId = ""
+    def campoFk      = "stockFabrica.diaTrabajo.id"
     
     void execute() throws Exception{
         
         // StockFabrica.StockFabricaDetalle1
         // https://stackoverflow.com/questions/14833008/java-string-split-with-dot
         modulo           = getModelName().split("\\.")[1]
-        campoFk          = "stockFabrica.id"
         def map          = getView().getKeyValues() // id del padre
-        def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
+        diaTrabajoId     = (String)getView().getRoot().getValue("diaTrabajo.id")
         
         // println ">>> modulo: ${modulo}"
         // println ">>> map   : ${map}"
         // println ">>> diaTrabajoId : $q}"
         
-        if (map.id){
+        if (diaTrabajoId){
             // Este campo padre es el mismo de todos los detalles
-            padreId = SqlUtil.instance.getCampoPorId(map.id, modulo, campoFk)
-            def lista = SqlUtil.instance.getRegistros(padreId, modulo, campoFk)
+            // diaTrabajoId = SqlUtil.instance.getCampoPorId(map.id, modulo, campoFk)
+            def lista = SqlUtil.instance.getRegistros(diaTrabajoId, modulo, campoFk)
 		        
             //println("\n>>> View values:\n" + getView().getValues());
             
@@ -394,8 +393,8 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 case "StockFabricaDetalle15":
                     brix = getValor("Brix")
 
-                    def d1 = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle13", campoFk, "Brix")
-                    def d2 = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle13", campoFk, "Sac")
+                    def d1 = SqlUtil.instance.getDetallePorIndicador(diaTrabajoId, "StockFabricaDetalle13", campoFk, "Brix")
+                    def d2 = SqlUtil.instance.getDetallePorIndicador(diaTrabajoId, "StockFabricaDetalle13", campoFk, "Sac")
                     def v1 = d1 ? d1.valor?:0 : 0
                     def v2 = d2 ? d2.valor?:0 : 0
 
@@ -816,13 +815,13 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
     }
 
     def getValor(def campo){
-        def d = SqlUtil.instance.getDetallePorIndicador(padreId, modulo, campoFk, campo)
+        def d = SqlUtil.instance.getDetallePorIndicador(diaTrabajoId, modulo, campoFk, campo)
         return d.valor
     }
 
     void setValor(def campo, def nuevoValor){
-        //println ">>> ${padreId} ${modulo} ${campoFk} ${campo}"
-        def d = SqlUtil.instance.getDetallePorIndicador(padreId, modulo, campoFk, campo)
+        //println ">>> ${diaTrabajoId} ${modulo} ${campoFk} ${campo}"
+        def d = SqlUtil.instance.getDetallePorIndicador(diaTrabajoId, modulo, campoFk, campo)
         //println ">>> Indicador: ${d.indicador.descripcion}, valor: ${d.valor}"
         d.setValor(nuevoValor)
         getManager().persist(d)
@@ -830,11 +829,11 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
     
     // Totales, 72:Tom, 73:Generales **************************************************
     def getTotalValor(def num, def campo){
-        def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle${num}", campoFk, campo)
+        def d = SqlUtil.instance.getDetallePorIndicador(diaTrabajoId, "StockFabricaDetalle${num}", campoFk, campo)
         return d.valor?:0
     }
     void setTotalValor(def num, def campo, def nuevoValor){
-        def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle${num}", campoFk, campo)
+        def d = SqlUtil.instance.getDetallePorIndicador(diaTrabajoId, "StockFabricaDetalle${num}", campoFk, campo)
         //println ">>> Indicador: ${d.indicador.descripcion}, valor: ${d.valor}"
         d.setValor(nuevoValor)
         getManager().persist(d)
@@ -844,11 +843,10 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
     // Vienen de la cabecera
     def getSumaValores(def desde, def hasta, def campos){
         def valor = 0
-        def campoFk = "stockFabrica.id"
-        if (padreId){
+        if (diaTrabajoId){
             def i = 0
             (desde..hasta).each{
-                def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle${it}", campoFk, campos[i++])
+                def d = SqlUtil.instance.getDetallePorIndicador(diaTrabajoId, "StockFabricaDetalle${it}", campoFk, campos[i++])
                 if (d)
                     valor += d.valor ?: 0
             }
@@ -857,11 +855,10 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
     }
     
     def getSumaValores(def desde, def hasta, String indicador){
-        def campoFk = "stockFabrica.id"
         def (suma, i) = [0, 0]
-        if (padreId){
+        if (diaTrabajoId){
             (desde..hasta).each{
-                def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle${it}", campoFk, indicador)
+                def d = SqlUtil.instance.getDetallePorIndicador(diaTrabajoId, "StockFabricaDetalle${it}", campoFk, indicador)
                 suma += d ? d.valor: 0
                 // if (indicador=="Vt" || indicador=="VTot")
                 //     println "${it}, ${d.valor}"

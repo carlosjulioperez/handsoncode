@@ -1,12 +1,15 @@
 2020-09-30 
+	Ajustar getDetallePorIndicador() en StockFabricaDetalleAction +ingenio
 	Agregar StockFabrica.ax132
-	Agregar StockFabrica.ax132 +ingenio
-	Agregar StockFabrica.ax135 +ingenio
+	Agregar StockFabrica.ax135
 
-2020-09-28 
+2020-09-29
+	Agregar StockFabrica.ax140 en Plantilla
 	Ajuste de StockFabricaTest
 	Subir Plantilla StockProceso
 	Subir Plantilla Material
+
+2020-09-28
 	Cambio campo por id en SqlUtil.getValMatBlcAcu()
 	Query para consulta valores BLC acumulados por material
 	Agregar columna acumulado en BlcDetalle1

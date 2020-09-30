@@ -416,20 +416,22 @@ class QueryTest extends ModuleTestBase {
         def u146 = getSumaValores(70 , 70  , "Sac")
         def bg159 = Calculo.instance.redondear(bg158/u146*100 , 3)
         
-        def d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonAzuDis")
+        def campoFk = "stockFabrica.diaTrabajo.id"
+
+        def d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle73", campoFk, "tonAzuDis")
         def bg142 = d.valor?:0
 
         // ------------------------------------
-        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle70", "stockFabrica.diaTrabajo.id", "Vt")
+        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle70", campoFk, "Vt")
         def u144 = d.valor?:0
 
-        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle70", "stockFabrica.diaTrabajo.id", "p")
+        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle70", campoFk, "p")
         def t149 = d.valor?:0
         
-        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle71", "stockFabrica.diaTrabajo.id", "Vt")
+        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle71", campoFk, "Vt")
         def u155 = d.valor?:0
 
-        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle71", "stockFabrica.diaTrabajo.id", "p")
+        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle71", campoFk, "p")
         def t160 = d.valor?:0
 
         // =((U144*T149)/1000)+(U155*T160)/1000
