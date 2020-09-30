@@ -1,0 +1,12 @@
+INSERT INTO ingenio.ingenio.unidad("id", descripcion) VALUES ('01', 'TON');
+INSERT INTO ingenio.ingenio.unidad("id", descripcion) VALUES ('02', 'M³');
+INSERT INTO ingenio.ingenio.unidad("id", descripcion) VALUES ('03', 'QQ');
+INSERT INTO ingenio.ingenio.unidad("id", descripcion) VALUES ('04', '%/ TCM');
+INSERT INTO ingenio.ingenio.unidad("id", descripcion) VALUES ('05', '%');
+INSERT INTO ingenio.ingenio.unidad("id", descripcion) VALUES ('06', 'BTU/H');
+INSERT INTO ingenio.ingenio.unidad("id", descripcion) VALUES ('07', 'Kg/M³');
+INSERT INTO ingenio.ingenio.unidad("id", descripcion) VALUES ('08', 'PPM');
+INSERT INTO ingenio.ingenio.unidad("id", descripcion) VALUES ('09', 'ABS');
+INSERT INTO ingenio.ingenio.unidad("id", descripcion) VALUES ('10', 'UI');
+INSERT INTO ingenio.ingenio.unidad("id", descripcion) VALUES ('11', 'M');
+INSERT INTO ingenio.ingenio.unidad("id", descripcion) VALUES ('12', 'Ft³');

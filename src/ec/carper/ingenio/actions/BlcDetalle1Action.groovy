@@ -24,10 +24,36 @@ class BlcDetalle1Action extends OnChangePropertyBaseAction{
             def valor  = (BigDecimal)getView().getValue("valor")
             def diaFin = diaTrabajo.numeroDia - 1
 
+            def (cdV, cdA, amV, amA, jdV, jdC, jdA, bcV, bcC, bcA, bdV, bdC, cV, cC, cA)     = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            def (mfV, mfC, mfA, abV, abC, abA, cnV, cnA, jnV, jnC, jnA, mV , mC, mA, hV, hA) = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            def (sdV, sdC, sdA) = [0,0,0]
+
+            // Calculos generales 
+            def d = SqlUtil.instance.getDetallePorDTM(diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "aguaM")
+            if (d) amV = d.peso
+
+            d = SqlUtil.instance.getDetallePorDTM(diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "jDiluidoBr")
+            if (d) {
+                jdV = d.volumen2
+                jdC = d.peso
+            }
+            
+            
+            
+            
+            
+            
+            
+            
             switch (material.campo){
             case "canaDia":
-                def cdA = SqlUtil.instance.getValMatBlcAcu(materialId, diaFin)
-                setValores(material.campo, valor, 0, valor + cdA)
+                cdV = valor
+                cdA = SqlUtil.instance.getValMatBlcAcu(materialId, diaFin)
+                
+                getView().setValue("acumulado",  cdA ? Calculo.instance.redondear(bri*2, 2): null)
+                setValores(material.campo, cdV, 0, cdV + cdA)
+
+                //getView().setValue("briEle",  bri ? Calculo.instance.redondear(bri*2, 2): null)
                 break
 
             // case "aguaM":

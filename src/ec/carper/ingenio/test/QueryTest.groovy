@@ -33,13 +33,14 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
+        //getValoresBlc()
+        getTotalesStockFabrica()
+        //getValorCampo()
+
         //getSum()
         //getDiaTrabajoCerrado()
-        getValoresBlc()
         //getValorDetalleCampoXHora()
         //getValoresStockProceso()
-        //getTotalesStockFabrica()
-        getValorCampo()
         //getSumaValorDetallesPorIndicador()
         //getDetallePorIndicador()
         //getCampoPorId()
@@ -318,11 +319,13 @@ class QueryTest extends ModuleTestBase {
     }
 
     def getSumaValores(def desde, def hasta, String indicador){
-        def padreId = "ff808081745219640174521b44410000"
-        def campoFk = "stockFabrica.id"
+        // def padreId = "ff808081745219640174521b44410000"
+        // def campoFk = "stockFabrica.id"
+        def campoFk = "stockFabrica.diaTrabajo.id"
         def (suma, i) = [0, 0]
         (desde..hasta).each{
-            def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle${it}", campoFk, indicador)
+            //def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle${it}", campoFk, indicador)
+            def d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle${it}", campoFk, indicador)
             suma += d ? d.valor: 0
             // if (indicador=="Vt" || indicador=="VTot")
             //     println "${it}, ${d.valor}"
@@ -413,10 +416,37 @@ class QueryTest extends ModuleTestBase {
         def u146 = getSumaValores(70 , 70  , "Sac")
         def bg159 = Calculo.instance.redondear(bg158/u146*100 , 3)
         
-        def d = SqlUtil.instance.getDetallePorIndicador("ff808081745219640174521b44410000", "StockFabricaDetalle73", "stockFabrica.id", "tonAzuDis")
+        def d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonAzuDis")
         def bg142 = d.valor?:0
 
+        // ------------------------------------
+        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle70", "stockFabrica.diaTrabajo.id", "Vt")
+        def u144 = d.valor?:0
+
+        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle70", "stockFabrica.diaTrabajo.id", "p")
+        def t149 = d.valor?:0
+        
+        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle71", "stockFabrica.diaTrabajo.id", "Vt")
+        def u155 = d.valor?:0
+
+        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle71", "stockFabrica.diaTrabajo.id", "p")
+        def t160 = d.valor?:0
+
+        // =((U144*T149)/1000)+(U155*T160)/1000
+        def ax132 = Calculo.instance.redondear(((u144*t149)/1000)+(u155*t160)/1000, 3)
+        
+        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(Aux.instance.diaTrabajoId)
+        def diaFin = diaTrabajo.numeroDia - 1
+        def ax135 = SqlUtil.instance.getValMatBlcAcu("mielFM", diaFin)
+
+        def ax129 = 7.86
+        def ax140 = ax132 -ax135 + ax129
+
         println ""
+        println ">>> ax129: ${ax129}"
+        println ">>> ax132: ${ax132}"
+        println ">>> ax135: ${ax135}"
+        println ">>> ax140: ${ax140}"
         println ">>> bg142: ${bg142}"
         println ">>> bg147: ${bg147}"
         println ">>> bg149: ${bg149}"
@@ -436,19 +466,17 @@ class QueryTest extends ModuleTestBase {
     }
 
     void getSumaValorDetallesPorIndicador(){
-        def padreId = "ff8080817431ea2c017431ebc7a40000"
-        def campoFk = "stockFabrica.id"
-        def d = SqlUtil.instance.getDetallePorIndicador(padreId, "StockFabricaDetalle1", campoFk, "TonSacJDil")
+        def campoFk = "stockFabrica.diaTrabajo.id"
+        def d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle1", campoFk, "TonSacJDil")
         if (d)
             println ">>> Indicador: ${d.indicador.descripcion}, valor: ${d.valor}"
     }
 
     void getDetallePorIndicador(){
-        def padreId = "ff808081741db3e901741ddb6d7d00df"
         def modulo  = "StockFabricaDetalle2"
-        def campoFk = "stockFabrica.id"
+        def campoFk = "stockFabrica.diaTrabajo.id"
         def campo   = "porcN"
-        def d = SqlUtil.instance.getDetallePorIndicador(padreId, modulo, campoFk, campo)
+        def d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, modulo, campoFk, campo)
 
         println "valor anterior : ${d.valor}"
         d.valor = 100
@@ -608,18 +636,18 @@ class QueryTest extends ModuleTestBase {
         }
         
         def diaFin = 6
-        cdA = SqlUtil.instance.getValMatBlcAcu("001", diaFin)
-        amA = SqlUtil.instance.getValMatBlcAcu("002", diaFin)
-        jdA = SqlUtil.instance.getValMatBlcAcu("003", diaFin)
-        bcA = SqlUtil.instance.getValMatBlcAcu("004", diaFin)
-        cA  = SqlUtil.instance.getValMatBlcAcu("006", diaFin)
-        mfA = SqlUtil.instance.getValMatBlcAcu("007", diaFin)
-        abA = SqlUtil.instance.getValMatBlcAcu("008", diaFin)
-        cnA = SqlUtil.instance.getValMatBlcAcu("009", diaFin)
-        jnA = SqlUtil.instance.getValMatBlcAcu("010", diaFin)
-        mA  = SqlUtil.instance.getValMatBlcAcu("011", diaFin)
-        hA  = SqlUtil.instance.getValMatBlcAcu("012", diaFin)
-        sdA = SqlUtil.instance.getValMatBlcAcu("013", diaFin)
+        cdA = SqlUtil.instance.getValMatBlcAcu("canaDia"    , diaFin)
+        amA = SqlUtil.instance.getValMatBlcAcu("aguaM"      , diaFin)
+        jdA = SqlUtil.instance.getValMatBlcAcu("jDiluidoBr" , diaFin)
+        bcA = SqlUtil.instance.getValMatBlcAcu("bagazoC"    , diaFin)
+        cA  = SqlUtil.instance.getValMatBlcAcu("cachaza"    , diaFin)
+        mfA = SqlUtil.instance.getValMatBlcAcu("mielFM"     , diaFin)
+        abA = SqlUtil.instance.getValMatBlcAcu("azucarB"    , diaFin)
+        cnA = SqlUtil.instance.getValMatBlcAcu("canaNeta"   , diaFin)
+        jnA = SqlUtil.instance.getValMatBlcAcu("jugoNeto"   , diaFin)
+        mA  = SqlUtil.instance.getValMatBlcAcu("meladura"   , diaFin)
+        hA  = SqlUtil.instance.getValMatBlcAcu("hojaCana"   , diaFin)
+        sdA = SqlUtil.instance.getValMatBlcAcu("sacosD"     , diaFin)
         
         cdV = 1259.19
         bdV = 292
@@ -658,6 +686,16 @@ class QueryTest extends ModuleTestBase {
         println "MELADURA           |" + getCadena(mV  , mC  , mA)
         println "HOJA DE CAÑA       |" + getCadena(hV  , 0   , hA)
         println "SACOS DISUELTOS    |" + getCadena(sdV , sdC , sdA)
+
+        setValores("canaDia", cdV, 0, cdV + cdA)
+    }
+    
+    void setValores(String campo, def val, def can, def acu){
+        def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "blc", "BlcDetalle1", campo)
+        d.setValor(val)
+        d.setCantidad(can)
+        d.setAcumulado(acu)
+        getManager().persist(d)
     }
 
     void getParoTotal(){

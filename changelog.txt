@@ -1,4 +1,13 @@
+2020-09-30 
+	Agregar StockFabrica.ax132
+	Agregar StockFabrica.ax132 +ingenio
+	Agregar StockFabrica.ax135 +ingenio
+
 2020-09-28 
+	Ajuste de StockFabricaTest
+	Subir Plantilla StockProceso
+	Subir Plantilla Material
+	Cambio campo por id en SqlUtil.getValMatBlcAcu()
 	Query para consulta valores BLC acumulados por material
 	Agregar columna acumulado en BlcDetalle1
 
