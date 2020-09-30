@@ -333,7 +333,31 @@ class QueryTest extends ModuleTestBase {
         return suma
     }
     
+    def getTotalValor(def num, def campo){
+        def campoFk = "stockFabrica.diaTrabajo.id"
+        def d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle${num}", campoFk, campo)
+        return d.valor?:0
+    }
+    
     void getTotalesStockFabrica(){
+        def tonAzuDis = getTotalValor(73, "tonAzuDis")
+
+        def bg144 = 
+            getTotalValor(72, "tonSacTraJug") +
+            getTotalValor(72, "tonSacTorSul") +
+            getTotalValor(72, "tonSacCal") +
+            getTotalValor(72, "tonSacEva") +
+            getTotalValor(72, "tonSacClaMel") +
+            getTotalValor(72, "tonSacCri") +
+            getTotalValor(72, "tonSacTqAlm") +
+            getTotalValor(72, "tonSacCriVac") +
+            getTotalValor(72, "tonSacRecMas") +
+            getTotalValor(72, "tonSacRecMat") +
+            getTotalValor(72, "tonSacRecCen") +
+            getTotalValor(72, "tonSacRecMieCen") +
+            getTotalValor(72, "tonSacFunCriVer") +
+            getTotalValor(72, "tonSacSilAzu") - tonAzuDis
+        
         // Cambiar id en getSumaValores()
 
         // **************************************************
@@ -450,6 +474,7 @@ class QueryTest extends ModuleTestBase {
         println ">>> ax135: ${ax135}"
         println ">>> ax140: ${ax140}"
         println ">>> bg142: ${bg142}"
+        println ">>> bg144: ${bg144}"
         println ">>> bg147: ${bg147}"
         println ">>> bg149: ${bg149}"
         println ">>> bg150: ${bg150}"

@@ -11,7 +11,7 @@
 -- ORDER BY orden;
 --
 select i.descripcion, valor, i.campo, modificable
-from ingenio.stockfabricadetalle71 d, ingenio.indicador i
+from ingenio.stockfabricadetalle73 d, ingenio.indicador i
 where d.indicador_id = i.id
 order by orden;
 

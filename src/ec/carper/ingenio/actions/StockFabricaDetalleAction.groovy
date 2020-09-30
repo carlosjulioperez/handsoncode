@@ -713,6 +713,8 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 if (indicador.campo == "tonMelVen" || indicador.campo == "tonAzuDis")
                     setTotalValor(73, indicador.campo, valor)
                     
+                def tonMelVen = getTotalValor(73, "tonMelVen")
+
                 def tonAzuDis = getTotalValor(73, "tonAzuDis")
 
                 // def bg144 = (tonSacTorSul + tonSacTraJug + tonSacCal + tonSacEva + tonSacClaMel + tonSacCri + tonSacTqAlm + tonSacCriVac + tonSacRecMas + tonSacRecMat + tonSacRecCen + tonSacRecMieCen + tonSacFunCriVer + tonSacSilAzu - (fldTonAzuDis?:0) )
@@ -783,19 +785,47 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 def u146 = getSumaValores(70 , 70  , "Sac")
                 def bg159 = Calculo.instance.redondear(bg158/u146*100, 3)
                 
-                setTotalValor(73 , "tonSacTot"       , bg144)
-                setTotalValor(73 , "pesMatTotDia"    , bg147)
-                setTotalValor(73 , "proSolBriTotDia" , bg149)
-                setTotalValor(73 , "proSacPolTotDia" , bg150)
-                setTotalValor(73 , "proPzaTotDia"    , bg151)
-                setTotalValor(73 , "denKgm"          , bg152)
-                setTotalValor(73 , "pesSolDia"       , bg153)
-                setTotalValor(73 , "pesPolDia"       , bg154)
-                setTotalValor(73 , "sjmMatPro"       , bg155)
-                setTotalValor(73 , "sacRecAz"        , bg156)
-                setTotalValor(73 , "azuRec"          , bg157)
-                setTotalValor(73 , "sacMieFin"       , bg158)
-                setTotalValor(73 , "mieFinRec"       , bg159)
+                // 2020-09-30
+                def d = SqlUtil.instance.getDetallePorIndicador(diaTrabajoId, "StockFabricaDetalle70", campoFk, "Vt")
+                def u144 = d.valor?:0
+
+                d = SqlUtil.instance.getDetallePorIndicador(diaTrabajoId, "StockFabricaDetalle70", campoFk, "p")
+                def t149 = d.valor?:0
+                
+                d = SqlUtil.instance.getDetallePorIndicador(diaTrabajoId, "StockFabricaDetalle71", campoFk, "Vt")
+                def u155 = d.valor?:0
+
+                d = SqlUtil.instance.getDetallePorIndicador(diaTrabajoId, "StockFabricaDetalle71", campoFk, "p")
+                def t160 = d.valor?:0
+
+                // =((U144*T149)/1000)+(U155*T160)/1000
+                def ax132 = Calculo.instance.redondear(((u144*t149)/1000)+(u155*t160)/1000, 3)
+                
+                def diaTrabajo = SqlUtil.instance.getDiaTrabajo(diaTrabajoId)
+                def diaFin = diaTrabajo.numeroDia - 1
+                def ax135 = SqlUtil.instance.getValMatBlcAcu("mielFM", diaFin)
+
+                def ax129 = tonMelVen //7.86
+                def ax140 = ax132 -ax135 + ax129
+                
+                setTotalValor(73 , "tonMelProTotZaf"    , ax132)
+                setTotalValor(73 , "tonMelProTotDiaAnt" , ax135)
+                setTotalValor(73 , "tonMelProTotDia"    , ax140)
+                // --
+
+                setTotalValor(73 , "tonSacTot"          , bg144)
+                setTotalValor(73 , "pesMatTotDia"       , bg147)
+                setTotalValor(73 , "proSolBriTotDia"    , bg149)
+                setTotalValor(73 , "proSacPolTotDia"    , bg150)
+                setTotalValor(73 , "proPzaTotDia"       , bg151)
+                setTotalValor(73 , "denKgm"             , bg152)
+                setTotalValor(73 , "pesSolDia"          , bg153)
+                setTotalValor(73 , "pesPolDia"          , bg154)
+                setTotalValor(73 , "sjmMatPro"          , bg155)
+                setTotalValor(73 , "sacRecAz"           , bg156)
+                setTotalValor(73 , "azuRec"             , bg157)
+                setTotalValor(73 , "sacMieFin"          , bg158)
+                setTotalValor(73 , "mieFinRec"          , bg159)
 
                 // println ""
                 // println ">>> bg147: ${bg147}"

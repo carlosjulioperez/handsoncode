@@ -1253,9 +1253,9 @@ class StockFabricaTest extends ModuleTestBase {
         assertNoErrors()
 
         assertValueInCollection("detalle73" ,  0 , 2, "7.860")
-        assertValueInCollection("detalle73" ,  1 , 2, "")
-        assertValueInCollection("detalle73" ,  2 , 2, "")
-        assertValueInCollection("detalle73" ,  3 , 2, "")
+        assertValueInCollection("detalle73" ,  1 , 2, "251.833")
+        assertValueInCollection("detalle73" ,  2 , 2, "216.010")
+        assertValueInCollection("detalle73" ,  3 , 2, "43.683")
         assertValueInCollection("detalle73" ,  4 , 2, "10.500")
         assertValueInCollection("detalle73" ,  5 , 2, "500.160")
         assertValueInCollection("detalle73" ,  6 , 2, "950.714")

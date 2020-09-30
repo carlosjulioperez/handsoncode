@@ -1,5 +1,6 @@
 2020-09-30 
-	Ajustar getDetallePorIndicador() en StockFabricaDetalleAction +ingenio
+	Agregar StockFabrica.ax140
+	Ajustar getDetallePorIndicador() en StockFabricaDetalleAction
 	Agregar StockFabrica.ax132
 	Agregar StockFabrica.ax135
 
