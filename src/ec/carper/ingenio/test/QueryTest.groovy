@@ -681,6 +681,7 @@ class QueryTest extends ModuleTestBase {
         }
 
         cnV = cdV - hV
+        
         bcV = cnV + amV - jdC
         bcC = cdV ? Calculo.instance.redondear(bcV/cdV*100, 2): 0
 
