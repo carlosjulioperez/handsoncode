@@ -311,9 +311,49 @@ class Blc extends Formulario {
             def campo = it.material.campo ?: ""
             switch (campo){
                 case "brixCana":
-                    // def sac  = SqlUtil.instance.getValorCampoBlc(diaTrabajo.id, "BlcDetalle21" , "sacCanaDac")
-                    // def brix = SqlUtil.instance.getValorCampoBlc(diaTrabajo.id, "BlcDetalle21" , "brixCanaDac")
-                    // it.valor = brix ? Calculo.instance.redondear(sac/brix*100,2): 0
+                    //def cdV = getValor("canaDia", 1)
+                    def d16 = getValor("canaNeta", 1)
+                    def d17 = getValor("jugoNeto", 1)
+                    def h48 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jdBri")
+                    def d11 = getValor("bagazoC", 1)
+                    def h44 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Bagazo" , "brix")
+                    def d42 = d16 ? Calculo.instance.redondear((d17*h48 + d11*h44)/d16, 2): 0 //brix cana
+                    it.valor = d42
+                    break 
+                
+                case "sacCana":
+                    def d16 = getValor("canaNeta", 1)
+                    def d17 = getValor("jugoNeto", 1)
+                    def d11 = getValor("bagazoC", 1)
+        
+                    def h49 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jdSac")
+                    // =+($D$17*H49+$D$11*H41)/$D$16
+                    def h41 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Bagazo" , "porcSacarosa")
+                    def d43 = d16 ? Calculo.instance.redondear((d17*h49 + d11*h41)/d16, 2): 0 //sac cana
+                    it.valor = d43
+                    break 
+                
+                case "pzaCana":
+                    def d42 = SqlUtil.instance.getValorCampoBlc(diaTrabajo.id, "BlcDetalle22" , "brixCana")
+                    def d43 = SqlUtil.instance.getValorCampoBlc(diaTrabajo.id, "BlcDetalle22" , "sacCana")
+                    def d44 = d42 ? Calculo.instance.redondear(d43/d42*100, 2): 0
+                    it.valor = d44
+                    break 
+                
+                case "fibCana":
+                    def d11 = getValor("bagazoC", 1)
+                    def h42 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Bagazo" , "porcFibra")
+                    def d16 = getValor("canaNeta", 1)
+                    def d45 = d16 ? Calculo.instance.redondear(d11*h42/d16, 2): 0
+                    it.valor = d45
+                    break 
+                
+                case "sacJBrCanaExtraida":
+                    def d8  = getValor("canaNeta", 1)
+                    def f10 = getValor("jDiluidoBr", 2)
+                    def h49 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jdSac")
+                    def d46 = d8 ? Calculo.instance.redondear(h49*f10/d8, 2): 0
+                    it.valor = d46
                     break 
             }
             getManager().persist(it)
@@ -568,5 +608,10 @@ class Blc extends Formulario {
         }catch(Exception ex){
             throw new SystemException("registro_no_actualizado", ex)
         }
+    }
+    
+    def getValor(def campo, def col){
+        def d = SqlUtil.instance.getDetallePorDTM(diaTrabajo.id, "blc", "BlcDetalle1", campo)
+        return col == 1 ? (d.valor?:0): (d.cantidad?:0)
     }
 }

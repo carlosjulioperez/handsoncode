@@ -7,8 +7,19 @@ class BlcTest extends ModuleTestBase {
     BlcTest(String testName) {
         super(testName, "Ingenio", "Blc")
     }
+    
+    void testConsultar() throws Exception {
+        login("admin", "admin")
+        
+        setConditionComparators(["contains_comparator"])
+        setConditionValues(["principal"])
+        execute ("List.filter") 
+        execute ("List.viewDetail", "row=0")
+        execute ("Blc.consultarDatos")
+        assertNoErrors()
+    }
 
-    void testCrear() throws Exception {
+    void _testCrear() throws Exception {
         login("admin", "admin")
         
         execute("CRUD.new")
@@ -29,6 +40,7 @@ class BlcTest extends ModuleTestBase {
         assertCollectionRowCount("detalle1", 13)
         execute    ("Blc.consultarDatos")
         assertNoErrors()
+
 
         // Caña / Método laboratorio de caña
         execute("Sections.change", "activeSection=2")
@@ -137,10 +149,76 @@ class BlcTest extends ModuleTestBase {
         
         assertValue("calQqTotalesDia", "3,682.00")
         assertNoErrors()
-
         // FINALIZAR
         execute ("Ingenio.save")
         //execute    ("CRUD.delete")
+        
+        // VALORES DE cana dia
+        setConditionComparators(["contains_comparator"])
+        setConditionValues(["JUNIT"])
+        execute("List.filter") 
+        execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila
+
+        execute("Sections.change", "activeSection=0")
+        execute('Blc.editDetail','row=0,viewObject=xava_view_section0_detalle1')
+        assertDialog(); setValue("valor" , "1259.19"); execute("Collection.save")
+
+        execute('Blc.editDetail','row=4,viewObject=xava_view_section0_detalle1')
+        assertDialog(); setValue("valor" , "292"); execute("Collection.save")
+
+        execute('Blc.editDetail','row=5,viewObject=xava_view_section0_detalle1')
+        assertDialog(); setValue("valor" , "35.93"); execute("Collection.save")
+
+        execute('Blc.editDetail','row=11,viewObject=xava_view_section0_detalle1')
+        assertDialog(); setValue("valor" , "0"); execute("Collection.save")
+
+        assertValueInCollection("detalle1" , 0 , 2, "1,259.19")
+        assertValueInCollection("detalle1" , 0 , 6, "8,621.67")
+
+        assertValueInCollection("detalle1" , 1 , 2, "422.92")
+        assertValueInCollection("detalle1" , 1 , 6, "2,915.43")
+
+        assertValueInCollection("detalle1" , 2 , 2, "1,211.36") 
+        assertValueInCollection("detalle1" , 2 , 4, "1,278.37") 
+        assertValueInCollection("detalle1" , 2 , 6, "9,018.81") 
+
+        assertValueInCollection("detalle1" , 3 , 2, "403.74") 
+        assertValueInCollection("detalle1" , 3 , 4, "32.06") 
+        assertValueInCollection("detalle1" , 3 , 6, "2,518.28") 
+
+        assertValueInCollection("detalle1" , 4 , 2, "292.00") 
+        assertValueInCollection("detalle1" , 4 , 4, "23.19") 
+
+        assertValueInCollection("detalle1" , 5 , 2, "35.93") 
+        assertValueInCollection("detalle1" , 5 , 4, "2.85") 
+        assertValueInCollection("detalle1" , 5 , 6, "206.96") 
+
+        assertValueInCollection("detalle1" , 6 , 2, "43.68") 
+        assertValueInCollection("detalle1" , 6 , 4, "3.47") 
+        assertValueInCollection("detalle1" , 6 , 6, "259.69") 
+
+        assertValueInCollection("detalle1" , 7 , 2, "3,682.00") 
+        assertValueInCollection("detalle1" , 7 , 4, "184.10") 
+        assertValueInCollection("detalle1" , 7 , 6, "15,083.34") 
+
+        assertValueInCollection("detalle1" , 8 , 2, "1,259.19") 
+        assertValueInCollection("detalle1" , 8 , 6, "8,621.67") 
+
+        assertValueInCollection("detalle1" , 9 , 2, "1,285.15") 
+        assertValueInCollection("detalle1" , 9 , 4, "102.06") 
+        assertValueInCollection("detalle1" , 9 , 6, "8,958.10") 
+
+        assertValueInCollection("detalle1" , 10 , 2, "308.60") 
+        assertValueInCollection("detalle1" , 10 , 4, "24.51") 
+        assertValueInCollection("detalle1" , 10 , 6, "2,028.57") 
+
+        assertValueInCollection("detalle1" , 11 , 2, "0.00") 
+        assertValueInCollection("detalle1" , 11 , 6, "0.00") 
+
+        assertValueInCollection("detalle1" , 12 , 2, "210.00") 
+        assertValueInCollection("detalle1" , 12 , 4, "10.50") 
+        assertValueInCollection("detalle1" , 12 , 6, "1,645.00") 
+        
         assertNoErrors()
     }
 }

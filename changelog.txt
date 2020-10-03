@@ -1,4 +1,9 @@
+2020-10-01
+	Ajustar BlcTest
+
 2020-09-30 
+	BlcDetalle1Action: implementar getValor()
+	BlcDetalle1Action: Actualizar en getView() y con setValores() fuera del switch
 	No se muestra BlcP.descripcion
 	BlcTest: Agregar Pestaña Presentación de azúcar por presentaciones
 	Pestaña Presentación de azúcar por presentaciones

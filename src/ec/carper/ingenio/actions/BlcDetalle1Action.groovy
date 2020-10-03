@@ -24,10 +24,6 @@ class BlcDetalle1Action extends OnChangePropertyBaseAction{
             def valor  = (BigDecimal)getView().getValue("valor")
             def diaFin = diaTrabajo.numeroDia - 1
 
-            // def (cdV, cdA, amV, amA, jdV, jdC, jdA, bcV, bcC, bcA, bdV, bdC, cV, cC, cA)     = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            // def (mfV, mfC, mfA, abV, abC, abA, cnV, cnA, jnV, jnC, jnA, mV , mC, mA, hV, hA) = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            // def (sdV, sdC, sdA) = [0,0,0]
-
             def cdA = SqlUtil.instance.getValMatBlcAcu("canaDia"    , diaFin)
             def amA = SqlUtil.instance.getValMatBlcAcu("aguaM"      , diaFin)
             def jdA = SqlUtil.instance.getValMatBlcAcu("jDiluidoBr" , diaFin)

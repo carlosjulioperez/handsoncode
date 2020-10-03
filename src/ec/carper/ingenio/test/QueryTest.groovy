@@ -33,10 +33,10 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
+        getValorCampo()
         getValoresBlc()
-        //getTotalesStockFabrica()
-        //getValorCampo()
 
+        //getTotalesStockFabrica()
         //getSum()
         //getDiaTrabajoCerrado()
         //getValorDetalleCampoXHora()
@@ -726,7 +726,41 @@ class QueryTest extends ModuleTestBase {
         println "HOJA DE CAÑA       |" + getCadena(hV  , 0   , hA)
         println "SACOS DISUELTOS    |" + getCadena(sdV , sdC , sdA)
 
-        setValores("canaDia", cdV, 0, cdV + cdA)
+        // setValores("canaDia", cdV, 0, cdV + cdA)
+
+        println "\nVARIABLES PRIMARIAS:\n"
+        //Método Balance
+        // =+($D$17*H48+$D$11*H44)/$D$16
+        
+        def d16 = cnV
+        def d17 = jnV
+        def h48 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jdBri")
+        def d11 = bcV
+        def h44 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Bagazo" , "brix")
+        def d42 = d16 ? Calculo.instance.redondear((d17*h48 + d11*h44)/d16, 2): 0 //brix cana
+
+        def h49 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jdSac")
+        // =+($D$17*H49+$D$11*H41)/$D$16
+        def h41 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Bagazo" , "porcSacarosa")
+        def d43 = d16 ? Calculo.instance.redondear((d17*h49 + d11*h41)/d16, 2): 0 //sac cana
+
+        def d44 = d42 ? Calculo.instance.redondear(d43/d42*100, 2): 0
+
+        // =+D11*H42/D16
+        def h42 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Bagazo" , "porcFibra")
+        def d45 = d16 ? Calculo.instance.redondear(d11*h42/d16, 2): 0
+
+        // =+H49*F10/D8
+        def d8  = cdV
+        def f10 = jdC
+        def d46 = d8 ? Calculo.instance.redondear(h49*f10/d8, 2): 0
+
+        println "BRIX CAÑA          |" + d42
+        println "SAC CAÑA           |" + d43
+        println "PZA CAÑA           |" + d44
+        println "FIBRA CAÑA         |" + d45
+        println "SAC JUG BR CANA    |" + d46
+
     }
     
     void setValores(String campo, def val, def can, def acu){
