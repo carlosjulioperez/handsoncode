@@ -8,7 +8,7 @@ class BlcTest extends ModuleTestBase {
         super(testName, "Ingenio", "Blc")
     }
     
-    void testConsultar() throws Exception {
+    void _testConsultar() throws Exception {
         login("admin", "admin")
         
         setConditionComparators(["contains_comparator"])
@@ -19,7 +19,7 @@ class BlcTest extends ModuleTestBase {
         assertNoErrors()
     }
 
-    void _testCrear() throws Exception {
+    void testCrear() throws Exception {
         login("admin", "admin")
         
         execute("CRUD.new")
@@ -85,7 +85,7 @@ class BlcTest extends ModuleTestBase {
         assertValueInCollection("detalle5" , 0 , 2 , "1,055.32")
         assertValueInCollection("detalle5" , 1 , 2 , "-0.53")
         assertValueInCollection("detalle5" , 2 , 2 , "230.17")
-        //assertValueInCollection("detalle5" , 3 , 2 , "PENDIENTE")
+        // assertValueInCollection("detalle5" , 3 , 2 , "101.52")
         assertValueInCollection("detalle5" , 4 , 2 , "14.12")
         assertValueInCollection("detalle5" , 5 , 2 , "12.09")
         assertValueInCollection("detalle5" , 6 , 2 , "85.62")
@@ -220,5 +220,14 @@ class BlcTest extends ModuleTestBase {
         assertValueInCollection("detalle1" , 12 , 6, "1,645.00") 
         
         assertNoErrors()
+        
+        execute("Blc.consultarDatos")
+        assertNoErrors()
+
+        execute('Sections.change','activeSection=2')
+        execute('Sections.change','activeSection=3,viewObject=xava_view_section2')
+        assertValueInCollection("detalle5" , 3 , 2 , "101.52")
+        assertNoErrors()
+        
     }
 }

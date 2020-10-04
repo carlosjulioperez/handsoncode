@@ -760,6 +760,9 @@ class QueryTest extends ModuleTestBase {
         println "PZA CAÑA           |" + d44
         println "FIBRA CAÑA         |" + d45
         println "SAC JUG BR CANA    |" + d46
+        
+        def d51 = d8 ? Calculo.instance.redondear(f10*100/d8, 2): 0
+        println "JUGO DILUIDO (BR)  |" + d51
 
     }
     

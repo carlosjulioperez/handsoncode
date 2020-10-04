@@ -27,7 +27,7 @@ WHERE    d.material_id = m.id AND
 ORDER BY orden;
 
 SELECT   orden, m.id, m.descripcion, m.campo, valor
-FROM     ingenio.blcdetalle22 d, ingenio.material m
+FROM     ingenio.blcdetalle5 d, ingenio.material m
 WHERE    d.material_id = m.id AND
          d.blc_id='ff80808174e4c5470174e4c9d1bf0002'
 ORDER BY orden;

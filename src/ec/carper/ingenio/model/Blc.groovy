@@ -410,6 +410,8 @@ class Blc extends Formulario {
                     def mielF2 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H", "mielF2")
                     it.valor   = cenMf ? Calculo.instance.redondear(mielF2/cenMf,2): 0
                     break 
+                case "galTcm":
+                    break 
             }
             getManager().persist(it)
         }
@@ -431,6 +433,14 @@ class Blc extends Formulario {
                 case "fosfatos":
                     it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Fosfatos", "jdFosfatos")
                     break
+                
+                case "jDiluidoBr":
+                    def d8  = getValor("canaNeta", 1)
+                    def f10 = getValor("jDiluidoBr", 2)
+                    def d51 = d8 ? Calculo.instance.redondear(f10*100/d8, 2): 0
+                    it.valor = d51
+                    break
+                
                 case "brixJDil":
                     it.valor = brixJDil
                     break
