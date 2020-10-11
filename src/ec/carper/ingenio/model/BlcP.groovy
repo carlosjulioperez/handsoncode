@@ -25,6 +25,8 @@ import org.openxava.model.*
             grasshoper { detalle102 }
         }
     }
+    titCalFab { detalle12 }
+    titConSerInsFab { detalle13 }
 """)
 class BlcP{
     @Id
@@ -68,6 +70,12 @@ class BlcP{
 
     @OneToMany (mappedBy="blcP", cascade=CascadeType.ALL) @XOrderBy("orden")
     Collection<BlcPDetalle102> detalle102
+
+    @OneToMany (mappedBy="blcP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<BlcPDetalle12> detalle12
+
+    @OneToMany (mappedBy="blcP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<BlcPDetalle13> detalle13
 
 }
 

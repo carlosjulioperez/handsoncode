@@ -37,6 +37,8 @@ import static org.openxava.jpa.XPersistence.*
         }
     }
     titProAzuPre { calQqTotalesDia; detalle11 }
+    titCalFab { detalle12 }
+    titConSerInsFab { detalle13 }
 """)
 class Blc extends Formulario {
     
@@ -114,6 +116,12 @@ class Blc extends Formulario {
         g250   [ blc.sumG250   , blc.calG250   ],
         arroba [ blc.sumArroba , blc.calArroba ] """)
     Collection<BlcDetalle11> detalle11
+
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    Collection<BlcDetalle12> detalle12
+
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    Collection<BlcDetalle13> detalle13
     
     BigDecimal granel
     BigDecimal k5
@@ -236,6 +244,14 @@ class Blc extends Formulario {
                 getManager().persist(d)
             }
 
+            // TODO
+            // CalculoFabrica 
+            lista = getManager().createQuery("FROM BlcPDetalle12 WHERE blcP.id = 1 ORDER BY orden").getResultList()
+            lista.each{
+                def d = new BlcDetalle102(blc: blc, orden: it.orden, material: it.material, unidad: it.unidad)
+                getManager().persist(d)
+            }
+
         }catch(Exception ex){
             throw new SystemException("items_no_cargados", ex)
         }
@@ -254,6 +270,8 @@ class Blc extends Formulario {
             consultarJugoResidual()
             consultarCachaza()
             consultarAzucarGranelGrasshoper()
+            consultarCalculoFabrica()
+
         }catch(Exception ex){
             throw new SystemException("datos_no_consultados", ex)
         }
@@ -381,9 +399,7 @@ class Blc extends Formulario {
                     break 
                 case "cenSeca":
                     it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "BtuLbBagazo" , "porcCenBs")
-                    break 
-            }
-            getManager().persist(it)
+                    )
         }
     }
 

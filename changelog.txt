@@ -1,4 +1,9 @@
 2020-10-04
+	BlcDetalle13P
+	BlcDetalle13 
+	BlcDetalle12P
+	BlcDetalle12
+	Agregar indicadores en indicador.csv
 	Jugo Diluido (BR)
 
 2020-10-01
