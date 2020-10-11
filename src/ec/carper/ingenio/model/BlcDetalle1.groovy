@@ -7,7 +7,10 @@ import org.openxava.annotations.*
 import org.openxava.model.*
 
 @Entity
-@View(members="orden,material;valor,unidad;cantidad,unidad2;acumulado,modificable")
+@Views([
+    @View(members="orden,material;valor,unidad;cantidad,unidad2;acumulado,modificable"),
+    @View(name="Simple", members="orden,material;valor,unidad")
+])
 class BlcDetalle1 extends Identifiable{
     
     @ManyToOne

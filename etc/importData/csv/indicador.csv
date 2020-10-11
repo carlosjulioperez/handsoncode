@@ -85,7 +85,7 @@ id,descripcion,campo
 84,"Azúcar Recuperable","azuRec"
 85,"Sac Miel Final","sacMieFin"
 86,"Miel Final Recuperable","mieFinRec"
-87,"Toneladas Melaza vendidas","tonMelVen",
+87,"Toneladas Melaza vendidas","tonMelVen"
 88,"Toneladas Melaza Producida Total/zafra","tonMelProTotZaf"
 89,"Ton Melaza Producida Total Dia  Anterior","tonMelProTotDiaAnt"
 90,"Toneladas Melaza Producida Total/Día","tonMelProTotDia"

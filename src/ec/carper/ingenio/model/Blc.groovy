@@ -244,11 +244,17 @@ class Blc extends Formulario {
                 getManager().persist(d)
             }
 
-            // TODO
             // CalculoFabrica 
             lista = getManager().createQuery("FROM BlcPDetalle12 WHERE blcP.id = 1 ORDER BY orden").getResultList()
             lista.each{
-                def d = new BlcDetalle102(blc: blc, orden: it.orden, material: it.material, unidad: it.unidad)
+                def d = new BlcDetalle12(blc: blc, orden: it.orden, indicador: it.indicador, unidad: it.unidad, unidad2: it.unidad2)
+                getManager().persist(d)
+            }
+
+            // CONSUMOS - SERVICIOS E INSUMOS FABRICA
+            lista = getManager().createQuery("FROM BlcPDetalle13 WHERE blcP.id = 1 ORDER BY orden").getResultList()
+            lista.each{
+                def d = new BlcDetalle13(blc: blc, orden: it.orden, indicador: it.indicador, unidad: it.unidad)
                 getManager().persist(d)
             }
 
@@ -270,7 +276,7 @@ class Blc extends Formulario {
             consultarJugoResidual()
             consultarCachaza()
             consultarAzucarGranelGrasshoper()
-            consultarCalculoFabrica()
+            // consultarCalculoFabrica()
 
         }catch(Exception ex){
             throw new SystemException("datos_no_consultados", ex)
@@ -399,7 +405,8 @@ class Blc extends Formulario {
                     break 
                 case "cenSeca":
                     it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "BtuLbBagazo" , "porcCenBs")
-                    )
+                    break
+            }
         }
     }
 
@@ -586,6 +593,17 @@ class Blc extends Formulario {
         }
 
     }
+
+    def consultarCalculoFabrica(){
+        detalle12.each{
+            def campo = it.indicador.campo ?: ""
+            // switch (campo){
+            //     case "color":
+            //         it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "AzucarGranel", "color")
+            //         break
+            // }
+        }
+    }   
 
     // Si un total es de tipo String, todos los demás también deben serlo.
     String getTiempoPerdidoTotal(){

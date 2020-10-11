@@ -1,3 +1,6 @@
+2010-10-11
+	BLC: Agregrar items de detalle12 y detalle13
+
 2020-10-04
 	BlcDetalle13P
 	BlcDetalle13 

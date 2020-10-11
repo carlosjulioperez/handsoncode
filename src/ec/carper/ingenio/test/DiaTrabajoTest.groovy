@@ -21,7 +21,7 @@ class DiaTrabajoTest extends ModuleTestBase {
     public void testDiaTrabajoEnLista() throws Exception {
         login("admin", "admin");
         assertValueInList(0, 0, "8/7/19");  // Row 0 column 0
-        assertValueInList(0, 1, "3"); // Row 0 column 1
+        assertValueInList(0, 1, "7"); // Row 0 column 1
     }
  	
 }

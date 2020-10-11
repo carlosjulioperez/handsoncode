@@ -23,16 +23,16 @@ def path = new File("csv")
 
 // Defino el orden para importar los archivos csv
 def lista = [
-    "AREA",
-    "BRIXDENSIDADTITSUS",
-    "BRIXDENSIDADWP",
-    "INDICADOR",
-    "MATERIAL",
-    "MODULO",
-    "PARAMETRO",
-    "TURNO",
-    "UNIDAD",
-    "VARIEDAD"
+    "area",
+    "brixdensidadtitsus",
+    "brixdensidadwp",
+    "indicador",
+    "material",
+    "modulo",
+    "parametro",
+    "turno",
+    "unidad",
+    "variedad"
 ]
 lista.each{
     def archivo = "csv/"+ it +".csv"

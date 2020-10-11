@@ -163,7 +163,7 @@ class Cto24HTest extends ModuleTestBase {
         assertNoErrors()
         
         execute("Sections.change", "activeSection=6")
-        assertCollectionRowCount("detalle7", 0)
+        assertCollectionRowCount("detalle7", 1)
         setValue    ( "fr"  , "0.641")
         execute("Collection.new" , "viewObject=xava_view_section6_detalle7")
         assertDialog()
