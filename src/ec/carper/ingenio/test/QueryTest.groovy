@@ -575,9 +575,9 @@ class QueryTest extends ModuleTestBase {
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jePur")
         
         println "\n>>> Jugo Residual"
-        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jcBri")
-        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jcSac")
-        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jcPur")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jrBri")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jrSac")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jrPur")
 
         println "\n>>> Cachaza"
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Turbiedad", "polCachaza")
@@ -752,6 +752,7 @@ class QueryTest extends ModuleTestBase {
 
         // =+H49*F10/D8
         def d8  = cdV
+        def d9  = amV 
         def f10 = jdC
         def d46 = d8 ? Calculo.instance.redondear(h49*f10/d8, 2): 0
 
@@ -764,6 +765,68 @@ class QueryTest extends ModuleTestBase {
         def d51 = d8 ? Calculo.instance.redondear(f10*100/d8, 2): 0
         println "JUGO DILUIDO (BR)  |" + d51
 
+        println "\nCALCULOS DE FABRICA\n"
+
+        def d49  = solInsol
+        def h60  = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jrPur")
+        def h43  = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Bagazo" , "porcHumedad")
+        def s16  = Calculo.instance.redondear((h41/h60)*100, 2)
+        def s17  = 100-h43-s16
+        def d13  = cV
+        def l48  = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Turbiedad", "polCachaza")
+        def d14  = mfV
+        def l42  = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles" , "mfSac")
+        def f15  = abC
+        def l55  = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "AzucarGranel", "pol")
+        
+        def h63A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacJDil"   , diaFin)
+        def h64A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacCan"    , diaFin)
+        def h65A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSolIns"    , diaFin)
+        def h66A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonFibBag"    , diaFin)
+        def h67A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonFibCan"    , diaFin)
+        def h68A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacBag"    , diaFin)
+        def h69A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacCac"    , diaFin)
+        def h70A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacMieFin" , diaFin)
+        def h71A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacAzuHec" , diaFin)
+
+        def h63 = Calculo.instance.redondear(d17*(h49/100), 2)
+        def h68 = Calculo.instance.redondear(d11*(h41/100), 2)
+        def h64 = h63 + h68
+        def h65 = Calculo.instance.redondear(f10*(d49/100), 2)
+        def h66 = Calculo.instance.redondear(d11*(s17/100), 2)
+        def h67 = h65 + h66
+        def h69 = Calculo.instance.redondear(d13*l48/100, 2)
+        def h70 = Calculo.instance.redondear(d14*l42/100, 2)
+        def h71 = Calculo.instance.redondear(f15*l55/100, 2)
+
+        def k72 = Calculo.instance.redondear((h63/h64)*100, 2)
+
+        def s24 = Calculo.instance.redondear(h67/d16*100, 2)
+        def s49 = s24 ? Calculo.instance.redondear( (100-k72)*(100-s24)/s24, 2): 0
+        def k73 = 100 - Calculo.instance.redondear(s49/7, 2)
+        def k74 = h67 ? Calculo.instance.redondear(d9/h67*100, 2): 0
+        def k75 = d16 ? Calculo.instance.redondear(d9/d16*100, 2): 0
+
+        def k76 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Bagazo" , "gradosAguaMac") // ='Stock Proceso'!H69 BAGAZO!P30
+        def k77 = SqlUtil.instance.getCampo(Aux.instance.diaTrabajoId, "StockProceso" , "tonSac")  // ='Stock Proceso'!L67
+        def k78 = 0 // ='BLC Cenicaña'!D59
+
+        println "Toneladas Sacarosa Jugo Diluido        | " + getCadena(h63, h63A, h63+h63A)
+        println "Toneladas Sacarosa Caña                | " + getCadena(h64, h64A, h64+h64A)
+        println "Toneladas Solidos Insolubles           | " + getCadena(h65, h65A, h65+h65A)
+        println "Toneladas Fibra en Bagazo              | " + getCadena(h66, h66A, h66+h66A)
+        println "Toneladas Fibra en Caña                | " + getCadena(h67, h67A, h67+h67A)
+        println "Toneladas Sacarosa Bagazo              | " + getCadena(h68, h68A, h68+h68A)
+        println "Toneladas Sacarosa Cachaza             | " + getCadena(h69, h69A, h69+h69A)
+        println "Toneladas Sacarosa Miel Final - Melaza | " + getCadena(h70, h70A, h70+h70A)
+        println "Toneladas Sacarosa Azúcar Hecha        | " + getCadena(h71, h71A, h71+h71A)
+        println "Extraccion Pol                         | " + getCadena(0, k72, 0)
+        println "Extraccion Reducida                    | " + getCadena(0, k73, 0)
+        println "Maceración % Fibra                     | " + getCadena(0, k74, 0)
+        println "Maceración % Caña                      | " + getCadena(0, k75, 0)
+        println "Temperatura agua de Maceracion         | " + getCadena(0, k76, 0)
+        println "Ton  Estimadas - Stock de Fabrica      | " + getCadena(0, 0, k77)
+        println "Recuperación Teorica SJM Material de Proceso | " + getCadena(0, 0, k77)
     }
     
     void setValores(String campo, def val, def can, def acu){

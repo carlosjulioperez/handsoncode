@@ -32,10 +32,11 @@
 --          d.blc_id='ff80808174e4c5470174e4c9d1bf0002'
 -- ORDER BY orden;
 
-SELECT   orden, i.id, i.descripcion, i.campo, acumulado, totalzafra 
+-- SELECT   orden, i.id, i.descripcion, i.campo, unidades, acumulado, totalzafra 
+SELECT   orden, i.id, i.descripcion, i.campo, unidades
 FROM     ingenio.blcdetalle12 d, ingenio.indicador i
 WHERE    d.indicador_id = i.id AND
-         d.blc_id='ff808081751942ed0175194fc7440002'
+         d.blc_id='ff808081751a20d701751a2c662b0000'
 ORDER BY orden;
 
 -- UPDATE ingenio.ingenio.blcdetalle1 SET valor = 0, acumulado = 0 WHERE "id" = 'ff80808174d572200174d5a378e6010c';

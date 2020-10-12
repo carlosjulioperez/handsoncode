@@ -143,4 +143,20 @@ class SqlUtil{
         query.setParameter("diaFin", diaFin)
         return query.resultList[0]?: 0
     }
+
+    BigDecimal getValIndBlcAcu(def detalle, def campo, def diaFin){
+        Query query = getManager().createQuery("""
+            SELECT  SUM(d.unidades)
+            FROM    ${detalle} d, Blc c, Parametro p, Zafra z, DiaTrabajo dT
+            WHERE   d.blc.id              = c.id
+                    AND d.indicador.campo = :campo
+                    AND p.valor           = z.codigo
+                    AND p.nombre          = 'ZAFRA_VIGENTE'
+                    AND c.diaTrabajo.id   = dT.id
+                    AND dT.numeroDia BETWEEN z.diaTrabajoInicio.numeroDia AND :diaFin
+        """)
+        query.setParameter("campo", campo)
+        query.setParameter("diaFin", diaFin)
+        return query.resultList[0]?: 0
+    }
 }
