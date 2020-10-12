@@ -22,7 +22,7 @@ class BlcDetalle1 extends Identifiable{
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @ReadOnly
     Material material
     
-    @OnChange(BlcDetalle1Action.class) @DisplaySize(5)
+    @OnChange(value=BlcDetalle1Action.class, notForViews="Simple") @DisplaySize(5)
     BigDecimal valor 
    
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @ReadOnly

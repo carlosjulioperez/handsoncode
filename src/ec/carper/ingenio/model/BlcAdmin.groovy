@@ -18,7 +18,7 @@ class BlcAdmin extends Formulario {
     @Column(length=10) @ReadOnly
     String descripcion 
     
-    @DisplaySize(10)
+    @DisplaySize(15)
     String getDescripcionDiaTrabajo(){
         return diaTrabajo.descripcion
     }

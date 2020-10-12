@@ -8,7 +8,7 @@ class BlcTest extends ModuleTestBase {
         super(testName, "Ingenio", "Blc")
     }
     
-    void testConsultar() throws Exception {
+    void _testConsultar() throws Exception {
         login("admin", "admin")
         
         setConditionComparators(["contains_comparator"])
@@ -19,7 +19,7 @@ class BlcTest extends ModuleTestBase {
         assertNoErrors()
     }
 
-    void _testCrear() throws Exception {
+    void testCrear() throws Exception {
         login("admin", "admin")
         
         execute("CRUD.new")
