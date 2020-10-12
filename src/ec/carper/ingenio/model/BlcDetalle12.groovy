@@ -8,7 +8,10 @@ import org.openxava.annotations.*
 import org.openxava.model.*
 
 @Entity
-// @View(members="orden,indicador,unidades,unidad,acumulado,totalZafra,unidad2")
+@Views([
+    @View(members="orden,indicador;unidades,unidad;acumulado;totalZafra,unidad2"),
+    @View(name="Simple", members="orden,indicador;unidades,unidad")
+])
 class BlcDetalle12 extends Identifiable{
    
     @ManyToOne
@@ -20,7 +23,8 @@ class BlcDetalle12 extends Identifiable{
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @ReadOnly
     Indicador indicador
     
-    @Digits(integer=10, fraction=3) @DisplaySize(6) @ReadOnly
+    @ReadOnly(forViews="DEFAULT")
+    @Digits(integer=10, fraction=3) @DisplaySize(6) 
     BigDecimal unidades
  
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @ReadOnly
