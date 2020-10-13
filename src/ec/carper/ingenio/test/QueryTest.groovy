@@ -33,8 +33,9 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getValorCampo()
-        getValoresBlc()
+        // getValorCampo()
+        //getValoresBlc()
+        getValoresBlcCenicana()
 
         //getTotalesStockFabrica()
         //getSum()
@@ -811,24 +812,89 @@ class QueryTest extends ModuleTestBase {
         def k77 = SqlUtil.instance.getCampo(Aux.instance.diaTrabajoId, "StockProceso" , "tonSac")  // ='Stock Proceso'!L67
         def k78 = 0 // ='BLC Cenicaña'!D59
 
-        println "Toneladas Sacarosa Jugo Diluido        | " + getCadena(h63, h63A, h63+h63A)
-        println "Toneladas Sacarosa Caña                | " + getCadena(h64, h64A, h64+h64A)
-        println "Toneladas Solidos Insolubles           | " + getCadena(h65, h65A, h65+h65A)
-        println "Toneladas Fibra en Bagazo              | " + getCadena(h66, h66A, h66+h66A)
-        println "Toneladas Fibra en Caña                | " + getCadena(h67, h67A, h67+h67A)
-        println "Toneladas Sacarosa Bagazo              | " + getCadena(h68, h68A, h68+h68A)
-        println "Toneladas Sacarosa Cachaza             | " + getCadena(h69, h69A, h69+h69A)
-        println "Toneladas Sacarosa Miel Final - Melaza | " + getCadena(h70, h70A, h70+h70A)
-        println "Toneladas Sacarosa Azúcar Hecha        | " + getCadena(h71, h71A, h71+h71A)
-        println "Extraccion Pol                         | " + getCadena(0, k72, 0)
-        println "Extraccion Reducida                    | " + getCadena(0, k73, 0)
-        println "Maceración % Fibra                     | " + getCadena(0, k74, 0)
-        println "Maceración % Caña                      | " + getCadena(0, k75, 0)
-        println "Temperatura agua de Maceracion         | " + getCadena(0, k76, 0)
-        println "Ton  Estimadas - Stock de Fabrica      | " + getCadena(0, 0, k77)
+        println "Toneladas Sacarosa Jugo Diluido              | " + getCadena(h63, h63A, h63+h63A)
+        println "Toneladas Sacarosa Caña                      | " + getCadena(h64, h64A, h64+h64A)
+        println "Toneladas Solidos Insolubles                 | " + getCadena(h65, h65A, h65+h65A)
+        println "Toneladas Fibra en Bagazo                    | " + getCadena(h66, h66A, h66+h66A)
+        println "Toneladas Fibra en Caña                      | " + getCadena(h67, h67A, h67+h67A)
+        println "Toneladas Sacarosa Bagazo                    | " + getCadena(h68, h68A, h68+h68A)
+        println "Toneladas Sacarosa Cachaza                   | " + getCadena(h69, h69A, h69+h69A)
+        println "Toneladas Sacarosa Miel Final - Melaza       | " + getCadena(h70, h70A, h70+h70A)
+        println "Toneladas Sacarosa Azúcar Hecha              | " + getCadena(h71, h71A, h71+h71A)
+        println "Extraccion Pol                               | " + getCadena(0, k72, 0)
+        println "Extraccion Reducida                          | " + getCadena(0, k73, 0)
+        println "Maceración % Fibra                           | " + getCadena(0, k74, 0)
+        println "Maceración % Caña                            | " + getCadena(0, k75, 0)
+        println "Temperatura agua de Maceracion               | " + getCadena(0, k76, 0)
+        println "Ton Estimadas - Stock de Fabrica             | " + getCadena(0, 0, k77)
         println "Recuperación Teorica SJM Material de Proceso | " + getCadena(0, 0, k77)
     }
     
+    def getValorBlc(def campo, def col){
+        def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "blc", "BlcDetalle1", campo)
+        return col == 1 ? (d.valor?:0): (d.cantidad?:0)
+    }
+    
+    void getValoresBlcCenicana(){
+        println "\nVALORES BLC CENICANA\n"
+        
+        def diaFin = 6
+        
+        // def d16 = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "blc", "BlcDetalle1", "canaNeta")
+        def d4  = getValorBlc("canaNeta", 1)
+        def d5  = getValorBlc("jDiluidoBr", 2)
+        def d6  = getValorBlc("cachaza", 1)
+        
+        def d   = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "aguaM")
+        def d10 = d ? (d.volumen1?:0): 0
+
+        def d7  = d4 + d10 - d5
+        def d8  = getValorBlc("mielFM", 1)
+        def d9  = getValorBlc("azucarB", 2)
+        
+        def mfM = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles" , "mfSac")
+        def h25 = Calculo.instance.redondear(d8*mfM/100, 2)
+        def h27 = Calculo.instance.redondear((h25/d4)*100, 2)
+        def d11 = h27
+        def h4  = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacRec" , diaFin)
+        
+        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonAzuDis")
+        def h5  = d ? (d.valor?:0): 0
+        def d55 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "AzucarGranel", "pol")
+        def d56 = 100 - SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Grasshoper", "humedad")
+        def d57 = d56 ? Calculo.instance.redondear(d55/d56*100, 2): 0
+        def h55 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles", "mfSac")
+        def h56 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles", "mfBri2")
+        def h57 = h56 ? Calculo.instance.redondear(h55/h56*100, 2): 0
+        def h75 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "AzucarGranel", "polReproc")
+        def h76 = (h75*(d57-h57)) ? Calculo.instance.redondear( (d57*(h75-h57))/(h75*(d57-h57))*100, 2): 0
+        def h6  = Calculo.instance.redondear(h5*h76/100, 2)
+    
+        
+        def d16     = Calculo.instance.redondear(d5 * (100 - SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cto24H", "porcInso"))/100, 2)
+        def jrPur   = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jrPur")
+        def porcSac = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Bagazo" , "porcSacarosa")
+        def d17     = jrPur ? Calculo.instance.redondear(100*(porcSac/jrPur),2): 0 
+        def d18     = 0 // =100-(D17+BAGAZO!K30)
+
+
+        println " 3 | TONELADAS CAÑA                      | " + d4
+        println " 4 | TONELADAS JUGO DILUIDO              | " + d5
+        println " 5 | TONELADAS CACHAZA                   | " + d6
+        println " 6 | TONELADAS DE BAGAZO                 | " + d7
+        println " 7 | TONELADAS MIEL FINAL                | " + d8
+        println " 8 | TONELADAS AZUCAR                    | " + d9
+        println " 9 | TONELADAS AGUA IMBIBICION           | " + d10
+        println "10 | SACAROSA PERDIDA MIEL FINAL % CAÑA  | " + d11
+        println "11 | Stock Sacarosa Proceso día anterior | " + h4
+        println "12 | Ton Azúcar Reproceso                | " + h5
+        println "13 | Ton Azúcar Reproceso Recuperable    | " + h6
+        
+        println "15 | Ton Jugo Diluido Neto               | " + d16
+        println "16 | Brix % Bagazo                       | " + d17
+        println "17 | Fibra % Bagazo                      | " + d18
+    }
+
     void setValores(String campo, def val, def can, def acu){
         def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "blc", "BlcDetalle1", campo)
         d.setValor(val)

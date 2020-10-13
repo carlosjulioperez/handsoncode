@@ -2,8 +2,6 @@
 	BlcCenicanaP y BlcCelicanaPDetalle
 
 2010-10-11
-	CÁLCULOS Y BALANCE DE SACAROSA
-
 	Crear BlcAdmin para ingresar datos acumulados iniciales
 	Crear valores del día anterior en tabla detalle1
 	Crear valores del día anterior en tabla detalle12

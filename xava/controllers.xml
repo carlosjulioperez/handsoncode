@@ -69,6 +69,14 @@
 			class="ec.carper.ingenio.actions.BlcEditDetail1Action"/>
     </controller>   
 
+    <controller name="BlcCenicana">
+        <extends controller="Ingenio"/>
+        <action name="cargarItems" mode="detail" 
+            class="ec.carper.ingenio.actions.BlcCenicanaCargarItemsAction"/>
+        <action name="consultarDatos" mode="detail" 
+            class="ec.carper.ingenio.actions.BlcCenicanaConsultarDatosAction"/>
+    </controller>   
+
     <controller name="StockFabrica">
         <extends controller="Ingenio"/>
         <action name="cargarItems" mode="detail" 
