@@ -34,8 +34,8 @@ class QueryTest extends ModuleTestBase {
 
     void test() throws Exception {
         // getValorCampo()
-        // getValoresBlc()
-        getValoresBlcCenicana()
+        getValoresBlc()
+        // getValoresBlcCenicana()
 
         //getTotalesStockFabrica()
         //getSum()
@@ -736,9 +736,11 @@ class QueryTest extends ModuleTestBase {
         def d16 = cnV
         def d17 = jnV
         def h48 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jdBri")
+        def h50 = SqlUtil.instance.getValorCampoBlc(Aux.instance.diaTrabajoId, "BlcDetalle5" , "pzaJDil")
         def d11 = bcV
         def h44 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Bagazo" , "brix")
         def d42 = d16 ? Calculo.instance.redondear((d17*h48 + d11*h44)/d16, 2): 0 //brix cana
+        def l14 = getValorBlc("mielFM", 3)
 
         def h49 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jdSac")
         // =+($D$17*H49+$D$11*H41)/$D$16
@@ -789,6 +791,7 @@ class QueryTest extends ModuleTestBase {
         def h69A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacCac"    , diaFin)
         def h70A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacMieFin" , diaFin)
         def h71A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacAzuHec" , diaFin)
+        def k81A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacRec"    , diaFin)
 
         def h63 = Calculo.instance.redondear(d17*(h49/100), 2)
         def h68 = Calculo.instance.redondear(d11*(h41/100), 2)
@@ -809,9 +812,45 @@ class QueryTest extends ModuleTestBase {
         def k75 = d16 ? Calculo.instance.redondear(d9/d16*100, 2): 0
 
         def k76 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Bagazo" , "gradosAguaMac") // ='Stock Proceso'!H69 BAGAZO!P30
-        def k77 = SqlUtil.instance.getCampo(Aux.instance.diaTrabajoId, "StockProceso" , "tonSac")  // ='Stock Proceso'!L67
-        def k78 = 0 // ='BLC Cenicaña'!D59
+        def k77 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "StockProceso" , "tonSac")  // ='Stock Proceso'!L67
+        def k78 = SqlUtil.instance.getValorBlcCenicana(Aux.instance.diaTrabajoId, 73)   // ='BLC Cenicaña'!D59
+        def k79 = k78 ? Calculo.instance.redondear(k77*k78/100, 2): 0
+    
+        // k81 = 'Stock Fabrica'!AP152
+        
+        // =K79+(F15*L55/100)-K81
+        def k80  = k79 + Calculo.instance.redondear(f15*l55/100, 2 ) - k81A
+        def k84  = l14
+        d        = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonMelProTotDiaAnt")
+        def k85  = d.valor?:0
+        def k86  = k84-k85
+        def k83  = Calculo.instance.redondear(k86*l42/100, 2)
+        def k82  = (d16*(l42/100))!= 0 ? Calculo.instance.redondear((k83*1000)/(d16*(l42/100)), 2): 0 
+        //       = (100*'BLC Cenicaña'!D57*(H50-L43))/(H50*('BLC Cenicaña'!D57-L43))
+        def k87  = SqlUtil.instance.getValorBlcCenicana(Aux.instance.diaTrabajoId, 60)   //                                                                        = 'BLC Cenicaña'!D59
+        def k88  = h50 ? Calculo.instance.redondear((1.4-(40/h50))*100 ,2): 0
+        def k89  = k87 ? Calculo.instance.redondear(k80/k87, 2): 0
+        def k100 = Calculo.instance.redondear((d16*d43/100)*20, 2)
+        def k101 = k100 ? Calculo.instance.redondear( ((k80*20)/k100)*100, 2): 0
+        def k90  = k88 ? Calculo.instance.redondear(k101/k88, 2): 0
+        def k91  = l55 ? Calculo.instance.redondear((d17*h49/100)*k87*k89*(1/l55), 2): 0
+        def k92  = d16 ? Calculo.instance.redondear(k91/d16*100, 2): 0
+        def k93  = d16 ? Calculo.instance.redondear(k80/d16*100, 2): 0
+        def k94  = d43 - k93
+        def k95  = Calculo.instance.redondear(d16*k94/100, 2)
+        def i96  = h68
+        def l96  = d16 ? Calculo.instance.redondear(i96/d16*100, 2): 0
+        def i97  = h69 + h70
+        def l97  = d16 ? Calculo.instance.redondear(i97/d16*100, 2): 0
+        def l98  = k94 - l97 - l96
+        def i98  = Calculo.instance.redondear(d16*l98/100, 2)
+        def i99  = i98 + i97
+        def l99  = l98 + l97
+        def d15  = getValorBlc("azucarB", 1)
+        def k102 = k100 ? Calculo.instance.redondear(d15*100/k100, 2): 0
+        def k103 = 0
 
+        // Calculo.instance.redondear(, 2 ): 0
         println "Toneladas Sacarosa Jugo Diluido              | " + getCadena(h63, h63A, h63+h63A)
         println "Toneladas Sacarosa Caña                      | " + getCadena(h64, h64A, h64+h64A)
         println "Toneladas Solidos Insolubles                 | " + getCadena(h65, h65A, h65+h65A)
@@ -827,12 +866,39 @@ class QueryTest extends ModuleTestBase {
         println "Maceración % Caña                            | " + getCadena(0, k75, 0)
         println "Temperatura agua de Maceracion               | " + getCadena(0, k76, 0)
         println "Ton Estimadas - Stock de Fabrica             | " + getCadena(0, 0, k77)
-        println "Recuperación Teorica SJM Material de Proceso | " + getCadena(0, 0, k77)
+        println "Recuperación Teorica SJM Material de Proceso | " + getCadena(0, k78, 0)
+        println "Toneladas de sac Recuperable en azucar       | " + getCadena(0, 0, k79)
+        println "Ton Azúcar Hecha y Estimada                  | " + getCadena(0, k80, 0)
+        println "Stock de Día Anterior                        | " + getCadena(0, 0, k81A)
+        println "Kilos Miel/Ton Caña                          | " + getCadena(0, 0, k82)
+        println "Ton Sacaroa en Miel Final H y E              | " + getCadena(0, 0, k83)
+        println "Ton Tot Estimada Miel Final Hoy              | " + getCadena(0, 0, k84)
+        println "Stock Tot Día Anterior                       | " + getCadena(0, 0, k85)
+        println "Miel Estimada                                | " + getCadena(0, 0, k86)
+        println "Recuperación Teórica S.J.M                   | " + getCadena(0, k87, 0)
+        println "Recuperación Teórica Winter                  | " + getCadena(0, k88, 0)
+        println "Eficiencia S.J.M                             | " + getCadena(0, k89, 0)
+        println "Eficiencia Winter                            | " + getCadena(0, k90, 0)
+        println "Toneladas Azúcar Recuperable                 | " + getCadena(0, k91, 0)
+        println "Rendimiento Teórico                          | " + getCadena(0, k92, 0)
+        println "RENDIMIENTO                                  | " + getCadena(0, k93, 0)
+        println "Pérdidas Totales % Caña                      | " + getCadena(0, k94, 0)
+        println "Ton Perdidas Totales                         | " + getCadena(0, k95, 0)
+        println "Pérdidas Molinos                             | " + getCadena(i96, 0, l96)
+        println "Pérdidas Cachaza y Miel Final                | " + getCadena(i97, 0, l97)
+        println "Pérdidas Indeterminadas Elaboración y Molinos| " + getCadena(i98, 0, l98)
+        println "Pérdidas Elaboración y Molinos               | " + getCadena(i99, 0, l99)
+        println "QQ Esperados Teóricos                        | " + getCadena(0, k100, 0)
+        println "Recuperación Tot Sacarosa % Caña             | " + getCadena(0, k101, 0)
+        println "Recuperación Comercial                       | " + getCadena(0, k102, 0)
+        println "Sacarosa en Silos Día Anterior               | " + getCadena(0, k103, 0)
+        println "Sacarosa en Silos Hoy                        | " + getCadena(0, 0, 0)
+        println "Eficiencia de Elaboración                    | " + getCadena(0, 0, 0)
     }
     
     def getValorBlc(def campo, def col){
         def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "blc", "BlcDetalle1", campo)
-        return col == 1 ? (d.valor?:0): (d.cantidad?:0)
+        return col==1 ? (d.valor?:0): ( col==2 ? (d.cantidad?:0) : (d.acumulado?:0) )
     }
     
     void getValoresBlcCenicana(){

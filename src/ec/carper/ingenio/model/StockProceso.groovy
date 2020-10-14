@@ -30,13 +30,14 @@ class StockProceso extends Formulario {
     BigDecimal tonBrix
     BigDecimal tonSac
     BigDecimal pureza 
+    BigDecimal sacarosaSilos 
 
     @OneToMany (mappedBy="stockProceso", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     @ListProperties("""
         orden,material.descripcion,temp,volumen1,volumen2,peso,porcBrix,eq,
         tonBrix [stockProceso.sumTonBrix],
         porcSac,
-        tonSac [stockProceso.sumTonSac],
+        tonSac [stockProceso.sumTonSac, stockProceso.sumSacarosaSilos],
         pureza [stockProceso.calcPureza],
         densidad,factor
     """)
@@ -65,6 +66,15 @@ class StockProceso extends Formulario {
         return sumTonBrix ? Calculo.instance.redondear(sumTonSac/sumTonBrix*100, 2): 0
     }
 
+    BigDecimal getSumSacarosaSilos(){
+        def suma = 0
+        detalle1.each{
+            if ( it.material.campo=="tol50K1" || it.material.campo=="tol50K2" || it.material.campo=="tolFam" )
+                suma += it.tonSac?:0
+        }
+        return suma
+    }
+    
     void cargarItems() throws ValidationException{
         try{
             this.itemsCargados = true
@@ -97,9 +107,10 @@ class StockProceso extends Formulario {
     void actualizar() throws ValidationException{
         try{
 
-            this.tonBrix = sumTonBrix
-            this.tonSac  = sumTonSac
-            this.pureza  = calcPureza
+            this.tonBrix       = sumTonBrix
+            this.tonSac        = sumTonSac
+            this.pureza        = calcPureza
+            this.sacarosaSilos = sumSacarosaSilos
 
             XPersistence.getManager().persist(this)
 
@@ -107,6 +118,5 @@ class StockProceso extends Formulario {
             throw new SystemException("registro_no_actualizado", ex)
         }
     }
-
 
 }

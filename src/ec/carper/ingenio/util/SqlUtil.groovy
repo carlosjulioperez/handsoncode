@@ -26,6 +26,16 @@ class SqlUtil{
         query.setParameter("diaTrabajoId", diaTrabajoId)
         return query.resultList[0]?: 0
     }
+    
+    BigDecimal getValorBlcCenicana(String diaTrabajoId, int orden){
+        Query query = getManager().createQuery("""
+            SELECT valor FROM BlcCenicanaDetalle d
+            WHERE blcCenicana.diaTrabajo.id = :diaTrabajoId
+            AND d.orden = '${orden}'
+        """)
+        query.setParameter("diaTrabajoId", diaTrabajoId)
+        return query.resultList[0]?: 0
+    }
 
     BigDecimal getValorDetalleCampo(String diaTrabajoId, String maestro, String detalle, String campo){
         Query query = getManager().createQuery("""
