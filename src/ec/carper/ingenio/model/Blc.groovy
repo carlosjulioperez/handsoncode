@@ -276,7 +276,7 @@ class Blc extends Formulario {
             consultarJugoResidual()
             consultarCachaza()
             consultarAzucarGranelGrasshoper()
-            // consultarCalculoFabrica()
+            consultarCalculoFabrica()
 
         }catch(Exception ex){
             throw new SystemException("datos_no_consultados", ex)
@@ -595,13 +595,152 @@ class Blc extends Formulario {
     }
 
     def consultarCalculoFabrica(){
+
+        def cdV = getValor("canaDia", 1)
+        def solInsol = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Cto24H"       , "porcInso")
+        
+        def h41  = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Bagazo" , "porcSacarosa")
+        
+        def d11  = getValor("bagazoC", 1)
+        def d17  = getValor("jugoNeto", 1)
+
+        def d49  = solInsol
+        def h49  = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jdSac")
+        def h60  = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jrPur")
+        def h43  = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Bagazo" , "porcHumedad")
+        def s16  = Calculo.instance.redondear((h41/h60)*100, 2)
+        def s17  = 100-h43-s16
+        def d13  = getValor("cachaza", 1)
+        def l48  = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Turbiedad", "polCachaza")
+        def d14  = getValor("mielFM", 1)
+        def l42  = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Mieles" , "mfSac")
+        def f15  = getValor("azucarB", 2)
+        def l55  = SqlUtil.instance.getValorCampo(diaTrabajo.id, "AzucarGranel", "pol")
+        
+        def diaFin = diaTrabajo.numeroDia - 1
+        def h63A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacJDil"   , diaFin)
+        def h64A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacCan"    , diaFin)
+        def h65A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSolIns"    , diaFin)
+        def h66A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonFibBag"    , diaFin)
+        def h67A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonFibCan"    , diaFin)
+        def h68A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacBag"    , diaFin)
+        def h69A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacCac"    , diaFin)
+        def h70A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacMieFin" , diaFin)
+        def h71A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacAzuHec" , diaFin)
+        def k81A = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacRec"    , diaFin)
+
+        def h63 = Calculo.instance.redondear(d17*(h49/100), 2)
+        def h68 = Calculo.instance.redondear(d11*(h41/100), 2)
+        def h64 = h63 + h68
+        def f10 = getValor("jDiluidoBr", 2)
+        def h65 = Calculo.instance.redondear(f10*(d49/100), 2)
+        def h66 = Calculo.instance.redondear(d11*(s17/100), 2)
+        def h67 = h65 + h66
+        def h69 = Calculo.instance.redondear(d13*l48/100, 2)
+        def h70 = Calculo.instance.redondear(d14*l42/100, 2)
+        def h71 = Calculo.instance.redondear(f15*l55/100, 2)
+
+        def k72 = Calculo.instance.redondear((h63/h64)*100, 2)
+                    
+        def d16 = getValor("canaNeta", 1)
+        def s24 = Calculo.instance.redondear(h67/d16*100, 2)
+        def s49 = s24 ? Calculo.instance.redondear( (100-k72)*(100-s24)/s24, 2): 0
+        def k73 = 100 - Calculo.instance.redondear(s49/7, 2)
+        def d9  = getValor("aguaM", 1) //amV 
+        def k74 = h67 ? Calculo.instance.redondear(d9/h67*100, 2): 0
+        def k75 = d16 ? Calculo.instance.redondear(d9/d16*100, 2): 0
+
+        def k76 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Bagazo" , "gradosAguaMac") // ='Stock Proceso'!H69 BAGAZO!P30
+        def k77 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "StockProceso" , "tonSac")  // ='Stock Proceso'!L67
+        def k78 = SqlUtil.instance.getValorBlcCenicana(diaTrabajo.id, 73)   // ='BLC Cenicaña'!D59
+        def k79 = k78 ? Calculo.instance.redondear(k77*k78/100, 2): 0
+    
+        // k81 = 'Stock Fabrica'!AP152
+        
+        // =K79+(F15*L55/100)-K81
+        def k80  = k79 + Calculo.instance.redondear(f15*l55/100, 2 ) - k81A
+        def l14  = getValorBlc("mielFM", 3)
+        def k84  = l14
+        def d    = SqlUtil.instance.getDetallePorIndicador(diaTrabajo.id, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonMelProTotDiaAnt")
+        def k85  = d.valor?:0
+        def k86  = k84-k85
+        def k83  = Calculo.instance.redondear(k86*l42/100, 2)
+        def k82  = (d16*(l42/100))!= 0 ? Calculo.instance.redondear((k83*1000)/(d16*(l42/100)), 2): 0 
+        //       = (100*'BLC Cenicaña'!D57*(H50-L43))/(H50*('BLC Cenicaña'!D57-L43))
+        def k87  = SqlUtil.instance.getValorBlcCenicana(diaTrabajo.id, 60)   //                                                                        = 'BLC Cenicaña'!D59
+        def h50  = SqlUtil.instance.getValorCampoBlc(diaTrabajo.id, "BlcDetalle5" , "pzaJDil")
+        def k88  = h50 ? Calculo.instance.redondear((1.4-(40/h50))*100 ,2): 0
+        def k89  = k87 ? Calculo.instance.redondear(k80/k87, 2): 0
+        def d43  = SqlUtil.instance.getValorCampoBlc(diaTrabajo.id, "BlcDetalle22" , "sacCana")
+        def k100 = Calculo.instance.redondear((d16*d43/100)*20, 2)
+        def k101 = k100 ? Calculo.instance.redondear( ((k80*20)/k100)*100, 2): 0
+        def k90  = k88 ? Calculo.instance.redondear(k101/k88, 2): 0
+        def k91  = l55 ? Calculo.instance.redondear((d17*h49/100)*k87*k89*(1/l55), 2): 0
+        def k92  = d16 ? Calculo.instance.redondear(k91/d16*100, 2): 0
+        def k93  = d16 ? Calculo.instance.redondear(k80/d16*100, 2): 0
+        def k94  = d43 - k93
+        def k95  = Calculo.instance.redondear(d16*k94/100, 2)
+        def i96  = h68
+        def l96  = d16 ? Calculo.instance.redondear(i96/d16*100, 2): 0
+        def i97  = h69 + h70
+        def l97  = d16 ? Calculo.instance.redondear(i97/d16*100, 2): 0
+        def l98  = k94 - l97 - l96
+        def i98  = Calculo.instance.redondear(d16*l98/100, 2)
+        def i99  = i98 + i97
+        def l99  = l98 + l97
+        def d15  = getValorBlc("azucarB", 1)
+        def k102 = k100 ? Calculo.instance.redondear(d15*100/k100, 2): 0
+        def k103 = 0 //Temporalmente ingresado desde BlcAdmin
+        def k104 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "StockProceso" , "sacarosaSilos")  // ='Stock Proceso'!L68
+        def k105 = SqlUtil.instance.getValorBlcCenicana(diaTrabajo.id, 98)   // ='BLC Cenicaña'!H72
+        
         detalle12.each{
             def campo = it.indicador.campo ?: ""
-            // switch (campo){
-            //     case "color":
-            //         it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "AzucarGranel", "color")
-            //         break
-            // }
+            switch (campo){
+                case "TonSacJDil"         : setD12(campo, h63, h63A, h63+h63A); break
+                case "TonSacCan"          : setD12(campo, h64, h64A, h64+h64A); break
+                case "TonSolIns"          : setD12(campo, h65, h65A, h65+h65A); break
+                case "TonFibBag"          : setD12(campo, h66, h66A, h66+h66A); break
+                case "TonFibCan"          : setD12(campo, h67, h67A, h67+h67A); break
+                case "TonSacBag"          : setD12(campo, h68, h68A, h68+h68A); break
+                case "TonSacCac"          : setD12(campo, h69, h69A, h69+h69A); break
+                case "TonSacMieFin"       : setD12(campo, h70, h70A, h70+h70A); break
+                case "TonSacAzuHec"       : setD12(campo, h71, h71A, h71+h71A); break
+                case "ExtPol"             : setD12(campo, 0, k72, 0); break
+                case "ExtRed"             : setD12(campo, 0, k73, 0); break
+                case "MacPorFib"          : setD12(campo, 0, k74, 0); break
+                case "MacPorCan"          : setD12(campo, 0, k75, 0); break
+                case "TemAguMac"          : setD12(campo, 0, k76, 0); break
+                case "TonEstStoFab"       : setD12(campo, 0, 0, k77); break
+                case "RecTeoSJMMatPro"    : setD12(campo, 0, k78, 0); break
+                case "TonSacRec"          : setD12(campo, 0, 0, k79); break
+                case "TonAzuHecEst"       : setD12(campo, 0, k80, 0); break
+                case "StoDiaAnt"          : setD12(campo, 0, 0, k81A); break
+                case "KilMieTonCan"       : setD12(campo, 0, 0, k82); break
+                case "TonSacMieFinHyE"    : setD12(campo, 0, 0, k83); break
+                case "TonTotEstMieFinHoy" : setD12(campo, 0, 0, k84); break
+                case "StoTotDiaAnt"       : setD12(campo, 0, 0, k85); break
+                case "MieEst"             : setD12(campo, 0, 0, k86); break
+                case "RecTeoSJM"          : setD12(campo, 0, k87, 0); break
+                case "RecTeoWin"          : setD12(campo, 0, k88, 0); break
+                case "EfiSJM"             : setD12(campo, 0, k89, 0); break
+                case "EfiWin"             : setD12(campo, 0, k90, 0); break
+                case "TonAzuRec"          : setD12(campo, 0, k91, 0); break
+                case "RenTeo"             : setD12(campo, 0, k92, 0); break
+                case "Ren"                : setD12(campo, 0, k93, 0); break
+                case "PerTotPorCan"       : setD12(campo, 0, k94, 0); break
+                case "TonPerTot"          : setD12(campo, 0, k95, 0); break
+                case "PerMol"             : setD12(campo, i96, 0, l96); break
+                case "PerCacMieFin"       : setD12(campo, i97, 0, l97); break
+                case "PerIndElaMol"       : setD12(campo, i98, 0, l98); break
+                case "PerElaMol"          : setD12(campo, i99, 0, l99); break
+                case "QQEspTeo"           : setD12(campo, 0, k100, 0) ; break
+                case "RecTotSacPorCan"    : setD12(campo, 0, k101, 0) ; break
+                case "RecCom"             : setD12(campo, 0, k102, 0) ; break
+                case "SacSilDiaAnt"       : setD12(campo, 0, k103, 0) ; break
+                case "SacSilHoy"          : setD12(campo, 0, k104, 0) ; break
+                case "EfiEla"             : setD12(campo, 0, k105, 0) ; break
+            }
         }
     }   
 
@@ -657,5 +796,18 @@ class Blc extends Formulario {
     def getValor(def campo, def col){
         def d = SqlUtil.instance.getDetallePorDTM(diaTrabajo.id, "blc", "BlcDetalle1", campo)
         return col == 1 ? (d.valor?:0): (d.cantidad?:0)
+    }
+    
+    def getValorBlc(def campo, def col){
+        def d = SqlUtil.instance.getDetallePorDTM(diaTrabajo.id, "blc", "BlcDetalle1", campo)
+        return col==1 ? (d.valor?:0): ( col==2 ? (d.cantidad?:0) : (d.acumulado?:0) )
+    }
+    
+    void setD12(String campo, def uni, def acu, def zaf){
+        def d = SqlUtil.instance.getDetallePorDTI(diaTrabajo.id, "blc", "BlcDetalle12", campo)
+        d.setUnidades(uni)
+        d.setAcumulado(acu)
+        d.setTotalZafra(zaf)
+        getManager().persist(d)
     }
 }

@@ -91,6 +91,16 @@ class SqlUtil{
         .setParameter("material", material).resultList[0]
     }
 
+    def getDetallePorDTI(def diaTrabajoId, String objMaestro, String detalle, def indicador){
+        return getManager() .createQuery("""
+            FROM ${detalle} 
+            WHERE ${objMaestro}.diaTrabajo.id = :diaTrabajoId
+            AND indicador.campo = :indicador
+        """)
+        .setParameter("diaTrabajoId", diaTrabajoId)
+        .setParameter("indicador", indicador).resultList[0]
+    }
+
     def getDiaTrabajo(String diaTrabajoId){
         return getManager().find(DiaTrabajo.class, diaTrabajoId)
     }

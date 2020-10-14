@@ -848,7 +848,9 @@ class QueryTest extends ModuleTestBase {
         def l99  = l98 + l97
         def d15  = getValorBlc("azucarB", 1)
         def k102 = k100 ? Calculo.instance.redondear(d15*100/k100, 2): 0
-        def k103 = 0
+        def k103 = 0 //Temporalmente ingresado desde BlcAdmin
+        def k104 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "StockProceso" , "sacarosaSilos")  // ='Stock Proceso'!L68
+        def k105 = SqlUtil.instance.getValorBlcCenicana(Aux.instance.diaTrabajoId, 98)   // ='BLC Cenicaña'!H72
 
         // Calculo.instance.redondear(, 2 ): 0
         println "Toneladas Sacarosa Jugo Diluido              | " + getCadena(h63, h63A, h63+h63A)
@@ -892,8 +894,8 @@ class QueryTest extends ModuleTestBase {
         println "Recuperación Tot Sacarosa % Caña             | " + getCadena(0, k101, 0)
         println "Recuperación Comercial                       | " + getCadena(0, k102, 0)
         println "Sacarosa en Silos Día Anterior               | " + getCadena(0, k103, 0)
-        println "Sacarosa en Silos Hoy                        | " + getCadena(0, 0, 0)
-        println "Eficiencia de Elaboración                    | " + getCadena(0, 0, 0)
+        println "Sacarosa en Silos Hoy                        | " + getCadena(0, k104, 0)
+        println "Eficiencia de Elaboración                    | " + getCadena(0, k105, 0)
     }
     
     def getValorBlc(def campo, def col){

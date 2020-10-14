@@ -1,5 +1,6 @@
 2020-10-14 
 	Agregar sumatoria "Sacarosa en Silos"
+	BLC: Consultar datos y cálculos de detalle12
 
 2010-10-11
 	BlcCenicana consultar datos
