@@ -1,5 +1,9 @@
 2010-10-11
+	BlcCenicana consultar datos
+
+2010-10-11
 	BlcCenicanaP y BlcCelicanaPDetalle
+	BlcCenicana y BlcCelicanaDetalle
 
 2010-10-11
 	Crear BlcAdmin para ingresar datos acumulados iniciales

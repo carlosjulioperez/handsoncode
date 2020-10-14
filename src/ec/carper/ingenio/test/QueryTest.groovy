@@ -34,7 +34,7 @@ class QueryTest extends ModuleTestBase {
 
     void test() throws Exception {
         // getValorCampo()
-        //getValoresBlc()
+        // getValoresBlc()
         getValoresBlcCenicana()
 
         //getTotalesStockFabrica()
@@ -838,7 +838,22 @@ class QueryTest extends ModuleTestBase {
     void getValoresBlcCenicana(){
         println "\nVALORES BLC CENICANA\n"
         
-        def diaFin = 6
+        def diaFin    = 6
+        def mfSac     = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "Mieles"       , "mfSac")
+        def pol       = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "AzucarGranel" , "pol")
+        def hum       = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "Grasshoper"   , "humedad")
+        def mfBri2    = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "Mieles"       , "mfBri2")
+        def polReproc = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "AzucarGranel" , "polReproc")
+        def solInsol  = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "Cto24H"       , "porcInso")
+        def jrPur     = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "Jugo"         , "jrPur")
+        def porcSac   = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "Bagazo"       , "porcSacarosa")
+        def porcHum   = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "Bagazo"       , "porcHumedad")
+        def porcFib   = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "Bagazo"       , "porcFibra")
+        def jdSac     = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "Jugo"         , "jdSac")
+        def brixJDil  = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "Jugo"         , "jdBri")
+        def polCac    = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "Turbiedad"    , "polCachaza")
+        def tonSac    = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "StockProceso" , "tonSac")  // ='SP'!L67
+        def pureza    = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "StockProceso" , "pureza")  // ='SP'!M67
         
         // def d16 = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "blc", "BlcDetalle1", "canaNeta")
         def d4  = getValorBlc("canaNeta", 1)
@@ -852,47 +867,254 @@ class QueryTest extends ModuleTestBase {
         def d8  = getValorBlc("mielFM", 1)
         def d9  = getValorBlc("azucarB", 2)
         
-        def mfM = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles" , "mfSac")
-        def h25 = Calculo.instance.redondear(d8*mfM/100, 2)
-        def h27 = Calculo.instance.redondear((h25/d4)*100, 2)
+        def h25 = Calculo.instance.redondear(d8*mfSac/100, 2)
+        def h27 = d4 ? Calculo.instance.redondear((h25/d4)*100, 2): 0
         def d11 = h27
         def h4  = SqlUtil.instance.getValIndBlcAcu("BlcDetalle12" , "TonSacRec" , diaFin)
         
         d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonAzuDis")
         def h5  = d ? (d.valor?:0): 0
-        def d55 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "AzucarGranel", "pol")
-        def d56 = 100 - SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Grasshoper", "humedad")
+        def d55 = pol
+        def d56 = 100 - hum
         def d57 = d56 ? Calculo.instance.redondear(d55/d56*100, 2): 0
-        def h55 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles", "mfSac")
-        def h56 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Mieles", "mfBri2")
+        def h55 = mfSac
+        def h56 = mfBri2
         def h57 = h56 ? Calculo.instance.redondear(h55/h56*100, 2): 0
-        def h75 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "AzucarGranel", "polReproc")
+        def h75 = polReproc
         def h76 = (h75*(d57-h57)) ? Calculo.instance.redondear( (d57*(h75-h57))/(h75*(d57-h57))*100, 2): 0
         def h6  = Calculo.instance.redondear(h5*h76/100, 2)
     
+        def d16 = Calculo.instance.redondear(d5 * (100 - solInsol)/100, 2)
+        def d17 = jrPur ? Calculo.instance.redondear(100*(porcSac/jrPur),2): 0
+        def d18 = 100-(d17+porcHum)
+        def d19 = (d4+d10)-d5
+        def d20 = d4 ? Calculo.instance.redondear(100*(d19/d4),2): 0
+        def d21 = Calculo.instance.redondear((d20*d18)/100, 2)
+        def d22 = Calculo.instance.redondear((d19*d18)/100, 2)
+        def d23 = Calculo.instance.redondear(d5*(solInsol/100), 2)
+        def d24 = Calculo.instance.redondear(((d4*d21)/100)+d23, 2)
+        def d25 = d4 ? Calculo.instance.redondear(100*(d24/d4),2): 0
+        def d26 = d4 ? Calculo.instance.redondear(100*(d10/d4),2): 0
+        def d27 = d24 ? Calculo.instance.redondear(100*(d10/d24),2): 0
+        def d28 = Calculo.instance.redondear(d19*porcSac/100, 2)
+        def d29 = Calculo.instance.redondear(d19*d17/100, 2)
+        def d30 = Calculo.instance.redondear(d16*jdSac/100, 2)
+        // Q' * Sac R. JD/100
+        def d31 = d30 // Calculo.instance.redondear(d16*jdSac/100, 2) // Misma fórmula que d30
+        def d32 = Calculo.instance.redondear(d16*brixJDil/100, 2)
+        def d33 = d30 + d28
+        def d34 = d31 + d28
+        def d35 = d4 - d24
+        def d36 = d35 ? Calculo.instance.redondear(100*(d33/d35), 2): 0
+        def d37 = d35 ? Calculo.instance.redondear((100*d34)/d35, 2): 0
+        def d38 = d32 + d29
         
-        def d16     = Calculo.instance.redondear(d5 * (100 - SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cto24H", "porcInso"))/100, 2)
-        def jrPur   = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Jugo", "jrPur")
-        def porcSac = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Bagazo" , "porcSacarosa")
-        def d17     = jrPur ? Calculo.instance.redondear(100*(porcSac/jrPur),2): 0 
-        def d18     = 0 // =100-(D17+BAGAZO!K30)
+        // =100*((D32+D29)/D35)
+        def d39 = d35 ? Calculo.instance.redondear( 100*((d32+d29)/d35), 2): 0
+        def h16 = d39 ? Calculo.instance.redondear((100*d36)/d39, 2): 0
+        def h17 = d39 ? Calculo.instance.redondear(100*(d32/d39), 2): 0
+        def h18 = d4 ? Calculo.instance.redondear(100*(h17/d4), 2): 0
+        def h19 = d4 ? Calculo.instance.redondear(100*(d16/d4), 2): 0
+        def h20 = d4 ? Calculo.instance.redondear(100*(d33/d4), 2): 0
+        def h21 = d4 ? Calculo.instance.redondear((100*d34)/d4, 2): 0
+        def h22 = d4 ? Calculo.instance.redondear(100*(d6/d4), 2): 0
+        def h23 = Calculo.instance.redondear(d6*polCac/100, 2)
+        def h24 = d4 ? Calculo.instance.redondear((h23/d4)*100, 2): 0
 
-
-        println " 3 | TONELADAS CAÑA                      | " + d4
-        println " 4 | TONELADAS JUGO DILUIDO              | " + d5
-        println " 5 | TONELADAS CACHAZA                   | " + d6
-        println " 6 | TONELADAS DE BAGAZO                 | " + d7
-        println " 7 | TONELADAS MIEL FINAL                | " + d8
-        println " 8 | TONELADAS AZUCAR                    | " + d9
-        println " 9 | TONELADAS AGUA IMBIBICION           | " + d10
-        println "10 | SACAROSA PERDIDA MIEL FINAL % CAÑA  | " + d11
-        println "11 | Stock Sacarosa Proceso día anterior | " + h4
-        println "12 | Ton Azúcar Reproceso                | " + h5
-        println "13 | Ton Azúcar Reproceso Recuperable    | " + h6
+        // Y* Sac R. MF/100
+        def h26 = h25
+        def h28 = d4 ? Calculo.instance.redondear((h26/d4)*100, 2): 0
         
-        println "15 | Ton Jugo Diluido Neto               | " + d16
-        println "16 | Brix % Bagazo                       | " + d17
-        println "17 | Fibra % Bagazo                      | " + d18
+        def d42 = d4 ? Calculo.instance.redondear(100*(d30/d4), 2): 0
+        def d43 = d4 ? Calculo.instance.redondear(100*(d28/d4), 2): 0
+        def d44 = d4 ? Calculo.instance.redondear(100*(d30/d33), 2): 0
+        def d45 = d18 ? Calculo.instance.redondear(100*porcSac/d18, 2): 0
+        def h42 = d25 ? Calculo.instance.redondear(((100-d44)*(100-d25))/d25, 2): 0
+        def h43 = 100 - Calculo.instance.redondear(h42/7, 2)
+        
+        def d58 = tonSac
+        def h58 = pureza
+
+        // =((D57*(H58-H57))/(H58*(D57-H57)))*100        
+        def num = d57 * (h58 - h57) //numerador
+        def den = h58 * (d57 - h57) //denominador
+        
+        println ">> num: ${num}"
+        println ">> den: ${den}"
+        println ">> d57: ${d57}"
+        println ">> h57: ${h57}"
+        println ">> h58: ${h58}"
+
+        def d59 = den!=0 ? Calculo.instance.redondear( (num/den)*100, 2): 0
+        def h62 = Calculo.instance.redondear(d58*d59/100,2)
+        def d66 = Calculo.instance.redondear(d9*d55/100,2)
+        def d65 = d66 + h62 - h4
+        // def blcH50 = SqlUtil.instance.getValorCampoBlc(Aux.instance.diaTrabajoId, "BlcDetalle5" , "pzaJDil")
+        def blcH50 = brixJDil ? Calculo.instance.redondear(jdSac*100/brixJDil,2): 0
+        def blcL43 = mfBri2 ? Calculo.instance.redondear(mfSac/mfBri2*100,2): 0
+
+        // =BLC!K87
+        // =(100*'BLC Cenicaña'!D57*(H50-L43))/(H50*('BLC Cenicaña'!D57-L43))
+        def d48 = (blcH50*(d57-blcL43)) ? Calculo.instance.redondear((100*d57*(blcH50-blcL43))/(blcH50*(d57-blcL43)), 2): 0
+
+        def d49 = blcH50 ? Calculo.instance.redondear(100*(1.4-(40/blcH50)), 2): 0
+        def d50 = d4 ? Calculo.instance.redondear(((d16-h17)/d4)*100, 2): 0
+        def d51 = d48 ? Calculo.instance.redondear(d65/d48, 2): 0
+        def d52 = d55 ? Calculo.instance.redondear(d30*d48*d51*(1/d55), 2): 0
+
+        def h48 = d4 ? Calculo.instance.redondear(d52/d4*100, 2): 0
+        def h49 = d4 ? Calculo.instance.redondear(d66/d4*100, 2): 0
+        def h51 = d33 ? Calculo.instance.redondear(d66/d33*100, 2): 0
+        def d60 = d57 ? Calculo.instance.redondear(h62/d57*100, 2): 0
+        def d61 = d58 - d60
+        def d62 = h55 ? Calculo.instance.redondear(d61/h55*100, 2): 0
+        def h59 = jdSac
+        def h60 = blcH50
+        def h61 = h60 ? Calculo.instance.redondear(h59/h60*100, 2): 0
+        def d67 = h55 ? Calculo.instance.redondear(d8*h55/100, 2): 0
+        def d68 = Calculo.instance.redondear((d4*h20/100)-d65, 2)
+        def h65 = Calculo.instance.redondear(d7*porcSac/100, 2)
+        def h66 = Calculo.instance.redondear(d6*polCac/100, 2)
+        def d69 = d68 - h65 - h66 - d67
+        def d70 = d4 ? Calculo.instance.redondear(d9/d4*100, 2): 0
+        def h67 = d4 ? ( 
+            Calculo.instance.redondear( (d30+d28)/d4*100, 2) - 
+            Calculo.instance.redondear( (d65/d4)*100, 2)
+        ): 0
+
+        def h68 = d4 ? ( h67 - 
+            Calculo.instance.redondear(d67/d4*100, 2) - 
+            Calculo.instance.redondear(h66/d4*100, 2) -
+            Calculo.instance.redondear(h65/d4*100, 2)
+        ): 0
+
+        def h69 = d33 ? Calculo.instance.redondear( d65/d33*100, 2): 0
+        def h70 = ( 
+            Calculo.instance.redondear(d66/0.997 , 2) +
+            Calculo.instance.redondear(h62/0.997 , 2) -
+            Calculo.instance.redondear(h4/0.997  , 2)
+        )
+        def d71 = d4 ? Calculo.instance.redondear(h70/d4*100, 2): 0
+        def h71 = d30 ? Calculo.instance.redondear(d65/d30*100, 2): 0
+        def h72 = d49 ? Calculo.instance.redondear(h71/d49*100, 2): 0
+        def d74 = d4 ? Calculo.instance.redondear(h65/d4*100, 2): 0
+        def d75 = d4 ? Calculo.instance.redondear(h66/d4*100, 2): 0
+        def d76 = d4 ? Calculo.instance.redondear(d67/d4*100, 2): 0
+        def d77 = d4 ? Calculo.instance.redondear(d69/d4*100, 2): 0
+        def d79 = h65 + h66 + d67 + d69
+
+        // 1,DATOS OBTENIDOS EN FÁBRICA
+        println "  3 | TONELADAS CAÑA                          | " + d4
+        println "  4 | TONELADAS JUGO DILUIDO                  | " + d5
+        println "  5 | TONELADAS CACHAZA                       | " + d6
+        println "  6 | TONELADAS DE BAGAZO                     | " + d7
+        println "  7 | TONELADAS MIEL FINAL                    | " + d8
+        println "  8 | TONELADAS AZUCAR                        | " + d9
+        println "  9 | TONELADAS AGUA IMBIBICION               | " + d10
+        println " 10 | SACAROSA PERDIDA MIEL FINAL % CAÑA      | " + d11
+        println " 11 | Stock Sacarosa Proceso día anterior     | " + h4
+        println " 12 | Ton Azúcar Reproceso                    | " + h5
+        println " 13 | Ton Azúcar Reproceso Recuperable        | " + h6
+
+        // 14,CALCULOS BÁSICOS
+        println " 15 | Ton Jugo Diluido Neto                   | " + d16
+        println " 16 | Brix % Bagazo                           | " + d17
+        println " 17 | Fibra % Bagazo                          | " + d18
+        println " 18 | Ton Bagazo                              | " + d19
+        println " 19 | Bagazo % Caña                           | " + d20
+        println " 20 | Fibra en Bagazo % Caña                  | " + d21
+        println " 21 | Toneladas de Fibra en Bagazo            | " + d22
+        println " 22 | Ton Sólidos Ins Jugo Diluido            | " + d23
+        println " 23 | Ton Fibra en Caña                       | " + d24
+        println " 24 | Fibra % Caña                            | " + d25
+        println " 25 | Maceración % caña                       | " + d26
+        println " 26 | Maceracion % Fibra                      | " + d27
+        println " 27 | Ton Sacarosa Apt Bagazo                 | " + d28
+        println " 28 | Ton Sólidos Bagazo                      | " + d29
+        println " 29 | Ton Sac Apte Jugo Diluido               | " + d30
+        println " 30 | Ton Sac Real Jugo Diluido Cromatografía | " + d31
+        println " 31 | Ton Sólidos Jugo Diluido                | " + d32
+        println " 32 | Ton Sac Apte Caña                       | " + d33
+        println " 33 | Ton Sac Real Caña                       | " + d34
+        println " 34 | Ton Jugo Absoluto                       | " + d35
+        println " 35 | Sac Apte % Jugo Abs                     | " + d36
+        println " 36 | Sac Real  % Jugo Abs                    | " + d37
+        println " 37 | Ton sólidos en Caña                     | " + d38
+        println " 38 | Brix % Jugo Absoluto                    | " + d39
+        println " 39 | Pureza Jugo Absoluto                    | " + h16
+        println " 40 | Ton Jugo Abs Extraídas                  | " + h17
+        println " 41 | Extracción de jugo abs % Caña           | " + h18
+        println " 42 | Extracción Jugo Dil Net % caña          | " + h19
+        println " 43 | Sac Apte % Caña                         | " + h20
+        println " 44 | Sac Real % Caña                         | " + h21
+        println " 45 | Cachaza % Caña                          | " + h22
+        println " 46 | Ton Sac Apte en Cachaza                 | " + h23
+        println " 47 | Sac Apte Cachaza % caña                 | " + h24
+        println " 48 | Ton Sac Apte Miel Final                 | " + h25
+        println " 49 | Ton Sac Real Miel Final Cromatografía   | " + h26
+        println " 50 | RSac Apte Miel Final % Caña             | " + h27
+        println " 51 | Sac Real Miel Final % Caña              | " + h28
+
+        // 52,CÁLCULO MOLINOS
+        println " 53 | Extracción de Sac % Caña                | " + d42
+        println " 54 | Sac Apte en Bagazo % Caña               | " + d43
+        println " 55 | Ext Sac apte % sac apte caña            | " + d44
+        println " 56 | Sac Apte perdida en bag % Fibra en bag  | " + d45
+        println " 57 | Jugo abs Perdido % Fibra Caña           | " + h42
+        println " 58 | Ext Sac Reducida 12,5 % Fibra           | " + h43
+
+        // 59,CÁLCULO ELABORACIÓN
+        println " 60 | Recuperación Teórica SJM                | " + d48
+        println " 61 | Recuperación Teórica Winter             | " + d49
+        println " 62 | Dilución % Caña                         | " + d50
+        println " 63 | Eficiencia SJM                          | " + d51
+        println " 64 | Toneladas de azúcar recuperable         | " + d52
+        println " 65 | Rendimiento Teórico                     | " + h48
+        println " 66 | Rendimiento Comercial                   | " + h49
+        println " 67 | Rendimiento Base Sacarosa               | " + h51
+        
+        // MATERIAL EN PROCESO
+        println " 69 | Pol Azúcar                              | " + d55
+        println " 70 | Brix Azúcar                             | " + d56
+        println " 71 | Pureza Azúcar                           | " + d57
+        println " 72 | Toneladas en Proceso                    | " + d58
+        println " 73 | Recuperación Teórica SJM Material de Pro| " + d59
+        println " 74 | Ton Azúcar Recuperable                  | " + d60
+        println " 75 | Ton Sacarosa Miel Final                 | " + d61
+        println " 76 | Ton Miel Final Recuperable              | " + d62
+        println " 77 | Sacarosa Miel Final                     | " + h55
+        println " 78 | Brix Miel Final                         | " + h56
+        println " 79 | Pureza Miel Final                       | " + h57
+        println " 80 | Pureza Material en Proceso              | " + h58
+        println " 81 | Sacarosa Jugo Diluido                   | " + h59
+        println " 82 | Brix Jugo Diluido                       | " + h60
+        println " 83 | Pureza Jugo Diluido                     | " + h61
+        println " 84 | Toneladas de sac Recuperable en Azúcar  | " + h62
+
+        // 85,CÁLCULOS Y BALANCE DE SACAROSA
+        println " 86 | Toneladas de Sacarosa Recobrada         | " + d65
+        println " 87 | Ton Sacarosa Azúcar Producida           | " + d66
+        println " 88 | Ton Sacarosa neta Miel final - Melaza   | " + d67
+        println " 89 | Pérdidas totales                        | " + d68
+        println " 90 | Pérdidas Indeterminadas (Ton)           | " + d69
+        println " 91 | Pérdidas totales Sacarosa % Caña        | " + h67
+        println " 92 | Pérdidas Indeterminadas % Caña          | " + h68
+        println " 93 | Sacarosa en Azúcar %Sacarosa en Caña    | " + h69
+        println " 94 | Rendimiento Comercial Telquel           | " + d70
+        println " 95 | Rendimiento Real (99,7 %)               | " + d71
+        println " 96 | Toneladas Azúcar Neto                   | " + h70
+        println " 97 | Sac Azúcar % Sac Aparente Jugo Diluido  | " + h71
+        println " 98 | Eficiencia Elaboración (%)              | " + h72
+        println " 99 | Ton Sacarosa Bagazo                     | " + h65
+        println "100 | Ton Sacarosa Cachaza                    | " + h66
+        println "101 | Pérdidas  Sacarosa Bagazo % Caña        | " + d74
+        println "102 | Pérdidas  Sacarosa Cachaza % Caña       | " + d75
+        println "103 | Pérdidas  Sacarosa Miel Final % Caña    | " + d76
+        println "104 | Pérdidas Indeterminadas % Caña          | " + d77
+        println "105 | Azúcar Reproceso (Pol)                  | " + h75
+        println "106 | Recuperación SJM Azúcar Reproceso       | " + h76
+        println "107 | Ton Pérdida Total                       | " + d79
+
     }
 
     void setValores(String campo, def val, def can, def acu){
