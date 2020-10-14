@@ -768,6 +768,21 @@ class QueryTest extends ModuleTestBase {
         def d51 = d8 ? Calculo.instance.redondear(f10*100/d8, 2): 0
         println "JUGO DILUIDO (BR)  |" + d51
 
+        // SECCION MIEL FINA MELAZA
+        d = SqlUtil.instance.getDetallePorDTI(Aux.instance.diaTrabajoId, "blc", "BlcDetalle12", "KilMieTonCan")
+        def k822 = d ? (d.totalZafra?:0): 0
+
+        def mfBri2 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId , "Mieles"       , "mfBri2")
+        def l41 = mfBri2
+        // =(K82/(BUSCAR(L41,'Brix y Densidad'!A3:B953)))*(1000/3.785)
+        def p   = new BrixDensidadWp().getP(l41)
+        def l46 = p ? Calculo.instance.redondear( (k822/p)*(1000/3.785), 2): 0
+
+        println "\n"
+        println ">>> l41: ${l41}"
+        println ">>> p  : ${p}"
+        println "Gal/TCM            |" + l46
+
         println "\nCALCULOS DE FABRICA\n"
 
         def d49  = solInsol

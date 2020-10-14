@@ -434,6 +434,15 @@ class Blc extends Formulario {
                     it.valor   = cenMf ? Calculo.instance.redondear(mielF2/cenMf,2): 0
                     break 
                 case "galTcm":
+                    def d      = SqlUtil.instance.getDetallePorDTI(diaTrabajo.id, "blc", "BlcDetalle12", "KilMieTonCan")
+                    def k822   = d ? (d.totalZafra?:0): 0
+
+                    def mfBri2 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Mieles"       , "mfBri2")
+                    def l41    = mfBri2
+                    //         = (K82/(BUSCAR(L41,'Brix y Densidad'!A3:B953)))*(1000/3.785)
+                    def p      = new BrixDensidadWp().getP(l41)
+                    def l46    = p ? Calculo.instance.redondear( (k822/p)*(1000/3.785), 2): 0
+                    it.valor   = l46
                     break 
             }
             getManager().persist(it)
