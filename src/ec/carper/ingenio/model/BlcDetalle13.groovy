@@ -23,7 +23,7 @@ class BlcDetalle13 extends Identifiable{
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @ReadOnly
     Indicador indicador
     
-    @ReadOnly(forViews="DEFAULT")
+    // @ReadOnly(forViews="DEFAULT")
     @Digits(integer=10, fraction=3) @DisplaySize(6)
     BigDecimal unidades
  

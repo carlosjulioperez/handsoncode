@@ -7,8 +7,13 @@ class BlcTest extends ModuleTestBase {
     BlcTest(String testName) {
         super(testName, "Ingenio", "Blc")
     }
+
+    void test(){
+        crear()
+        consultar()
+    }
     
-    void testConsultar() throws Exception {
+    void consultar() throws Exception {
         login("admin", "admin")
         
         setConditionComparators(["contains_comparator"])
@@ -19,19 +24,19 @@ class BlcTest extends ModuleTestBase {
         assertNoErrors()
     }
 
-    void _testCrear() throws Exception {
+    void crear() throws Exception {
         login("admin", "admin")
         
         execute("CRUD.new")
         
         setValue("diaTrabajo.id" , Aux.instance.diaTrabajoId)
         // setValue("diaTrabajo.id" ,"ff80808174d2eb750174d3096a920000")
-        setValue("descripcion"   , "JUNIT")
+        setValue("descripcion"   , "principal")
         execute ("Ingenio.save")
         assertNoErrors()
         
         setConditionComparators(["contains_comparator"])
-        setConditionValues(["JUNIT"])
+        setConditionValues(["principal"])
         execute("List.filter") 
         printHtml() 
         execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila

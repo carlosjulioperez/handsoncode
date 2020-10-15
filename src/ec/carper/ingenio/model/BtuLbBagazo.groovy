@@ -22,16 +22,16 @@ import static org.openxava.jpa.XPersistence.*
 """)
 class BtuLbBagazo extends Formulario {
 
-    @DisplaySize(6) @Required
+    @DisplaySize(6)
     BigDecimal pHum
 
-    @OnChange(BtuLbBagazoAction.class) @DisplaySize(6) @Required
+    @OnChange(BtuLbBagazoAction.class) @DisplaySize(6)
     BigDecimal pCrisol
     
-    @OnChange(BtuLbBagazoAction.class) @DisplaySize(6) @Required
+    @OnChange(BtuLbBagazoAction.class) @DisplaySize(6)
     BigDecimal pCriCen
     
-    @OnChange(BtuLbBagazoAction.class) @DisplaySize(6) @Required
+    @OnChange(BtuLbBagazoAction.class) @DisplaySize(6)
     BigDecimal pMtra
 
     @ReadOnly @DisplaySize(6)

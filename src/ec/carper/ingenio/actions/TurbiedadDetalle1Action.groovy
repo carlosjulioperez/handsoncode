@@ -16,7 +16,7 @@ class TurbiedadDetalle1Action extends OnChangePropertyBaseAction{
         BigDecimal abs900Nm = (BigDecimal)getView().getValue("abs900Nm")
         //println("values=" + getView().getValues());
 
-        getView().setValue("turJClaro", abs900Nm ? Calculo.instance.redondear(abs900Nm*100, 2): false)
+        getView().setValue("turJClaro", abs900Nm ? Calculo.instance.redondear(abs900Nm*100, 2): null)
         
     }
 
