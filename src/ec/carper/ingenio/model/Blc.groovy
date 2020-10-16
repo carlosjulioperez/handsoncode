@@ -649,10 +649,10 @@ class Blc extends Formulario {
         def h70 = Calculo.instance.redondear(d14*l42/100, 2)
         def h71 = Calculo.instance.redondear(f15*l55/100, 2)
 
-        def k72 = Calculo.instance.redondear((h63/h64)*100, 2)
+        def k72 = h64 ? Calculo.instance.redondear((h63/h64)*100, 2): 0
                     
         def d16 = getValor("canaNeta", 1)
-        def s24 = Calculo.instance.redondear(h67/d16*100, 2)
+        def s24 = d16 ? Calculo.instance.redondear(h67/d16*100, 2): 0
         def s49 = s24 ? Calculo.instance.redondear( (100-k72)*(100-s24)/s24, 2): 0
         def k73 = 100 - Calculo.instance.redondear(s49/7, 2)
         def d9  = getValor("aguaM", 1) //amV 

@@ -40,7 +40,7 @@ class BlcTest extends ModuleTestBase {
         execute("List.filter") 
         printHtml() 
         execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila
-        assertValue("descripcion", "JUNIT")
+        assertValue("descripcion", "principal")
         execute    ("Blc.cargarItems")
         assertCollectionRowCount("detalle1", 13)
         execute    ("Blc.consultarDatos")
@@ -160,7 +160,7 @@ class BlcTest extends ModuleTestBase {
         
         // VALORES DE cana dia
         setConditionComparators(["contains_comparator"])
-        setConditionValues(["JUNIT"])
+        setConditionValues(["principal"])
         execute("List.filter") 
         execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila
 
