@@ -7,7 +7,7 @@
 -- ALTER TABLE ingenio.ingenio.blcdetalle1 ADD modificable bool NULL;
 -- UPDATE blcdetalle1 SET modificable=false;
 
--- DROP SCHEMA ingenio CASCADE;
+-- ALTER TABLE ingenio.ingenio.blcdetalle12 ADD modificable bool
+-- ALTER TABLE ingenio.ingenio.blcpdetalle12 ADD modificable bool
 
--- DROP TABLE ingenio.blccelicanapdetalle;
--- DROP TABLE ingenio.blccelicanap;
+-- DROP SCHEMA ingenio CASCADE;

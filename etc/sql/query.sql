@@ -5,10 +5,10 @@
 
 -- SELECT * FROM ingenio.material;
 
-SELECT   orden, m.descripcion, m.campo
-FROM     ingenio.stockprocesopdetalle d, ingenio.material m
-WHERE    d.material_id = m.id
-ORDER BY orden;
+-- SELECT   orden, m.descripcion, m.campo
+-- FROM     ingenio.stockprocesopdetalle d, ingenio.material m
+-- WHERE    d.material_id = m.id
+-- ORDER BY orden;
 
 -- select i.descripcion, valor, i.campo, modificable
 -- from ingenio.stockfabricadetalle73 d, ingenio.indicador i
@@ -39,6 +39,13 @@ ORDER BY orden;
 -- WHERE    d.indicador_id = i.id AND
 --          d.blc_id='ff808081751a20d701751a2c662b0000'
 -- ORDER BY orden;
+
+-- SELECT   orden, i.id, i.descripcion, i.campo, unidades, acumulado, totalzafra 
+SELECT   orden, i.id, i.descripcion, i.campo, unidades
+FROM     ingenio.blcdetalle13 d, ingenio.indicador i
+WHERE    d.indicador_id = i.id AND
+         d.blc_id='ff808081752f740c01752f7dbb1b0001'
+ORDER BY orden;
 
 -- SELECT   orden, descripcion
 -- FROM     ingenio.blccenicanadetalle

@@ -30,7 +30,7 @@ class BlcAdmin extends Formulario {
     Collection<BlcDetalle1>detalle1
     
     @CollectionView("Simple")
-    @ListProperties("orden,indicador.descripcion;unidades,unidad.descripcion")
+    @ListProperties("orden,indicador.descripcion;unidades,unidad.descripcion,modificable")
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<BlcDetalle12> detalle12
 

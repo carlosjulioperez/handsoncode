@@ -34,7 +34,8 @@ class QueryTest extends ModuleTestBase {
 
     void test() throws Exception {
         // getValorCampo()
-        getValoresBlc()
+        //getValoresBlc()
+        getValoresServiciosInsumosFabrica()
         // getValoresBlcCenicana()
 
         //getTotalesStockFabrica()
@@ -911,6 +912,79 @@ class QueryTest extends ModuleTestBase {
         println "Sacarosa en Silos Día Anterior               | " + getCadena(0, k103, 0)
         println "Sacarosa en Silos Hoy                        | " + getCadena(0, k104, 0)
         println "Eficiencia de Elaboración                    | " + getCadena(0, k105, 0)
+    }
+
+    void getValoresServiciosInsumosFabrica(){
+        println "\nCONSUMOS - SERVICIOS E INSUMOS FABRICA\n"
+    
+        println " orden | id  |             descripcion              |    campo     |  unidades   | acumulado   | totalZafra  | "
+        println "-------+-----+--------------------------------------+--------------+-------------+-------------+-------------+"
+        println "     1 | 133 | Consumo Diesel (Gal)                 | ConDieGal    | "
+        println "     2 | 134 | Consumo de Energía                   | ConEne       | "
+        println "     3 | 135 | Generación de Energía                | GenEne       | "
+        println "     4 | 136 | Generación Agua de Alimentación      | GenAguAli    | "
+        println "     5 | 138 | Generación de Vapor Ton              | GenVapTon    | "
+        println "     6 | 139 | CALDERA                              | CAL          | "
+        println "     7 | 140 | INTER-417                            | Int147       | "
+        println "     8 | 141 | INTER-421                            | Int421       | "
+        println "     9 | 142 | INTER-506                            | Int506       | "
+        println "    10 | 143 | BOILER CONTROL                       | BoiCon       | "
+        println "    11 | 144 | Soda                                 | Sod          | "
+        println "    12 | 145 | OR DM PLANT                          | OrDmPla      | "
+        println "    13 | 146 | INTER-413                            | Int413       | "
+        println "    14 | 147 | INTER-753                            | Int753       | "
+        println "    15 | 148 | Hipoclorito de Sodio                 | HipSod       | "
+        println "    16 | 149 | Filtro de Cartuchos 5 mm             | FilCar5MM    | "
+        println "    17 | 150 | Filtro de Cartuchos 30 mm            | FilCar30MM   | "
+        println "    18 | 151 | CLARIFICADOR                         | CLA          | "
+        println "    19 | 152 | Inter Quipac                         | IntQui       | "
+        println "    20 | 153 | Floculante C                         | FloC         | "
+        println "    21 | 148 | Hipoclorito de Sodio                 | HipSod       | "
+        println "    22 | 154 | Cal                                  | Cal          | "
+        println "    23 | 155 | REGENERACION DE RESINAS              | REGRES       | "
+        println "    24 | 156 | Carbonato de Calcio                  | CarCal       | "
+        println "    25 | 157 | Soda Cáustica                        | SodCau       | "
+        println "    26 | 158 | LIMPIEZA Y REGENERACION DM PLANTA    | LIMREGDMPLA  | "
+        println "    27 | 159 | INTER-875                            | Int875       | "
+        println "    28 | 160 | INTER-886                            | Int886       | "
+        println "    29 | 161 | INTER-846                            | Int846       | "
+        println "    30 | 162 | TORRE ENFRIAMIENTO TURBO             | TORENFTUR    | "
+        println "    31 | 163 | INTER-746                            | Int746       | "
+        println "    32 | 164 | INTER-822                            | Int822       | "
+        println "    33 | 165 | EVAPORADORES                         | EVA          | "
+        println "    34 | 144 | Soda                                 | Sod          | "
+        println "    35 | 166 | CLARIFICADOR DE JUGO                 | CLAJUG       | "
+        println "    36 | 167 | Floculante                           | Flo          | "
+        println "    37 | 168 | Azufre                               | Azu          | "
+        println "    38 | 154 | Cal                                  | Cal          | "
+        println "    39 | 169 | CLARIFICACIÓN DE MELADURA            | CLAMEL       | "
+        println "    40 | 170 | PROFLOC DI                           | ProDi        | "
+        println "    41 | 171 | Ácido Fosfórico                      | AciFos       | "
+        println "    42 | 172 | Proquat SC 970                       | ProSc970     | "
+        println "    43 | 167 | Floculante                           | Flo          | "
+        println "    44 | 173 | TACHOS                               | TAC          | "
+        println "    45 | 172 | Proquat SC 970                       | ProSc970     | "
+        println "    46 | 174 | Alcohol                              | Alc          | "
+        println "    47 | 175 | Semilla Fondant                      | SemFon       | "
+        println "    48 | 176 | Propeg 606                           | Pro606       | "
+        println "    49 | 177 | MOLINOS                              | MOL          | "
+        println "    50 | 178 | Proquat BC 50                        | ProBC50      | "
+        println "    51 | 179 | Peocide BC 800                       | PeoBC800     | "
+        println "    52 | 180 | JUGO DILUIDO                         | JUGDIL       | "
+        println "    53 | 172 | Proquat SC 970                       | ProSc970     | "
+        println "    54 | 181 | Profloc DI                           | ProDI        | "
+        println "    55 | 182 | Profosf 550                          | Pro550       | "
+        println "    56 | 183 | CONSUMO DE AGUA CALIENTE ELABORACION | CONAGUCALELA | "
+        println "    57 | 184 | Tachos                               | Tac          | "
+        println "    58 | 185 | Filtro de Cachaza                    | FilCac       | "
+        println "    59 | 186 | Fundido                              | Fun          | "
+        println "    60 | 187 | Centrífuga Bach 1                    | CenBac1      | "
+        println "    61 | 188 | Centrífuga Bach 2                    | CenBac2      | "
+        println "    62 | 189 | Centrífuga Continua 1 de B           | CenCon1B     | "
+        println "    63 | 190 | Centrífuga Continua 2 de B           | CenCon2B     | "
+        println "    64 | 191 | Centrífuga Continua 3 de C           | CenCon3C     | "
+        println "    65 | 192 | Centrífuga Continua 4 de C           | CenCon4C     | "
+    
     }
     
     def getValorBlc(def campo, def col){

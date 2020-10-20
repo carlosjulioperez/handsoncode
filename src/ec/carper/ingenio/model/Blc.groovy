@@ -117,10 +117,11 @@ class Blc extends Formulario {
         arroba [ blc.sumArroba , blc.calArroba ] """)
     Collection<BlcDetalle11> detalle11
 
-    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    @EditAction("Blc.editDetail12")
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<BlcDetalle12> detalle12
 
-    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<BlcDetalle13> detalle13
     
     BigDecimal granel
@@ -247,7 +248,7 @@ class Blc extends Formulario {
             // CalculoFabrica 
             lista = getManager().createQuery("FROM BlcPDetalle12 WHERE blcP.id = 1 ORDER BY orden").getResultList()
             lista.each{
-                def d = new BlcDetalle12(blc: blc, orden: it.orden, indicador: it.indicador, unidad: it.unidad, unidad2: it.unidad2)
+                def d = new BlcDetalle12(blc: blc, orden: it.orden, indicador: it.indicador, unidad: it.unidad, unidad2: it.unidad2, modificable: it.modificable)
                 getManager().persist(d)
             }
 

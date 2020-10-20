@@ -67,6 +67,8 @@
             class="ec.carper.ingenio.actions.BlcConsultarDatosAction"/>
 		<action name="editDetail" hidden="true" image="edit.gif"
 			class="ec.carper.ingenio.actions.BlcEditDetail1Action"/>
+		<action name="editDetail12" hidden="true" image="edit.gif"
+			class="ec.carper.ingenio.actions.BlcEditDetail12Action"/>
     </controller>   
 
     <controller name="BlcCenicana">

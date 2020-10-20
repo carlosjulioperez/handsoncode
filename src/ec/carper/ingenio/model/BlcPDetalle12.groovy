@@ -5,7 +5,7 @@ import org.openxava.annotations.*
 import org.openxava.model.*
 
 @Entity
-@View(members="orden;indicador;unidad;unidad2")
+@View(members="orden;indicador;unidad;unidad2;modificable")
 class BlcPDetalle12 extends Identifiable{
    
     @ManyToOne
@@ -22,5 +22,7 @@ class BlcPDetalle12 extends Identifiable{
     
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList
     Unidad unidad2
+    
+    boolean modificable
     
 }

@@ -8,14 +8,13 @@ class BlcTest extends ModuleTestBase {
         super(testName, "Ingenio", "Blc")
     }
 
-    void test(){
+    void test() throws Exception {
+        login("admin", "admin")
         crear()
-        consultar()
+        // consultar()
     }
     
-    void consultar() throws Exception {
-        login("admin", "admin")
-        
+    void consultar(){
         setConditionComparators(["contains_comparator"])
         setConditionValues(["principal"])
         execute ("List.filter") 
@@ -24,8 +23,7 @@ class BlcTest extends ModuleTestBase {
         assertNoErrors()
     }
 
-    void crear() throws Exception {
-        login("admin", "admin")
+    void crear(){
         
         execute("CRUD.new")
         
@@ -38,7 +36,7 @@ class BlcTest extends ModuleTestBase {
         setConditionComparators(["contains_comparator"])
         setConditionValues(["principal"])
         execute("List.filter") 
-        printHtml() 
+        //printHtml() 
         execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila
         assertValue("descripcion", "principal")
         execute    ("Blc.cargarItems")

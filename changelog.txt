@@ -1,3 +1,6 @@
+2020-10-15 
+	Diagrama de proceso del sistema +ingenio
+
 2020-10-14 
 	Miel F.M. Gal/TCM
 	Agregar sumatoria "Sacarosa en Silos"
