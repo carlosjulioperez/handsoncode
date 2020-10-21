@@ -231,6 +231,176 @@ class BlcTest extends ModuleTestBase {
         execute('Sections.change','activeSection=3,viewObject=xava_view_section2')
         assertValueInCollection("detalle5" , 3 , 2 , "101.52")
         assertNoErrors()
+
+        execute('Sections.change','activeSection=4')
+        execute('Blc.editDetail12','row=40,viewObject=xava_view_section4_detalle12') 
+        assertDialog(); setValue ( "acumulado" , "81.8"); execute("Collection.save")
+
+        // Consumo / Servicios e insumos de fábrica
+        execute('Sections.change','activeSection=5')
         
+        execute('Collection.edit','row=0,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=1,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "51789"); execute("Collection.save")
+
+        execute('Collection.edit','row=2,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "51789"); execute("Collection.save")
+
+        execute('Collection.edit','row=3,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "685"); execute("Collection.save")
+
+        execute('Collection.edit','row=4,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "776"); execute("Collection.save")
+
+        execute('Collection.edit','row=5,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "717"); execute("Collection.save")
+
+        execute('Collection.edit','row=7,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "8"); execute("Collection.save")
+
+        execute('Collection.edit','row=8,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=9,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=10,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=11,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=13,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=14,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=15,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=16,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=17,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=19,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "22"); execute("Collection.save")
+
+        execute('Collection.edit','row=20,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0.11"); execute("Collection.save")
+
+        execute('Collection.edit','row=21,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "11"); execute("Collection.save")
+
+        execute('Collection.edit','row=22,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=24,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=25,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=27,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=28,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=29,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=31,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=32,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "1.5"); execute("Collection.save")
+
+        execute('Collection.edit','row=34,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=35,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=36,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "3.4"); execute("Collection.save")
+
+        execute('Collection.edit','row=37,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "150"); execute("Collection.save")
+
+        execute('Collection.edit','row=38,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "2125"); execute("Collection.save")
+
+        execute('Collection.edit','row=40,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "10.15"); execute("Collection.save")
+
+        execute('Collection.edit','row=41,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=42,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=43,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "2"); execute("Collection.save")
+
+        execute('Collection.edit','row=45,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=46,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=47,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=48,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('List.goNextPage',',collection=detalle13')
+
+        execute('Collection.edit','row=50,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "20"); execute("Collection.save")
+
+        execute('Collection.edit','row=51,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "20"); execute("Collection.save")
+
+        execute('Collection.edit','row=53,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "0"); execute("Collection.save")
+
+        execute('Collection.edit','row=54,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "220"); execute("Collection.save")
+
+        execute('Collection.edit','row=55,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "250"); execute("Collection.save")
+
+        execute('Collection.edit','row=57,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "36"); execute("Collection.save")
+
+        execute('Collection.edit','row=58,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "43"); execute("Collection.save")
+
+        execute('Collection.edit','row=59,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "51"); execute("Collection.save")
+
+        execute('Collection.edit','row=60,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "11"); execute("Collection.save")
+
+        execute('Collection.edit','row=61,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "15"); execute("Collection.save")
+
+        execute('Collection.edit','row=62,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "5"); execute("Collection.save")
+
+        execute('Collection.edit','row=63,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "5"); execute("Collection.save")
+
+        execute('Collection.edit','row=64,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "5"); execute("Collection.save")
+
+        execute('Collection.edit','row=65,viewObject=xava_view_section5_detalle13')
+        assertDialog(); setValue ( "unidades" , "7"); execute("Collection.save")
     }
 }

@@ -24,6 +24,7 @@ class BlcDetalle13 extends Identifiable{
     Indicador indicador
     
     // @ReadOnly(forViews="DEFAULT")
+    @OnChange(value=BlcDetalle13Action.class, notForViews="Simple")
     @Digits(integer=10, fraction=3) @DisplaySize(6)
     BigDecimal unidades
  
