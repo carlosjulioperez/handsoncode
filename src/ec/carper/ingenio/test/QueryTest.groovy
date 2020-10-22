@@ -35,7 +35,8 @@ class QueryTest extends ModuleTestBase {
     void test() throws Exception {
         // getValorCampo()
         //getValoresBlc()
-        getValoresServiciosInsumosFabrica()
+        //getValoresServiciosInsumosFabrica()
+        getValoresAnalisisRutinariosEspecialesFabrica()
         // getValoresBlcCenicana()
 
         //getTotalesStockFabrica()
@@ -987,6 +988,24 @@ class QueryTest extends ModuleTestBase {
     
     }
     
+    def getValoresAnalisisRutinariosEspecialesFabrica(){
+        println "\nANALISIS RUTINARIOS Y ESPECIALES FABRICA\n"
+
+        def g177 = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "TrashCana" , "avgPorcAzuRed")
+
+        println " orden | id  |    descripcion    | campo  | "
+        println "-------+-----+-------------------+--------+ "
+        println "     1 | 125 | CAÑA              | can    | " + g177
+        println "     2 | 126 | J. 1 EXTRAC       | j1Ext  | "
+        println "     3 | 127 | J. DILUIDO        | jDil   | "
+        println "     4 | 128 | J. CLARO          | jCla   | "
+        println "     5 | 129 | J. FILTRADO       | jFil   | "
+        println "     6 | 130 | M. CLARA          | mCla   | "
+        println "     7 | 131 | MIEL A            | mieA   | "
+        println "     8 | 132 | MIEL B            | mieB   | "
+        println "     9 | 007 | MIEL FINAL MELAZA | mielFM | "
+    }
+
     def getValorBlc(def campo, def col){
         def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "blc", "BlcDetalle1", campo)
         return col==1 ? (d.valor?:0): ( col==2 ? (d.cantidad?:0) : (d.acumulado?:0) )

@@ -41,10 +41,16 @@
 -- ORDER BY orden;
 
 -- SELECT   orden, i.id, i.descripcion, i.campo, unidades, acumulado, totalzafra 
-SELECT   orden, i.id, i.descripcion, i.campo, unidades
-FROM     ingenio.blcdetalle13 d, ingenio.indicador i
-WHERE    d.indicador_id = i.id AND
-         d.blc_id='ff808081752f740c01752f7dbb1b0001'
+-- SELECT   orden, i.id, i.descripcion, i.campo, unidades
+-- FROM     ingenio.blcdetalle13 d, ingenio.indicador i
+-- WHERE    d.indicador_id = i.id AND
+--          d.blc_id='ff808081752f740c01752f7dbb1b0001'
+-- ORDER BY orden;
+
+SELECT   orden, m.id, m.descripcion, m.campo, d.azucarreductor
+FROM     ingenio.blcdetalle14 d, ingenio.material m
+WHERE    d.material_id = m.id AND
+         d.blc_id='ff808081754ce18301754ce27c110000'
 ORDER BY orden;
 
 -- SELECT   orden, descripcion

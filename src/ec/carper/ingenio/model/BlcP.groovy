@@ -27,6 +27,11 @@ import org.openxava.model.*
     }
     titCalFab { detalle12 }
     titConSerInsFab { detalle13 }
+    titAnaRutEspFab {
+        titSeccion1 { detalle14 }
+        titSeccion2 { detalle15 }
+        titSeccion3 { detalle16 }
+    }
 """)
 class BlcP{
     @Id
@@ -76,6 +81,15 @@ class BlcP{
 
     @OneToMany (mappedBy="blcP", cascade=CascadeType.ALL) @XOrderBy("orden")
     Collection<BlcPDetalle13> detalle13
+
+    @OneToMany (mappedBy="blcP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<BlcPDetalle14> detalle14
+
+    @OneToMany (mappedBy="blcP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<BlcPDetalle15> detalle15
+
+    @OneToMany (mappedBy="blcP", cascade=CascadeType.ALL) @XOrderBy("orden")
+    Collection<BlcPDetalle16> detalle16
 
 }
 

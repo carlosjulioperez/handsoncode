@@ -1,3 +1,6 @@
+2020-10-21 
+	BlcPDetalle14, BlcPDetalle15, BlcPDetalle16
+
 2020-10-20
 	BLC: Consultar datos y cálculos de BlcDetalle13
 	Modificar acumulado de Sacarosa en Silos Día Anterior en BlcDetalle12

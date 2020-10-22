@@ -39,6 +39,11 @@ import static org.openxava.jpa.XPersistence.*
     titProAzuPre { calQqTotalesDia; detalle11 }
     titCalFab { detalle12 }
     titConSerInsFab { detalle13 }
+    titAnaRutEspFab {
+        titSeccion1 { detalle14 }
+        titSeccion2 { detalle15 }
+        titSeccion3 { detalle16 }
+    }
 """)
 class Blc extends Formulario {
     
@@ -123,6 +128,15 @@ class Blc extends Formulario {
 
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<BlcDetalle13> detalle13
+
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    Collection<BlcDetalle14> detalle14
+
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    Collection<BlcDetalle15> detalle15
+
+    @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    Collection<BlcDetalle16> detalle16
     
     BigDecimal granel
     BigDecimal k5
@@ -256,6 +270,25 @@ class Blc extends Formulario {
             lista = getManager().createQuery("FROM BlcPDetalle13 WHERE blcP.id = 1 ORDER BY orden").getResultList()
             lista.each{
                 def d = new BlcDetalle13(blc: blc, orden: it.orden, indicador: it.indicador, unidad: it.unidad)
+                getManager().persist(d)
+            }
+
+            // ANALISIS RUTINARIOS Y ESPECIALES FABRICA
+            lista = getManager().createQuery("FROM BlcPDetalle14 WHERE blcP.id = 1 ORDER BY orden").getResultList()
+            lista.each{
+                def d = new BlcDetalle14(blc: blc, orden: it.orden, material: it.material)
+                getManager().persist(d)
+            }
+
+            lista = getManager().createQuery("FROM BlcPDetalle15 WHERE blcP.id = 1 ORDER BY orden").getResultList()
+            lista.each{
+                def d = new BlcDetalle15(blc: blc, orden: it.orden, material: it.material)
+                getManager().persist(d)
+            }
+
+            lista = getManager().createQuery("FROM BlcPDetalle16 WHERE blcP.id = 1 ORDER BY orden").getResultList()
+            lista.each{
+                def d = new BlcDetalle16(blc: blc, orden: it.orden, material: it.material)
                 getManager().persist(d)
             }
 

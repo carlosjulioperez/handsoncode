@@ -19,10 +19,10 @@ class Cto24HTest extends ModuleTestBase {
         execute ("Ingenio.save")
         assertNoErrors()
         
-        setConditionValues("", "JUNIT"); // Establece los valores para filtrar los datos
-        setConditionComparators("=", "contains_comparator"); // Pone los comparadores para filtrar los datosprintHtml()
-
+        setConditionValues(["JUNIT"]); // Establece los valores para filtrar los datos
+        setConditionComparators(["contains_comparator"]); // Pone los comparadores para filtrar los datosprintHtml()
         execute("List.filter");
+
         printHtml()
         execute("List.viewDetail", "row=0") // Para test con BD datos de prueba
         assertValue("descripcion", "JUNIT")
@@ -75,33 +75,42 @@ class Cto24HTest extends ModuleTestBase {
         assertCollectionRowCount("detalle3", 1)
         execute("Collection.edit" , "row=0,viewObject=xava_view_section2_detalle3")
         assertDialog()
-        setValue    ( "cana"       , "10")
-        setValue    ( "j1Extracto" , "20")
-        setValue    ( "jDiluido"   , "30")
-        setValue    ( "jClaro"     , "40")
-        setValue    ( "jFiltrado"  , "50")
-        setValue    ( "mClara"     , "60")
-        setValue    ( "mielA"      , "70")
-        setValue    ( "mielB"      , "80")
-        setValue    ( "mielF"      , "90")
-        assertValue ( "pd311"      , "2.50")
-        assertValue ( "pd312"      , "10.00")
-        assertValue ( "pd313"      , "15.00")
-        assertValue ( "pd314"      , "20.00")
-        assertValue ( "pd315"      , "25.00")
-        assertValue ( "pd316"      , "0.22")
-        assertValue ( "pd317"      , "0.22")
-        assertValue ( "pd318"      , "0.22")
-        assertValue ( "pd319"      , "0.22")
-        assertValue ( "pd321"      , "1.87")
-        assertValue ( "pd322"      , "0.47")
-        assertValue ( "pd323"      , "0.31")
-        assertValue ( "pd324"      , "0.23")
-        assertValue ( "pd325"      , "0.22")
-        assertValue ( "pd326"      , "0.88")
-        assertValue ( "pd327"      , "0.88")
-        assertValue ( "pd328"      , "4.40")
-        assertValue ( "pd329"      , "5.50")
+        setValue    ( "cana"       , "0")
+        assertValue ( "pd311"      , "0.00")
+        assertValue ( "pd321"      , "0.00")
+
+        setValue    ( "j1Extracto" , "21.5")
+        assertValue ( "pd312"      , "10.75")
+        assertValue ( "pd322"      , "0.43")
+
+        setValue    ( "jDiluido"   , "25.2")
+        assertValue ( "pd313"      , "12.60")
+        assertValue ( "pd323"      , "0.37")
+
+        setValue    ( "jClaro"     , "0")
+        assertValue ( "pd314"      , "0.00")
+        assertValue ( "pd324"      , "0.00")
+
+        setValue    ( "jFiltrado"  , "0")
+        assertValue ( "pd315"      , "0.00")
+        assertValue ( "pd325"      , "0.00")
+
+        setValue    ( "mClara"     , "10.2")
+        assertValue ( "pd316"      , "0.46")
+        assertValue ( "pd326"      , "1.84")
+
+        setValue    ( "mielA"      , "0")
+        assertValue ( "pd317"      , "0.00")
+        assertValue ( "pd327"      , "0.00")
+
+        setValue    ( "mielB"      , "0")
+        assertValue ( "pd318"      , "0.00")
+        assertValue ( "pd328"      , "0.00")
+
+        setValue    ( "mielF"      , "15.6")
+        assertValue ( "pd319"      , "0.30")
+        assertValue ( "pd329"      , "7.50")
+
         execute("Collection.save")
         assertNoErrors()
 
@@ -163,7 +172,7 @@ class Cto24HTest extends ModuleTestBase {
         assertNoErrors()
         
         execute("Sections.change", "activeSection=6")
-        assertCollectionRowCount("detalle7", 1)
+        assertCollectionRowCount("detalle7", 0)
         setValue    ( "fr"  , "0.641")
         execute("Collection.new" , "viewObject=xava_view_section6_detalle7")
         assertDialog()
