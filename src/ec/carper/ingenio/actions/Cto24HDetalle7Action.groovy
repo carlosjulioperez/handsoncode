@@ -9,13 +9,13 @@ import org.openxava.actions.*
 class Cto24HDetalle7Action extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
+        def parametro = new Parametro()
+        def fr        = new BigDecimal(parametro.obtenerValor("CTO24H_FR"))
 
         def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
         String horaS = (String)getView().getValue("horaS")
         getView().setValue("hora", (horaS && diaTrabajoId) ? SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId): null)
 
-        BigDecimal fr     = (BigDecimal)getView().getRoot().getValue("fr")
-        
         BigDecimal mlTitu = (BigDecimal)getView().getValue("mlTitu")
         BigDecimal fd     = (BigDecimal)getView().getValue("fd")
 

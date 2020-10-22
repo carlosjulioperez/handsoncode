@@ -17,7 +17,6 @@ import static org.openxava.jpa.XPersistence.*
     diaTrabajo, descripcion;
 
     Cto24H_atr {
-        fFelining;       
         detalle1
     }
     Cto24H_psi {
@@ -37,7 +36,7 @@ import static org.openxava.jpa.XPersistence.*
         detalle6
     }
     Cto24H_av {
-        fr;detalle7
+        detalle7
     }   
     Cto24H_ce {
         detalle8
@@ -51,8 +50,8 @@ class Cto24H extends Formulario {
     @Column(length=10)
     String descripcion 
 
-    @Digits(integer=3, fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fFelining
+    // @Digits(integer=3, fraction=3) @DisplaySize(6) @ReadOnly
+    // BigDecimal fFelining
 
     // ==================================================
     // AZÚCARES TOTALES REDUCTORES A.T.R.
@@ -309,25 +308,48 @@ class Cto24H extends Formulario {
     // ==================================================
     // ACIDEZ VOLATIL
     // ==================================================
-    @Digits(integer=6,fraction=3) @DisplaySize(6) @ReadOnly
-    BigDecimal fr 
+    // @Digits(integer=6,fraction=3) @DisplaySize(6) @ReadOnly
+    // BigDecimal fr 
     
     BigDecimal mlTitu
     BigDecimal fd
     BigDecimal ppm
     
+    @DisplaySize(6)
+    BigDecimal mlTitu2
+
+    @DisplaySize(6)
+    BigDecimal fd2
+
+    BigDecimal ppm2
+    
     @OneToMany (mappedBy="cto24H", cascade=CascadeType.ALL)
     @ListProperties("""
-        modulo.descripcion,turno.descripcion,tipo,hora,
-        mlTitu [cto24H.promMlTitu],
-        fd     [cto24H.promFd],
-        ppm    [cto24H.promPpm]
+        modulo.descripcion,
+        turno.descripcion,
+        tipo,hora,
+        mlTitu [cto24H.promMlTitu , cto24H.mlTitu2] ,
+        fd     [cto24H.promFd     , cto24H.fd2]     ,
+        ppm    [cto24H.promPpm    , cto24H.promPpm2]
     """)
     Collection<Cto24HDetalle7> detalle7
 
     BigDecimal getPromMlTitu() { return super.getPromedio(detalle7, "mlTitu", 2) }
     BigDecimal getPromFd    () { return super.getPromedio(detalle7, "fd",     2) }
     BigDecimal getPromPpm   () { return super.getPromedio(detalle7, "ppm",    2) }
+
+    // =(Q35*0.1*60000)/($T$37*100)*R35
+    @Depends("mlTitu2,fd2")
+    BigDecimal getPromPpm2(){
+        // Consultar los parámetros
+        def parametro = new Parametro()
+        def fr        = new BigDecimal(parametro.obtenerValor("CTO24H_FR"))
+
+        def q35 = mlTitu2?:0
+        def r35 = fd2?:0
+
+        return (fr!=0 && r35!=0) ? Calculo.instance.redondear( (q35 * 0.1 * 60000) / (fr*100)*r35, 2) : 0
+    }
 
     // ==================================================
     // % CONCENTRACION TOT LINEA EVAPORACION
@@ -399,6 +421,7 @@ class Cto24H extends Formulario {
             this.mlTitu     = promMlTitu
             this.fd         = promFd
             this.ppm        = promPpm
+            this.ppm2       = promPpm2
             
             this.porcConTotLinEva = pd8
             getManager().persist(this)
@@ -479,10 +502,6 @@ class Cto24H extends Formulario {
                 this.detalle8.add(d8)
             }
 
-            // Consultar los parámetros
-            def parametro = new Parametro()
-            fFelining     = new BigDecimal(parametro.obtenerValor("CTO24H_FACTOR_FELINING"))
-            fr            = new BigDecimal(parametro.obtenerValor("CTO24H_FR"))
             
             getManager().persist(cto24H)
 

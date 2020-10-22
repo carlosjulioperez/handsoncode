@@ -173,7 +173,6 @@ class Cto24HTest extends ModuleTestBase {
         
         execute("Sections.change", "activeSection=6")
         assertCollectionRowCount("detalle7", 0)
-        setValue    ( "fr"  , "0.641")
         execute("Collection.new" , "viewObject=xava_view_section6_detalle7")
         assertDialog()
         setValue    ( "horaS"  , "08:00")
@@ -188,6 +187,10 @@ class Cto24HTest extends ModuleTestBase {
         assertTotalInCollection("detalle7" , 0 , "fd"     , "2.55")
         assertTotalInCollection("detalle7" , 0 , "ppm"    , "367.58")
         
+        setValue("mlTitu2" , "1")
+        setValue("fd2"     , "2")
+        // assertValue ( "promPpm2" , "187.21")
+
         execute("Sections.change", "activeSection=7")
         assertCollectionRowCount("detalle8", 5)
 

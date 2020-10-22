@@ -1,4 +1,7 @@
 2020-10-21 
+	Agregar en acidez volátil: PRE COSECHA QUEMADA y CAÑA COMERCIAL
+	BlcDetalle14, BlcDetalle15, BlcDetalle16
+	Parámetro FR 0.641
 	BlcPDetalle14, BlcPDetalle15, BlcPDetalle16
 
 2020-10-20

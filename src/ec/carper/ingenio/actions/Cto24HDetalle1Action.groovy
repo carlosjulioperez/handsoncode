@@ -1,6 +1,7 @@
 package ec.carper.ingenio.actions
 
 import ec.carper.ingenio.util.Calculo
+import ec.carper.ingenio.model.Parametro
 
 import org.openxava.actions.*
 
@@ -10,7 +11,8 @@ class Cto24HDetalle1Action extends OnChangePropertyBaseAction{
 
     void execute() throws Exception{
 
-        fFelining      = (BigDecimal)getView().getRoot().getValue("fFelining")
+        def parametro = new Parametro()
+        fFelining = new BigDecimal(parametro.obtenerValor("CTO24H_FACTOR_FELINING"))
 
         def cana       = (BigDecimal)getView().getValue("cana")
         def j1Extracto = (BigDecimal)getView().getValue("j1Extracto")
