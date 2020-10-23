@@ -311,6 +311,7 @@ class Blc extends Formulario {
             consultarCachaza()
             consultarAzucarGranelGrasshoper()
             consultarCalculoFabrica()
+            consultarAnalisisRutinariosEspecialesFabrica()
 
         }catch(Exception ex){
             throw new SystemException("datos_no_consultados", ex)
@@ -787,6 +788,176 @@ class Blc extends Formulario {
         }
     }   
 
+    def consultarAnalisisRutinariosEspecialesFabrica(){
+
+        def g176 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "TrashCana" , "avgPorcAzuRed")
+        def g177 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "j1Extracto2")
+        def g178 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "jDiluido2")
+        def g179 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "jClaro2")
+        def g180 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "jFiltrado2")
+        def g181 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "mClara2")
+        def g182 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "mielA2")
+        def g183 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "mielB2")
+        def g184 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "mielF2")
+
+        def i176 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "cana")
+        def i177 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "j1Extracto")
+        def i178 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "jDiluido")
+        def i179 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "jClaro")
+        def i180 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "jFiltrado")
+        def i181 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "mClara")
+        def i182 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "mielA")
+        def i183 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "mielB")
+        def i184 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "mielF")
+
+        def g187 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "j1Extracto3")
+        def g188 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "jDiluido3")
+        def g191 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "jClaro3")
+        def g193 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "jFiltrado3")
+        def g195 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "mClara3")
+        def g196 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H" , "mielA3")
+
+        def i187 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Ph" , "j1Extracto")
+        def i188 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Ph" , "jDiluido")
+        def i190 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Ph" , "jEncalado")
+        def i191 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Ph" , "jClaro")
+        def i193 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Ph" , "jFiltrado")
+        def i194 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Ph" , "mCruda")
+        def i195 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Ph" , "mClarificada")
+
+        def k188 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "ColorMat" , "avgColor1")
+        def l188 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "ColorMat" , "avgTurb1")
+        def k191 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "ColorMat" , "avgColor2")
+        def l191 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "ColorMat" , "avgTurb2")
+        def k194 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "ColorMat" , "avgColor3")
+        def l194 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "ColorMat" , "avgTurb3")
+        def k195 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "ColorMat" , "avgColor4")
+        def l195 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "ColorMat" , "avgTurb4")
+        def k196 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "ColorMat" , "avgColor5")
+        def l196 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "ColorMat" , "avgTurb5")
+
+        def proCol = k194 ? Calculo.instance.redondear( ((k194-k195)/k194)*100, 2): 0
+        def proMat = l194 ? Calculo.instance.redondear( ((l194-l195)/l194)*100, 2): 0
+        
+        detalle14.each{
+            def campo = it.material.campo ?: ""
+            switch (campo){
+                case "TonSacJDil"         : setD14(campo, h63, h63A, h63+h63A); break
+                case "TonSacCan"          : setD14(campo, h64, h64A, h64+h64A); break
+            }
+        }
+
+        println " orden | id  |    descripcion    | campo  | "
+        println "-------+-----+-------------------+--------+ "
+        println "     1 | 125 | CAÑA              | can    | " + getCadena (g176, i176, getSacTeoRed(g176, i176) )
+        println "     2 | 126 | J. 1 EXTRAC       | j1Ext  | " + getCadena (g177, i177, getSacTeoRed(g177, i177) ) 
+        println "     3 | 127 | J. DILUIDO        | jDil   | " + getCadena (g178, i178, getSacTeoRed(g178, i178) ) 
+        println "     4 | 128 | J. CLARO          | jCla   | " + getCadena (g179, i179, getSacTeoRed(g179, i179) ) 
+        println "     5 | 129 | J. FILTRADO       | jFil   | " + getCadena (g180, i180, getSacTeoRed(g180, i180) ) 
+        println "     6 | 130 | M. CLARA          | mCla   | " + getCadena (g181, i181, getSacTeoRed(g181, i181) ) 
+        println "     7 | 131 | MIEL A            | mieA   | " + getCadena (g182, i182, getSacTeoRed(g182, i182) ) 
+        println "     8 | 132 | MIEL B            | mieB   | " + getCadena (g183, i183, getSacTeoRed(g183, i183) ) 
+        println "     9 | 007 | MIEL FINAL MELAZA | mielFM | " + getCadena (g184, i184, getSacTeoRed(g184, i184) ) 
+    
+        println " orden | id  |     descripcion      |  campo  | " 
+        println "-------+-----+----------------------+---------+ "
+        println "     1 | 126 | J. 1 EXTRAC          | j1Ext   | " + getCadena (g187, i187, 0 )
+        println "     2 | 133 | JUGO DILUIDO DIA     | jDilDia | " + getCadena (g188, i188, k188+' '+l188 )
+        println "     3 | 134 | JUGO ENCALADO        | jEnc    | " + getCadena (0, i190, 0 )
+        println "     4 | 135 | JUGO CLARO DIA       | jClaDia | " + getCadena (g191, i191, k191+' '+l191 )
+        println "     5 | 129 | J. FILTRADO          | jFil    | " + getCadena (g193, i193, 0)
+        println "     6 | 136 | MELADURA CRUDA       | melCru  | " + getCadena (0, i194, k194+' '+l194 )
+        println "     7 | 137 | MELADURA CLARIFICADA | melCla  | " + getCadena (g195, i195, k195+' '+l195 )
+        println "     8 | 131 | MIEL A               | mieA    | " + getCadena (g196, 0, k196+' '+l196 )
+        println "REMOCION ESTACION DE CLARIFICACION DE MELADURA| " + getCadena (0, 0, proCol+' '+proMat)    
+
+        def g199 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Jugo"         , "jfBri"   )
+        def i199 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Jugo"         , "jfSac"   )
+        def l199 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Jugo"         , "jfPur"   )
+
+        def g200 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Meladura"     , "mcrBri2" )
+        def i200 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Meladura"     , "mcrSac" )
+        def l200 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Meladura"     , "mcrPur" )
+
+        def g201 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Meladura"     , "mclBri2" )
+        def i201 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Meladura"     , "mclSac" )
+        def l201 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Meladura"     , "mclPur" )
+
+        def g202 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Masas"        , "maBri2"  )
+        def i202 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Masas"        , "maSac"  )
+        def l202 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Masas"        , "maPur"  )
+
+        def g203 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Masas"        , "mbBri2"  )
+        def i203 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Masas"        , "mbSac"  )
+        def l203 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Masas"        , "mbPur"  )
+
+        def g204 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Masas"        , "mcBri2"  )
+        def i204 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Masas"        , "mcSac"  )
+        def l204 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Masas"        , "mcPur"  )
+
+        def g205 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Mieles"       , "maBri2"  )
+        def i205 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Mieles"       , "maSac"  )
+        def l205 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Mieles"       , "maPur"  )
+
+        def g206 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Mieles"       , "mbBri2"  )
+        def i206 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Mieles"       , "mbSac"  )
+        def l206 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Mieles"       , "mbPur"  )
+
+        def g207 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Mieles"       , "mrBri2"  )
+        def i207 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Mieles"       , "mrSac"  )
+        def l207 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Mieles"       , "mrPur"  )
+
+        def g208 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "MielesNutsch" , "maBri2"  )
+        def i208 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "MielesNutsch" , "maSac"  )
+        def l208 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "MielesNutsch" , "maPur"  )
+
+        def g209 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "MielesNutsch" , "mbBri2"  )
+        def i209 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "MielesNutsch" , "mbSac"  )
+        def l209 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "MielesNutsch" , "mbPur"  )
+
+        def g210 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "MielesNutsch" , "mcBri2"  )
+        def i210 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "MielesNutsch" , "mcSac"  )
+        def l210 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "MielesNutsch" , "mcPur"  )
+
+        def g211 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Magmas"       , "mbBri2"  )
+        def i211 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Magmas"       , "mbSac"  )
+        def l211 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Magmas"       , "mbPur"  )
+
+        def g212 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Magmas"       , "mcBri2"  )
+        def i212 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Magmas"       , "mcSac"  )
+        def l212 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Magmas"       , "mcPur"  )
+
+        def g213 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Magmas"       , "mrBri2"  )
+        def i213 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Magmas"       , "mrSac"  )
+        def l213 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Magmas"       , "mrPur"  )
+
+        def g214 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "TqFundidor"   , "bri2"    )
+        def i214 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "TqFundidor"   , "sac"    )
+        def l214 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "TqFundidor"   , "pur"    )
+
+        println ""
+        println " orden | id  |     descripcion      |  campo  | " 
+        println "-------+-----+----------------------+---------+ "
+        println "     1 | 129 | J. FILTRADO          | jFil    | " + getCadena(g199, i199, l199)
+        println "     2 | 136 | MELADURA CRUDA       | melCru  | " + getCadena(g200, i200, l200) 
+        println "     3 | 137 | MELADURA CLARIFICADA | melCla  | " + getCadena(g201, i201, l201) 
+        println "     4 | 138 | MASA A               | masA    | " + getCadena(g202, i202, l202) 
+        println "     5 | 139 | MASA B               | masB    | " + getCadena(g203, i203, l203) 
+        println "     6 | 140 | MASA C               | masC    | " + getCadena(g204, i204, l204) 
+        println "     7 | 131 | MIEL A               | mieA    | " + getCadena(g205, i205, l205) 
+        println "     8 | 132 | MIEL B               | mieB    | " + getCadena(g206, i206, l206) 
+        println "     9 | 141 | MIEL RE-PURGA        | mieRP   | " + getCadena(g207, i207, l207) 
+        println "    10 | 142 | MIEL NUTSCH A        | mieNutA | " + getCadena(g208, i208, l208) 
+        println "    11 | 143 | MIEL NUTSCH B        | mieNutB | " + getCadena(g209, i209, l209) 
+        println "    12 | 144 | MIEL NUTSCH C        | mieNutC | " + getCadena(g210, i210, l210) 
+        println "    13 | 145 | MAGMA B              | magB    | " + getCadena(g211, i211, l211) 
+        println "    14 | 146 | MAGMA C              | magC    | " + getCadena(g212, i212, l212) 
+        println "    15 | 147 | MAGMA RE-PURGA       | magRP   | " + getCadena(g213, i213, l213) 
+        println "    16 | 148 | FUNDIDO              | fun     | " + getCadena(g214, i214, l214) 
+
+    }
+
+
     // Si un total es de tipo String, todos los demás también deben serlo.
     String getTiempoPerdidoTotal(){
         return diaTrabajo ? SqlUtil.instance.getCampo(diaTrabajo.id, "Paro" , "totalParada"): "00:00:00"
@@ -849,6 +1020,15 @@ class Blc extends Formulario {
     void setD12(String campo, def uni, def acu, def zaf){
         def d = SqlUtil.instance.getDetallePorDTI(diaTrabajo.id, "blc", "BlcDetalle12", campo)
         d.setUnidades(uni)
+        d.setAcumulado(acu)
+        d.setTotalZafra(zaf)
+        getManager().persist(d)
+    }
+
+    // TODO: seguir
+    void setD14(String campo, def uni, def acu, def zaf){
+        def d = SqlUtil.instance.getDetallePorDTM(diaTrabajo.id, "blc", "BlcDetalle14", campo)
+        d.setazucarReductor(uni)
         d.setAcumulado(acu)
         d.setTotalZafra(zaf)
         getManager().persist(d)

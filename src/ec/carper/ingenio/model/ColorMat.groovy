@@ -327,4 +327,25 @@ class ColorMat extends Formulario {
     @ReadOnly                                     
     @Digits(integer=6, fraction=2) @DisplaySize(6)
     BigDecimal turb8
+    
+    void actualizar() throws ValidationException{
+        try{
+            this.avgColor1 = avgColor1
+            this.avgColor2 = avgColor2
+            this.avgColor3 = avgColor3
+            this.avgColor4 = avgColor4
+            this.avgColor5 = avgColor5
+            this.avgColor6 = avgColor6
+            this.avgTurb1  = avgTurb1
+            this.avgTurb2  = avgTurb2
+            this.avgTurb3  = avgTurb3
+            this.avgTurb4  = avgTurb4
+            this.avgTurb5  = avgTurb5
+            this.avgTurb6  = avgTurb6
+
+            XPersistence.getManager().persist(this)
+        }catch(Exception ex){
+            throw new SystemException("registro_no_actualizado", ex)
+        }
+    }
 }

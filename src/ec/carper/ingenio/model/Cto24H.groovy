@@ -171,6 +171,15 @@ class Cto24H extends Formulario {
     """)
     Collection<Cto24HDetalle4> detalle41
         
+    BigDecimal j1Extracto3
+    BigDecimal jDiluido3
+    BigDecimal jClaro3
+    BigDecimal jFiltrado3
+    BigDecimal mClara3
+    BigDecimal mielA3
+    BigDecimal mielB3
+    BigDecimal mielF3
+    
     @ElementCollection @EditOnly
     @ListProperties("""
         descripcion,
@@ -416,6 +425,16 @@ class Cto24H extends Formulario {
             this.mielA2      = pd327
             this.mielB2      = pd328
             this.mielF2      = pd329
+
+            // CENIZAS CONDUCTIMETRICAS EN MATERIALES DE PROCESO
+            this.j1Extracto3 = pd4215
+            this.jDiluido3   = pd4225
+            this.jClaro3     = pd4235
+            this.jFiltrado3  = pd4245
+            this.mClara3     = pd4255
+            this.mielA3      = pd4265
+            this.mielB3      = pd4275
+            this.mielF3      = pd4285
 
             // ACIDEZ VOLATIL
             this.mlTitu     = promMlTitu
