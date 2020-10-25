@@ -787,6 +787,10 @@ class Blc extends Formulario {
             }
         }
     }   
+    
+    def getSacTeoRed(def g, i){
+        return Calculo.instance.redondear((i-g)*0.95, 2)
+    }
 
     def consultarAnalisisRutinariosEspecialesFabrica(){
 
@@ -842,35 +846,34 @@ class Blc extends Formulario {
         detalle14.each{
             def campo = it.material.campo ?: ""
             switch (campo){
-                case "TonSacJDil"         : setD14(campo, h63, h63A, h63+h63A); break
-                case "TonSacCan"          : setD14(campo, h64, h64A, h64+h64A); break
+                case "can"    : setD14( campo, g176, i176, getSacTeoRed(g176, i176) ); break
+                case "j1Ext"  : setD14( campo, g177, i177, getSacTeoRed(g177, i177) ); break
+                case "jDil"   : setD14( campo, g178, i178, getSacTeoRed(g178, i178) ); break
+                case "jCla"   : setD14( campo, g179, i179, getSacTeoRed(g179, i179) ); break
+                case "jFil"   : setD14( campo, g180, i180, getSacTeoRed(g180, i180) ); break
+                case "mCla"   : setD14( campo, g181, i181, getSacTeoRed(g181, i181) ); break
+                case "mieA"   : setD14( campo, g182, i182, getSacTeoRed(g182, i182) ); break
+                case "mieB"   : setD14( campo, g183, i183, getSacTeoRed(g183, i183) ); break
+                case "mielFM" : setD14( campo, g184, i184, getSacTeoRed(g184, i184) ); break
             }
         }
 
-        println " orden | id  |    descripcion    | campo  | "
-        println "-------+-----+-------------------+--------+ "
-        println "     1 | 125 | CAÑA              | can    | " + getCadena (g176, i176, getSacTeoRed(g176, i176) )
-        println "     2 | 126 | J. 1 EXTRAC       | j1Ext  | " + getCadena (g177, i177, getSacTeoRed(g177, i177) ) 
-        println "     3 | 127 | J. DILUIDO        | jDil   | " + getCadena (g178, i178, getSacTeoRed(g178, i178) ) 
-        println "     4 | 128 | J. CLARO          | jCla   | " + getCadena (g179, i179, getSacTeoRed(g179, i179) ) 
-        println "     5 | 129 | J. FILTRADO       | jFil   | " + getCadena (g180, i180, getSacTeoRed(g180, i180) ) 
-        println "     6 | 130 | M. CLARA          | mCla   | " + getCadena (g181, i181, getSacTeoRed(g181, i181) ) 
-        println "     7 | 131 | MIEL A            | mieA   | " + getCadena (g182, i182, getSacTeoRed(g182, i182) ) 
-        println "     8 | 132 | MIEL B            | mieB   | " + getCadena (g183, i183, getSacTeoRed(g183, i183) ) 
-        println "     9 | 007 | MIEL FINAL MELAZA | mielFM | " + getCadena (g184, i184, getSacTeoRed(g184, i184) ) 
-    
-        println " orden | id  |     descripcion      |  campo  | " 
-        println "-------+-----+----------------------+---------+ "
-        println "     1 | 126 | J. 1 EXTRAC          | j1Ext   | " + getCadena (g187, i187, 0 )
-        println "     2 | 133 | JUGO DILUIDO DIA     | jDilDia | " + getCadena (g188, i188, k188+' '+l188 )
-        println "     3 | 134 | JUGO ENCALADO        | jEnc    | " + getCadena (0, i190, 0 )
-        println "     4 | 135 | JUGO CLARO DIA       | jClaDia | " + getCadena (g191, i191, k191+' '+l191 )
-        println "     5 | 129 | J. FILTRADO          | jFil    | " + getCadena (g193, i193, 0)
-        println "     6 | 136 | MELADURA CRUDA       | melCru  | " + getCadena (0, i194, k194+' '+l194 )
-        println "     7 | 137 | MELADURA CLARIFICADA | melCla  | " + getCadena (g195, i195, k195+' '+l195 )
-        println "     8 | 131 | MIEL A               | mieA    | " + getCadena (g196, 0, k196+' '+l196 )
-        println "REMOCION ESTACION DE CLARIFICACION DE MELADURA| " + getCadena (0, 0, proCol+' '+proMat)    
+        detalle15.each{
+            def campo = it.material.campo ?: ""
+            switch (campo){
+                case "j1Ext"   : setD15( campo, g187, i187, 0, 0       ) ; break
+                case "jDilDia" : setD15( campo, g188, i188, k188, l188 ) ; break
+                case "jEnc"    : setD15( campo, 0, i190, 0 , 0         ) ; break
+                case "jClaDia" : setD15( campo, g191, i191, k191, l191 ) ; break
+                case "jFil"    : setD15( campo, g193, i193, 0, 0       ) ; break
+                case "melCru"  : setD15( campo, 0, i194, k194, l194    ) ; break
+                case "melCla"  : setD15( campo, g195, i195, k195, l195 ) ; break
+                case "mieA"    : setD15( campo, g196, 0, k196, l196    ) ; break
+            }
+        }
 
+        // println "REMOCION ESTACION DE CLARIFICACION DE MELADURA| " + getCadena (0, 0, proCol+' '+proMat)    
+        
         def g199 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Jugo"         , "jfBri"   )
         def i199 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Jugo"         , "jfSac"   )
         def l199 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Jugo"         , "jfPur"   )
@@ -934,27 +937,28 @@ class Blc extends Formulario {
         def g214 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "TqFundidor"   , "bri2"    )
         def i214 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "TqFundidor"   , "sac"    )
         def l214 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "TqFundidor"   , "pur"    )
-
-        println ""
-        println " orden | id  |     descripcion      |  campo  | " 
-        println "-------+-----+----------------------+---------+ "
-        println "     1 | 129 | J. FILTRADO          | jFil    | " + getCadena(g199, i199, l199)
-        println "     2 | 136 | MELADURA CRUDA       | melCru  | " + getCadena(g200, i200, l200) 
-        println "     3 | 137 | MELADURA CLARIFICADA | melCla  | " + getCadena(g201, i201, l201) 
-        println "     4 | 138 | MASA A               | masA    | " + getCadena(g202, i202, l202) 
-        println "     5 | 139 | MASA B               | masB    | " + getCadena(g203, i203, l203) 
-        println "     6 | 140 | MASA C               | masC    | " + getCadena(g204, i204, l204) 
-        println "     7 | 131 | MIEL A               | mieA    | " + getCadena(g205, i205, l205) 
-        println "     8 | 132 | MIEL B               | mieB    | " + getCadena(g206, i206, l206) 
-        println "     9 | 141 | MIEL RE-PURGA        | mieRP   | " + getCadena(g207, i207, l207) 
-        println "    10 | 142 | MIEL NUTSCH A        | mieNutA | " + getCadena(g208, i208, l208) 
-        println "    11 | 143 | MIEL NUTSCH B        | mieNutB | " + getCadena(g209, i209, l209) 
-        println "    12 | 144 | MIEL NUTSCH C        | mieNutC | " + getCadena(g210, i210, l210) 
-        println "    13 | 145 | MAGMA B              | magB    | " + getCadena(g211, i211, l211) 
-        println "    14 | 146 | MAGMA C              | magC    | " + getCadena(g212, i212, l212) 
-        println "    15 | 147 | MAGMA RE-PURGA       | magRP   | " + getCadena(g213, i213, l213) 
-        println "    16 | 148 | FUNDIDO              | fun     | " + getCadena(g214, i214, l214) 
-
+        
+        detalle16.each{
+            def campo = it.material.campo ?: ""
+            switch (campo){
+                case "jFil"    : setD16( campo, g199, i199, l199 ) ; break
+                case "melCru"  : setD16( campo, g200, i200, l200 ) ; break
+                case "melCla"  : setD16( campo, g201, i201, l201 ) ; break
+                case "masA"    : setD16( campo, g202, i202, l202 ) ; break
+                case "masB"    : setD16( campo, g203, i203, l203 ) ; break
+                case "masC"    : setD16( campo, g204, i204, l204 ) ; break
+                case "mieA"    : setD16( campo, g205, i205, l205 ) ; break
+                case "mieB"    : setD16( campo, g206, i206, l206 ) ; break
+                case "mieRP"   : setD16( campo, g207, i207, l207 ) ; break
+                case "mieNutA" : setD16( campo, g208, i208, l208 ) ; break
+                case "mieNutB" : setD16( campo, g209, i209, l209 ) ; break
+                case "mieNutC" : setD16( campo, g210, i210, l210 ) ; break
+                case "magB"    : setD16( campo, g211, i211, l211 ) ; break
+                case "magC"    : setD16( campo, g212, i212, l212 ) ; break
+                case "magRP"   : setD16( campo, g213, i213, l213 ) ; break
+                case "fun"     : setD16( campo, g214, i214, l214 ) ; break
+            }
+        }
     }
 
 
@@ -1025,12 +1029,28 @@ class Blc extends Formulario {
         getManager().persist(d)
     }
 
-    // TODO: seguir
-    void setD14(String campo, def uni, def acu, def zaf){
+    void setD14(String campo, def ar, def at, def st){
         def d = SqlUtil.instance.getDetallePorDTM(diaTrabajo.id, "blc", "BlcDetalle14", campo)
-        d.setazucarReductor(uni)
-        d.setAcumulado(acu)
-        d.setTotalZafra(zaf)
+        d.setAzucarReductor(ar)
+        d.setAzucaresTotRed(at)
+        d.setSacarosaTeoRed(st)
+        getManager().persist(d)
+    }
+
+    void setD15(String campo, def cc, def ph, def ct1, def ct2){
+        def d = SqlUtil.instance.getDetallePorDTM(diaTrabajo.id, "blc", "BlcDetalle15", campo)
+        d.setCenizasCon(cc)
+        d.setPh(ph)
+        d.setColorTur1(ct1)
+        d.setColorTur2(ct2)
+        getManager().persist(d)
+    }
+
+    void setD16(String campo, def br, def sa, def pu){
+        def d = SqlUtil.instance.getDetallePorDTM(diaTrabajo.id, "blc", "BlcDetalle16", campo)
+        d.setBrix(br)
+        d.setSacarosa(sa)
+        d.setPureza(pu)
         getManager().persist(d)
     }
 }
