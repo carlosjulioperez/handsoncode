@@ -80,7 +80,8 @@ class BlcTest extends ModuleTestBase {
         assertValueInCollection("detalle4" , 1 , 2 , "102.00")
         assertValueInCollection("detalle4" , 2 , 2 , "118.26")
         assertValueInCollection("detalle4" , 3 , 2 , "100.00")
-        assertValueInCollection("detalle4" , 4 , 2 , "0.06")
+        assertValueInCollection("detalle4" , 4 , 2 , "0.08")
+        // assertValueInCollection("detalle4" , 5 , 2 , "0.08")
 
         // Jugo Diluido
         execute("Sections.change", "activeSection=3,viewObject=xava_view_section2")

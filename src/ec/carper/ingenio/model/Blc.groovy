@@ -36,6 +36,7 @@ import static org.openxava.jpa.XPersistence.*
             grasshoper { detalle102 }
         }
     }
+    titProAzuPre { calQqTotalesDia; detalle11 }
     titCalFab { detalle12 }
     titConSerInsFab { detalle13 }
     titAnaRutEspFab {
@@ -43,7 +44,6 @@ import static org.openxava.jpa.XPersistence.*
         titSeccion2 { detalle15 }
         titSeccion3 { detalle16 }
     }
-    titProAzuPre { calQqTotalesDia; detalle11 }
 """)
 class Blc extends Formulario {
     
