@@ -36,7 +36,6 @@ import static org.openxava.jpa.XPersistence.*
             grasshoper { detalle102 }
         }
     }
-    titProAzuPre { calQqTotalesDia; detalle11 }
     titCalFab { detalle12 }
     titConSerInsFab { detalle13 }
     titAnaRutEspFab {
@@ -44,6 +43,7 @@ import static org.openxava.jpa.XPersistence.*
         titSeccion2 { detalle15 }
         titSeccion3 { detalle16 }
     }
+    titProAzuPre { calQqTotalesDia; detalle11 }
 """)
 class Blc extends Formulario {
     
@@ -132,7 +132,14 @@ class Blc extends Formulario {
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
     Collection<BlcDetalle14> detalle14
 
+    BigDecimal color
+    BigDecimal turbiedad
+
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
+    @ListProperties(""" 
+        orden, material.descripcion, cenizasCon, ph, 
+        colorTur1 [ blc.promColor ],
+        colorTur2 [ blc.promTurbiedad ] """)
     Collection<BlcDetalle15> detalle15
 
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
@@ -652,7 +659,7 @@ class Blc extends Formulario {
         def h49  = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jdSac")
         def h60  = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jrPur")
         def h43  = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Bagazo" , "porcHumedad")
-        def s16  = Calculo.instance.redondear((h41/h60)*100, 2)
+        def s16  = h60 ? Calculo.instance.redondear((h41/h60)*100, 2): 0
         def s17  = 100-h43-s16
         def d13  = getValor("cachaza", 1)
         def l48  = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Turbiedad", "polCachaza")
@@ -706,7 +713,7 @@ class Blc extends Formulario {
         def l14  = getValorBlc("mielFM", 3)
         def k84  = l14
         def d    = SqlUtil.instance.getDetallePorIndicador(diaTrabajo.id, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonMelProTotDiaAnt")
-        def k85  = d.valor?:0
+        def k85  = d ? (d.valor?:0): 0
         def k86  = k84-k85
         def k83  = Calculo.instance.redondear(k86*l42/100, 2)
         def k82  = (d16*(l42/100))!= 0 ? Calculo.instance.redondear((k83*1000)/(d16*(l42/100)), 2): 0 
@@ -792,6 +799,14 @@ class Blc extends Formulario {
         return Calculo.instance.redondear((i-g)*0.95, 2)
     }
 
+    BigDecimal getPromColor(){
+        return color?:0
+    }
+
+    BigDecimal getPromTurbiedad(){
+        return turbiedad?:0
+    }
+
     def consultarAnalisisRutinariosEspecialesFabrica(){
 
         def g176 = SqlUtil.instance.getValorCampo(diaTrabajo.id, "TrashCana" , "avgPorcAzuRed")
@@ -842,7 +857,7 @@ class Blc extends Formulario {
 
         def proCol = k194 ? Calculo.instance.redondear( ((k194-k195)/k194)*100, 2): 0
         def proMat = l194 ? Calculo.instance.redondear( ((l194-l195)/l194)*100, 2): 0
-        
+
         detalle14.each{
             def campo = it.material.campo ?: ""
             switch (campo){
@@ -873,7 +888,11 @@ class Blc extends Formulario {
         }
 
         // println "REMOCION ESTACION DE CLARIFICACION DE MELADURA| " + getCadena (0, 0, proCol+' '+proMat)    
+        this.color     = proCol
+        this.turbiedad = proMat
         
+        // getManager().persist(this)
+
         def g199 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Jugo"         , "jfBri"   )
         def i199 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Jugo"         , "jfSac"   )
         def l199 = SqlUtil.instance.getValorCampo(diaTrabajo.id , "Jugo"         , "jfPur"   )
@@ -960,7 +979,6 @@ class Blc extends Formulario {
             }
         }
     }
-
 
     // Si un total es de tipo String, todos los demás también deben serlo.
     String getTiempoPerdidoTotal(){
