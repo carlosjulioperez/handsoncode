@@ -177,7 +177,7 @@
 	</target>
 
     <target name="deleteClasses">
-        <delete dir="${class.dir}"/>
+        <delete dir="${class.dir}/ec"/>
         <delete dir="temp"/>
 	</target>
 
@@ -195,5 +195,18 @@
             <fileset dir="." excludes="i18n/portlets, data/, temp/, tests/, xava/dtds/, web/"/>
 		</zip>
 	</target>
-						
+    
+    <target name="copyReports">
+        <copy todir="${class.dir}">
+            <fileset dir="reports" includes="*.jrxml, *.jasper, logo.jpg" />
+        </copy>	
+    </target>
+    
+    <target name="ingenioBeans">
+        <jar destfile="etc/jar/ingenio-beans.jar"
+            basedir="${class.dir}"
+            excludes="**/Test.class"
+            />
+    </target>
+
 </project>

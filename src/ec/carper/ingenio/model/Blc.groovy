@@ -990,7 +990,7 @@ class Blc extends Formulario {
     }
     
     String getFraccionTiempo(){
-        return Calculo.instance.getFraccionTiempo(tiempoMoliendaReal)
+        return Calculo.instance.getFraccionTiempo(tiempoMoliendaReal) ?:0
     }
 
     String getRataMolienda(){

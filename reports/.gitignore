@@ -1,0 +1,24 @@
+*.swp
+.DS_Store
+.DS_Store?
+*~
+
+.metadata/
+tests/
+temp/
+web/*
+xava/*
+i18n/portlets/
+
+!xava/application.xml
+!xava/controllers.xml
+!xava/editors.xml
+!xava/tabs-default-values.xml
+
+# swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+
+act.sh

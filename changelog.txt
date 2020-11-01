@@ -1,3 +1,6 @@
+2020-10-26 
+	BlcReportAction
+
 2020-10-21 
 	Agregar en acidez volátil: PRE COSECHA QUEMADA y CAÑA COMERCIAL
 	BlcDetalle14, BlcDetalle15, BlcDetalle16

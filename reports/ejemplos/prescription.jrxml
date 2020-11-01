@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="prescription" language="groovy" pageWidth="612" pageHeight="792" columnWidth="592" leftMargin="10" rightMargin="10" topMargin="20" bottomMargin="20" uuid="f259123e-3084-406f-9214-cbff3ad19cef">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="4"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#A9A9A9">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#C0C0C0">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="1213fbc4-c605-450f-9cfd-2344d137a3ff">
+		<field name="quantity" class="java.lang.Short">
+			<fieldDescription><![CDATA[quantity]]></fieldDescription>
+		</field>
+		<field name="treatmentDuration" class="java.lang.Short">
+			<fieldDescription><![CDATA[treatmentDuration]]></fieldDescription>
+		</field>
+		<field name="medicationDosage" class="ec.cjpq.core.model.GeneralTable">
+			<fieldDescription><![CDATA[medicationDosage]]></fieldDescription>
+		</field>
+		<field name="medicament" class="ec.cjpq.cmc.model.Medicament">
+			<fieldDescription><![CDATA[medicament]]></fieldDescription>
+		</field>
+		<field name="initialDate" class="java.util.Date">
+			<fieldDescription><![CDATA[initialDate]]></fieldDescription>
+		</field>
+		<field name="frequencyUnit" class="ec.cjpq.core.model.GeneralTable">
+			<fieldDescription><![CDATA[frequencyUnit]]></fieldDescription>
+		</field>
+		<field name="drugRoute" class="ec.cjpq.core.model.GeneralTable">
+			<fieldDescription><![CDATA[drugRoute]]></fieldDescription>
+		</field>
+		<field name="drugForm" class="ec.cjpq.core.model.GeneralTable">
+			<fieldDescription><![CDATA[drugForm]]></fieldDescription>
+		</field>
+		<field name="dosis" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[dosis]]></fieldDescription>
+		</field>
+		<field name="doseUnit" class="ec.cjpq.core.model.GeneralTable">
+			<fieldDescription><![CDATA[doseUnit]]></fieldDescription>
+		</field>
+		<field name="aditionalIndications" class="java.lang.String">
+			<fieldDescription><![CDATA[aditionalIndications]]></fieldDescription>
+		</field>
+		<field name="dietTherapeutic" class="ec.cjpq.core.model.GeneralTable">
+			<fieldDescription><![CDATA[dietTherapeutic]]></fieldDescription>
+		</field>
+		<field name="totalUnits" class="java.lang.Short"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="date" class="java.util.Date">
+		<fieldDescription><![CDATA[date]]></fieldDescription>
+	</field>
+	<field name="details" class="java.util.Collection">
+		<fieldDescription><![CDATA[details]]></fieldDescription>
+	</field>
+	<field name="healthProfessional" class="ec.cjpq.cmc.model.HealthProfessional">
+		<fieldDescription><![CDATA[healthProfessional]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="patient" class="ec.cjpq.cmc.model.Patient">
+		<fieldDescription><![CDATA[patient]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="2" width="60" height="20" uuid="d6657edd-0880-4938-84f8-128bec670a19"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paciente]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="64" y="2" width="300" height="20" uuid="6eaac6e0-7e58-42c8-84ee-4e9ed3facaac"/>
+				<textFieldExpression><![CDATA[$F{patient}.getFullName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="381" y="2" width="60" height="20" uuid="ef8a7260-ede8-444c-86f6-b9ee285dbd03"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="444" y="2" width="100" height="20" uuid="2b17724b-5e77-4d53-b3f9-a67458bb854d"/>
+				<textFieldExpression><![CDATA[""+$F{patient}.getPerson().getAge()+" años"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="24" width="60" height="20" uuid="65ed3811-a93e-49b5-b6d5-7ccdfb2533cb"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Doctor]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="64" y="24" width="300" height="20" uuid="ad971624-85c3-4969-991b-b6086060e1f8"/>
+				<textFieldExpression><![CDATA[$F{healthProfessional}.getPerson().getFullName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="381" y="24" width="60" height="20" uuid="168bc407-5c14-4bdf-94b8-474b706cb27b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField pattern="EEE dd/MMM/yyyy">
+				<reportElement x="444" y="24" width="100" height="20" uuid="38002d7e-4f33-4489-b3f8-684633ec19d9"/>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" x="1" y="1" width="571" height="26" uuid="e7287f69-403f-44e1-bac4-ee24852a552f"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset 1" uuid="0dc832fb-01f4-481d-8e35-27cf8cc0443d">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{details})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="40" uuid="73f5da80-9c6c-4cb5-b15f-cb8a9f3c5b77">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="30" uuid="338933a3-58d5-4b05-8a1b-b5290d7d0d3c"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="20" uuid="34361bd6-ca7b-4461-ba3e-c1de4504fc84"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{totalUnits}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f6a2e435-e69c-4949-9be1-f15b5a99520b">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="081c9ef3-6bd4-4a42-8391-2eb668ddb971"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Medicamento / Dieta terap.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement x="0" y="0" width="90" height="20" uuid="7e59bc43-3116-44fe-a6da-d9b6a3e63ba4"/>
+								<textFieldExpression><![CDATA[$F{medicament}.getDescription() + " / Dieta: " + $F{dietTherapeutic}.getValue()]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="3734e19a-695b-4ea1-86fe-7449d4361103">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="30" uuid="f949e8d4-5d31-42f8-932e-aa7a472e39f6"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Dosis]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="50" height="20" uuid="46d6a7a2-b7d7-4fbc-badd-55080d5f6932"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{dosis}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="45" uuid="86308cc5-2faa-4826-90d3-28fd37e1fd01">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="45" height="30" uuid="1e57f135-e946-445d-bbd5-c386faed9d55"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Unidad]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement x="0" y="0" width="45" height="20" uuid="47cddf52-8300-419b-85e0-cf6ca3a5f365"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{doseUnit}.getValue()]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="86308cc5-2faa-4826-90d3-28fd37e1fd02">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="0428742c-b10e-4a92-afcd-b05ed9d623d9"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Presentación / Via adm.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement x="1" y="0" width="88" height="20" uuid="badcfa6a-2785-461d-983c-59c02dd9bca7"/>
+								<textFieldExpression><![CDATA[$F{drugForm}.getValue() + " / Vía: " + $F{drugRoute}.getValue()]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="86308cc5-2faa-4826-90d3-28fd37e1fd03">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="80" height="30" uuid="0a6ef618-689e-439d-88ce-cdc6a025ef3d"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Frecuencia]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement x="0" y="0" width="80" height="20" uuid="66a324c8-f48b-4999-80fa-b8ac770fbb87"/>
+								<textFieldExpression><![CDATA[$F{medicationDosage}.getValue()]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="55" uuid="86308cc5-2faa-4826-90d3-28fd37e1fd04">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="55" height="30" uuid="3cd05793-2e65-43cd-a244-999b4fa448be"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Duración]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="55" height="20" uuid="bcca224a-00b4-43c5-b066-7529727dfdca"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{treatmentDuration}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="65" uuid="86308cc5-2faa-4826-90d3-28fd37e1fd05">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="65" height="30" uuid="efe2d464-2799-4074-9df5-819f254257cf"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Periodo]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement x="0" y="0" width="65" height="20" uuid="bd3a5bbc-a663-46ae-99d4-7ba4ff1b6181"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{frequencyUnit}.getValue()]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="86308cc5-2faa-4826-90d3-28fd37e1fd06">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="70" height="30" uuid="6a78a0da-c65d-4ac7-893e-27548581b460"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Iniciar en]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="EEE dd/MMM/yyyy">
+								<reportElement x="0" y="0" width="70" height="20" uuid="2a4bd0fc-3844-4e92-a05b-a17d25fa6cff"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{initialDate}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

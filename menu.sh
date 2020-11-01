@@ -3,14 +3,14 @@
 # http://askubuntu.com/questions/1705/how-can-i-create-a-select-menu-in-a-shell-script
 
 PS3='Input your option: '
-options=("deleteClasses" "compile" "codigo-test" "query-test" "unit-test" "suite-test" "updateSchema" "borar-db-HSQL" "datos-prueba-SQL" "sql-query" "sql-insert" "sql-update" "sql-alter" "createWar" "generatePortlets" "zip" "version" "Quit")
+options=("deleteClasses" "compile" "codigo-test" "query-test" "unit-test" "suite-test" "updateSchema" "borar-db-HSQL" "datos-prueba-SQL" "sql-query" "sql-insert" "sql-update" "sql-alter" "createWar" "ingenioBeans" "copiarReportes" "generatePortlets" "zip" "version" "Quit")
 
 select opt in "${options[@]}"
 do
 
 case $opt in
         "compile")
-            ant deleteClasses
+            # ant deleteClasses
             ant compile
             ;;
 		"updateSchema")
@@ -71,6 +71,12 @@ case $opt in
 			;;
 		"sql-insert")
 			ant sql-insert
+			;;
+		"ingenioBeans")
+			ant ingenioBeans
+			;;
+		"copiarReportes")
+			ant copyReports
 			;;
         "version")
 			echo "OpenXava 6.3.2"
