@@ -26,35 +26,35 @@
 	<import value="it.businesslogic.ireport.IReportScriptlet" />
 
 
-	<field name="unidad" class="ec.carper.ingenio.model.Unidad">
-		<fieldDescription><![CDATA[unidad]]></fieldDescription>
-	</field>
-	<field name="acumulado" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[acumulado]]></fieldDescription>
-	</field>
-	<field name="material" class="ec.carper.ingenio.model.Material">
-		<fieldDescription><![CDATA[material]]></fieldDescription>
-	</field>
 	<field name="blc" class="ec.carper.ingenio.model.Blc">
 		<fieldDescription><![CDATA[blc]]></fieldDescription>
 	</field>
 	<field name="valor" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[valor]]></fieldDescription>
 	</field>
-	<field name="cantidad" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[cantidad]]></fieldDescription>
+	<field name="unidad" class="ec.carper.ingenio.model.Unidad">
+		<fieldDescription><![CDATA[unidad]]></fieldDescription>
 	</field>
-	<field name="id" class="java.lang.String">
-		<fieldDescription><![CDATA[id]]></fieldDescription>
+	<field name="material" class="ec.carper.ingenio.model.Material">
+		<fieldDescription><![CDATA[material]]></fieldDescription>
 	</field>
-	<field name="modificable" class="java.lang.Boolean">
-		<fieldDescription><![CDATA[modificable]]></fieldDescription>
+	<field name="acumulado" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[acumulado]]></fieldDescription>
+	</field>
+	<field name="metaClass" class="groovy.lang.MetaClass">
+		<fieldDescription><![CDATA[metaClass]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
 	</field>
 	<field name="orden" class="java.lang.Integer">
 		<fieldDescription><![CDATA[orden]]></fieldDescription>
 	</field>
-	<field name="class" class="java.lang.Class">
-		<fieldDescription><![CDATA[class]]></fieldDescription>
+	<field name="modificable" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[modificable]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[cantidad]]></fieldDescription>
 	</field>
 	<field name="unidad2" class="ec.carper.ingenio.model.Unidad">
 		<fieldDescription><![CDATA[unidad2]]></fieldDescription>
@@ -75,23 +75,179 @@
 			</band>
 		</pageHeader>
 		<columnHeader>
-			<band height="0"  isSplitAllowed="true" >
+			<band height="26"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="2"
+						y="1"
+						width="330"
+						height="12"
+						key="staticText-1"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[DATOS DIA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="2"
+						y="13"
+						width="175"
+						height="12"
+						key="staticText-2"/>
+					<box></box>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+				<text><![CDATA[MATERIAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="177"
+						y="13"
+						width="40"
+						height="12"
+						key="staticText-3"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="9"/>
+					</textElement>
+				<text><![CDATA[UNIDAD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="217"
+						y="13"
+						width="55"
+						height="12"
+						key="staticText-4"/>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="272"
+						y="13"
+						width="60"
+						height="12"
+						key="staticText-5"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="9"/>
+					</textElement>
+				<text><![CDATA[UNIDAD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="332"
+						y="13"
+						width="55"
+						height="12"
+						key="staticText-6"/>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="332"
+						y="1"
+						width="60"
+						height="12"
+						key="staticText-7"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[ACUMULADO]]></text>
+				</staticText>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="17"  isSplitAllowed="true" >
+			<band height="14"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="17"
-						y="1"
-						width="70"
-						height="15"
+						x="2"
+						y="0"
+						width="120"
+						height="13"
 						key="textField-1"/>
 					<box></box>
 					<textElement>
 						<font/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{material}.descripcion]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="177"
+						y="0"
+						width="40"
+						height="13"
+						key="textField-2"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{unidad}.descripcion]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="122"
+						y="0"
+						width="55"
+						height="13"
+						key="textField-3"/>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{valor}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="217"
+						y="0"
+						width="55"
+						height="13"
+						key="textField-4"/>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{cantidad}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="272"
+						y="0"
+						width="60"
+						height="13"
+						key="textField-5"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{unidad2}.descripcion]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="332"
+						y="0"
+						width="55"
+						height="13"
+						key="textField-6"/>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{acumulado}]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>

@@ -8,7 +8,8 @@
 	<property file="../openxava.properties"/>
 	
     <!-- 2019-10-10 Agregado por carper -->
-	<property name="webinf.dir"    value="web/WEB-INF" />
+	<property name="webinf.dir" value="web/WEB-INF" />
+    <property name="local.dir"  value="/home/carper/local" />
 
 	<!-- <property name="sql.jar"    value="../OpenXava/lib/hsqldb.jar" /> -->
 	<!-- <property name="sql.driver" value="org.hsqldb.jdbcDriver"/> -->
@@ -185,7 +186,7 @@
         <delete dir="data"/>
 	</target>
     
-    <property name="backup.dir" value="/home/knoppix/local/respaldo/codigo" />
+    <property name="backup.dir" value="${local.dir}/respaldo/codigo" />
 	<tstamp>
 		<format property="fecha" pattern="yyyy.MM.dd-HH.mm.ss" locale="es,EC"/>
 	</tstamp>
@@ -208,5 +209,43 @@
             excludes="**/Test.class"
             />
     </target>
+
+	<!-- MENU INTERACTIVO PARA EJECUTAR TAREAS -->
+	
+    <property name="antform.home" value="etc/jar/antform.jar" />
+	<taskdef name="antform" classname="com.sardak.antform.AntForm" classpath="${antform.home}"/>
+	<taskdef name="antmenu" classname="com.sardak.antform.AntMenu" classpath="${antform.home}"/>
+	
+    <!-- <property name="antform.home" value="${local.dir}/javaDev/antform-bin-2.0" /> -->
+	<!-- <taskdef name="antform" classname="com.sardak.antform.AntForm"  -->
+	<!-- 	classpath="${antform.home}/lib/antform.jar"/> -->
+	<!-- <taskdef name="antmenu" classname="com.sardak.antform.AntMenu"  -->
+	<!-- 	classpath="${antform.home}/lib/antform.jar"/> -->
+
+	<target name="menu">
+		<antmenu image="reports/logo.jpg" title="Tareas" loop="true" >
+			<button label="copyReports" target="copyReports"/>
+			<button label="sql-query"   target="sql-query"/>
+			<button label="zip"         target="zip"/>
+			<button label="Exit"        loopexit="true"/>
+        </antmenu>
+
+		<!--
+		<antmenu title="carper's menu of ant tasks" loop="true" height="50">
+			<AntMenuItem name="delete-App"    target="delete-App"/>
+			<AntMenuItem name="delete-Db"     target="delete-Db"/>
+			<AntMenuItem name="compile"       target="compile"/>
+			<AntMenuItem name="updateSchema"  target="updateSchema"/>
+			<AntMenuItem name="updateClass"   target="updateClass"/>
+			<AntMenuItem name="deployWar"     target="deployWar"/>
+			<AntMenuItem name="sql-import-h2" target="sql-import-h2"/>
+			<AntMenuItem name="sql-query"     target="sql-query"/>
+			<AntMenuItem name="test"          target="test"/>
+			<AntMenuItem name="Exit"          loopexit="true"/>
+        </antmenu>
+		-->
+
+	</target>
+
 
 </project>

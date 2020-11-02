@@ -17,7 +17,7 @@ import static org.openxava.jpa.XPersistence.*
     diaTrabajo, descripcion;
     titDatDia { detalle1 }
     titTie { 
-        consultaParo
+        detalle17
     }
     titVarPri {
         cana { 
@@ -71,11 +71,17 @@ class Blc extends Formulario {
 
     BigDecimal fldPorcTot
 
-    @ElementCollection @ReadOnly @Transient
+    // @ElementCollection @ReadOnly @Transient
+    // @ListProperties(""" 
+    //     area.descripcion,
+    //     totalParo [ blc.tiempoPerdidoTotal, blc.tiempoMoliendaReal, blc.fraccionTiempo, blc.rataMolienda, blc.porcTot ] """)
+    // Collection<ParoTotal> consultaParo 
+
+    @ElementCollection @ReadOnly
     @ListProperties(""" 
         area.descripcion,
         totalParo [ blc.tiempoPerdidoTotal, blc.tiempoMoliendaReal, blc.fraccionTiempo, blc.rataMolienda, blc.porcTot ] """)
-    Collection<ParoTotal> consultaParo 
+    Collection<BlcDetalle17> detalle17
     
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
     Collection<BlcDetalle21> detalle21
@@ -326,12 +332,12 @@ class Blc extends Formulario {
     }
     
     def consultarParoTotal(){
-        consultaParo = new ArrayList<ParoTotal>();
+        detalle17 = new ArrayList<BlcDetalle17>() //Inicializar el detalle
         def lista = getManager().createQuery("FROM Paro where diaTrabajo.id = :id")
                                 .setParameter("id", diaTrabajo.id).resultList
         lista.each{
             it.total.each{
-                consultaParo.add( new ParoTotal (area: it.area, totalParo: it.totalParo) )
+                detalle17.add( new BlcDetalle17 (area: it.area, totalParo: it.totalParo) )
             }
         }
         // Actualizar los totales del paro en la cabecera
