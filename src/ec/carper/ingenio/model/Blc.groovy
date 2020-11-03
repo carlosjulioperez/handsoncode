@@ -25,7 +25,7 @@ import static org.openxava.jpa.XPersistence.*
             titMetBal { detalle22 }
         }
         bagazo { detalle3 }
-        mielFinaMelaza { detalle4 }
+        mielFinalMelaza { detalle4 }
         jugoDiluido { detalle5 }
         jugoClaro { detalle6 }
         jugoPrimeraExtraccion { detalle7 }

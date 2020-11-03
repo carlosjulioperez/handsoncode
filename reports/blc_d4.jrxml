@@ -2,7 +2,7 @@
 <!-- Created with iReport - A designer for JasperReports -->
 <!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
 <jasperReport
-		 name="blc_d21"
+		 name="blc_d4"
 
 		 language="groovy"		 columnCount="1"
 		 printOrder="Vertical"

@@ -210,53 +210,6 @@
 		<fieldDescription><![CDATA[id]]></fieldDescription>
 	</field>
 
-
-		<group  name="DATOS_DIA" >
-			<groupExpression><![CDATA[$F{detalle1}]]></groupExpression>
-			<groupHeader>
-			<band height="15"  isSplitAllowed="true" >
-				<subreport  isUsingCache="true">
-					<reportElement
-						x="0"
-						y="0"
-						width="392"
-						height="15"
-						key="subreport-1"/>
-					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle1})]]></dataSourceExpression>
-					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d1.jasper"]]></subreportExpression>
-				</subreport>
-				<subreport  isUsingCache="true">
-					<reportElement
-						x="392"
-						y="0"
-						width="105"
-						height="15"
-						key="subreport-2"/>
-					<subreportParameter  name="TPT">
-						<subreportParameterExpression><![CDATA[$F{fldTiempoPerdidoTotal}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter  name="TMR">
-						<subreportParameterExpression><![CDATA[$F{fldTiempoMoliendaReal}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter  name="FT">
-						<subreportParameterExpression><![CDATA[$F{fldFraccionTiempo}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter  name="RM">
-						<subreportParameterExpression><![CDATA[$F{fldRataMolienda}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter  name="PPT">
-						<subreportParameterExpression><![CDATA[$F{fldPorcTot}]]></subreportParameterExpression>
-					</subreportParameter>
-					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle17})]]></dataSourceExpression>
-					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d17.jasper"]]></subreportExpression>
-				</subreport>
-			</band>
-			</groupHeader>
-			<groupFooter>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-			</groupFooter>
-		</group>
 		<background>
 			<band height="0"  isSplitAllowed="true" >
 			</band>
@@ -355,29 +308,378 @@ TEL: 042-762454]]></text>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="69"  isSplitAllowed="true" >
+			<band height="208"  isSplitAllowed="true" >
+				<subreport  isUsingCache="true">
+					<reportElement
+						mode="Transparent"
+						x="0"
+						y="1"
+						width="392"
+						height="15"
+						key="subreport-1"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle1})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d1.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="392"
+						y="1"
+						width="105"
+						height="15"
+						key="subreport-2"/>
+					<subreportParameter  name="TPT">
+						<subreportParameterExpression><![CDATA[$F{fldTiempoPerdidoTotal}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="TMR">
+						<subreportParameterExpression><![CDATA[$F{fldTiempoMoliendaReal}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="FT">
+						<subreportParameterExpression><![CDATA[$F{fldFraccionTiempo}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="RM">
+						<subreportParameterExpression><![CDATA[$F{fldRataMolienda}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="PPT">
+						<subreportParameterExpression><![CDATA[$F{fldPorcTot}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle17})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d17.jasper"]]></subreportExpression>
+				</subreport>
 				<staticText>
 					<reportElement
 						x="0"
-						y="19"
+						y="17"
 						width="523"
-						height="12"
-						key="staticText-4"/>
+						height="11"
+						key="staticText-4"
+						positionType="Float"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[VARIABLES PRIMARIAS]]></text>
 				</staticText>
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="0"
-						y="32"
-						width="220"
-						height="15"
-						key="subreport-3"/>
+						y="51"
+						width="180"
+						height="12"
+						key="subreport-3"
+						positionType="Float"/>
 					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle21})]]></dataSourceExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d21.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="0"
+						y="40"
+						width="180"
+						height="10"
+						key="staticText-5"
+						positionType="Float"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Método Laboratorio de Caña]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="180"
+						y="51"
+						width="180"
+						height="12"
+						key="subreport-4"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle22})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d22.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="180"
+						y="40"
+						width="180"
+						height="10"
+						key="staticText-6"
+						positionType="Float"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Método Balance]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="0"
+						y="28"
+						width="360"
+						height="11"
+						key="staticText-7"
+						positionType="Float"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[C A Ñ A]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="360"
+						y="51"
+						width="180"
+						height="12"
+						key="subreport-5"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle3})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d3.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="360"
+						y="39"
+						width="180"
+						height="11"
+						key="staticText-8"
+						positionType="Float"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[BAGAZO]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="77"
+						width="180"
+						height="12"
+						key="subreport-6"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle4})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d4.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="0"
+						y="66"
+						width="180"
+						height="11"
+						key="staticText-9"
+						positionType="Float"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[MIEL FINAL MELAZA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="180"
+						y="66"
+						width="180"
+						height="11"
+						key="staticText-10"
+						positionType="Float"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[JUGO DILUIDO]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="180"
+						y="77"
+						width="180"
+						height="12"
+						key="subreport-7"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle5})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d5.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="360"
+						y="66"
+						width="180"
+						height="11"
+						key="staticText-11"
+						positionType="Float"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[JUGO CLARO]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="360"
+						y="77"
+						width="180"
+						height="12"
+						key="subreport-8"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle6})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d6.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="0"
+						y="92"
+						width="180"
+						height="11"
+						key="staticText-12"
+						positionType="Float"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[JUGO PRIMERA EXTRACCION]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="103"
+						width="180"
+						height="12"
+						key="subreport-9"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle7})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d7.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="0"
+						y="118"
+						width="180"
+						height="11"
+						key="staticText-13"
+						positionType="Float"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[JUGO RESIDUAL]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="129"
+						width="180"
+						height="12"
+						key="subreport-10"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle8})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d8.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="180"
+						y="92"
+						width="180"
+						height="11"
+						key="staticText-14"
+						positionType="Float"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[CACHAZA]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="180"
+						y="103"
+						width="180"
+						height="12"
+						key="subreport-11"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle9})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d9.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="360"
+						y="92"
+						width="180"
+						height="11"
+						key="staticText-15"
+						positionType="Float"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[AZUCAR GRANEL]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="360"
+						y="103"
+						width="180"
+						height="12"
+						key="subreport-12"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle101})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d101.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="360"
+						y="117"
+						width="180"
+						height="12"
+						key="subreport-13"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle102})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d102.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="55"
+						y="145"
+						width="430"
+						height="12"
+						key="subreport-14"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle12})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d12.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="75"
+						y="160"
+						width="390"
+						height="12"
+						key="subreport-15"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle13})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d13.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="0"
+						y="175"
+						width="523"
+						height="11"
+						key="staticText-16"
+						positionType="Float"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[ANALISIS RUTINARIOS Y ESPECIALES FABRICA]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="188"
+						width="260"
+						height="12"
+						key="subreport-16"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle14})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d14.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
 		</detail>
@@ -386,7 +688,43 @@ TEL: 042-762454]]></text>
 			</band>
 		</columnFooter>
 		<pageFooter>
-			<band height="10"  isSplitAllowed="true" >
+			<band height="11"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="330"
+						y="0"
+						width="170"
+						height="10"
+						key="textField-3"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Right">
+						<font fontName="Helvetica" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Página " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Report" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="504"
+						y="0"
+						width="36"
+						height="10"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField-4"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+						<font fontName="Helvetica" pdfFontName="Helvetica" size="8" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="false" pdfEncoding ="CP1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
 			</band>
 		</pageFooter>
 		<summary>
