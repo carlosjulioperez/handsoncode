@@ -308,7 +308,7 @@ TEL: 042-762454]]></text>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="208"  isSplitAllowed="true" >
+			<band height="263"  isSplitAllowed="true" >
 				<subreport  isUsingCache="true">
 					<reportElement
 						mode="Transparent"
@@ -680,6 +680,65 @@ TEL: 042-762454]]></text>
 						positionType="Float"/>
 					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle14})]]></dataSourceExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d14.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="202"
+						width="310"
+						height="12"
+						key="subreport-17"
+						positionType="Float"/>
+					<subreportParameter  name="T1">
+						<subreportParameterExpression><![CDATA[$F{promColor}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="T2">
+						<subreportParameterExpression><![CDATA[$F{promTurbiedad}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle15})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d15.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="315"
+						y="188"
+						width="220"
+						height="12"
+						key="subreport-18"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle16})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d16.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="0"
+						y="225"
+						width="523"
+						height="11"
+						key="staticText-17"
+						positionType="Float"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[PRODUCCION DE AZUCAR POR PRESENTACIONES]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="60"
+						y="243"
+						width="420"
+						height="12"
+						key="subreport-19"
+						positionType="Float"/>
+					<subreportParameter  name="T1">
+						<subreportParameterExpression><![CDATA[$F{promColor}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="T2">
+						<subreportParameterExpression><![CDATA[$F{promTurbiedad}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle11})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d11.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
 		</detail>

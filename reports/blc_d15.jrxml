@@ -24,6 +24,12 @@
 	<import value="net.sf.jasperreports.engine.*" />
 	<import value="net.sf.jasperreports.engine.data.*" />
 
+	<parameter name="T1" isForPrompting="false" class="java.math.BigDecimal">
+		<defaultValueExpression ><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="T2" isForPrompting="false" class="java.math.BigDecimal">
+		<defaultValueExpression ><![CDATA[0]]></defaultValueExpression>
+	</parameter>
 
 	<field name="material" class="ec.carper.ingenio.model.Material">
 		<fieldDescription><![CDATA[material]]></fieldDescription>
@@ -109,14 +115,14 @@
 					<reportElement
 						x="210"
 						y="0"
-						width="50"
+						width="100"
 						height="20"
 						key="staticText-7"/>
 					<box></box>
-					<textElement textAlignment="Center">
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
 						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
 					</textElement>
-				<text><![CDATA[SACAROSA TEO. RED.]]></text>
+				<text><![CDATA[COLOR Y TURBIEDAD]]></text>
 				</staticText>
 			</band>
 		</columnHeader>
@@ -142,13 +148,13 @@
 						width="50"
 						height="10"
 						key="textField-2">
-							<printWhenExpression><![CDATA[$F{azucarReductor} > 0]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{cenizasCon} > 0]]></printWhenExpression>
 						</reportElement>
 					<box></box>
 					<textElement textAlignment="Right">
 						<font size="8"/>
 					</textElement>
-				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{azucarReductor}]]></textFieldExpression>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{cenizasCon}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -167,23 +173,81 @@
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="209"
+						x="210"
 						y="0"
 						width="50"
 						height="10"
 						key="textField-7">
-							<printWhenExpression><![CDATA[$F{sacarosaTeoRed} > 0]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{colorTur1} > 0]]></printWhenExpression>
 						</reportElement>
 					<box></box>
 					<textElement textAlignment="Right">
 						<font size="8"/>
 					</textElement>
-				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{sacarosaTeoRed}]]></textFieldExpression>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{colorTur1}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="260"
+						y="0"
+						width="50"
+						height="10"
+						key="textField-8">
+							<printWhenExpression><![CDATA[$F{colorTur2} > 0]]></printWhenExpression>
+						</reportElement>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{colorTur2}]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>
 		<columnFooter>
-			<band height="0"  isSplitAllowed="true" >
+			<band height="11"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="210"
+						y="0"
+						width="50"
+						height="10"
+						key="textField-9">
+							<printWhenExpression><![CDATA[$P{T1} > 0]]></printWhenExpression>
+						</reportElement>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$P{T1}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="260"
+						y="0"
+						width="50"
+						height="10"
+						key="textField-10">
+							<printWhenExpression><![CDATA[$P{T2} > 0]]></printWhenExpression>
+						</reportElement>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$P{T2}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="0"
+						y="0"
+						width="210"
+						height="10"
+						key="staticText-8"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="6" isBold="true"/>
+					</textElement>
+				<text><![CDATA[REMOCION ESTACION DE CLARIFICACION DE MELADURA]]></text>
+				</staticText>
 			</band>
 		</columnFooter>
 		<pageFooter>
