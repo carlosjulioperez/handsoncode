@@ -616,7 +616,7 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 // =+((U144*T149)/1000)*(U146/100)
                 def tonSac = Calculo.instance.redondear((vt*p/1000) * (sac/100), 2)
                 // =+U146/U145*100
-                def pza = Calculo.instance.redondear(sac/brix*100, 2)
+                def pza = brix ? Calculo.instance.redondear(sac/brix*100, 2): 0
                 def tomMf = Calculo.instance.redondear(vt*p/1000 ,2) 
                 setValor ("Vt", vt)
                 setValor ("TonSacMasC", tonSac)
@@ -776,14 +776,15 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
 
                 def q133 = getSumaValores(67 , 67  , "Sac")
                 def u150 = getSumaValores(70 , 70  , "Pza")
-                def bg155 = Calculo.instance.redondear((q133*(bg151-u150))/(bg151*(q133-u150))*100 , 3)
+                
+                def bg155 = Calculo.instance.redondear((q133*(bg151-u150))/(bg151*(q133-u150))*100, 3)
                 
                 def bg156 = Calculo.instance.redondear(bg154*bg155/100, 3)
-                def bg157 = Calculo.instance.redondear((bg156/q133)*100, 3)
+                def bg157 = q133 ? Calculo.instance.redondear((bg156/q133)*100, 3): 0
                 def bg158 = Calculo.instance.redondear(bg154-bg156, 3)
                 
                 def u146 = getSumaValores(70 , 70  , "Sac")
-                def bg159 = Calculo.instance.redondear(bg158/u146*100, 3)
+                def bg159 = u146 ? Calculo.instance.redondear(bg158/u146*100, 3): 0
                 
                 // 2020-09-30
                 def d = SqlUtil.instance.getDetallePorIndicador(diaTrabajoId, "StockFabricaDetalle70", campoFk, "Vt")

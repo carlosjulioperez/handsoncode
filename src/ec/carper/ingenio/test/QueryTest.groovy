@@ -33,11 +33,11 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        // getValorCampo()
+        getValorCampo()
         //getValoresBlc()
         //getValoresServiciosInsumosFabrica()
-        getValoresAnalisisRutinariosEspecialesFabrica()
-        // getValoresBlcCenicana()
+        //getValoresAnalisisRutinariosEspecialesFabrica()
+        //getValoresBlcCenicana()
 
         //getTotalesStockFabrica()
         //getSum()

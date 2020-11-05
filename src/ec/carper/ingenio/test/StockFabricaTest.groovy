@@ -18,10 +18,10 @@ class StockFabricaTest extends ModuleTestBase {
         execute ("Ingenio.save")
         assertNoErrors()
     
-        setConditionValues("JUNIT")
-        setConditionComparators("contains_comparator")
+        setConditionComparators(["contains_comparator"])
+        setConditionValues(["JUNIT"])
         execute("List.filter")
-        printHtml()
+        // printHtml()
         execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila
         execute    ("StockFabrica.cargarItems")
 

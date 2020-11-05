@@ -15,10 +15,9 @@
   <graph edgedefault="directed" id="G">
     <data key="d0"/>
     <node id="n0" yfiles.foldertype="group">
-      <data key="d5"/>
       <data key="d6">
         <y:TableNode configuration="com.yworks.bpmn.Pool">
-          <y:Geometry height="790.1792161919715" width="949.4999999999999" x="335.2500000000001" y="-67.07211538461547"/>
+          <y:Geometry height="790.1792161919715" width="949.5" x="348.0" y="24.0"/>
           <y:Fill color="#FFF2BC" color2="#D4D4D4CC" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="21.4609375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="l" rotationAngle="270.0" textColor="#000000" verticalTextPosition="bottom" visible="true" width="313.88037109375" x="4.0" y="238.1494225491108">Ingenio San Juan - Control de Laboratorio</y:NodeLabel>
@@ -59,13 +58,13 @@
           </y:StyleProperties>
           <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
           <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
-          <y:BorderInsets bottom="33" bottomF="32.607100807356005" left="26" leftF="25.5" right="39" rightF="39.25" top="1" topF="0.5"/>
+          <y:BorderInsets bottom="30" bottomF="30.109504653509816" left="26" leftF="25.5" right="39" rightF="39.25" top="1" topF="0.5"/>
           <y:Table autoResizeTable="true" defaultColumnWidth="360.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="107.0">
             <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
             <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
             <y:Insets bottom="0.0" left="30.0" right="0.0" top="0.0"/>
             <y:Columns>
-              <y:Column id="column_0" minimumWidth="30.0" width="896.4999999999999">
+              <y:Column id="column_0" minimumWidth="30.0" width="896.5">
                 <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
               </y:Column>
             </y:Columns>
@@ -82,10 +81,9 @@
       </data>
       <graph edgedefault="directed" id="n0:">
         <node id="n0::n0">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Event.withShadow">
-              <y:Geometry height="30.0" width="30.0" x="410.7500000000001" y="-16.072115384615472"/>
+              <y:Geometry height="30.0" width="30.0" x="423.5" y="75.0"/>
               <y:Fill color="#FFFFFFE6" color2="#D4D4D4CC" transparent="false"/>
               <y:BorderStyle color="#27AE27" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="13.0" y="34.0">
@@ -107,10 +105,9 @@
           </data>
         </node>
         <node id="n0::n1">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="507.2500000000001" y="-28.572115384615472"/>
+              <y:Geometry height="55.0" width="85.0" x="520.0" y="62.5"/>
               <y:Fill color="#FFFFFFE6" color2="#D4D4D4CC" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="66.9296875" x="9.03515625" y="18.515625">Parámetro<y:LabelModel>
@@ -132,10 +129,9 @@
           </data>
         </node>
         <node id="n0::n2">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="634.7500000000001" y="-28.572115384615472"/>
+              <y:Geometry height="55.0" width="85.0" x="647.5" y="62.5"/>
               <y:Fill color="#FFFFFFE6" color2="#D4D4D4CC" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="61.4453125" x="11.77734375" y="11.53125">Turno de 
@@ -158,10 +154,9 @@ trabajo<y:LabelModel>
           </data>
         </node>
         <node id="n0::n3">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="762.2500000000001" y="-28.572115384615472"/>
+              <y:Geometry height="55.0" width="85.0" x="775.0" y="62.5"/>
               <y:Fill color="#FFFFFFE6" color2="#D4D4D4CC" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="46.638671875" x="19.1806640625" y="11.53125">Día de 
@@ -184,10 +179,9 @@ trabajo<y:LabelModel>
           </data>
         </node>
         <node id="n0::n4">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="889.7500000000001" y="-28.572115384615472"/>
+              <y:Geometry height="55.0" width="85.0" x="902.5" y="62.5"/>
               <y:Fill color="#FFFFFFE6" color2="#D4D4D4CC" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="36.0859375" x="24.45703125" y="18.515625">Zafra<y:LabelModel>
@@ -209,10 +203,9 @@ trabajo<y:LabelModel>
           </data>
         </node>
         <node id="n0::n5">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="157.0" width="133.0" x="1082.6875" y="-46.57211538461547"/>
+              <y:Geometry height="157.0" width="133.0" x="1095.4375" y="44.5"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="129.71875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="116.5234375" x="8.23828125" y="13.640625">Brix y Densidad
@@ -242,10 +235,9 @@ Material<y:LabelModel>
           </data>
         </node>
         <node id="n0::n6">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="439.7500000000001" y="75.59406537340203"/>
+              <y:Geometry height="55.0" width="85.0" x="452.5" y="166.6661807580175"/>
               <y:Fill color="#FFFFFFE6" color2="#FF9900" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="45.90625" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="59.83984375" x="12.580078125" y="4.546875">Plantilla
@@ -269,10 +261,9 @@ Fábrica<y:LabelModel>
           </data>
         </node>
         <node id="n0::n7">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="559.7500000000001" y="75.59406537340203"/>
+              <y:Geometry height="55.0" width="85.0" x="572.5" y="166.6661807580175"/>
               <y:Fill color="#FFFFFFE6" color2="#FF9900" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="45.90625" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="59.83984375" x="12.580078125" y="4.546875">Plantilla
@@ -296,10 +287,9 @@ Proceso<y:LabelModel>
           </data>
         </node>
         <node id="n0::n8">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="919.7500000000001" y="75.59406537340203"/>
+              <y:Geometry height="55.0" width="85.0" x="932.5" y="166.6661807580175"/>
               <y:Fill color="#FFFFFFE6" color2="#FF9900" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="51.58984375" x="16.705078125" y="11.53125">Plantilla
@@ -322,10 +312,9 @@ BLC<y:LabelModel>
           </data>
         </node>
         <node id="n0::n9">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="762.2500000000001" y="75.59406537340203"/>
+              <y:Geometry height="55.0" width="85.0" x="775.0" y="166.6661807580175"/>
               <y:Fill color="#FFFFFFE6" color2="#D4D4D4CC" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="42.455078125" x="21.2724609375" y="11.53125">BLC
@@ -348,10 +337,9 @@ Admin<y:LabelModel>
           </data>
         </node>
         <node id="n0::n10">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="437.5" y="182.5"/>
+              <y:Geometry height="55.0" width="85.0" x="450.2499999999999" y="273.5721153846155"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="77.8984375" x="3.55078125" y="11.53125">Trash y 
@@ -374,10 +362,9 @@ Admin<y:LabelModel>
           </data>
         </node>
         <node id="n0::n11">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="557.5" y="182.5"/>
+              <y:Geometry height="55.0" width="85.0" x="570.2499999999999" y="273.5721153846155"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="37.474609375" x="23.7626953125" y="18.515625">Trash<y:LabelModel>
@@ -399,10 +386,9 @@ Admin<y:LabelModel>
           </data>
         </node>
         <node id="n0::n12">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="677.5" y="182.5"/>
+              <y:Geometry height="55.0" width="85.0" x="690.2499999999999" y="273.5721153846155"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="34.69140625" x="25.154296875" y="18.515625">Caña<y:LabelModel>
@@ -424,10 +410,9 @@ Admin<y:LabelModel>
           </data>
         </node>
         <node id="n0::n13">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="797.5" y="182.5"/>
+              <y:Geometry height="55.0" width="85.0" x="810.2499999999999" y="273.5721153846155"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="30.103515625" x="27.4482421875" y="18.515625">Jugo<y:LabelModel>
@@ -449,10 +434,9 @@ Admin<y:LabelModel>
           </data>
         </node>
         <node id="n0::n14">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="917.5" y="182.5"/>
+              <y:Geometry height="55.0" width="85.0" x="930.2499999999999" y="273.5721153846155"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="48.197265625" x="18.4013671875" y="18.515625">Bagazo<y:LabelModel>
@@ -474,10 +458,9 @@ Admin<y:LabelModel>
           </data>
         </node>
         <node id="n0::n15">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="1037.5" y="182.5"/>
+              <y:Geometry height="55.0" width="85.0" x="1050.25" y="273.5721153846155"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="45.90625" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="68.60546875" x="8.197265625" y="4.546875">Turbiedad 
@@ -501,10 +484,9 @@ Cachaza<y:LabelModel>
           </data>
         </node>
         <node id="n0::n16">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="1157.5" y="182.5"/>
+              <y:Geometry height="55.0" width="85.0" x="1170.25" y="273.5721153846155"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="20.259765625" x="32.3701171875" y="18.515625">PH<y:LabelModel>
@@ -526,10 +508,9 @@ Cachaza<y:LabelModel>
           </data>
         </node>
         <node id="n0::n17">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="437.5" y="301.3100961538462"/>
+              <y:Geometry height="55.0" width="85.0" x="450.2499999999999" y="392.38221153846166"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="59.93359375" x="12.533203125" y="18.515625">Meladura<y:LabelModel>
@@ -551,10 +532,9 @@ Cachaza<y:LabelModel>
           </data>
         </node>
         <node id="n0::n18">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="557.5" y="301.3100961538462"/>
+              <y:Geometry height="55.0" width="85.0" x="570.2499999999999" y="392.38221153846166"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="54.373046875" x="15.3134765625" y="18.515625">Fosfatos<y:LabelModel>
@@ -576,10 +556,9 @@ Cachaza<y:LabelModel>
           </data>
         </node>
         <node id="n0::n19">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="677.5" y="301.3100961538462"/>
+              <y:Geometry height="55.0" width="85.0" x="690.2499999999999" y="392.38221153846166"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="41.564453125" x="21.7177734375" y="18.515625">Masas<y:LabelModel>
@@ -601,10 +580,9 @@ Cachaza<y:LabelModel>
           </data>
         </node>
         <node id="n0::n20">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="797.5" y="301.3100961538462"/>
+              <y:Geometry height="55.0" width="85.0" x="810.2499999999999" y="392.38221153846166"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="42.0390625" x="21.48046875" y="18.515625">Mieles<y:LabelModel>
@@ -626,10 +604,9 @@ Cachaza<y:LabelModel>
           </data>
         </node>
         <node id="n0::n21">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="917.5" y="301.3100961538462"/>
+              <y:Geometry height="55.0" width="85.0" x="930.2499999999999" y="392.38221153846166"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="45.853515625" x="19.5732421875" y="11.53125">Mieles 
@@ -652,10 +629,9 @@ Nutsch<y:LabelModel>
           </data>
         </node>
         <node id="n0::n22">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="1037.5" y="301.31009615384625"/>
+              <y:Geometry height="55.0" width="85.0" x="1050.25" y="392.3822115384617"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="56.95703125" x="14.021484375" y="11.53125">TQ
@@ -678,10 +654,9 @@ Fundidor<y:LabelModel>
           </data>
         </node>
         <node id="n0::n23">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="1157.5" y="301.31009615384613"/>
+              <y:Geometry height="55.0" width="85.0" x="1170.25" y="392.3822115384616"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="54.619140625" x="15.1904296875" y="18.515625">Magmas<y:LabelModel>
@@ -703,10 +678,9 @@ Fundidor<y:LabelModel>
           </data>
         </node>
         <node id="n0::n24">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="437.5" y="420.12019230769243"/>
+              <y:Geometry height="55.0" width="85.0" x="450.2499999999999" y="511.1923076923079"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="61.556640625" x="11.7216796875" y="18.515625">Color Mat<y:LabelModel>
@@ -728,13 +702,12 @@ Fundidor<y:LabelModel>
           </data>
         </node>
         <node id="n0::n25">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="557.5" y="420.12019230769243"/>
+              <y:Geometry height="55.0" width="85.0" x="570.2499999999999" y="511.1923076923079"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="44.998046875" x="20.0009765625" y="11.531249999999943">Azúcar
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="44.998046875" x="20.0009765625" y="11.53125">Azúcar
 Granel<y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -754,10 +727,9 @@ Granel<y:LabelModel>
           </data>
         </node>
         <node id="n0::n26">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="677.5" y="420.12019230769243"/>
+              <y:Geometry height="55.0" width="85.0" x="690.2499999999999" y="511.1923076923079"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="44.998046875" x="20.0009765625" y="11.53125">Azúcar
@@ -780,10 +752,9 @@ Crudo<y:LabelModel>
           </data>
         </node>
         <node id="n0::n27">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="797.5" y="420.12019230769243"/>
+              <y:Geometry height="55.0" width="85.0" x="810.2499999999999" y="511.1923076923079"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="72.970703125" x="6.0146484375" y="18.515625">Grasshoper<y:LabelModel>
@@ -805,13 +776,12 @@ Crudo<y:LabelModel>
           </data>
         </node>
         <node id="n0::n28">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="917.5" y="420.12019230769243"/>
+              <y:Geometry height="55.0" width="85.0" x="930.2499999999999" y="511.1923076923079"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="52.673828125" x="16.1630859375" y="11.531249999999943">Tamaño
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="52.673828125" x="16.1630859375" y="11.53125">Tamaño
 Grano<y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -831,13 +801,12 @@ Grano<y:LabelModel>
           </data>
         </node>
         <node id="n0::n29">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="1037.5" y="420.12019230769243"/>
+              <y:Geometry height="55.0" width="85.0" x="1050.25" y="511.1923076923079"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="48.197265625" x="18.4013671875" y="11.531249999999943">Btu-Lb
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="48.197265625" x="18.4013671875" y="11.53125">Btu-Lb
 Bagazo<y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -857,10 +826,9 @@ Bagazo<y:LabelModel>
           </data>
         </node>
         <node id="n0::n30">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="1157.5" y="420.12019230769243"/>
+              <y:Geometry height="55.0" width="85.0" x="1170.25" y="511.1923076923079"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="52.533203125" x="16.2333984375" y="18.515625">Cto 24H<y:LabelModel>
@@ -882,10 +850,9 @@ Bagazo<y:LabelModel>
           </data>
         </node>
         <node id="n0::n31">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="437.5" y="538.9302884615383"/>
+              <y:Geometry height="55.0" width="85.0" x="570.2499999999999" y="632.5"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="59.83984375" x="12.580078125" y="11.53125">Stock de 
@@ -908,10 +875,9 @@ Fábrica<y:LabelModel>
           </data>
         </node>
         <node id="n0::n32">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="557.5" y="538.9302884615383"/>
+              <y:Geometry height="55.0" width="85.0" x="690.2499999999999" y="632.5"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="59.83984375" x="12.580078125" y="11.53125">Stock de 
@@ -934,13 +900,12 @@ Proceso<y:LabelModel>
           </data>
         </node>
         <node id="n0::n33">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="677.5000000000002" y="538.9302884615383"/>
+              <y:Geometry height="55.0" width="85.0" x="810.2500000000001" y="632.5"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="51.33203125" x="16.833984374999943" y="11.53125">Flujo de
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="51.33203125" x="16.833984375" y="11.53125">Flujo de
 Jugo<y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -960,10 +925,9 @@ Jugo<y:LabelModel>
           </data>
         </node>
         <node id="n0::n34">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="797.5" y="538.9302884615383"/>
+              <y:Geometry height="55.0" width="85.0" x="930.2499999999999" y="632.5"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="59.611328125" x="12.6943359375" y="11.53125">BLC 
@@ -986,10 +950,9 @@ Cenicaña<y:LabelModel>
           </data>
         </node>
         <node id="n0::n35">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="917.5" y="538.9302884615383"/>
+              <y:Geometry height="55.0" width="85.0" x="1050.25" y="632.5"/>
               <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="27.296875" x="28.8515625" y="18.515625">BLC<y:LabelModel>
@@ -1011,10 +974,9 @@ Cenicaña<y:LabelModel>
           </data>
         </node>
         <node id="n0::n36">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Event.withShadow">
-              <y:Geometry height="30.0" width="30.0" x="1065.0" y="551.4302884615383"/>
+              <y:Geometry height="30.0" width="30.0" x="1197.75" y="645.0"/>
               <y:Fill color="#FFFFFFE6" color2="#D4D4D4CC" transparent="false"/>
               <y:BorderStyle color="#B11F1F" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="13.0" y="34.0">
@@ -1036,10 +998,9 @@ Cenicaña<y:LabelModel>
           </data>
         </node>
         <node id="n0::n37">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="437.50000000000006" y="632.5"/>
+              <y:Geometry height="55.0" width="85.0" x="570.2499999999999" y="726.0697115384617"/>
               <y:Fill color="#FFFFFFE6" color2="#FF9900" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="dashed" width="2.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="45.90625" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="59.83984375" x="12.580078125" y="4.546875">Plantilla
@@ -1063,10 +1024,9 @@ Fábrica<y:LabelModel>
           </data>
         </node>
         <node id="n0::n38">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="557.5" y="632.5"/>
+              <y:Geometry height="55.0" width="85.0" x="690.2499999999999" y="726.0697115384617"/>
               <y:Fill color="#FFFFFFE6" color2="#FF9900" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="dashed" width="2.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="45.90625" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="59.83984375" x="12.580078125" y="4.546875">Plantilla
@@ -1090,10 +1050,9 @@ Proceso<y:LabelModel>
           </data>
         </node>
         <node id="n0::n39">
-          <data key="d5"/>
           <data key="d6">
             <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
-              <y:Geometry height="55.0" width="85.0" x="917.5" y="632.5"/>
+              <y:Geometry height="55.0" width="85.0" x="1050.25" y="726.0697115384617"/>
               <y:Fill color="#FFFFFFE6" color2="#FF9900" transparent="false"/>
               <y:BorderStyle color="#123EA2" type="dashed" width="2.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="51.58984375" x="16.705078125" y="11.53125">Plantilla
@@ -1115,10 +1074,34 @@ BLC<y:LabelModel>
             </y:GenericNode>
           </data>
         </node>
+        <node id="n0::n40">
+          <data key="d6">
+            <y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
+              <y:Geometry height="55.0" width="85.0" x="450.2499999999999" y="632.5"/>
+              <y:Fill color="#FFFFFFE6" color2="#FFFF99" transparent="false"/>
+              <y:BorderStyle color="#123EA2" type="line" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="59.6171875" x="12.69140625" y="11.53125">Tabla de 
+Paros<y:LabelModel>
+                  <y:SmartNodeLabelModel distance="4.0"/>
+                </y:LabelModel>
+                <y:ModelParameter>
+                  <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+                </y:ModelParameter>
+              </y:NodeLabel>
+              <y:StyleProperties>
+                <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+                <y:Property class="com.yworks.yfiles.bpmn.view.TaskTypeEnum" name="com.yworks.bpmn.taskType" value="TASK_TYPE_ABSTRACT"/>
+                <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+                <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+                <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ACTIVITY_TYPE"/>
+                <y:Property class="com.yworks.yfiles.bpmn.view.ActivityTypeEnum" name="com.yworks.bpmn.activityType" value="ACTIVITY_TYPE_TASK"/>
+              </y:StyleProperties>
+            </y:GenericNode>
+          </data>
+        </node>
       </graph>
     </node>
     <edge id="n0::e0" source="n0::n0" target="n0::n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1129,7 +1112,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e1" source="n0::n1" target="n0::n2">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1140,7 +1122,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e2" source="n0::n2" target="n0::n3">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1151,7 +1132,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e3" source="n0::n3" target="n0::n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1162,7 +1142,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e4" source="n0::n10" target="n0::n11">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1173,7 +1152,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e5" source="n0::n11" target="n0::n12">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1184,7 +1162,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e6" source="n0::n12" target="n0::n13">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1195,7 +1172,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e7" source="n0::n13" target="n0::n14">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1206,7 +1182,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e8" source="n0::n14" target="n0::n15">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1217,7 +1192,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e9" source="n0::n15" target="n0::n16">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1228,7 +1202,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e10" source="n0::n17" target="n0::n18">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1239,7 +1212,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e11" source="n0::n18" target="n0::n19">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1250,7 +1222,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e12" source="n0::n19" target="n0::n20">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1261,7 +1232,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e13" source="n0::n20" target="n0::n21">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1272,12 +1242,11 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e14" source="n0::n16" target="n0::n17">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="1200.0" y="268.57451923076917"/>
-            <y:Point x="480.0" y="268.57451923076917"/>
+            <y:Point x="1212.75" y="359.64663461538464"/>
+            <y:Point x="492.7499999999999" y="359.64663461538464"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
@@ -1286,7 +1255,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e15" source="n0::n21" target="n0::n22">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1297,7 +1265,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e16" source="n0::n22" target="n0::n23">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1308,12 +1275,11 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e17" source="n0::n23" target="n0::n24">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="1200.0" y="385.5208364633416"/>
-            <y:Point x="480.0" y="385.5208364633416"/>
+            <y:Point x="1212.75" y="476.59295184795707"/>
+            <y:Point x="492.7499999999999" y="476.59295184795707"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
@@ -1322,7 +1288,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e18" source="n0::n24" target="n0::n25">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1333,7 +1298,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e19" source="n0::n25" target="n0::n26">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1344,7 +1308,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e20" source="n0::n26" target="n0::n27">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1355,7 +1318,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e21" source="n0::n27" target="n0::n28">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1366,7 +1328,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e22" source="n0::n28" target="n0::n29">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1377,7 +1338,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e23" source="n0::n29" target="n0::n30">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1388,7 +1348,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e24" source="n0::n31" target="n0::n32">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1399,7 +1358,6 @@ BLC<y:LabelModel>
       </data>
     </edge>
     <edge id="n0::e25" source="n0::n32" target="n0::n33">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1409,13 +1367,72 @@ BLC<y:LabelModel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n0::e26" source="n0::n30" target="n0::n31">
-      <data key="d9"/>
+    <edge id="n0::e26" source="n0::n33" target="n0::n34">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="1200.0" y="511.8028846153845"/>
-            <y:Point x="480.0" y="511.8028846153845"/>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n0::e27" source="n0::n34" target="n0::n35">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n0::e28" source="n0::n35" target="n0::n36">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n0::e29" source="n0::n37" target="n0::n31">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="dashed" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n0::e30" source="n0::n38" target="n0::n32">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="dashed" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n0::e31" source="n0::n39" target="n0::n35">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="dashed" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n0::e32" source="n0::n30" target="n0::n40">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.4118075801749228" ty="3.036443148688022">
+            <y:Point x="1211.9489795918366" y="600.0"/>
+            <y:Point x="493.1618075801748" y="600.0"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
@@ -1423,67 +1440,11 @@ BLC<y:LabelModel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n0::e27" source="n0::n33" target="n0::n34">
-      <data key="d9"/>
+    <edge id="n0::e33" source="n0::n40" target="n0::n31">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="n0::e28" source="n0::n34" target="n0::n35">
-      <data key="d9"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="n0::e29" source="n0::n35" target="n0::n36">
-      <data key="d9"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="n0::e30" source="n0::n37" target="n0::n31">
-      <data key="d9"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="dashed" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="n0::e31" source="n0::n38" target="n0::n32">
-      <data key="d9"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="dashed" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="n0::e32" source="n0::n39" target="n0::n35">
-      <data key="d9"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="dashed" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
