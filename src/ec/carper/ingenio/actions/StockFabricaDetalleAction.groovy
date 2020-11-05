@@ -777,6 +777,7 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 def q133 = getSumaValores(67 , 67  , "Sac")
                 def u150 = getSumaValores(70 , 70  , "Pza")
                 
+                // TODO: Validar denominador
                 def bg155 = Calculo.instance.redondear((q133*(bg151-u150))/(bg151*(q133-u150))*100, 3)
                 
                 def bg156 = Calculo.instance.redondear(bg154*bg155/100, 3)
@@ -890,7 +891,8 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
         if (diaTrabajoId){
             (desde..hasta).each{
                 def d = SqlUtil.instance.getDetallePorIndicador(diaTrabajoId, "StockFabricaDetalle${it}", campoFk, indicador)
-                suma += d ? d.valor: 0
+                if (d)
+                    suma += d.valor ?: 0
                 // if (indicador=="Vt" || indicador=="VTot")
                 //     println "${it}, ${d.valor}"
             }
