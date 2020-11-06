@@ -777,8 +777,10 @@ class StockFabricaDetalleAction extends OnChangePropertyBaseAction{
                 def q133 = getSumaValores(67 , 67  , "Sac")
                 def u150 = getSumaValores(70 , 70  , "Pza")
                 
-                // TODO: Validar denominador
-                def bg155 = Calculo.instance.redondear((q133*(bg151-u150))/(bg151*(q133-u150))*100, 3)
+                def bg155 = 0
+                try{
+                    bg155 = Calculo.instance.redondear((q133*(bg151-u150))/(bg151*(q133-u150))*100, 3)
+                }catch(Exception ex) {}
                 
                 def bg156 = Calculo.instance.redondear(bg154*bg155/100, 3)
                 def bg157 = q133 ? Calculo.instance.redondear((bg156/q133)*100, 3): 0

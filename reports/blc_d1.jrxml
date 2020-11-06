@@ -203,7 +203,9 @@
 						y="0"
 						width="55"
 						height="10"
-						key="textField-3"/>
+						key="textField-3">
+							<printWhenExpression><![CDATA[$F{valor} > 0]]></printWhenExpression>
+						</reportElement>
 					<box></box>
 					<textElement textAlignment="Right">
 						<font size="8"/>
@@ -216,7 +218,9 @@
 						y="0"
 						width="55"
 						height="10"
-						key="textField-4"/>
+						key="textField-4">
+							<printWhenExpression><![CDATA[$F{cantidad} > 0]]></printWhenExpression>
+						</reportElement>
 					<box></box>
 					<textElement textAlignment="Right">
 						<font size="8"/>
@@ -242,7 +246,9 @@
 						y="0"
 						width="55"
 						height="10"
-						key="textField-6"/>
+						key="textField-6">
+							<printWhenExpression><![CDATA[$F{acumulado} > 0]]></printWhenExpression>
+						</reportElement>
 					<box></box>
 					<textElement textAlignment="Right">
 						<font size="8"/>

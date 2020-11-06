@@ -582,13 +582,13 @@ class Blc extends Formulario {
             def campo = it.material.campo ?: ""
             switch (campo){
                 case "brixJRes":
-                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jcBri")
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jrBri")
                     break
                 case "sacJRes":
-                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jcSac")
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jrSac")
                     break
                 case "pzaJRes":
-                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jcPur")
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Jugo", "jrPur")
                     break
             }
             getManager().persist(it)
@@ -988,7 +988,8 @@ class Blc extends Formulario {
 
     // Si un total es de tipo String, todos los demás también deben serlo.
     String getTiempoPerdidoTotal(){
-        return diaTrabajo ? SqlUtil.instance.getCampo(diaTrabajo.id, "Paro" , "totalParada"): "00:00:00"
+        // return diaTrabajo ? SqlUtil.instance.getCampo(diaTrabajo.id, "Paro" , "totalParada"): "00:00:00"
+        return diaTrabajo ? SqlUtil.instance.getCampo(diaTrabajo.id, "Paro" , "totalParada"): ""
     }
 
     String getTiempoMoliendaReal(){

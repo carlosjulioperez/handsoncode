@@ -22,7 +22,8 @@ class CodigoTest extends GroovyTestCase {
     */
 
     void test(){
-        getDiferenciaHoras()
+        println Util.instance.getDiferenciaHoras("13:40:00", "24:00:00")
+        // getDiferenciaHoras()
     }
 
     void numerosDeString(){
@@ -44,8 +45,6 @@ class CodigoTest extends GroovyTestCase {
         }
 
         println a(1,2) // 20
-
-
     }
 
     // https://stackoverflow.com/questions/3909855/groovy-time-durations

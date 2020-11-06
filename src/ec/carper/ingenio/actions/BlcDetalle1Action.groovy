@@ -74,7 +74,7 @@ class BlcDetalle1Action extends OnChangePropertyBaseAction{
             if (d) {
                 def jdV = d.volumen2
                 def jdC = d.peso
-                setValores(campo, jdV, jdC, jdV+jdA)
+                setValores(campo, jdV, jdC, jdC+jdA)
             }
             
             def cdV = getValor("canaDia", 1)

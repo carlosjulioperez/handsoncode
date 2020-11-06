@@ -336,8 +336,11 @@ class BlcCenicana extends Formulario {
     }
     
     def getValorBlc(def campo, def col){
+        def retorno = 0
         def d = SqlUtil.instance.getDetallePorDTM(diaTrabajo.id, "blc", "BlcDetalle1", campo)
-        return col == 1 ? (d.valor?:0): (d.cantidad?:0)
+        if (d)
+            retorno = (col==1) ? (d.valor?:0): (d.cantidad?:0)
+        return retorno
     }
 }
 

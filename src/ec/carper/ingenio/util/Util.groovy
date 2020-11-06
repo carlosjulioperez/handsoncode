@@ -4,6 +4,7 @@ import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.*
+import groovy.time.TimeCategory
 
 @Singleton
 class Util{
@@ -111,11 +112,17 @@ class Util{
         try{
             def dateI = Date.parse("HH:mm:ss", horaInicial)
             def dateF = Date.parse("HH:mm:ss", horaFinal)
+            // println "dateI: ${dateI}"
+            // println "dateF: ${dateF}"
             
             def duration = TimeCategory.minus(dateF, dateI)
+            println "duration: ${duration}"
+
             //"${duration.hours}".padLeft(2, '0' )
             valor = String.format("%02d:%02d:%02d", duration.hours, duration.minutes, duration.seconds )
-        }catch(Exception e){}
+        }catch(Exception e){
+            e.printStackTrace()
+        }
         return valor 
     }
 
