@@ -4,8 +4,8 @@ import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.model.*
 
-
 @Entity
+@Tab(properties="codigo, descripcion, diaTrabajoInicio.descripcion")
 class Zafra extends Identifiable{
     
     @Column(length=10) @Required
@@ -19,7 +19,7 @@ class Zafra extends Identifiable{
     DiaTrabajo diaTrabajoInicio
     
     @ManyToOne(fetch=FetchType.LAZY)
-    @DescriptionsList @NoCreate @NoModify @Required
+    @DescriptionsList @NoCreate @NoModify
     DiaTrabajo diaTrabajoFin
 
 }

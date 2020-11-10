@@ -17,7 +17,12 @@ class DiaTrabajo extends Identifiable{
     
     @Hidden
     String getDescripcion(){
-        return numeroDia+" "+fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+        // println ">>> DiaTrabajo.valor = ${this}"
+        def valor = ""
+        try{
+            valor = numeroDia+" "+fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+        }catch(Exception e){}
+        return valor 
     }
     
     @Column(length=2) @Required

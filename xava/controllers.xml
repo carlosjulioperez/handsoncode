@@ -12,6 +12,17 @@
     	</action>
     </controller>
 
+    <controller name="Formulario">
+        <extends controller="Ingenio"/>
+        <action name="crearItemsPorHora" mode="detail" 
+            class="ec.carper.ingenio.actions.FormularioCrearItemsPorHoraAction">
+    	</action>
+    </controller>
+
+    <controller name="Bagazo">
+        <extends controller="Formulario"/>
+    </controller>   
+
     <controller name="TrashCana">
         <extends controller="Ingenio"/>
         <action name="crearTrash" mode="detail" 

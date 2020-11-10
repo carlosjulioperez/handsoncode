@@ -126,4 +126,20 @@ class Util{
         return valor 
     }
 
+    String getHoraS(def hora){
+        // https://stackoverflow.com/questions/3504986/extract-time-from-date-string
+        Date date = new Date();
+        date.setTime(hora.getTime());
+        // def horaS = new SimpleDateFormat("HH:mm").format(date);
+        return new SimpleDateFormat("HH:mm").format(date);
+    }
+
+    def agregarHora(def hora){
+        // https://javacodex.com/Date-and-Time/Add-Time-To-A-Timestamp
+        Calendar cal = Calendar.getInstance()
+        cal.setTimeInMillis(hora.getTime())
+        cal.add(Calendar.HOUR, 1)
+        return new java.sql.Timestamp(cal.getTime().getTime())
+    }
+
 } 

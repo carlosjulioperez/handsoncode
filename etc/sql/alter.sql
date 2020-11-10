@@ -14,6 +14,9 @@
 -- ALTER TABLE ingenio.ingenio.blcdetalle1 ADD modificable bool NULL;
 -- UPDATE blcdetalle1 SET modificable=false;
 
+ALTER TABLE ingenio.ingenio.bagazo ADD itemsporhoracreados bool NULL;
+UPDATE ingenio.ingenio.bagazo SET itemsporhoracreados=false;
+
 -- ALTER TABLE ingenio.ingenio.blcdetalle12 ADD modificable bool
 -- ALTER TABLE ingenio.ingenio.blcpdetalle12 ADD modificable bool
 

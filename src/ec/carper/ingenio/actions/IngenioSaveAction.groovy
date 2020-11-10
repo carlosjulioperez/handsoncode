@@ -47,6 +47,7 @@ class IngenioSaveAction extends ViewBaseAction implements IChainAction, IChangeM
 
                     instance = XPersistence.getManager().find( instance.class, getView().getValue("id") )
 
+                    // Estos métodos se ejecutan antes de save()
                     instance.metaClass.methods.each { method ->
                         if (method.name == 'actualizar'){
                             method.invoke(instance)

@@ -1,12 +1,18 @@
 package ec.carper.ingenio.model
 
+import ec.carper.ingenio.util.*
+
+import java.text.SimpleDateFormat
+import java.time.format.*
 import javax.persistence.*
+
 import org.openxava.annotations.*
 import org.openxava.calculators.*
 import org.openxava.jpa.*
 import org.openxava.model.*
 import org.openxava.util.*
 import org.openxava.validators.*
+import static org.openxava.jpa.XPersistence.*
 
 import java.time.LocalDate
 
@@ -33,6 +39,8 @@ import java.time.LocalDate
     titAnaBag { detalle }
 """)
 class Bagazo extends Formulario {
+
+    boolean itemsPorHoraCreados
 
     BigDecimal wH2O
     BigDecimal wBagazo
@@ -145,4 +153,27 @@ class Bagazo extends Formulario {
         return query.resultList[0]?: 0
     }
 
+
+    void crearItemsPorHora() throws ValidationException{
+        try{
+            def d     = SqlUtil.instance.getDiaTrabajo(diaTrabajo.id)
+            def hora  = SqlUtil.instance.obtenerFecha(d.turnoTrabajo.horaDesde, diaTrabajo.id)
+            def horaF = SqlUtil.instance.obtenerFecha(d.turnoTrabajo.horaHasta, diaTrabajo.id)
+
+            while(hora < horaF ) {
+                def det = new BagazoDetalle(bagazo: this, horaS: Util.instance.getHoraS(hora), hora: hora)
+                getManager().persist(det)
+                hora = Util.instance.agregarHora(hora) // Incremento de hora
+            }
+            // Agregar la última hora configurada
+            def det = new BagazoDetalle(bagazo: this, horaS: Util.instance.getHoraS(horaF), hora: horaF)
+            getManager().persist(det)
+
+            this.itemsPorHoraCreados = true
+            getManager().persist(this)
+
+        }catch(Exception ex){
+            throw new SystemException("items_por_hora_no_creados", ex)
+        }
+    }
 }

@@ -3,6 +3,9 @@ package ec.carper.ingenio.test
 import ec.carper.ingenio.model.*
 import ec.carper.ingenio.util.*
 
+import groovy.time.TimeCategory
+import java.text.SimpleDateFormat
+import java.time.format.*
 import javax.persistence.Query;
 import org.apache.commons.logging.*
 import org.openxava.tests.*
@@ -33,7 +36,8 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getValorCampo()
+        crearItemsPorHora(Aux.instance.diaTrabajoId)
+        // getValorCampo()
         //getValoresBlc()
         //getValoresServiciosInsumosFabrica()
         //getValoresAnalisisRutinariosEspecialesFabrica()
@@ -52,11 +56,36 @@ class QueryTest extends ModuleTestBase {
         //unSoloRegistro()
         //getListaOrdenadaParoDetalle()
         //getCto24H() //DESCARTADO
-        //getDiaTrabajo()
+        // getDiaTrabajo()
         //isDiaTrabajoCerrado()
         //getTrashCanaDiaTrabajoCerrado()
         //getTrashCanaDetalle2()
         //getNativo()
+    }
+
+    def crearItemsPorHora(def diaTrabajoId){
+        def d     = SqlUtil.instance.getDiaTrabajo(diaTrabajoId)
+        // def hora1 = d.turnoTrabajo.horaDesde
+        // def hora2 = d.turnoTrabajo.horaHasta
+
+        def hora  = SqlUtil.instance.obtenerFecha(d.turnoTrabajo.horaDesde, diaTrabajoId)
+        def horaF = SqlUtil.instance.obtenerFecha(d.turnoTrabajo.horaHasta, diaTrabajoId)
+
+        while(hora < horaF ) {
+            
+            // // https://stackoverflow.com/questions/3504986/extract-time-from-date-string
+            // Date date = new Date();
+            // date.setTime(hora.getTime());
+            // def strHora = new SimpleDateFormat("HH:mm").format(date);
+            
+            def strHora = Util.instance.getHoraS(hora)
+            println ">>> strHora: ${strHora}"
+            println ">>> Hora   : ${hora}"
+
+            // Incremento de hora
+            hora = Util.instance.agregarHora(hora)
+        }
+        println horaF
     }
 
     def getSum(){
