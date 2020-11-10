@@ -3,10 +3,10 @@ package ec.carper.ingenio.actions
 import ec.carper.ingenio.model.*
 import ec.carper.ingenio.util.*
 
-import javax.persistence.Query;
+import javax.persistence.Query
 import org.openxava.actions.*
 import org.openxava.jpa.*
-import static org.openxava.jpa.XPersistence.*;
+import static org.openxava.jpa.XPersistence.*
 
 class FormularioCrearItemsPorHoraAction extends ViewBaseAction implements IHideActionAction{
 
