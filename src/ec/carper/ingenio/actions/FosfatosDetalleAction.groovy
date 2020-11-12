@@ -13,8 +13,10 @@ class FosfatosDetalleAction extends OnChangePropertyBaseAction{
         String horaS = (String)getView().getValue("horaS")
         getView().setValue("hora", (horaS && diaTrabajoId) ? SqlUtil.instance.obtenerFecha(horaS, diaTrabajoId): null)
 
-        BigDecimal cteN1         = (BigDecimal)getView().getRoot().getValue("cteN1")
-        BigDecimal cteN2         = (BigDecimal)getView().getRoot().getValue("cteN2")
+        // BigDecimal cteN1         = (BigDecimal)getView().getRoot().getValue("cteN1")
+        // BigDecimal cteN2         = (BigDecimal)getView().getRoot().getValue("cteN2")
+        def cteN1 = new BigDecimal(new Parametro().obtenerValor("CTE_N1"))
+        def cteN2 = new BigDecimal(new Parametro().obtenerValor("CTE_N2"))
         
         BigDecimal jdAbsorbancia = (BigDecimal)getView().getValue("jdAbsorbancia")
         BigDecimal jdMlMuestra   = (BigDecimal)getView().getValue("jdMlMuestra")

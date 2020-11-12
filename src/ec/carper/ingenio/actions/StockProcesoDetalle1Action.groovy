@@ -153,6 +153,20 @@ class StockProcesoDetalle1Action extends OnChangePropertyBaseAction{
                     pureza  = (porcSac && porcBrix) ? Calculo.instance.redondear(porcSac/porcBrix*100, 3): 0
                 }
             }
+            
+            // Caso especial (F54 en adelante)
+            if (material.campo=="recMag3"){
+                def d = SqlUtil.instance.getDetallePorDTM(diaTrabajoId, "stockProceso", "StockProcesoDetalle1", "recMag1")
+                if (d){
+                    volumen2 = d.volumen1
+                    peso     = d.peso
+                    porcBrix = d.porcBrix
+                    eq       = d.eq
+                    porcSac  = d.porcSac
+                    densidad = d.densidad
+                    factor   = new FactorVolumen().getValor(temp, eq+1)
+                }
+            }
 
             getView().setValue("volumen1" , volumen1?:null)
             getView().setValue("volumen2" , volumen2?:null)

@@ -18,7 +18,7 @@ import static org.openxava.jpa.XPersistence.*;
 """)
 class Paro extends Formulario {
 
-    @OneToMany (mappedBy="paro", cascade=CascadeType.ALL)
+    @OneToMany (mappedBy="paro", cascade=CascadeType.ALL) @XOrderBy("fechaInicio") 
     @ListProperties(""" fechaInicio,fechaFin,area.descripcion,descripcion,totalParo[paro.sumaParo] """)
     Collection<ParoDetalle> detalle
     

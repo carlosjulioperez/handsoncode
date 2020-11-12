@@ -13,7 +13,7 @@ import org.openxava.model.*
     volumen1,volumen2,peso;
     porcBrix,eq,tonBrix;
     porcSac, tonSac;
-    pureza,densidad,factor
+    pureza,densidad,factor,modificable
 """)
 class StockProcesoDetalle1 extends Identifiable{
    
@@ -44,16 +44,16 @@ class StockProcesoDetalle1 extends Identifiable{
     @OnChange(StockProcesoDetalle1Action.class) @Column(length=3)
     int eq
 
-    @DisplaySize(6) @ReadOnly
+    @DisplaySize(6)// @ReadOnly
     BigDecimal tonBrix
 
     @DisplaySize(6) @ReadOnly
     BigDecimal porcSac
 
-    @DisplaySize(6) @ReadOnly
+    @DisplaySize(6)// @ReadOnly
     BigDecimal tonSac
 
-    @DisplaySize(6) @ReadOnly
+    @DisplaySize(6)// @ReadOnly
     BigDecimal pureza
 
     @Digits(integer=10, fraction=3) @DisplaySize(6) @ReadOnly
@@ -62,4 +62,6 @@ class StockProcesoDetalle1 extends Identifiable{
     @Digits(integer=10, fraction=4) @DisplaySize(6) @ReadOnly
     BigDecimal factor
     
+    @ReadOnly
+    boolean modificable
 }

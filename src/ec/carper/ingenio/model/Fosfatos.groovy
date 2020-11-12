@@ -13,20 +13,13 @@ import static org.openxava.jpa.XPersistence.*
 
 @Entity
 @Tab(properties="""
-    diaTrabajo.descripcion, cteN1, cteN2, jdFosfatos, jcFosfatos
+    diaTrabajo.descripcion, jdFosfatos, jcFosfatos
 """)
 @View(members="""
     diaTrabajo; 
-    cteN1, cteN2; 
     titAnaMatProFosJug { detalle }
 """)
 class Fosfatos extends Formulario {
-
-    @Digits(integer=3, fraction=4)
-    BigDecimal cteN1 
-
-    @Digits(integer=3, fraction=4)
-    BigDecimal cteN2
 
     @Digits(integer=3, fraction=3)
     BigDecimal jdFosfatos

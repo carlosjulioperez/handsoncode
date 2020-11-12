@@ -32,6 +32,7 @@ class StockProceso extends Formulario {
     BigDecimal pureza 
     BigDecimal sacarosaSilos 
 
+    @EditAction("StockProceso.editDetail")
     @OneToMany (mappedBy="stockProceso", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     @ListProperties("""
         orden,material.descripcion,temp,volumen1,volumen2,peso,porcBrix,eq,
@@ -39,7 +40,7 @@ class StockProceso extends Formulario {
         porcSac,
         tonSac [stockProceso.sumTonSac, stockProceso.sumSacarosaSilos],
         pureza [stockProceso.calcPureza],
-        densidad,factor
+        densidad,factor,modificable
     """)
     Collection<StockProcesoDetalle1> detalle1
     
@@ -48,15 +49,19 @@ class StockProceso extends Formulario {
     
     BigDecimal getSumTonBrix() {
         // println ">>>id: ${this.id}"
-        def d = SqlUtil.instance.getDetallePorIndicador(this.id, "StockFabricaDetalle73", "stockFabrica.id", "tonAzuDis")
+        // def d = SqlUtil.instance.getDetallePorIndicador(this.id, "StockFabricaDetalle73", "stockFabrica.id", "tonAzuDis")
+        def d = SqlUtil.instance.getDetallePorIndicador(diaTrabajo.id, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonAzuDis")
         def bg142 = d ? d.valor?:0 : 0
         def sumaColumna = super.getSuma(detalle1, "tonBrix")
+        println ">>> sumaColumna : ${sumaColumna}"
+        println ">>> bg142       : ${bg142}"
         return (sumaColumna - bg142)
     }
     
     BigDecimal getSumTonSac() {
         // println ">>>id: ${this.id}"
-        def d = SqlUtil.instance.getDetallePorIndicador(this.id, "StockFabricaDetalle73", "stockFabrica.id", "tonAzuDis")
+        // def d = SqlUtil.instance.getDetallePorIndicador(this.id, "StockFabricaDetalle73", "stockFabrica.id", "tonAzuDis")
+        def d = SqlUtil.instance.getDetallePorIndicador(diaTrabajo.id, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonAzuDis")
         def bg142 = d ? d.valor?:0 : 0
         def sumaColumna = super.getSuma(detalle1, "tonSac")
         return (sumaColumna - bg142)
@@ -89,7 +94,7 @@ class StockProceso extends Formulario {
         try{
             def lista = getManager().createQuery("FROM StockProcesoPDetalle WHERE stockProcesoP.id = 1 ORDER BY orden").getResultList()
             lista.each{
-                def d = new StockProcesoDetalle1(stockProceso: stockProceso, orden: it.orden, material: it.material)
+                def d = new StockProcesoDetalle1(stockProceso: stockProceso, orden: it.orden, material: it.material, modificable: it.modificable)
                 getManager().persist(d)
             }
 

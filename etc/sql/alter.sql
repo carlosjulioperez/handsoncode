@@ -1,3 +1,5 @@
+-- DROP SCHEMA ingenio CASCADE;
+
 -- ALTER TABLE ingenio.ingenio.cto24h ALTER COLUMN descripcion TYPE varchar(10);
 -- ALTER TABLE ingenio.ingenio.blccelicanapdetalle DROP COLUMN porcc;
 
@@ -13,11 +15,30 @@
 -- UPDATE blcpdetalle1 SET modificable=false;
 -- ALTER TABLE ingenio.ingenio.blcdetalle1 ADD modificable bool NULL;
 -- UPDATE blcdetalle1 SET modificable=false;
-
-ALTER TABLE ingenio.ingenio.bagazo ADD itemsporhoracreados bool NULL;
-UPDATE ingenio.ingenio.bagazo SET itemsporhoracreados=false;
-
 -- ALTER TABLE ingenio.ingenio.blcdetalle12 ADD modificable bool
 -- ALTER TABLE ingenio.ingenio.blcpdetalle12 ADD modificable bool
 
--- DROP SCHEMA ingenio CASCADE;
+-- ALTER TABLE ingenio.ingenio.bagazo ADD itemsporhoracreados bool NULL;
+-- UPDATE ingenio.ingenio.bagazo SET itemsporhoracreados=false;
+
+-- ALTER TABLE ingenio.ingenio.ph ADD itemsporhoracreados bool NULL;
+-- UPDATE ingenio.ingenio.ph SET itemsporhoracreados=true; --Para evitar que los usuarios sobreescriban los registros anteriores
+
+-- ALTER TABLE ingenio.ingenio.fosfatos DROP COLUMN cten1;
+-- ALTER TABLE ingenio.ingenio.fosfatos DROP COLUMN cten2;
+
+-- ALTER TABLE ingenio.ingenio.btulbbagazo ALTER COLUMN phum    TYPE numeric(19,4);
+-- ALTER TABLE ingenio.ingenio.btulbbagazo ALTER COLUMN pcrisol TYPE numeric(19,4);
+-- ALTER TABLE ingenio.ingenio.btulbbagazo ALTER COLUMN pcricen TYPE numeric(19,4);
+-- ALTER TABLE ingenio.ingenio.btulbbagazo ALTER COLUMN pmtra   TYPE numeric(19,4);
+
+-- ALTER TABLE ingenio.ingenio.cto24hdetalle2 ALTER COLUMN pj  TYPE numeric(19,4);
+-- ALTER TABLE ingenio.ingenio.cto24hdetalle2 ALTER COLUMN sc8 TYPE numeric(19,4);
+
+-- ALTER TABLE ingenio.ingenio.stockprocesopdetalle ADD modificable bool;
+-- ALTER TABLE ingenio.ingenio.stockprocesodetalle1 ADD modificable bool;
+-- UPDATE ingenio.ingenio.stockprocesopdetalle SET modificable=false;
+-- UPDATE ingenio.ingenio.stockprocesodetalle1 SET modificable=false;
+
+-- ALTER TABLE ingenio.ingenio.flujojugo ADD itemsporhoracreados bool NULL;
+-- UPDATE ingenio.ingenio.flujojugo SET itemsporhoracreados=true;

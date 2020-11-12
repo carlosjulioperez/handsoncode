@@ -23,6 +23,14 @@
         <extends controller="Formulario"/>
     </controller>   
 
+    <controller name="Ph">
+        <extends controller="Formulario"/>
+    </controller>   
+
+    <controller name="FlujoJugo">
+        <extends controller="Formulario"/>
+    </controller>   
+
     <controller name="TrashCana">
         <extends controller="Ingenio"/>
         <action name="crearTrash" mode="detail" 
@@ -105,6 +113,8 @@
         <extends controller="Ingenio"/>
         <action name="cargarItems" mode="detail" 
             class="ec.carper.ingenio.actions.StockProcesoCargarItemsAction"/>
+		<action name="editDetail" hidden="true" image="edit.gif"
+			class="ec.carper.ingenio.actions.StockProcesoEditDetail1Action"/>
     </controller>   
 
 </controllers>

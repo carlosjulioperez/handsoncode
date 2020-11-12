@@ -5,7 +5,7 @@ import org.openxava.annotations.*
 import org.openxava.model.*
 
 @Entity
-@View(members="orden,material")
+@View(members="orden,material,modificable")
 class StockProcesoPDetalle extends Identifiable{
    
     @ManyToOne
@@ -17,4 +17,5 @@ class StockProcesoPDetalle extends Identifiable{
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @NoCreate @NoModify
     Material material
     
+    boolean modificable
 }

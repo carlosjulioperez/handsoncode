@@ -22,15 +22,21 @@ class FlujoJugoDetalleAction extends OnChangePropertyBaseAction{
         def horaBrixJDil = getView().getValue("horaBrixJDil")
 
         getView().setValue("tot", (ini>=0 && fin>=0) ? fin-ini: null)
-        getView().setValue("brixJDil", horaBrixJDil ? SqlUtil.instance.getValorDetalleCampoXHora(diaTrabajoId, horaBrixJDil, "jugo", "JugoDetalle", "jdBri") : null)
+        getView().setValue("brixJDil", horaBrixJDil ? SqlUtil.instance.getValorDetalleCampoXHora(diaTrabajoId, horaBrixJDil, "jugo", "JugoDetalle", "jdBri") : 0)
         
         def brixJDil = getView().getValue("brixJDil")
-        getView().setValue("p", brixJDil>=0 ? new BrixDensidadWp().getP(brixJDil): null)
+        brixJDil = brixJDil?:0
+
+        getView().setValue("p", brixJDil>=0 ? new BrixDensidadWp().getP(brixJDil): 0)
 
         def tot = getView().getValue("tot")
+        tot = tot?:0
+
         def p   = getView().getValue("p")
+        p = p?:0
+
         def vTot = (tot != null) ? Math.abs(tot): 0
-        getView().setValue("tonJugo", (p>=0) ? Calculo.instance.redondear(tot*p/1000,6) : null)
+        getView().setValue("tonJugo", (p>=0) ? Calculo.instance.redondear(tot*p/1000,6) : 0)
     }
 
 }

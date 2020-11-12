@@ -12,7 +12,6 @@ class FosfatosTest extends ModuleTestBase {
     public void _testGrabar() throws Exception {
         login("admin", "admin")
         execute("List.viewDetail", "row=0")
-        assertValue("cteN1", "0.2183")
         // No funciona con id generado
         // setValue("diaTrabajo.id", "ff8080817235e9f5017235ec85360000")
         // execute("CRUD.save");
@@ -25,8 +24,6 @@ class FosfatosTest extends ModuleTestBase {
         execute("CRUD.new")
 
         setValue("diaTrabajo.id", Aux.instance.diaTrabajoId)
-        setValue("cteN1" , "0.2183")
-        setValue("cteN2" , "0.0118")
         
         assertCollectionRowCount("detalle", 0) // La colección esta vacía 
         execute("Collection.new"   , "viewObject=xava_view_section0_detalle")

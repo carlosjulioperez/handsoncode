@@ -14,6 +14,11 @@ class FormularioCrearItemsPorHoraAction extends ViewBaseAction implements IHideA
     def modulo = ""
 
     void execute() throws Exception{
+        def id = getView().getValue("id")
+        if (id == null){
+            addError("items_por_hora_no_creados")
+            return
+        }
         
         modulo  = getModelName()
         def map = getView().getKeyValues()

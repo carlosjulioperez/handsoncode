@@ -30,13 +30,13 @@ class Cto24HDetalle2 extends Identifiable {
     @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal sc4
     
-    @DisplaySize(6)
+    @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal sc8
     
     @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal pf
     
-    @DisplaySize(6)
+    @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal pj
     
     @Digits(integer=4, fraction=4) @DisplaySize(6)

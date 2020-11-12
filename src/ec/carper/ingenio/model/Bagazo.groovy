@@ -185,8 +185,8 @@ class Bagazo extends Formulario {
                 hora = Util.instance.agregarHora(hora) // Incremento de hora
             }
             // Agregar la última hora configurada
-            def det = new BagazoDetalle(bagazo: bagazo, horaS: Util.instance.getHoraS(horaF), hora: horaF, wH2O: bagazo.wH2OTmp, wBagazo: bagazo.wBagazoTmp)
-            getManager().persist(det)
+            // def det = new BagazoDetalle(bagazo: bagazo, horaS: Util.instance.getHoraS(horaF), hora: horaF, wH2O: bagazo.wH2OTmp, wBagazo: bagazo.wBagazoTmp)
+            // getManager().persist(det)
         }catch(Exception ex){
             throw new SystemException("items_por_hora_no_creados", ex)
         }

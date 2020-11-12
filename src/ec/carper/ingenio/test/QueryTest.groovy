@@ -36,7 +36,8 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        crearItemsPorHora(Aux.instance.diaTrabajoId)
+        getPrueba()
+        // crearItemsPorHora(Aux.instance.diaTrabajoId)
         // getValorCampo()
         //getValoresBlc()
         //getValoresServiciosInsumosFabrica()
@@ -256,20 +257,6 @@ class QueryTest extends ModuleTestBase {
             def tonSac   = Calculo.instance.redondear(peso*porcSac/100, 3)
             def pureza   = porcBrix ? Calculo.instance.redondear(porcSac/porcBrix*100, 3): 0
             
-            // Caso especial (J61, K61, L61)
-            if (campo=="funVie1"){
-                def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle1", "recMie4")
-                if (d){
-                    tonBrix = d.tonBrix ?:0
-                    porcSac = d.porcSac ?:0
-                    tonSac  = d.tonSac ?:0
-                    // println tonBrix
-                    // println porcSac
-                    // println tonSac
-                    pureza  = (porcSac && porcBrix) ? Calculo.instance.redondear(porcSac/porcBrix*100, 3): 0
-                }
-            }
-
             // println ""
             // println "temp     : ${temp}"
             // println "volumen1 : ${volumen1}"
@@ -1593,6 +1580,22 @@ class QueryTest extends ModuleTestBase {
         }catch(Exception ex){
             ex.printStackTrace()
         }
+    }
+
+    void getPrueba(){
+        println "\n*** StockProcesoDetalle1"
+        def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle1", "recMag1")
+        if (d){
+            println ">>> volumen2 = ${d.volumen1}"
+            println ">>> peso     = ${d.peso}"
+            println ">>> porcBrix = ${d.porcBrix}"
+            println ">>> eq       = ${d.eq}"
+            println ">>> porcSac  = ${d.porcSac}"
+            println ">>> densidad = ${d.densidad}"
+        }
+        d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonAzuDis")
+        def sdC = d.valor?:0
+        println ">>> sf.bg142: ${sdC}"
     }
 
     /*
