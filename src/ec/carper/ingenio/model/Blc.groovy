@@ -602,6 +602,12 @@ class Blc extends Formulario {
                 case "polCachaza":
                     it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Turbiedad", "polCachaza")
                     break
+                case "briCachaza":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Turbiedad", "briCachaza")
+                    break
+                case "humCachaza":
+                    it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Turbiedad", "humCachaza")
+                    break
                 case "rataEvap":
                     it.valor = SqlUtil.instance.getValorCampo(diaTrabajo.id, "Cto24H", "porcConTotLinEva")
                     break

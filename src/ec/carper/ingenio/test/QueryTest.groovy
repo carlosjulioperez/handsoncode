@@ -36,10 +36,10 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        getPrueba()
+        // getPrueba()
         // crearItemsPorHora(Aux.instance.diaTrabajoId)
-        // getValorCampo()
-        //getValoresBlc()
+        getValorCampo()
+        // getValoresBlc()
         //getValoresServiciosInsumosFabrica()
         //getValoresAnalisisRutinariosEspecialesFabrica()
         //getValoresBlcCenicana()
@@ -600,7 +600,9 @@ class QueryTest extends ModuleTestBase {
 
         println "\n>>> Cachaza"
         println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Turbiedad", "polCachaza")
-        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cto24H", "porcConTotLinEva")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Turbiedad", "briCachaza")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Turbiedad", "humCachaza")
+        println SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cto24H",    "porcConTotLinEva")
         println SqlUtil.instance.getValorDetalleCampo(Aux.instance.diaTrabajoId, "cto24H", "Cto24HDetalle6" , "porc")
         
         println "\n>>> Azucar granel y grasshoper"
@@ -673,7 +675,7 @@ class QueryTest extends ModuleTestBase {
 
         println "\n>>> BLC"
         
-        def diaFin = 6
+        def diaFin = 2-1
         cdA = SqlUtil.instance.getValMatBlcAcu("canaDia"    , diaFin)
         amA = SqlUtil.instance.getValMatBlcAcu("aguaM"      , diaFin)
         jdA = SqlUtil.instance.getValMatBlcAcu("jDiluidoBr" , diaFin)
@@ -1583,6 +1585,7 @@ class QueryTest extends ModuleTestBase {
     }
 
     void getPrueba(){
+        /*
         println "\n*** StockProcesoDetalle1"
         def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle1", "recMag1")
         if (d){
@@ -1596,6 +1599,13 @@ class QueryTest extends ModuleTestBase {
         d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonAzuDis")
         def sdC = d.valor?:0
         println ">>> sf.bg142: ${sdC}"
+        */
+
+        def diaTrabajo = SqlUtil.instance.getDiaTrabajo(Aux.instance.diaTrabajoId)
+        def diaFin = diaTrabajo.numeroDia - 1
+        def l8 = SqlUtil.instance.getValMatBlcAcu("canaDia", diaFin)
+        println "Blc.L8: ${l8}"
+
     }
 
     /*

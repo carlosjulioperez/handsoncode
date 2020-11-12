@@ -13,7 +13,7 @@ import static org.openxava.jpa.XPersistence.*
 
 @Entity
 @Tab(properties="""
-    diaTrabajo.descripcion, abs900Nm, turJClaro, polCachaza
+    diaTrabajo.descripcion, abs900Nm, turJClaro, polCachaza, briCachaza, humCachaza 
 """)
 @View(members="""
     diaTrabajo;
@@ -26,6 +26,8 @@ class Turbiedad extends Formulario {
     BigDecimal abs900Nm
     BigDecimal turJClaro
     BigDecimal polCachaza
+    BigDecimal briCachaza
+    BigDecimal humCachaza
 
     @OneToMany (mappedBy="turbiedad", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
@@ -41,11 +43,15 @@ class Turbiedad extends Formulario {
     @OneToMany (mappedBy="turbiedad", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,
-        polCachaza [turbiedad.promPolCachaza]
+        polCachaza [turbiedad.promPolCachaza],
+        briCachaza [turbiedad.promBriCachaza],
+        humCachaza [turbiedad.promHumCachaza]
     """)
     Collection<TurbiedadDetalle2>detalle2
     
     BigDecimal getPromPolCachaza() { return super.getPromedio(detalle2, "polCachaza", 2) }
+    BigDecimal getPromBriCachaza() { return super.getPromedio(detalle2, "briCachaza", 2) }
+    BigDecimal getPromHumCachaza() { return super.getPromedio(detalle2, "humCachaza", 2) }
     
     void actualizar() throws ValidationException{
         try{
@@ -53,6 +59,8 @@ class Turbiedad extends Formulario {
             this.abs900Nm   = promAbs900Nm
             this.turJClaro  = promTurJClaro
             this.polCachaza = promPolCachaza
+            this.briCachaza = promBriCachaza
+            this.humCachaza = promHumCachaza
   
             XPersistence.getManager().persist(this)
 

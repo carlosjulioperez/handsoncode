@@ -10,7 +10,9 @@ import org.openxava.model.*
 @Entity
 @View(members="""
     horaS, hora;
-    polCachaza
+    polCachaza; 
+    briCachaza; 
+    humCachaza
 """)
 class TurbiedadDetalle2 extends Identifiable {
 
@@ -23,7 +25,13 @@ class TurbiedadDetalle2 extends Identifiable {
     @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
-    @DisplaySize(6)    
+    @OnChange(TurbiedadDetalle2Action.class) @DisplaySize(6)    
     BigDecimal polCachaza
+    
+    @DisplaySize(6) @ReadOnly
+    BigDecimal briCachaza
+    
+    @DisplaySize(6)    
+    BigDecimal humCachaza
     
 } 

@@ -30,7 +30,7 @@ class TurbiedadDetalle1 extends Identifiable {
     @Digits(integer=4, fraction=3) @DisplaySize(6) 
     BigDecimal abs900Nm
     
-    @ReadOnly
+    //@ReadOnly
     @Digits(integer=4, fraction=2) @DisplaySize(6) 
     BigDecimal turJClaro
     

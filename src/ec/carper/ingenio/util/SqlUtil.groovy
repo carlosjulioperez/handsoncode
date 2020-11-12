@@ -157,6 +157,7 @@ class SqlUtil{
                     AND p.valor          = z.codigo
                     AND p.nombre         = 'ZAFRA_VIGENTE'
                     AND c.diaTrabajo.id  = dT.id
+                    AND dT.zafra.codigo  = z.codigo
                     AND dT.numeroDia BETWEEN z.diaTrabajoInicio.numeroDia AND :diaFin
         """)
         query.setParameter("campo", campo)
@@ -173,6 +174,7 @@ class SqlUtil{
                     AND p.valor           = z.codigo
                     AND p.nombre          = 'ZAFRA_VIGENTE'
                     AND c.diaTrabajo.id   = dT.id
+                    AND dT.zafra.codigo  = z.codigo
                     AND dT.numeroDia BETWEEN z.diaTrabajoInicio.numeroDia AND :diaFin
         """)
         query.setParameter("campo", campo)

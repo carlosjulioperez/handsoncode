@@ -15,11 +15,11 @@
 -- where d.indicador_id = i.id
 -- order by orden;
 
-select i.descripcion, valor, i.campo, modificable
-from ingenio.stockfabricadetalle73 d, ingenio.indicador i
-where d.indicador_id = i.id
-and stockfabrica_id='ff80808175b519450175b52dc8ae0000'
-order by orden;
+-- select i.descripcion, valor, i.campo, modificable
+-- from ingenio.stockfabricadetalle73 d, ingenio.indicador i
+-- where d.indicador_id = i.id
+-- and stockfabrica_id='ff80808175b519450175b52dc8ae0000'
+-- order by orden;
 
 -- select * from ingenio.jugodetalle;
 

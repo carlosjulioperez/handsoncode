@@ -31,6 +31,10 @@ class DiaTrabajo extends Identifiable{
     @ManyToOne(fetch=FetchType.LAZY)
     @DescriptionsList @NoCreate @NoModify @Required
     TurnoTrabajo turnoTrabajo
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @DescriptionsList @NoCreate @NoModify @Required
+    Zafra zafra
 
     @Required
     boolean cerrado
