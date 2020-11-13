@@ -17,7 +17,7 @@ import static org.openxava.jpa.XPersistence.*
 import java.time.LocalDate
 
 @Entity
-@Tab(properties="""diaTrabajo.descripcion,promCantCana,promNetaCana,promTrashCana,promPorcTrash,promPorcAzuRed""")
+@Tab(properties="""diaTrabajo.fecha,promCantCana,promNetaCana,promTrashCana,promPorcTrash,promPorcAzuRed""")
 @View(members="""
     diaTrabajo, moduloTmp, turnoTmp, variedadTmp;
     titAnaTraCan { detalle1 }

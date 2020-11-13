@@ -18,7 +18,7 @@ import static org.openxava.jpa.XPersistence.*
 
 @Entity
 @Tab(properties="""
-    diaTrabajo.descripcion,
+    diaTrabajo.fecha,
     wH2O,
     wCana,
     polReal,

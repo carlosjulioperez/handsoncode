@@ -31,13 +31,13 @@ class MeladuraDetalle extends Identifiable {
     @OnChange(MeladuraDetalleAction.class)
     @Digits(integer=3, fraction=2)
     BigDecimal mcrPol
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mcrSac
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mcrPur
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mcrBri2
     
@@ -47,13 +47,13 @@ class MeladuraDetalle extends Identifiable {
     @OnChange(MeladuraDetalleAction.class)
     @Digits(integer=3, fraction=2)
     BigDecimal mclPol
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mclSac
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mclPur
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mclBri2
     

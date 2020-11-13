@@ -13,7 +13,7 @@ import static org.openxava.jpa.XPersistence.*
 
 @Entity
 @Tab(properties="""
-    diaTrabajo.descripcion, jdFosfatos, jcFosfatos
+    diaTrabajo.fecha, jdFosfatos, jcFosfatos
 """)
 @View(members="""
     diaTrabajo; 

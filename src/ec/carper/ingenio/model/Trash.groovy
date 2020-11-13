@@ -13,7 +13,7 @@ import java.time.LocalDate
 
 @Entity
 @Tab(properties="""
-    diaTrabajo.descripcion,
+    diaTrabajo.fecha,
     promCantCana, promNetaCana,
     promCogollos, promPorcCogollos,
     promHojas, promPorcHojas,

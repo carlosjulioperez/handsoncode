@@ -11,7 +11,7 @@ import org.openxava.validators.*
 import static org.openxava.jpa.XPersistence.*;
 
 @Entity
-@Tab(properties="""diaTrabajo.descripcion,totalParada""")
+@Tab(properties="""diaTrabajo.fecha,totalParada""")
 @View(members="""
     diaTrabajo;
     titParFab { detalle;total }

@@ -28,7 +28,7 @@ class TurbiedadDetalle2 extends Identifiable {
     @OnChange(TurbiedadDetalle2Action.class) @DisplaySize(6)    
     BigDecimal polCachaza
     
-    @DisplaySize(6) @ReadOnly
+    @DisplaySize(6) //@ReadOnly
     BigDecimal briCachaza
     
     @DisplaySize(6)    

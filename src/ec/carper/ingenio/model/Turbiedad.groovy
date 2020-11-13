@@ -12,8 +12,9 @@ import org.openxava.validators.*
 import static org.openxava.jpa.XPersistence.*
 
 @Entity
+    // diaTrabajo.descripcion, abs900Nm, turJClaro, polCachaza, briCachaza, humCachaza 
 @Tab(properties="""
-    diaTrabajo.descripcion, abs900Nm, turJClaro, polCachaza, briCachaza, humCachaza 
+    diaTrabajo.fecha, abs900Nm, turJClaro, polCachaza, briCachaza, humCachaza 
 """)
 @View(members="""
     diaTrabajo;

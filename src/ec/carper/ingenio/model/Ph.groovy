@@ -18,7 +18,7 @@ import java.time.LocalDate
 
 @Entity
 @Tab(properties="""
-    diaTrabajo.descripcion,
+    diaTrabajo.fecha,
     j1Extracto,
     jDiluido,
     jEncalado,

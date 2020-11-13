@@ -12,7 +12,7 @@ import static org.openxava.jpa.XPersistence.*
 
 @Entity
 @Tab(properties="""
-    diaTrabajo.descripcion,
+    diaTrabajo.fecha,
     bri, pol, sac, pur, bri2
 """)
 @View(members="""

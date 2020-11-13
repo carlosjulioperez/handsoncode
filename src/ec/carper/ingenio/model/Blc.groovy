@@ -12,7 +12,7 @@ import org.openxava.validators.*
 import static org.openxava.jpa.XPersistence.*
 
 @Entity
-@Tab(properties="diaTrabajo.descripcion, descripcion")
+@Tab(properties="diaTrabajo.fecha, descripcion")
 @View(members="""
     diaTrabajo, descripcion;
     titDatDia { detalle1 }

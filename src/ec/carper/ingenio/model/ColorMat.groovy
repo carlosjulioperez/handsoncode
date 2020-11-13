@@ -15,7 +15,7 @@ import org.openxava.validators.*
 import static org.openxava.jpa.XPersistence.*
 
 @Entity
-@Tab(properties="""diaTrabajo.descripcion""")
+@Tab(properties="""diaTrabajo.fecha""")
 @View(members="""
     diaTrabajo;
     titAnaMatProCol { 
