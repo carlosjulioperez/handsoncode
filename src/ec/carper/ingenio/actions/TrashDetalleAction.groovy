@@ -20,6 +20,15 @@ class TrashDetalleAction extends OnChangePropertyBaseAction{
         BigDecimal otros         = (BigDecimal)getView().getValue("otros")
         BigDecimal canaInfectada = (BigDecimal)getView().getValue("canaInfectada")
 
+        // Valores iniciales
+        if (cogollos==null)      { getView().setValue("cogollos"      , 0); getView().setValue("calPorcCogollos"      , 0) }
+        if (hojas==null)         { getView().setValue("hojas"         , 0); getView().setValue("calPorcHojas"         , 0) }
+        if (cepa==null)          { getView().setValue("cepa"          , 0); getView().setValue("calPorcCepa"          , 0) }
+        if (canaSeca==null)      { getView().setValue("canaSeca"      , 0); getView().setValue("calPorcCanaSeca"      , 0) }
+        if (suelo==null)         { getView().setValue("suelo"         , 0); getView().setValue("calPorcSuelo"         , 0) }
+        if (otros==null)         { getView().setValue("otros"         , 0); getView().setValue("calPorcOtros"         , 0) }
+        if (canaInfectada==null) { getView().setValue("canaInfectada" , 0); getView().setValue("calPorcCanaInfectada" , 0) }
+
         // println ">>>" + cogollos
         // println ">>>" + cantidadCana
         // println("values=" + getView().getValues());

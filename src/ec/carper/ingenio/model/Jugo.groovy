@@ -1,6 +1,9 @@
 package ec.carper.ingenio.model
 
-import java.time.LocalDate
+import ec.carper.ingenio.util.*
+
+import java.text.SimpleDateFormat
+import java.time.format.*
 import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.calculators.*
@@ -9,6 +12,8 @@ import org.openxava.model.*
 import org.openxava.util.*
 import org.openxava.validators.*
 import static org.openxava.jpa.XPersistence.*
+
+import java.time.LocalDate
 
 @Entity
 @Tab(properties="""
@@ -25,6 +30,10 @@ import static org.openxava.jpa.XPersistence.*
     titAnaMatProJug { detalle }
 """)
 class Jugo extends Formulario {
+    
+    // Facilidad para el usuario... ********************
+    boolean itemsPorHoraCreados
+    //**************************************************
 
     BigDecimal jeBri
     BigDecimal jePol
@@ -151,5 +160,31 @@ class Jugo extends Formulario {
         return lista ? lista[0]: 0
     }
     */
+    
+    void crearItemsPorHora() throws ValidationException{
+        try{
+            this.itemsPorHoraCreados = true
+            getManager().persist(this)
+            crearItems(this)
+        }catch(Exception ex){
+            throw new SystemException("items_por_hora_no_creados", ex)
+        }
+    }
+
+    void crearItems(Jugo jugo) {
+        try{
+            def d     = SqlUtil.instance.getDiaTrabajo(diaTrabajo.id)
+            def hora  = SqlUtil.instance.obtenerFecha(d.turnoTrabajo.horaDesde, diaTrabajo.id)
+            def horaF = SqlUtil.instance.obtenerFecha(d.turnoTrabajo.horaHasta, diaTrabajo.id)
+
+            while(hora < horaF ) {
+                def det = new JugoDetalle(jugo: jugo, horaS: Util.instance.getHoraS(hora), hora: hora)
+                getManager().persist(det)
+                hora = Util.instance.agregarHora(hora) // Incremento de hora
+            }
+        }catch(Exception ex){
+            throw new SystemException("items_por_hora_no_creados", ex)
+        }
+    }
 
 }

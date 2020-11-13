@@ -19,6 +19,21 @@
     	</action>
     </controller>
 
+    <controller name="TrashCana">
+        <extends controller="Formulario"/>
+        <action name="crearTrash" mode="detail" 
+        	class="ec.carper.ingenio.actions.TrashCanaCrearTrashAction">
+    	</action>
+    </controller>   
+
+    <controller name="Cana">
+        <extends controller="Formulario"/>
+    </controller>   
+
+    <controller name="Jugo">
+        <extends controller="Formulario"/>
+    </controller>   
+
     <controller name="Bagazo">
         <extends controller="Formulario"/>
     </controller>   
@@ -29,13 +44,6 @@
 
     <controller name="FlujoJugo">
         <extends controller="Formulario"/>
-    </controller>   
-
-    <controller name="TrashCana">
-        <extends controller="Ingenio"/>
-        <action name="crearTrash" mode="detail" 
-        	class="ec.carper.ingenio.actions.TrashCanaCrearTrashAction">
-    	</action>
     </controller>   
 
     <controller name="BrixDensidadTitSus">

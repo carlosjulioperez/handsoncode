@@ -134,11 +134,11 @@ class Util{
         return new SimpleDateFormat("HH:mm").format(date);
     }
 
-    def agregarHora(def hora){
+    def agregarHora(def hora, incremento=1){
         // https://javacodex.com/Date-and-Time/Add-Time-To-A-Timestamp
         Calendar cal = Calendar.getInstance()
         cal.setTimeInMillis(hora.getTime())
-        cal.add(Calendar.HOUR, 1)
+        cal.add(Calendar.HOUR, incremento)
         return new java.sql.Timestamp(cal.getTime().getTime())
     }
 

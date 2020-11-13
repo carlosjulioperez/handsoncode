@@ -1,5 +1,9 @@
 package ec.carper.ingenio.model
 
+import ec.carper.ingenio.util.*
+
+import java.text.SimpleDateFormat
+import java.time.format.*
 import java.time.LocalDate
 import javax.persistence.*
 import javax.validation.constraints.Digits
@@ -10,6 +14,7 @@ import org.openxava.jpa.*
 import org.openxava.model.*
 import org.openxava.util.*
 import org.openxava.validators.*
+import static org.openxava.jpa.XPersistence.*
 
 @Entity
 @Tab(properties="""
@@ -32,11 +37,21 @@ import org.openxava.validators.*
     porcArNsac
 """)
 @View(members="""
-    diaTrabajo;
+    diaTrabajo, wH2OTmp, wCanaTmp;
     titAnaCan { detalle1 }
     titTalCog { detalle2 }
 """)
 class Cana extends Formulario {
+    
+    // Facilidad para el usuario... ********************
+    boolean itemsPorHoraCreados
+
+    @DisplaySize(6)
+    BigDecimal wH2OTmp
+    
+    @DisplaySize(6)
+    BigDecimal wCanaTmp
+    //**************************************************
 
     BigDecimal wH2O
     BigDecimal wCana
@@ -164,6 +179,32 @@ class Cana extends Formulario {
 
         }catch(Exception ex){
             throw new SystemException("registro_no_actualizado", ex)
+        }
+    }
+    
+    void crearItemsPorHora() throws ValidationException{
+        try{
+            this.itemsPorHoraCreados = true
+            getManager().persist(this)
+            crearItems(this)
+        }catch(Exception ex){
+            throw new SystemException("items_por_hora_no_creados", ex)
+        }
+    }
+
+    void crearItems(Cana cana) {
+        try{
+            def d     = SqlUtil.instance.getDiaTrabajo(diaTrabajo.id)
+            def hora  = SqlUtil.instance.obtenerFecha(d.turnoTrabajo.horaDesde, diaTrabajo.id)
+            def horaF = SqlUtil.instance.obtenerFecha(d.turnoTrabajo.horaHasta, diaTrabajo.id)
+
+            while(hora < horaF ) {
+                def det = new CanaDetalle1(cana: cana, horaS: Util.instance.getHoraS(hora), hora: hora, wH2O: cana.wH2OTmp, wCana: cana.wCanaTmp)
+                getManager().persist(det)
+                hora = Util.instance.agregarHora(hora) // Incremento de hora
+            }
+        }catch(Exception ex){
+            throw new SystemException("items_por_hora_no_creados", ex)
         }
     }
 
