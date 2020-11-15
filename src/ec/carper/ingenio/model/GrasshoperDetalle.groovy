@@ -29,41 +29,43 @@ class GrasshoperDetalle extends Identifiable {
     @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal briCorr
 
-    @OnChange(GrasshoperDetalleAction.class)
+    @OnChange(GrasshoperDetalleAction.class) @DisplaySize(6)
     BigDecimal bri
 
     @OnChange(GrasshoperDetalleAction.class)
-    @Digits(integer=2, fraction=3)
+    @Digits(integer=2, fraction=3) @DisplaySize(6)
     BigDecimal absFiltrada
 
     @OnChange(GrasshoperDetalleAction.class)
-    @Digits(integer=2, fraction=3)
+    @Digits(integer=2, fraction=3) @DisplaySize(6)
     BigDecimal absSinFiltrar
 
-    @OnChange(GrasshoperDetalleAction.class)
+    @OnChange(GrasshoperDetalleAction.class) @DisplaySize(6)
     BigDecimal celda
 
     @ReadOnly
-    @Digits(integer=4, fraction=3)
+    @Digits(integer=4, fraction=3) @DisplaySize(6)
     BigDecimal rho
 
     @ReadOnly
-    @Digits(integer=2, fraction=6)
+    @Digits(integer=2, fraction=6) @DisplaySize(6)
     BigDecimal cedilla
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal briEle
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal color
 
-    @ReadOnly
+    @ReadOnly @DisplaySize(6)
     BigDecimal turb
     
+    @DisplaySize(6)
     BigDecimal pol
     
+    @DisplaySize(6)
     BigDecimal humedad
 }
