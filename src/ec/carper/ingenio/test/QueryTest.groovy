@@ -36,9 +36,9 @@ class QueryTest extends ModuleTestBase {
     }
 
     void test() throws Exception {
-        // getPrueba()
+        getPrueba()
         // crearItemsPorHora(Aux.instance.diaTrabajoId)
-        getValorCampo()
+        // getValorCampo()
         // getValoresBlc()
         //getValoresServiciosInsumosFabrica()
         //getValoresAnalisisRutinariosEspecialesFabrica()
@@ -669,13 +669,25 @@ class QueryTest extends ModuleTestBase {
         return String.format("%12s|"*3, s1, s2, s3)
     }
     void getValoresBlc(){
-        def (cdV, cdA, amV, amA, jdV, jdC, jdA, bcV, bcC, bcA, bdV, bdC, cV, cC, cA)     = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        def (mfV, mfC, mfA, abV, abC, abA, cnV, cnA, jnV, jnC, jnA, mV , mC, mA, hV, hA) = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        def (diaFin, cdV, cdA, amV, amA, jdV, jdC, jdA, bcV, bcC, bcA, bdV, bdC, cV, cC, cA) = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        def (mfV, mfC, mfA, abV, abC, abA, cnV, cnA, jnV, jnC, jnA, mV , mC, mA, hV, hA)     = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         def (sdV, sdC, sdA) = [0,0,0]
 
         println "\n>>> BLC"
         
-        def diaFin = 2-1
+        //  CAMBIAR VALORES
+        def valor = [
+            [0 , 491.35  , 30 , 0],
+            [1 , 1211.69 , 24 , 0],
+            [2 , 1273.24 , 41 , 17.78]
+        ]
+
+        diaFin = valor[1][0]
+        cdV    = valor[1][1]
+        bdV    = valor[1][2]
+        cV     = valor[1][3]
+
+        // Valores (Blc.valor) acumulados hasta el día anterior...
         cdA = SqlUtil.instance.getValMatBlcAcu("canaDia"    , diaFin)
         amA = SqlUtil.instance.getValMatBlcAcu("aguaM"      , diaFin)
         jdA = SqlUtil.instance.getValMatBlcAcu("jDiluidoBr" , diaFin)
@@ -690,8 +702,6 @@ class QueryTest extends ModuleTestBase {
         sdA = SqlUtil.instance.getValMatBlcAcu("sacosD"     , diaFin)
        
         // Cálculos específicos
-        cdV = 1259.19
-
         def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle2", "aguaM")
         if (d) amV = d.peso
 
@@ -706,10 +716,8 @@ class QueryTest extends ModuleTestBase {
         bcV = cnV + amV - jdC
         bcC = cdV ? Calculo.instance.redondear(bcV/cdV*100, 2): 0
 
-        bdV = 292
         bdC = cdV ? Calculo.instance.redondear(bdV*100/cdV, 2): 0
 
-        cV  = 35.93
         cC  = cdV ? Calculo.instance.redondear(cV*100/cdV, 2): 0
                     
         def solInsol = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Cto24H", "porcInso")
@@ -733,19 +741,21 @@ class QueryTest extends ModuleTestBase {
         abV = SqlUtil.instance.getValorCampo(Aux.instance.diaTrabajoId, "Blc" , "qqTotalesDia")
         abC = Calculo.instance.redondear(abV/20, 2)
 
-        println "CAÑA/DIA           |" + getCadena(cdV , 0   , cdA)
-        println "AGUA MACERACION    |" + getCadena(amV , 0   , amA)
-        println "JUGO DILUIDO (BR)  |" + getCadena(jdV , jdC , jdA)
-        println "BAGAZO (CALCULADO) |" + getCadena(bcV , bcC , bcA)
+        println "MATERIAL           |    VALOR   |  CANTIDAD  | ACUMULADO"
+        println "-------------------+------------+------------+------------+"
+        println "CAÑA/DIA           |" + getCadena(cdV , 0   , cdV + cdA)
+        println "AGUA MACERACION    |" + getCadena(amV , 0   , amV + amA)
+        println "JUGO DILUIDO (BR)  |" + getCadena(jdV , jdC , jdC + jdA) // excepcion
+        println "BAGAZO (CALCULADO) |" + getCadena(bcV , bcC , bcV + bcA)
         println "BAGAZO (DIRECTO)   |" + getCadena(bdV , bdC , 0)
-        println "CACHAZA            |" + getCadena(cV  , cC  , cA)
-        println "MIEL FINAL MELAZA  |" + getCadena(mfV , mfC , mfA)
-        println "AZUCAR BLANCA      |" + getCadena(abV , abC , abA)
-        println "CAÑA NETA          |" + getCadena(cnV , 0   , cnA)
-        println "JUGO NETO          |" + getCadena(jnV , jnC , jnA)
-        println "MELADURA           |" + getCadena(mV  , mC  , mA)
-        println "HOJA DE CAÑA       |" + getCadena(hV  , 0   , hA)
-        println "SACOS DISUELTOS    |" + getCadena(sdV , sdC , sdA)
+        println "CACHAZA            |" + getCadena(cV  , cC  , cV  + cA)
+        println "MIEL FINAL MELAZA  |" + getCadena(mfV , mfC , mfV + mfA)
+        println "AZUCAR BLANCA      |" + getCadena(abV , abC , abV + abA)
+        println "CAÑA NETA          |" + getCadena(cnV , 0   , cnV + cnA)
+        println "JUGO NETO          |" + getCadena(jnV , jnC , jnV + jnA)
+        println "MELADURA           |" + getCadena(mV  , mC  , mV  + mA)
+        println "HOJA DE CAÑA       |" + getCadena(hV  , 0   , hV  + hA)
+        println "SACOS DISUELTOS    |" + getCadena(sdV , sdC , sdV + sdA)
 
         // setValores("canaDia", cdV, 0, cdV + cdA)
 
@@ -1585,6 +1595,7 @@ class QueryTest extends ModuleTestBase {
     }
 
     void getPrueba(){
+        println "\n*** Pruebas"
         /*
         println "\n*** StockProcesoDetalle1"
         def d = SqlUtil.instance.getDetallePorDTM(Aux.instance.diaTrabajoId, "stockProceso", "StockProcesoDetalle1", "recMag1")
@@ -1602,10 +1613,13 @@ class QueryTest extends ModuleTestBase {
         */
 
         def diaTrabajo = SqlUtil.instance.getDiaTrabajo(Aux.instance.diaTrabajoId)
-        def diaFin = diaTrabajo.numeroDia - 1
+        // def diaFin = diaTrabajo.numeroDia - 1
+        def diaFin = 3 - 1
         def l8 = SqlUtil.instance.getValMatBlcAcu("canaDia", diaFin)
         println "Blc.L8: ${l8}"
 
+        def l10 = SqlUtil.instance.getValMatBlcAcu("jDiluidoBr" , diaFin)
+        println "Blc.L10: ${l10}"
     }
 
     /*

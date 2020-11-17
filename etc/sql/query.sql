@@ -10,6 +10,13 @@
 -- WHERE    d.material_id = m.id
 -- ORDER BY orden;
 
+-- select d.stockfabrica_id, i.descripcion, valor, i.campo, modificable
+-- from ingenio.stockfabricadetalle17 d, ingenio.indicador i
+-- where d.indicador_id = i.id
+-- -- AND i.descripcion in ('H2','H3')
+-- AND d.stockfabrica_id = 'ff80808175c9cc7b0175c9f6e9260013'
+-- order by orden;
+
 -- select i.descripcion, valor, i.campo, modificable
 -- from ingenio.stockfabricadetalle1 d, ingenio.indicador i
 -- where d.indicador_id = i.id
@@ -26,11 +33,11 @@
 -- blc principal: ff80808174e4c5470174e4c9d1bf0002, diatrabajo_id: 
 -- blc anterior : ff80808174d572200174d5b05424014d, diatrabajo_id: ff80808174d2eb750174d3096a920000
 
--- SELECT   orden, m.id, m.descripcion, m.campo, valor, cantidad, acumulado
--- FROM     ingenio.blcdetalle1 d, ingenio.material m
--- WHERE    d.material_id = m.id AND
---          d.blc_id='ff8080817599e62a017599ecb2ab0000'
--- ORDER BY orden;
+SELECT   orden, m.id, m.descripcion, m.campo, valor, cantidad, acumulado
+FROM     ingenio.blcdetalle1 d, ingenio.material m
+WHERE    d.material_id = m.id AND
+         d.blc_id='ff80808175cd9e8b0175cdbb8df70085'
+ORDER BY orden;
 
 --
 -- SELECT   orden, m.id, m.descripcion, m.campo, valor

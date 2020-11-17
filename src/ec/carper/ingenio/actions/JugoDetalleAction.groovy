@@ -48,8 +48,9 @@ class JugoDetalleAction extends OnChangePropertyBaseAction{
         BigDecimal jfPol = (BigDecimal)getView().getValue("jfPol")
         getView().setValue("jfSac", (jfBri && jfPol) ? Calculo.instance.getSac(jfBri, jfPol,1,2): null)
         BigDecimal jfSac = (BigDecimal)getView().getValue("jfSac")
-        getView().setValue("jfPur", (jfSac>=0 && jfBri>0) ? Calculo.instance.getPorc(jfSac, jfBri,2): 0)
+        getView().setValue("jfPur", (jfSac && jfBri) ? Calculo.instance.getPorc(jfSac, jfBri,2): null)
 
+        // getView().setValue("jfPur", (jfSac>=0 && jfBri>0) ? Calculo.instance.getPorc(jfSac, jfBri,2): 0)
         // getView().setValue("jfPur", (jfSac>=0 && jfBri>0) ? Calculo.instance.getPorc(jfSac, jfBri,2): 0)
         // getView().setValue("jfPur", (jfSac==null || jfBri==null) ? null : (jfBri>0 ? Calculo.instance.getPorc(jfSac, jfBri,2): 0 ) )
 

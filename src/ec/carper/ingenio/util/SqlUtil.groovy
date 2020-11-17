@@ -147,10 +147,11 @@ class SqlUtil{
                 WHERE o.id = :id AND o.diaTrabajo.id = d.id
             """).setParameter("id", id).getSingleResult()
     }
-
+                    
+                    // AND dT.numeroDia BETWEEN z.diaTrabajoInicio.numeroDia AND :diaFin
     BigDecimal getValMatBlcAcu(def campo, def diaFin){
         Query query = getManager().createQuery("""
-            SELECT  SUM(d.valor)
+            SELECT  d.acumulado
             FROM    BlcDetalle1 d, Blc c, Parametro p, Zafra z, DiaTrabajo dT
             WHERE   d.blc.id             = c.id
                     AND d.material.campo = :campo
@@ -158,16 +159,18 @@ class SqlUtil{
                     AND p.nombre         = 'ZAFRA_VIGENTE'
                     AND c.diaTrabajo.id  = dT.id
                     AND dT.zafra.codigo  = z.codigo
-                    AND dT.numeroDia BETWEEN z.diaTrabajoInicio.numeroDia AND :diaFin
+                    AND dT.numeroDia = :diaFin
         """)
         query.setParameter("campo", campo)
         query.setParameter("diaFin", diaFin)
         return query.resultList[0]?: 0
     }
 
+            // SELECT  SUM(d.unidades)
+                    // AND dT.numeroDia BETWEEN z.diaTrabajoInicio.numeroDia AND :diaFin
     BigDecimal getValIndBlcAcu(def detalle, def campo, def diaFin){
         Query query = getManager().createQuery("""
-            SELECT  SUM(d.unidades)
+            SELECT  d.totalZafra
             FROM    ${detalle} d, Blc c, Parametro p, Zafra z, DiaTrabajo dT
             WHERE   d.blc.id              = c.id
                     AND d.indicador.campo = :campo
@@ -175,7 +178,7 @@ class SqlUtil{
                     AND p.nombre          = 'ZAFRA_VIGENTE'
                     AND c.diaTrabajo.id   = dT.id
                     AND dT.zafra.codigo  = z.codigo
-                    AND dT.numeroDia BETWEEN z.diaTrabajoInicio.numeroDia AND :diaFin
+                    AND dT.numeroDia = :diaFin
         """)
         query.setParameter("campo", campo)
         query.setParameter("diaFin", diaFin)

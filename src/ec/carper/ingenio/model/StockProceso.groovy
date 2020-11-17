@@ -53,8 +53,8 @@ class StockProceso extends Formulario {
         def d = SqlUtil.instance.getDetallePorIndicador(diaTrabajo.id, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonAzuDis")
         def bg142 = d ? d.valor?:0 : 0
         def sumaColumna = super.getSuma(detalle1, "tonBrix")
-        println ">>> sumaColumna : ${sumaColumna}"
-        println ">>> bg142       : ${bg142}"
+        // println ">>> sumaColumna : ${sumaColumna}"
+        // println ">>> bg142       : ${bg142}"
         return (sumaColumna - bg142)
     }
     

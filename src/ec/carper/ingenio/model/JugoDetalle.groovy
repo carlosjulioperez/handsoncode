@@ -35,54 +35,54 @@ class JugoDetalle extends Identifiable {
     BigDecimal jeBri
     @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jePol
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal jeSac
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal jePur
     
     @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jdBri
     @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jdPol
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal jdSac
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal jdPur
     
     @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jcBri
     @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jcPol
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal jcSac
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal jcPur
     
     @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jnBri
     @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jnPol
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal jnSac
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal jnPur
     
     @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jrBri
     @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jrPol
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal jrSac
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal jrPur
     
     @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jfBri
     @OnChange(JugoDetalleAction.class) @DisplaySize(6)
     BigDecimal jfPol
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal jfSac
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal jfPur
     
     //TODO reeemplazar con getValorDetalleCampoXHora()
