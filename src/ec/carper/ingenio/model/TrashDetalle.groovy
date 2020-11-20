@@ -1,5 +1,7 @@
 package ec.carper.ingenio.model
 
+import ec.carper.ingenio.calculators.*
+
 import java.time.LocalDate
 import javax.persistence.*
 import javax.validation.constraints.Digits
@@ -53,6 +55,7 @@ class TrashDetalle extends Identifiable {
     BigDecimal netaCana
 
     @OnChange(TrashDetalleAction.class) @DisplaySize(6)
+    @DefaultValueCalculator(CeroCalculator.class)
     BigDecimal cogollos
     @ReadOnly @DisplaySize(6)
     BigDecimal calPorcCogollos

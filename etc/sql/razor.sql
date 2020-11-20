@@ -16,7 +16,7 @@ set valor = 0.277
 WHERE indicador_id = '04'
 
 select * from ingenio.stockfabricadetalle17 where stockfabrica_id='ff80808175c9cc7b0175c9f6e9260013';
-
+  
 SELECT   orden, m.id, m.descripcion, m.campo, valor, cantidad, acumulado
 FROM     ingenio.blcdetalle1 d, ingenio.material m, ingenio.blc c, ingenio.zafra z, ingenio.diatrabajo dt
 WHERE    d.material_id = m.id 

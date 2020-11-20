@@ -110,17 +110,31 @@ class TrashCana extends Formulario {
             detalle1.each{
                 TrashDetalle o = new TrashDetalle()
                 
-                o.id           = null
-                o.trash        = trash
-                o.horaS        = it.horaS
-                o.hora         = it.hora
-                o.modulo       = it.modulo
-                o.turno        = it.turno
-                o.variedad     = it.variedad
-                o.cantidadCana = it.cantidadCana
-                o.netaCana     = it.netaCana
-                o.calTrashCana = it.calTrashCana
-                o.calPorcTrash = it.calPorcTrash
+                o.id                   = null
+                o.trash                = trash
+                o.horaS                = it.horaS
+                o.hora                 = it.hora
+                o.modulo               = it.modulo
+                o.turno                = it.turno
+                o.variedad             = it.variedad
+                o.cantidadCana         = it.cantidadCana
+                o.netaCana             = it.netaCana
+                o.calTrashCana         = it.calTrashCana
+                o.calPorcTrash         = it.calPorcTrash
+                o.cogollos             = 0
+                o.calPorcCogollos      = 0
+                o.hojas                = 0
+                o.calPorcHojas         = 0
+                o.cepa                 = 0
+                o.calPorcCepa          = 0
+                o.canaSeca             = 0
+                o.calPorcCanaSeca      = 0
+                o.suelo                = 0
+                o.calPorcSuelo         = 0
+                o.otros                = 0
+                o.calPorcOtros         = 0
+                o.canaInfectada        = 0
+                o.calPorcCanaInfectada = 0
 
                 XPersistence.getManager().persist(o)
             }

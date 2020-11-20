@@ -30,7 +30,7 @@ class AzucarGranelDetalle extends Identifiable {
     @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal briCorr
 
     @OnChange(AzucarGranelDetalleAction.class) @DisplaySize(6)
@@ -47,21 +47,21 @@ class AzucarGranelDetalle extends Identifiable {
     @OnChange(AzucarGranelDetalleAction.class) @DisplaySize(6)
     BigDecimal celda
 
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     @Digits(integer=4, fraction=3)
     BigDecimal rho
 
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     @Digits(integer=2, fraction=6)
     BigDecimal cedilla
 
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal briEle
 
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal color
 
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal turb
     
     @DisplaySize(6)

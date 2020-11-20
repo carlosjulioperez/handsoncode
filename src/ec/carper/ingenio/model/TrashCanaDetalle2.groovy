@@ -1,5 +1,7 @@
 package ec.carper.ingenio.model
 
+import ec.carper.ingenio.calculators.*
+
 import javax.persistence.*
 import javax.validation.constraints.Digits
 import org.openxava.annotations.*
@@ -28,6 +30,7 @@ class TrashCanaDetalle2 extends Identifiable {
     @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
+    @DefaultValueCalculator(CeroCalculator.class)
     @OnChange(TrashCanaDetalle2Action.class) @DisplaySize(6)
     BigDecimal mlReductores
     

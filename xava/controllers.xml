@@ -42,6 +42,10 @@
         <extends controller="Formulario"/>
     </controller>   
 
+    <controller name="AzucarGranel">
+        <extends controller="Formulario"/>
+    </controller>   
+
     <controller name="FlujoJugo">
         <extends controller="Formulario"/>
     </controller>   

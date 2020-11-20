@@ -51,3 +51,6 @@
 
 -- ALTER TABLE ingenio.ingenio.jugo ADD itemsporhoracreados bool NULL;
 -- UPDATE ingenio.ingenio.jugo SET itemsporhoracreados=true;
+
+-- ALTER TABLE ingenio.ingenio.azucargranel ADD itemsporhoracreados bool NULL;
+-- UPDATE ingenio.ingenio.azucargranel SET itemsporhoracreados=true;

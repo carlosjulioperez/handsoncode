@@ -1,5 +1,7 @@
 package ec.carper.ingenio.model
 
+import ec.carper.ingenio.calculators.*
+
 import java.time.LocalDate
 import javax.persistence.*
 import javax.validation.constraints.Digits
@@ -35,9 +37,11 @@ class TrashCanaDetalle1 extends Identifiable {
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList
     Variedad variedad
 
+    @DefaultValueCalculator(CeroCalculator.class)
     @OnChange(TrashCanaDetalle1Action.class) @DisplaySize(6)
     BigDecimal cantidadCana
     
+    @DefaultValueCalculator(CeroCalculator.class)
     @OnChange(TrashCanaDetalle1Action.class)
     @Digits(integer=4, fraction=1) @DisplaySize(6)
     BigDecimal netaCana

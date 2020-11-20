@@ -4,8 +4,14 @@ import ec.carper.ingenio.model.*
 import ec.carper.ingenio.util.*
 
 import org.openxava.actions.*
+import org.openxava.calculators.*
 
 class TrashDetalleAction extends OnChangePropertyBaseAction{
+
+    private limpiar(def campo1, def campo2){
+        getView().setValue(campo1, 0)
+        getView().setValue(campo2, 0)
+    }
 
     void execute() throws Exception{
 
@@ -21,13 +27,13 @@ class TrashDetalleAction extends OnChangePropertyBaseAction{
         BigDecimal canaInfectada = (BigDecimal)getView().getValue("canaInfectada")
 
         // Valores iniciales
-        if (cogollos==null)      { getView().setValue("cogollos"      , 0); getView().setValue("calPorcCogollos"      , 0) }
-        if (hojas==null)         { getView().setValue("hojas"         , 0); getView().setValue("calPorcHojas"         , 0) }
-        if (cepa==null)          { getView().setValue("cepa"          , 0); getView().setValue("calPorcCepa"          , 0) }
-        if (canaSeca==null)      { getView().setValue("canaSeca"      , 0); getView().setValue("calPorcCanaSeca"      , 0) }
-        if (suelo==null)         { getView().setValue("suelo"         , 0); getView().setValue("calPorcSuelo"         , 0) }
-        if (otros==null)         { getView().setValue("otros"         , 0); getView().setValue("calPorcOtros"         , 0) }
-        if (canaInfectada==null) { getView().setValue("canaInfectada" , 0); getView().setValue("calPorcCanaInfectada" , 0) }
+        if (cogollos==null)      limpiar("cogollos"     , "calPorcCogollos"      )
+        if (hojas==null)         limpiar("hojas"        , "calPorcHojas"         )
+        if (cepa==null)          limpiar("cepa"         , "calPorcCepa"          )
+        if (canaSeca==null)      limpiar("canaSeca"     , "calPorcCanaSeca"      )
+        if (suelo==null)         limpiar("suelo"        , "calPorcSuelo"         )
+        if (otros==null)         limpiar("otros"        , "calPorcOtros"         )
+        if (canaInfectada==null) limpiar("canaInfectada", "calPorcCanaInfectada" )
 
         // println ">>>" + cogollos
         // println ">>>" + cantidadCana

@@ -1,6 +1,9 @@
 package ec.carper.ingenio.model
 
-import java.time.LocalDate
+import ec.carper.ingenio.util.*
+
+import java.text.SimpleDateFormat
+import java.time.format.*
 import javax.persistence.*
 import org.openxava.annotations.*
 import org.openxava.calculators.*
@@ -21,6 +24,10 @@ import static org.openxava.jpa.XPersistence.*
     titAnaEspAzuProTer { detalle }
 """)
 class AzucarGranel extends Formulario {
+    
+    // Facilidad para el usuario... ********************
+    boolean itemsPorHoraCreados
+    //**************************************************
 
     BigDecimal briCorr
     BigDecimal bri
@@ -94,6 +101,32 @@ class AzucarGranel extends Formulario {
 
         }catch(Exception ex){
             throw new SystemException("registro_no_actualizado", ex)
+        }
+    }
+    
+    void crearItemsPorHora() throws ValidationException{
+        try{
+            this.itemsPorHoraCreados = true
+            getManager().persist(this)
+            crearItems(this)
+        }catch(Exception ex){
+            throw new SystemException("items_por_hora_no_creados", ex)
+        }
+    }
+
+    void crearItems(AzucarGranel azucarGranel) {
+        try{
+            def d     = SqlUtil.instance.getDiaTrabajo(diaTrabajo.id)
+            def hora  = SqlUtil.instance.obtenerFecha(d.turnoTrabajo.horaDesde, diaTrabajo.id)
+            def horaF = SqlUtil.instance.obtenerFecha(d.turnoTrabajo.horaHasta, diaTrabajo.id)
+
+            while(hora < horaF ) {
+                def det = new AzucarGranelDetalle(azucarGranel: azucarGranel, horaS: Util.instance.getHoraS(hora), hora: hora)
+                getManager().persist(det)
+                hora = Util.instance.agregarHora(hora) // Incremento de hora
+            }
+        }catch(Exception ex){
+            throw new SystemException("items_por_hora_no_creados", ex)
         }
     }
 
