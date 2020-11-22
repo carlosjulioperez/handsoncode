@@ -32,10 +32,10 @@ class StockProceso extends Formulario {
     BigDecimal pureza 
     BigDecimal sacarosaSilos 
 
-    @EditAction("StockProceso.editDetail")
+    // @EditAction("StockProceso.editDetail")
     @OneToMany (mappedBy="stockProceso", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     @ListProperties("""
-        orden,material.descripcion,temp,volumen1,volumen2,peso,porcBrix,eq,
+        material.descripcion,temp,volumen1,volumen2,peso,porcBrix,eq,
         tonBrix [stockProceso.sumTonBrix],
         porcSac,
         tonSac [stockProceso.sumTonSac, stockProceso.sumSacarosaSilos],

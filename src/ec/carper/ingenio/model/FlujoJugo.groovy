@@ -48,6 +48,7 @@ class FlujoJugo extends Formulario {
         hora, ini, fin,
         tot      [flujoJugo.sumTot],
         brixJDil [flujoJugo.promBrixJDil],
+        p,
         tonJugo  [flujoJugo.sumTonJugo]
     """)
     Collection<FlujoJugoDetalle>detalle

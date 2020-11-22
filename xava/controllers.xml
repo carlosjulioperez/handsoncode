@@ -125,8 +125,8 @@
         <extends controller="Ingenio"/>
         <action name="cargarItems" mode="detail" 
             class="ec.carper.ingenio.actions.StockProcesoCargarItemsAction"/>
-		<action name="editDetail" hidden="true" image="edit.gif"
-			class="ec.carper.ingenio.actions.StockProcesoEditDetail1Action"/>
+		<!-- <action name="editDetail" hidden="true" image="edit.gif" -->
+		<!-- 	class="ec.carper.ingenio.actions.StockProcesoEditDetail1Action"/> -->
     </controller>   
 
 </controllers>

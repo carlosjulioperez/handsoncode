@@ -54,6 +54,7 @@ case $opt in
             ant sql-insert
 			;;
 		"deleteClasses")
+            rm -rf data
             rm -rf ~/.openxava
 			ant deleteClasses
 			;;
