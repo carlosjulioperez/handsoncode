@@ -22,8 +22,15 @@ class CodigoTest extends GroovyTestCase {
     */
 
     void test(){
-        println Util.instance.getDiferenciaHoras("13:40:00", "24:00:00")
+        nulos()
+        //println Util.instance.getDiferenciaHoras("13:40:00", "24:00:00")
         // getDiferenciaHoras()
+    }
+
+    void nulos(){
+        def v1 = null
+        def v2 = null
+        println ( (v1 && v2) ? v1+v2 : 0 )
     }
 
     void numerosDeString(){

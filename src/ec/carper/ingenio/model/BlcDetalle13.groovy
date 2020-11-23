@@ -31,10 +31,10 @@ class BlcDetalle13 extends Identifiable{
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @ReadOnly
     Unidad unidad
     
-    @Digits(integer=10, fraction=3) @DisplaySize(6) @ReadOnly
+    @Digits(integer=10, fraction=3) @DisplaySize(6) //@ReadOnly
     BigDecimal acumulado
     
-    @Digits(integer=10, fraction=3) @DisplaySize(6) @ReadOnly
+    @Digits(integer=10, fraction=3) @DisplaySize(6) //@ReadOnly
     BigDecimal totalZafra
     
 }

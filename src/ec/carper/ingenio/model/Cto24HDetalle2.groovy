@@ -1,5 +1,6 @@
 package ec.carper.ingenio.model
 
+import ec.carper.ingenio.actions.*
 import ec.carper.ingenio.util.Calculo
 
 import javax.persistence.*
@@ -21,30 +22,51 @@ class Cto24HDetalle2 extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Cto24H cto24H
     
+    @OnChange(Cto24HDetalle2Action.class)
     @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal bv600
     
+    @OnChange(Cto24HDetalle2Action.class)
     @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal bv50
     
+    @OnChange(Cto24HDetalle2Action.class)
     @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal sc4
     
+    @OnChange(Cto24HDetalle2Action.class)
     @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal sc8
     
+    @OnChange(Cto24HDetalle2Action.class)
     @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal pf
     
+    @OnChange(Cto24HDetalle2Action.class)
     @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal pj
     
+    @OnChange(Cto24HDetalle2Action.class)
     @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal bs600
     
+    @OnChange(Cto24HDetalle2Action.class)
     @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal bs50
     
+    @Digits(integer=4, fraction=4) @DisplaySize(6)
+    BigDecimal masa1
+    
+    @Digits(integer=4, fraction=4) @DisplaySize(6)
+    BigDecimal masa2
+    
+    @Digits(integer=4, fraction=4) @DisplaySize(6)
+    BigDecimal masa3
+    
+    @Digits(integer=4, fraction=4) @DisplaySize(6)
+    BigDecimal porcInso
+
+    /*
     @Depends("bv600,bv50,sc4,sc8,pf")
     @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal getMasa1(){
@@ -68,4 +90,5 @@ class Cto24HDetalle2 extends Identifiable {
     BigDecimal getPorcInso(){
         return (masa1 && masa2 && masa3) ? Calculo.instance.redondear((((masa3-masa1)/(masa2-masa1))*100), 2): 0
     }
+    */
 }

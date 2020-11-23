@@ -22,8 +22,12 @@ class BlcDetalle13Action extends OnChangePropertyBaseAction{
         def unidades     = (BigDecimal)getView().getValue("unidades")
         
         def acumulado    = SqlUtil.instance.getValIndBlcAcu("BlcDetalle13" , indicador.campo, diaFin)
-        getView().setValue("acumulado"  , acumulado)
-        getView().setValue("totalZafra" , acumulado + unidades?:0 )
+        
+        def acu = acumulado?:0
+        def uni = unidades ?:0
+
+        getView().setValue( "acumulado"  , acu )
+        getView().setValue( "totalZafra" , acu + uni )
 
         // Si el usuario ingresa unidades en los subtítulos, poner nulo
         // http://groovy-lang.org/semantics.html
