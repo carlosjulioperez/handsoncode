@@ -50,6 +50,10 @@
         <extends controller="Formulario"/>
     </controller>   
 
+    <controller name="CanaMolida">
+        <extends controller="Formulario"/>
+    </controller>   
+
     <controller name="BrixDensidadTitSus">
         <extends controller="Ingenio"/>
         <action name="delete" mode="detail" confirm="true" 

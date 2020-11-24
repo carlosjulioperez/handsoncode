@@ -184,4 +184,16 @@ class SqlUtil{
         query.setParameter("diaFin", diaFin)
         return query.resultList[0]?: 0
     }
+
+    def getDetallePorHora(def diaTrabajoId, String objMaestro, String detalle, def hora){
+        return getManager() .createQuery("""
+            FROM ${detalle} 
+            WHERE ${objMaestro}.diaTrabajo.id = :diaTrabajoId
+            AND horaS = :hora
+        """)
+        .setParameter("diaTrabajoId", diaTrabajoId)
+        .setParameter("hora", hora)
+        .resultList[0]
+    }
+
 }

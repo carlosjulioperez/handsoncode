@@ -1610,7 +1610,6 @@ class QueryTest extends ModuleTestBase {
         d = SqlUtil.instance.getDetallePorIndicador(Aux.instance.diaTrabajoId, "StockFabricaDetalle73", "stockFabrica.diaTrabajo.id", "tonAzuDis")
         def sdC = d.valor?:0
         println ">>> sf.bg142: ${sdC}"
-        */
 
         def diaTrabajo = SqlUtil.instance.getDiaTrabajo(Aux.instance.diaTrabajoId)
         // def diaFin = diaTrabajo.numeroDia - 1
@@ -1620,6 +1619,14 @@ class QueryTest extends ModuleTestBase {
 
         def l10 = SqlUtil.instance.getValMatBlcAcu("jDiluidoBr" , diaFin)
         println "Blc.L10: ${l10}"
+        */
+
+        def d = SqlUtil.instance.getDetallePorHora(Aux.instance.diaTrabajoId, "trashCana", "TrashCanaDetalle1", "18:00")
+        if (d){
+            // println d.modulo.descripcion
+            println d.horaS
+        }
+
     }
 
     /*
