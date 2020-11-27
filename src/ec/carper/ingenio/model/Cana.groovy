@@ -34,7 +34,8 @@ import static org.openxava.jpa.XPersistence.*
     pureza,
     nSac,
     aR,
-    porcArNsac
+    porcArNsac,
+    pH
 """)
 @View(members="""
     diaTrabajo, wH2OTmp, wCanaTmp;
@@ -69,26 +70,28 @@ class Cana extends Formulario {
     BigDecimal nSac
     BigDecimal aR
     BigDecimal porcArNsac
+    BigDecimal pH
     
     @OneToMany (mappedBy="cana", cascade=CascadeType.ALL) @XOrderBy("hora")
     @ListProperties("""
         hora,
-        wH2O           [cana.promWH2O],
-        wCana          [cana.promWCana],
-        polReal        [cana.promPolReal],
-        brixExtracto   [cana.promBrixExtracto],
-        polExtracto    [cana.promPolExtracto],
-        tamizVacioM0   [cana.promTamizVacioM0],
-        muestraHumM1   [cana.promMuestraHumM1],
-        muestraSecaM2  [cana.promMuestraSecaM2],
-        porcHumedad    [cana.promPorcHumedad],
-        brix           [cana.promBrix],
-        porcFibra      [cana.promPorcFibra],
-        porcSacarosa   [cana.promPorcSacarosa],
-        pureza         [cana.promPureza],
-        nSac           [cana.promNSac],
-        aR             [cana.promAR],
-        porcArNsac     [cana.promPorcArNsac]
+        wH2O          [cana.promWH2O],
+        wCana         [cana.promWCana],
+        polReal       [cana.promPolReal],
+        brixExtracto  [cana.promBrixExtracto],
+        polExtracto   [cana.promPolExtracto],
+        tamizVacioM0  [cana.promTamizVacioM0],
+        muestraHumM1  [cana.promMuestraHumM1],
+        muestraSecaM2 [cana.promMuestraSecaM2],
+        porcHumedad   [cana.promPorcHumedad],
+        brix          [cana.promBrix],
+        porcFibra     [cana.promPorcFibra],
+        porcSacarosa  [cana.promPorcSacarosa],
+        pureza        [cana.promPureza],
+        nSac          [cana.promNSac],
+        aR            [cana.promAR],
+        porcArNsac    [cana.promPorcArNsac],
+        pH            [cana.promPH]
     """)
     Collection<CanaDetalle1>detalle1
 
@@ -140,6 +143,9 @@ class Cana extends Formulario {
     BigDecimal getPromPorcArNsac(){
         return super.getPromedio(detalle1, "porcArNsac", 2)
     }
+    BigDecimal getPromPH(){
+        return super.getPromedio(detalle1, "pH", 2)
+    }
     
     @OneToMany (mappedBy="cana", cascade=CascadeType.ALL) @XOrderBy("horaDesde")
     @ListProperties("""
@@ -174,6 +180,7 @@ class Cana extends Formulario {
             this.nSac          = promNSac
             this.aR            = promAR
             this.porcArNsac    = promPorcArNsac
+            this.pH            = promPH
 
             XPersistence.getManager().persist(this)
 

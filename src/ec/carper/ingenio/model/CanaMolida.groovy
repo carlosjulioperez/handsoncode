@@ -65,4 +65,82 @@ class CanaMolida extends Formulario {
         }
     }
 
+    def getReporteDetalle1(){
+        def lista = []
+        try{
+            def dt    = SqlUtil.instance.getDiaTrabajo(diaTrabajo.id)
+            def hora  = SqlUtil.instance.obtenerFecha(dt.turnoTrabajo.horaDesde, diaTrabajo.id)
+            def horaF = SqlUtil.instance.obtenerFecha(dt.turnoTrabajo.horaHasta, diaTrabajo.id)
+
+            while(hora < horaF ) {
+                boolean agregarFila = false
+                def horaS = Util.instance.getHoraS(hora)
+
+                def cmr = new CanaMolidaReporteDetalle1(horaS: horaS, hora: hora)
+
+                def d = SqlUtil.instance.getDetallePorHora(diaTrabajo.id, "trashCana", "TrashCanaDetalle1", horaS)
+                if (d){
+                    agregarFila      = true
+                    cmr.modulo       = d.modulo.descripcion
+                    cmr.turno        = d.turno.descripcion
+                    cmr.calTrashCana = d.calTrashCana
+                    cmr.calPorcTrash = d.calPorcTrash
+                }
+                
+                d = SqlUtil.instance.getDetallePorHora(diaTrabajo.id, "trashCana", "TrashCanaDetalle2", horaS)
+                if (d){
+                    agregarFila       = true
+                    cmr.calPorcAzuRed = d.calPorcAzuRed
+                }
+
+
+                d = SqlUtil.instance.getDetallePorHora(diaTrabajo.id, "cana", "CanaDetalle1", horaS)
+                if (d){
+                    agregarFila      = true
+                    cmr.polExtracto  = d.polExtracto
+                    cmr.porcHumedad  = d.porcHumedad
+                    cmr.brix         = d.brix
+                    cmr.porcFibra    = d.porcFibra
+                    cmr.porcSacarosa = d.porcSacarosa
+                    cmr.pureza       = d.pureza
+                    cmr.pH           = d.pH
+                }
+                
+                d = SqlUtil.instance.getDetallePorHora(diaTrabajo.id, "canaMolida", "CanaMolidaDetalle", horaS)
+                if (d){
+                    agregarFila    = true
+                    cmr.ticket1    = d.ticket1
+                    cmr.guia1      = d.guia1
+                    cmr.horaBanda1 = d.horaBanda1
+                    cmr.ticket2    = d.ticket2
+                    cmr.guia2      = d.guia2
+                    cmr.horaBanda2 = d.horaBanda2
+                    cmr.ticket3    = d.ticket3
+                    cmr.guia3      = d.guia3
+                    cmr.horaBanda3 = d.horaBanda3
+                }
+                
+                if (agregarFila) lista << cmr
+
+                hora = Util.instance.agregarHora(hora) // Incremento de hora
+            }
+        }catch(Exception ex){
+            throw new SystemException("detalles_no_cargados", ex)
+        }
+        return lista
+    }
+    
+    def getReporteDetalle2(){
+        def lista = []
+        try{
+            def det = SqlUtil.instance.getRegistros(diaTrabajo.id, "CanaDetalle2", "cana.diaTrabajo.id")
+            det.each{
+                def cmr = new CanaMolidaReporteDetalle2(horaSD: it.horaSD, horaSH: it.horaSH, brix: it.brix, porcSacarosa: it.porcSacarosa, pureza: it.pureza)
+                lista << cmr
+            }
+        }catch(Exception ex){
+            throw new SystemException("detalles_no_cargados", ex)
+        }
+        return lista
+    }
 }

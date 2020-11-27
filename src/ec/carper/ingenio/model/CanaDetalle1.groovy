@@ -22,7 +22,8 @@ import ec.carper.ingenio.actions.*
     porcHumedad, brix;
     porcFibra, porcSacarosa;
     pureza, nSac;
-    aR, porcArNsac
+    aR, porcArNsac;
+    pH
 """)
 class CanaDetalle1 extends Identifiable {
     
@@ -84,6 +85,9 @@ class CanaDetalle1 extends Identifiable {
     
     @ReadOnly @DisplaySize(6)
     BigDecimal porcArNsac
+    
+    @DisplaySize(6)
+    BigDecimal pH
 
     BigDecimal getPromPorcHumedad(String diaTrabajoId, java.sql.Timestamp horaDesde, java.sql.Timestamp horaHasta){
         Query query = getManager().createQuery("FROM CanaDetalle1 WHERE cana.diaTrabajo.id = :diaTrabajoId ORDER BY hora")
