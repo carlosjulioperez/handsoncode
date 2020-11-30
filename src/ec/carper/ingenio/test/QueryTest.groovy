@@ -1634,7 +1634,7 @@ class QueryTest extends ModuleTestBase {
         //     println it.modulo.descripcion
         // } ${}
 
-        //TODO: Agregar promedios
+        //TODOs: Agregar promedios
         def id = ["ff80808175f66d7c0175f75162bc0000", 'ff80808175f663890175f66416790000']
         def canaMolida = getManager().find( CanaMolida.class, id[1])
         canaMolida.reporteDetalle1.each{

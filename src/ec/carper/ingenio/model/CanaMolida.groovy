@@ -93,7 +93,6 @@ class CanaMolida extends Formulario {
                     cmr.calPorcAzuRed = d.calPorcAzuRed
                 }
 
-
                 d = SqlUtil.instance.getDetallePorHora(diaTrabajo.id, "cana", "CanaDetalle1", horaS)
                 if (d){
                     agregarFila      = true
@@ -124,6 +123,30 @@ class CanaMolida extends Formulario {
 
                 hora = Util.instance.agregarHora(hora) // Incremento de hora
             }
+                
+            // Agregar la última fila como promedios
+            def cmr = new CanaMolidaReporteDetalle1()
+
+            def o = SqlUtil.instance.getRegistros(diaTrabajo.id, "TrashCana", "diaTrabajo.id")[0]
+            if (o){
+                cmr.calTrashCana  = o.avgTrashCana
+                cmr.calPorcTrash  = o.avgPorcTrash
+                cmr.calPorcAzuRed = o.avgPorcAzuRed
+            }
+
+            o = SqlUtil.instance.getRegistros(diaTrabajo.id, "Cana", "diaTrabajo.id")[0]
+            if (o){
+                cmr.polExtracto  = o.polExtracto
+                cmr.porcHumedad  = o.porcHumedad
+                cmr.brix         = o.brix
+                cmr.porcFibra    = o.porcFibra
+                cmr.porcSacarosa = o.porcSacarosa
+                cmr.pureza       = o.pureza
+                cmr.pH           = o.pH
+            }
+
+            lista << cmr
+
         }catch(Exception ex){
             throw new SystemException("detalles_no_cargados", ex)
         }
