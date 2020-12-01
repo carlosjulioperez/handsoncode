@@ -52,6 +52,9 @@
 
     <controller name="CanaMolida">
         <extends controller="Formulario"/>
+		<action name="generatePdf" mode="detail" confirm="true"
+			class="ec.carper.ingenio.actions.CanaMolidaReportAction"
+			image="images/pdf.gif" keystroke="Control P"/>
     </controller>   
 
     <controller name="BrixDensidadTitSus">

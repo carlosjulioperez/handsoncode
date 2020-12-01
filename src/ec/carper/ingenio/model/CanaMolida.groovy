@@ -126,6 +126,8 @@ class CanaMolida extends Formulario {
                 
             // Agregar la última fila como promedios
             def cmr = new CanaMolidaReporteDetalle1()
+            cmr.hora  = hora
+            cmr.turno = "Promedios"
 
             def o = SqlUtil.instance.getRegistros(diaTrabajo.id, "TrashCana", "diaTrabajo.id")[0]
             if (o){

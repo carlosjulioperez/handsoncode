@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="canamolida_d1"
+
+		 language="groovy"		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Landscape"
+		 pageWidth="802"
+		 pageHeight="535"
+		 columnWidth="802"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="AllSectionsNoDetail"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+	<import value="it.businesslogic.ireport.IReportScriptlet" />
+
+
+	<field name="ticket1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[ticket1]]></fieldDescription>
+	</field>
+	<field name="pureza" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[pureza]]></fieldDescription>
+	</field>
+	<field name="horaBanda3" class="java.lang.String">
+		<fieldDescription><![CDATA[horaBanda3]]></fieldDescription>
+	</field>
+	<field name="pH" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[pH]]></fieldDescription>
+	</field>
+	<field name="polExtracto" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[polExtracto]]></fieldDescription>
+	</field>
+	<field name="horaBanda2" class="java.lang.String">
+		<fieldDescription><![CDATA[horaBanda2]]></fieldDescription>
+	</field>
+	<field name="guia2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[guia2]]></fieldDescription>
+	</field>
+	<field name="brix" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[brix]]></fieldDescription>
+	</field>
+	<field name="hora" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[hora]]></fieldDescription>
+	</field>
+	<field name="modulo" class="java.lang.String">
+		<fieldDescription><![CDATA[modulo]]></fieldDescription>
+	</field>
+	<field name="turno" class="java.lang.String">
+		<fieldDescription><![CDATA[turno]]></fieldDescription>
+	</field>
+	<field name="horaS" class="java.lang.String">
+		<fieldDescription><![CDATA[horaS]]></fieldDescription>
+	</field>
+	<field name="guia1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[guia1]]></fieldDescription>
+	</field>
+	<field name="ticket3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[ticket3]]></fieldDescription>
+	</field>
+	<field name="calPorcAzuRed" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[calPorcAzuRed]]></fieldDescription>
+	</field>
+	<field name="porcSacarosa" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[porcSacarosa]]></fieldDescription>
+	</field>
+	<field name="porcFibra" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[porcFibra]]></fieldDescription>
+	</field>
+	<field name="ticket2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[ticket2]]></fieldDescription>
+	</field>
+	<field name="guia3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[guia3]]></fieldDescription>
+	</field>
+	<field name="calPorcTrash" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[calPorcTrash]]></fieldDescription>
+	</field>
+	<field name="calTrashCana" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[calTrashCana]]></fieldDescription>
+	</field>
+	<field name="horaBanda1" class="java.lang.String">
+		<fieldDescription><![CDATA[horaBanda1]]></fieldDescription>
+	</field>
+	<field name="porcHumedad" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[porcHumedad]]></fieldDescription>
+	</field>
+
+	<sortField name="hora" />
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="33"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="0"
+						y="1"
+						width="395"
+						height="11"
+						key="staticText-1"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[CALIDAD DE CAÑA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="395"
+						y="1"
+						width="80"
+						height="11"
+						key="staticText-7"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[TRASH CAÑA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="0"
+						y="12"
+						width="25"
+						height="20"
+						key="staticText-8"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[HORA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="25"
+						y="12"
+						width="50"
+						height="20"
+						key="staticText-9"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[MODULO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="75"
+						y="12"
+						width="40"
+						height="20"
+						key="staticText-10"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[TURNO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="115"
+						y="12"
+						width="40"
+						height="20"
+						key="staticText-11"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[Pol
+Extracto]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="155"
+						y="12"
+						width="40"
+						height="20"
+						key="staticText-12"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[%
+Humedad]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="235"
+						y="12"
+						width="40"
+						height="20"
+						key="staticText-13"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[%
+Fibra]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="195"
+						y="12"
+						width="40"
+						height="20"
+						key="staticText-14"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[Brix]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="275"
+						y="12"
+						width="40"
+						height="20"
+						key="staticText-15"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[%
+Sacarosa]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="515"
+						y="12"
+						width="30"
+						height="20"
+						key="staticText-16"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[#Ticket
+Ingenio]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="315"
+						y="12"
+						width="40"
+						height="20"
+						key="staticText-17"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[Pureza]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="395"
+						y="12"
+						width="40"
+						height="20"
+						key="staticText-18"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[Peso]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="435"
+						y="12"
+						width="40"
+						height="20"
+						key="staticText-19"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[%
+Trash]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="475"
+						y="12"
+						width="40"
+						height="20"
+						key="staticText-20"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[%
+A.R.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="475"
+						y="1"
+						width="40"
+						height="11"
+						key="staticText-21"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[REDUCT.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="545"
+						y="12"
+						width="30"
+						height="20"
+						key="staticText-22"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[Guía
+Hacienda]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="355"
+						y="12"
+						width="40"
+						height="20"
+						key="staticText-23"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[pH]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="575"
+						y="12"
+						width="30"
+						height="20"
+						key="staticText-24"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[Ingreso
+Banda]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="605"
+						y="12"
+						width="30"
+						height="20"
+						key="staticText-25"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[#Ticket
+Ingenio]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="635"
+						y="12"
+						width="30"
+						height="20"
+						key="staticText-26"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[Guía
+Hacienda]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="665"
+						y="12"
+						width="30"
+						height="20"
+						key="staticText-27"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[Ingreso
+Banda]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="695"
+						y="12"
+						width="30"
+						height="20"
+						key="staticText-28"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[#Ticket
+Ingenio]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="725"
+						y="12"
+						width="30"
+						height="20"
+						key="staticText-29"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[Guía
+Hacienda]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="755"
+						y="12"
+						width="30"
+						height="20"
+						key="staticText-30"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[Ingreso
+Banda]]></text>
+				</staticText>
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="11"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="115"
+						y="0"
+						width="40"
+						height="10"
+						key="textField-3"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{polExtracto}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="25"
+						height="10"
+						key="textField-7"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{horaS}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="25"
+						y="0"
+						width="50"
+						height="10"
+						key="textField-8"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{modulo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="75"
+						y="0"
+						width="40"
+						height="10"
+						key="textField-9"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{turno}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="155"
+						y="0"
+						width="40"
+						height="10"
+						key="textField-10"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{porcHumedad}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="195"
+						y="0"
+						width="40"
+						height="10"
+						key="textField-11"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{brix}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="235"
+						y="0"
+						width="40"
+						height="10"
+						key="textField-12"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{porcFibra}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="275"
+						y="0"
+						width="40"
+						height="10"
+						key="textField-13"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{porcSacarosa}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="315"
+						y="0"
+						width="40"
+						height="10"
+						key="textField-14"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{pureza}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="515"
+						y="0"
+						width="30"
+						height="10"
+						key="textField-15"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{ticket1}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0.000" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="395"
+						y="0"
+						width="40"
+						height="10"
+						key="textField-16"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{calTrashCana}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0.000" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="435"
+						y="0"
+						width="40"
+						height="10"
+						key="textField-17"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{calPorcTrash}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0.000" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="475"
+						y="0"
+						width="40"
+						height="10"
+						key="textField-18"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{calPorcAzuRed}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="545"
+						y="0"
+						width="30"
+						height="10"
+						key="textField-19"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{guia1}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="355"
+						y="0"
+						width="40"
+						height="10"
+						key="textField-20"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.math.BigDecimal"><![CDATA[$F{pH}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="575"
+						y="0"
+						width="30"
+						height="10"
+						key="textField-21"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{horaBanda1}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="605"
+						y="0"
+						width="30"
+						height="10"
+						key="textField-22"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{ticket2}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="635"
+						y="0"
+						width="30"
+						height="10"
+						key="textField-23"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{guia2}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="665"
+						y="0"
+						width="30"
+						height="10"
+						key="textField-24"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{horaBanda2}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="695"
+						y="0"
+						width="30"
+						height="10"
+						key="textField-25"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{ticket3}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="725"
+						y="0"
+						width="30"
+						height="10"
+						key="textField-26"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{guia3}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="755"
+						y="0"
+						width="30"
+						height="10"
+						key="textField-27"/>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{horaBanda3}]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>
