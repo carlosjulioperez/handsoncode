@@ -35,6 +35,7 @@
 -- ALTER TABLE ingenio.ingenio.cto24hdetalle2 ALTER COLUMN pj  TYPE numeric(19,4);
 -- ALTER TABLE ingenio.ingenio.cto24hdetalle2 ALTER COLUMN sc8 TYPE numeric(19,4);
 
+
 -- ALTER TABLE ingenio.ingenio.stockprocesopdetalle ADD modificable bool;
 -- ALTER TABLE ingenio.ingenio.stockprocesodetalle1 ADD modificable bool;
 -- UPDATE ingenio.ingenio.stockprocesopdetalle SET modificable=false;
@@ -54,3 +55,8 @@
 
 -- ALTER TABLE ingenio.ingenio.azucargranel ADD itemsporhoracreados bool NULL;
 -- UPDATE ingenio.ingenio.azucargranel SET itemsporhoracreados=true;
+
+ALTER TABLE ingenio.ingenio.cto24hdetalle5 ALTER COLUMN pmtra       TYPE numeric(19,4);
+ALTER TABLE ingenio.ingenio.cto24hdetalle5 ALTER COLUMN pcrisol     TYPE numeric(19,4);
+ALTER TABLE ingenio.ingenio.cto24hdetalle5 ALTER COLUMN pcricen     TYPE numeric(19,4);
+ALTER TABLE ingenio.ingenio.cto24hdetalle5 ALTER COLUMN porccenizas TYPE numeric(19,2);

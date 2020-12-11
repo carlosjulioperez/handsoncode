@@ -94,9 +94,14 @@ class FlujoJugo extends Formulario {
             def d     = SqlUtil.instance.getDiaTrabajo(diaTrabajo.id)
             def hora  = SqlUtil.instance.obtenerFecha(d.turnoTrabajo.horaDesde, diaTrabajo.id)
             def horaF = SqlUtil.instance.obtenerFecha(d.turnoTrabajo.horaHasta, diaTrabajo.id)
+            def i     = 0
 
             while(hora < horaF ) {
                 def det = new FlujoJugoDetalle(flujoJugo: flujoJugo, horaS: Util.instance.getHoraS(hora), hora: hora)
+                if (i==0) {
+                    det.ini = 0
+                    i++
+                }
                 getManager().persist(det)
                 hora = Util.instance.agregarHora(hora) // Incremento de hora
             }

@@ -65,15 +65,15 @@ class BlcDetalle1Action extends OnChangePropertyBaseAction{
             def campo = "aguaM"
             def d = SqlUtil.instance.getDetallePorDTM(diaTrabajoId, "stockProceso", "StockProcesoDetalle2", campo)
             if (d) {
-                def amV = d.peso
+                def amV = d.peso?:0
                 setValores(campo, amV, 0, amV+amA)
             }
 
             campo = "jDiluidoBr"
             d = SqlUtil.instance.getDetallePorDTM(diaTrabajoId, "stockProceso", "StockProcesoDetalle2", campo)
             if (d) {
-                def jdV = d.volumen2
-                def jdC = d.peso
+                def jdV = d.volumen2?:0
+                def jdC = d.peso?:0
                 setValores(campo, jdV, jdC, jdC+jdA)
             }
             

@@ -4,6 +4,7 @@ import ec.carper.ingenio.actions.*
 import ec.carper.ingenio.util.Calculo
 
 import javax.persistence.*
+import javax.validation.constraints.Digits
 import org.openxava.annotations.*
 import org.openxava.model.*
     
@@ -14,16 +15,19 @@ class Cto24HDetalle5 extends Identifiable {
     @ManyToOne //Sin lazy fetching porque falla al quitar un detalle desde el padre
     Cto24H cto24H
     
-    @OnChange(Cto24HDetalle5Action.class) @DisplaySize(6)
+    @OnChange(Cto24HDetalle5Action.class)
+    @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal pMtra
     
-    @OnChange(Cto24HDetalle5Action.class) @DisplaySize(6)
+    @OnChange(Cto24HDetalle5Action.class)
+    @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal pCrisol
     
-    @OnChange(Cto24HDetalle5Action.class) @DisplaySize(6)
+    @OnChange(Cto24HDetalle5Action.class)
+    @Digits(integer=4, fraction=4) @DisplaySize(6)
     BigDecimal pCriCen
     
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) @ReadOnly
     BigDecimal porcCenizas
 
 }

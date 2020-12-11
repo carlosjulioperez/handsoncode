@@ -32,13 +32,13 @@ class MagmasDetalle extends Identifiable {
     @OnChange(MagmasDetalleAction.class)
     @Digits(integer=3, fraction=2)
     BigDecimal mbPol
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mbSac
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mbPur
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mbBri2
     
@@ -48,13 +48,13 @@ class MagmasDetalle extends Identifiable {
     @OnChange(MagmasDetalleAction.class)
     @Digits(integer=3, fraction=2)
     BigDecimal mcPol
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mcSac
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mcPur
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mcBri2
     
@@ -64,13 +64,13 @@ class MagmasDetalle extends Identifiable {
     @OnChange(MagmasDetalleAction.class)
     @Digits(integer=3, fraction=2)
     BigDecimal mrPol
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mrSac
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mrPur
-    @ReadOnly
+    // @ReadOnly
     @Digits(integer=3, fraction=2)
     BigDecimal mrBri2
     

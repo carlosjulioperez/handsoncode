@@ -32,7 +32,7 @@ class FlujoJugoDetalle extends Identifiable {
     @Stereotype("DATETIME") @ReadOnly @Required
     java.sql.Timestamp hora
     
-    @DisplaySize(6) @OnChange(FlujoJugoDetalleAction.class)
+    @DisplaySize(6) @ReadOnly
     Integer ini
     
     @DisplaySize(6) @OnChange(FlujoJugoDetalleAction.class)
@@ -47,7 +47,7 @@ class FlujoJugoDetalle extends Identifiable {
     @Stereotype("DATETIME") @ReadOnly
     java.sql.Timestamp horaBrixJDil
     
-    @DisplaySize(6) @ReadOnly
+    @DisplaySize(6) @OnChange(FlujoJugoDetalleAction.class)
     BigDecimal brixJDil
     
     @Digits(integer=10, fraction=3) @DisplaySize(6) @ReadOnly
