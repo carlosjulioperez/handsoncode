@@ -1635,17 +1635,21 @@ class QueryTest extends ModuleTestBase {
         // } ${}
 
         //TODOs: Agregar promedios
-        def id = ["ff80808175f66d7c0175f75162bc0000", 'ff80808175f663890175f66416790000']
-        def canaMolida = getManager().find( CanaMolida.class, id[1])
-        canaMolida.reporteDetalle1.each{
-            println "${it.horaS} ${it.hora} ${it.modulo} ${it.turno} ${it.calTrashCana} ${it.calPorcTrash} ${it.polExtracto} ${it.porcHumedad} ${it.brix} ${it.porcFibra} ${it.porcSacarosa} ${it.pureza} ${it.pH} ${it.calPorcAzuRed} ${it.ticket1} ${it.guia1} ${it.horaBanda1} ${it.ticket2} ${it.guia2} ${it.horaBanda2} ${it.ticket3} ${it.guia3} ${it.horaBanda3}"
-        }
+        // def id = ["ff80808175f66d7c0175f75162bc0000", 'ff80808175f663890175f66416790000']
+        // def canaMolida = getManager().find( CanaMolida.class, id[1])
+        // canaMolida.reporteDetalle1.each{
+        //     println "${it.horaS} ${it.hora} ${it.modulo} ${it.turno} ${it.calTrashCana} ${it.calPorcTrash} ${it.polExtracto} ${it.porcHumedad} ${it.brix} ${it.porcFibra} ${it.porcSacarosa} ${it.pureza} ${it.pH} ${it.calPorcAzuRed} ${it.ticket1} ${it.guia1} ${it.horaBanda1} ${it.ticket2} ${it.guia2} ${it.horaBanda2} ${it.ticket3} ${it.guia3} ${it.horaBanda3}"
+        // }
+        //
+        // println canaMolida.reporteDetalle2.size()
+        //
+        // canaMolida.reporteDetalle2.each{
+        //     println "${it.horaSD} ${it.horaSH} ${it.brix} ${it.porcSacarosa} ${it.pureza}"
+        // }
         
-        println canaMolida.reporteDetalle2.size()
+        println ">> " + new TablaBxEq().getEq(32.32)
 
-        canaMolida.reporteDetalle2.each{
-            println "${it.horaSD} ${it.horaSH} ${it.brix} ${it.porcSacarosa} ${it.pureza}"
-        }
+
 
     }
 
