@@ -10,8 +10,11 @@ import org.openxava.model.*
 class Formulario extends Identifiable{
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @DescriptionsList @NoCreate @NoModify @Required
+    // @DescriptionsList(descriptionProperties="descripcion", condition="\${cerrado}='false'")
+    // @DescriptionsList(condition="\${cerrado}='false'")
+    @DescriptionsList(order="\${fecha}")
     @OnChange(FormularioDiaTrabajoAction.class)
+    @NoCreate @NoModify @Required    
     DiaTrabajo diaTrabajo
 
     BigDecimal getPromedio(def detalle, String propiedad, int escala){

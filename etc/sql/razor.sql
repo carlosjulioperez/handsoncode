@@ -29,4 +29,3 @@ AND 	 dt.zafra_id = z.id
 AND      z.descripcion = 'ZAFRA 2020'
 ORDER BY dt.fecha, orden;
 
-DROP TABLE ingenio.ingenio.tablabxeq

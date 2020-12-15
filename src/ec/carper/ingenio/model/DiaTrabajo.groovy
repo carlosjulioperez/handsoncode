@@ -20,7 +20,7 @@ class DiaTrabajo extends Identifiable{
         // println ">>> DiaTrabajo.valor = ${this}"
         def valor = ""
         try{
-            valor = numeroDia+" "+fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+            valor = fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))+" DIA " + numeroDia
         }catch(Exception e){}
         return valor 
     }
