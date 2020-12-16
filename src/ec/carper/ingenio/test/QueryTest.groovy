@@ -1650,7 +1650,7 @@ class QueryTest extends ModuleTestBase {
         
         println ">>> eq = " + new TablaBxEq().getEq(14.22)
         // println Util.instance.mapMaterial["tanJugDil"]
-        println ">>> num = " + new StockProcesoDetalle1Action().mapMaterial["tanJugDil"]
+        // println ">>> num = " + new StockProcesoDetalle1Action().mapMaterial["tanJugDil"]
     }
 
     /*

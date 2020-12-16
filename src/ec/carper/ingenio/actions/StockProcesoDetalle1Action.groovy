@@ -133,7 +133,7 @@ class StockProcesoDetalle1Action extends OnChangePropertyBaseAction{
                 }else{
                     porcBrix = SqlUtil.instance.getDetValorPorDTI(diaTrabajoId, objPadre, detalle, "Brix")
                     // TODO: Validar
-                    eq       = (int)new TablaBxEq().getEq(porcBrix+1)
+                    eq       = (int)new TablaBxEq().getEq(porcBrix)
                     factor   = new FactorVolumen().getValor(temp, eq+1)
                     densidad = new BrixDensidadWp().getP(porcBrix)
                 }
