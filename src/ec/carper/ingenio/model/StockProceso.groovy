@@ -90,22 +90,24 @@ class StockProceso extends Formulario {
         }
     }
     
-    def actDet(def spd, def num){
+    def actDet(spd, num, materialId){
         def objPadre = "stockFabrica"
         def campoFk  = "stockFabrica.diaTrabajo.id"
         def txtDet   = "StockFabricaDetalle"
         def detalle  = "${txtDet}${num}"
 
         def d = SqlUtil.instance.getDetallePorIndicador(diaTrabajo.id, detalle, campoFk, "Temp")
-        if (d)
-            spd.temp = d.valor?:0
+        if (d){
+            def temp = d.valor ?: 0
+            temp = (int)temp
+            spd.temp = temp
 
-        def porcBrix = SqlUtil.instance.getDetValorPorDTI(diaTrabajo.id, objPadre, detalle, "Brix")
-        if (porcBrix){
-            def eq       = new TablaBxEq().getEq(porcBrix+1)
-            println ">>> porcBrix: ${porcBrix}, eq: ${eq}"
-            spd.porcBrix = porcBrix
-            spd.eq       = (int)eq
+            def mapa = new StockProcesoDetalle1Action().getMapa(diaTrabajo.id, materialId, temp)
+            println ">>> ${mapa}"
+            mapa.each{ 
+                println ">>> ${it.key}:${it.value}"
+                spd[it.key] = it.value
+            } 
         }
     }
 
@@ -115,10 +117,10 @@ class StockProceso extends Formulario {
             lista.each{
                 def spd = new StockProcesoDetalle1(stockProceso: stockProceso, orden: it.orden, material: it.material, modificable: it.modificable)
 
-                def num = Util.instance.mapMaterial[it.material.campo]
-                println ">>> campo: ${it.material.campo}, ${num}"
+                def num = new StockProcesoDetalle1Action().mapMaterial[it.material.campo]
+                // println ">>> campo: ${it.material.campo}, ${num}"
                 if (num)
-                    actDet(spd, num)
+                    actDet(spd, num, it.material.id)
 
                 getManager().persist(spd)
             }

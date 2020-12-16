@@ -8,7 +8,7 @@ class StockProcesoTest extends ModuleTestBase {
         super(testName, "Ingenio", "StockProceso")
     }
     
-    void testCrear() throws Exception {
+    void _testCrear() throws Exception {
         login("admin", "admin")
         
         execute("CRUD.new")
@@ -227,6 +227,20 @@ class StockProcesoTest extends ModuleTestBase {
         // FINALIZAR
         //execute    ("CRUD.delete")
         assertNoErrors()
+    }
+    
+    void testLectura() throws Exception {
+        login("admin", "admin")
+        
+        setConditionValues     ( [ "", "JUNIT"] )
+        setConditionComparators( [ "=", "contains_comparator"] )
+        execute("List.filter")
+        // printHtml()
+        
+        execute("List.viewDetail", "row=0"); // Pulsamos en la primera fila
+        execute("StockProceso.cargarItems")
+        assertNoErrors()
+        
     }
 
 }

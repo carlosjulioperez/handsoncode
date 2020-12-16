@@ -5,106 +5,103 @@ import ec.carper.ingenio.util.*
 
 import org.openxava.actions.*
 
+// TODO: Ejemplo de clase para invocar los cálculos para controles desde otra clase.
 class StockProcesoDetalle1Action extends OnChangePropertyBaseAction{
+    
+    // https://javadevnotes.com/groovy-map-examples
+    def mapMaterial = [
+        "tanJugDil" : 1  ,
+        "tanJugCla" : 2  ,
+        "tanJugEnc" : 3  ,
+        "tanJugFil" : 4  ,
+        "claJug"    : 5  ,
+        "torSulJug" : 6  ,
+        "calJugCla" : 8  ,
+        "calJug"    : 9  ,
+        "eva1"      : 13 ,
+        "eva2"      : 14 ,
+        "eva3"      : 15 ,
+        "eva4"      : 16 ,
+        "eva5"      : 17 ,
+        "tanMelCru" : 18 ,
+        "calMel"    : 19 ,
+        "claMel"    : 21 ,
+        "vasRea"    : 22 ,
+        "tac1"      : 23 ,
+        "tac2"      : 24 ,
+        "tac3"      : 26 ,
+        "tac4"      : 28 ,
+        "tanMel1"   : 30 ,
+        "tanMel2"   : 31 ,
+        "tanMel3"   : 29 ,
+        "tanFun1"   : 32 ,
+        "tanFun2"   : 33 ,
+        "tanMie1"   : 34 ,
+        "tanMie2"   : 35 ,
+        "tanMie3"   : 36 ,
+        "tanMie4"   : 37 ,
+        "tanPreMie" : 38 ,
+        "tanMieClM" : 39 ,
+        "sem1"      : 40 ,
+        "sem2"      : 41 ,
+        "sem3"      : 42 ,
+        "sem4"      : 43 ,
+        "recMag2"   : 44 ,
+        "recMas1"   : 45 ,
+        "recMas2"   : 46 ,
+        "recMas3"   : 47 ,
+        "recMas4"   : 48 ,
+        "recMas5"   : 49 ,
+        "recMas6"   : 50 ,
+        "aliCen1"   : 51 ,
+        "aliCen2"   : 52 ,
+        "aliCen3"   : 53 ,
+        "aliCen4"   : 54 ,
+        "recMag1"   : 55 ,
+        "recMag3"   : 56 ,
+        "recMag4"   : 57 ,
+        "recMie1"   : 59 ,
+        "recMie2"   : 60 ,
+        "recMie3"   : 61 ,
+        "recMie4"   : 61 , //Duplicado de recMie3
+        "funVie1"   : 63 ,
+        "funNue2"   : 64 ,
+        "criVer"    : 65 ,
+        "tol50K1"   : 66 ,
+        "tol50K2"   : 67 ,
+        "tolFam"    : 68
+    ]
 
-    def diaTrabajoId = ""
-
-    def suma (desde, hasta, objPadre, txtDet, indicador){
+    def suma (diaTrabajoId, desde, hasta, objPadre, txtDet, indicador){
         def suma = 0
         (desde..hasta).each{
             suma += SqlUtil.instance.getDetValorPorDTI(diaTrabajoId, objPadre, "${txtDet}${it}", indicador)
-        }
+        } 
         return suma
     }
 
-    // No obtengo los valores, solo disparo la acción para realizar los cálculos
-    void execute() throws Exception{
-
-        diaTrabajoId     = (String)getView().getRoot().getValue("diaTrabajo.id")
-        def materialId   = (String)getView().getValue("material.id")
-        def material     = SqlUtil.instance.getMaterial(materialId)
+    def getMapa(diaTrabajoId, materialId, int temp){
+        def retorno = [
+           "eq"       : 0 ,
+           "volumen1" : 0 ,
+           "volumen2" : 0 ,
+           "peso"     : 0 ,
+           "porcBrix" : 0 ,
+           "tonBrix"  : 0 ,
+           "porcSac"  : 0 ,
+           "tonSac"   : 0 ,
+           "pureza"   : 0 ,
+           "densidad" : 0 ,
+           "factor"   : 0
+        ]
         
-        if (material.campo){
-            // Obtener el material y dependiendo del campo hacer las validaciones
-            def temp = getView().getValue("temp")
-            def eq   = getView().getValue("eq")
-
-            if (temp==null || eq==null ){
-                getView().setValue("volumen1" , null)
-                getView().setValue("volumen2" , null)
-                getView().setValue("peso"     , null)
-                getView().setValue("porcBrix" , null)
-                getView().setValue("tonBrix"  , null)
-                getView().setValue("porcSac"  , null)
-                getView().setValue("tonSac"   , null)
-                getView().setValue("pureza"   , null)
-                getView().setValue("densidad" , null)
-                getView().setValue("factor"   , null)
-            }else {
-        
-                def (num, volumen1) = [1, 0]
-                switch (material.campo){
-                    case "tanJugDil" : num=1  ; break ;
-                    case "tanJugCla" : num=2  ; break ;
-                    case "tanJugEnc" : num=3  ; break ;
-                    case "tanJugFil" : num=4  ; break ;
-                    case "claJug"    : num=5  ; break ;
-                    case "torSulJug" : num=6  ; break ;
-                    case "calJugCla" : num=8  ; break ;
-                    case "calJug"    : num=9  ; break ;
-                    case "eva1"      : num=13 ; break ;
-                    case "eva2"      : num=14 ; break ;
-                    case "eva3"      : num=15 ; break ;
-                    case "eva4"      : num=16 ; break ;
-                    case "eva5"      : num=17 ; break ;
-                    case "tanMelCru" : num=18 ; break ;
-                    case "calMel"    : num=19 ; break ;
-                    case "claMel"    : num=21 ; break ;
-                    case "vasRea"    : num=22 ; break ;
-                    case "tac1"      : num=23 ; break ;
-                    case "tac2"      : num=24 ; break ;
-                    case "tac3"      : num=26 ; break ;
-                    case "tac4"      : num=28 ; break ;
-                    case "tanMel1"   : num=30 ; break ;
-                    case "tanMel2"   : num=31 ; break ;
-                    case "tanMel3"   : num=29 ; break ;
-                    case "tanFun1"   : num=32 ; break ;
-                    case "tanFun2"   : num=33 ; break ;
-                    case "tanMie1"   : num=34 ; break ;
-                    case "tanMie2"   : num=35 ; break ;
-                    case "tanMie3"   : num=36 ; break ;
-                    case "tanMie4"   : num=37 ; break ;
-                    case "tanPreMie" : num=38 ; break ;
-                    case "tanMieClM" : num=39 ; break ;
-                    case "sem1"      : num=40 ; break ;
-                    case "sem2"      : num=41 ; break ;
-                    case "sem3"      : num=42 ; break ;
-                    case "sem4"      : num=43 ; break ;
-                    case "recMag2"   : num=44 ; break ;
-                    case "recMas1"   : num=45 ; break ;
-                    case "recMas2"   : num=46 ; break ;
-                    case "recMas3"   : num=47 ; break ;
-                    case "recMas4"   : num=48 ; break ;
-                    case "recMas5"   : num=49 ; break ;
-                    case "recMas6"   : num=50 ; break ;
-                    case "aliCen1"   : num=51 ; break ;
-                    case "aliCen2"   : num=52 ; break ;
-                    case "aliCen3"   : num=53 ; break ;
-                    case "aliCen4"   : num=54 ; break ;
-                    case "recMag1"   : num=55 ; break ;
-                    case "recMag3"   : num=56 ; break ;
-                    case "recMag4"   : num=57 ; break ;
-                    case "recMie1"   : num=59 ; break ;
-                    case "recMie2"   : num=60 ; break ;
-                    case "recMie3"   : num=61 ; break ;
-                    case "recMie4"   : num=61 ; break ; //Duplicado de recMie3
-                    case "funVie1"   : num=63 ; break ;
-                    case "funNue2"   : num=64 ; break ;
-                    case "criVer"    : num=65 ; break ;
-                    case "tol50K1"   : num=66 ; break ;
-                    case "tol50K2"   : num=67 ; break ;
-                    case "tolFam"    : num=68 ; break ;
-                }
+        if  (temp==null)
+            return retorno
+        else{
+            def material = SqlUtil.instance.getMaterial(materialId)
+            if (material.campo){
+                def volumen1 = 0
+                def num      = mapMaterial[material.campo]
 
                 def l = [5, 6, 13,14,15,16,17,18,19,21,22, 29,30,31,32,33,34,35,36,37,38,39, 51,52,53,54,55,56,57, 59,60,61, 63,64] // Para no usar los engorrosos "if"
                 def ind1 = l.find {it==num} ? "VTot" : "Vt"
@@ -113,30 +110,31 @@ class StockProcesoDetalle1Action extends OnChangePropertyBaseAction{
                 def txtDet   = "StockFabricaDetalle"
                 def detalle  = "${txtDet}${num}"
 
-                def factor   = new FactorVolumen().getValor(temp, eq+1)
-
                 switch(num){
                     case 9:
-                        volumen1 = suma(9, 12, objPadre, txtDet, ind1); break;
+                        volumen1 = suma(diaTrabajoId, 9, 12, objPadre, txtDet, ind1); break;
                     case 19:
-                        volumen1 = suma(19, 20, objPadre, txtDet, ind1); break;
+                        volumen1 = suma(diaTrabajoId, 19, 20, objPadre, txtDet, ind1); break;
                     case 24:
-                        volumen1 = suma(24, 25, objPadre, txtDet, ind1); break;
+                        volumen1 = suma(diaTrabajoId, 24, 25, objPadre, txtDet, ind1); break;
                     case 26:
-                        volumen1 = suma(26, 27, objPadre, txtDet, ind1); break;
+                        volumen1 = suma(diaTrabajoId, 26, 27, objPadre, txtDet, ind1); break;
                     case 28:
-                        volumen1 = suma(28, 29, objPadre, txtDet, ind1); break;
+                        volumen1 = suma(diaTrabajoId, 28, 29, objPadre, txtDet, ind1); break;
                     default:
                         volumen1 = SqlUtil.instance.getDetValorPorDTI(diaTrabajoId, objPadre, detalle, ind1); break;
                 }
                 
-                def (porcBrix, densidad) = [0, 0]
+                def (porcBrix, densidad, factor, eq) = [0, 0, 0, 0]
                 if (material.campo=="tol50K1" || material.campo=="tol50K2" || material.campo=="tolFam"){
                     porcBrix = 100 - SqlUtil.instance.getValorCampo(diaTrabajoId, "AzucarGranel", "humedad")
-                    densidad = 906.15199 
+                    densidad = 906.152
                     factor   = 1
                 }else{
                     porcBrix = SqlUtil.instance.getDetValorPorDTI(diaTrabajoId, objPadre, detalle, "Brix")
+                    // TODO: Validar
+                    eq       = (int)new TablaBxEq().getEq(porcBrix+1)
+                    factor   = new FactorVolumen().getValor(temp, eq+1)
                     densidad = new BrixDensidadWp().getP(porcBrix)
                 }
                 
@@ -181,19 +179,45 @@ class StockProcesoDetalle1Action extends OnChangePropertyBaseAction{
                         factor   = new FactorVolumen().getValor(temp, eq+1)
                     }
                 }
-
-                getView().setValue("volumen1" , volumen1?:null)
-                getView().setValue("volumen2" , volumen2?:null)
-                getView().setValue("peso"     , peso?:null)
-                getView().setValue("porcBrix" , porcBrix?:null)
-                getView().setValue("tonBrix"  , tonBrix?:null)
-                getView().setValue("porcSac"  , porcSac?:null)
-                getView().setValue("tonSac"   , tonSac?:null)
-                getView().setValue("pureza"   , pureza?:null)
-                getView().setValue("densidad" , densidad?:null)
-                getView().setValue("factor"   , factor?:null)
-            
+                // myMap.'firstName' = 'John'
+                retorno."eq"       = eq       ?: 0
+                retorno."volumen1" = volumen1 ?: 0
+                retorno."volumen2" = volumen2 ?: 0
+                retorno."peso"     = peso     ?: 0
+                retorno."porcBrix" = porcBrix ?: 0
+                retorno."tonBrix"  = tonBrix  ?: 0
+                retorno."porcSac"  = porcSac  ?: 0
+                retorno."tonSac"   = tonSac   ?: 0
+                retorno."pureza"   = pureza   ?: 0
+                retorno."densidad" = densidad ?: 0
+                retorno."factor"   = factor   ?: 0
             }
         }
+        
+        return retorno
+    }
+
+    // No obtengo los valores, solo disparo la acción para realizar los cálculos
+    void execute() throws Exception{
+
+        def diaTrabajoId = (String)getView().getRoot().getValue("diaTrabajo.id")
+        def materialId   = (String)getView().getValue("material.id")
+        def temp         = getView().getValue("temp")
+        // def eq           = getView().getValue("eq")
+                
+        def mapa = getMapa(diaTrabajoId, materialId, temp)
+        mapa.each{ getView().setValue(it.key, it.value ?: null) } 
+
+        // Asignar valores en los campos de texto
+        // getView().setValue("volumen1" , volumen1?:null)
+        // getView().setValue("volumen2" , volumen2?:null)
+        // getView().setValue("peso"     , peso?:null)
+        // getView().setValue("porcBrix" , porcBrix?:null)
+        // getView().setValue("tonBrix"  , tonBrix?:null)
+        // getView().setValue("porcSac"  , porcSac?:null)
+        // getView().setValue("tonSac"   , tonSac?:null)
+        // getView().setValue("pureza"   , pureza?:null)
+        // getView().setValue("densidad" , densidad?:null)
+        // getView().setValue("factor"   , factor?:null)
     }
 }

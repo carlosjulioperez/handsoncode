@@ -1,5 +1,6 @@
 package ec.carper.ingenio.test
  
+import ec.carper.ingenio.actions.*
 import ec.carper.ingenio.model.*
 import ec.carper.ingenio.util.*
 
@@ -1647,10 +1648,9 @@ class QueryTest extends ModuleTestBase {
         //     println "${it.horaSD} ${it.horaSH} ${it.brix} ${it.porcSacarosa} ${it.pureza}"
         // }
         
-        println ">> " + new TablaBxEq().getEq(14.22)
+        println ">>> eq = " + new TablaBxEq().getEq(14.22)
         // println Util.instance.mapMaterial["tanJugDil"]
-
-
+        println ">>> num = " + new StockProcesoDetalle1Action().mapMaterial["tanJugDil"]
     }
 
     /*

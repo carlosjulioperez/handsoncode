@@ -9,11 +9,12 @@ import org.openxava.model.*
 
 @Entity
 @View(members="""#
-    orden,material,temp;
+    orden,material;
+    temp,eq;
     volumen1,volumen2,peso;
-    porcBrix,eq,tonBrix;
+    porcBrix,tonBrix;
     porcSac, tonSac;
-    pureza,densidad,factor,modificable
+    pureza,densidad,factor
 """)
 class StockProcesoDetalle1 extends Identifiable{
    
@@ -41,7 +42,7 @@ class StockProcesoDetalle1 extends Identifiable{
     @DisplaySize(6) //@ReadOnly
     BigDecimal porcBrix
 
-    @OnChange(StockProcesoDetalle1Action.class) @Column(length=3)
+    @OnChange(StockProcesoDetalle1Action.class) @Column(length=3) @ReadOnly
     int eq
 
     @DisplaySize(6) //@ReadOnly
