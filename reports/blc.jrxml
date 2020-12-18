@@ -29,185 +29,167 @@
 		<defaultValueExpression ><![CDATA["./"]]></defaultValueExpression>
 	</parameter>
 
-	<field name="qqTotalesDia" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[qqTotalesDia]]></fieldDescription>
-	</field>
-	<field name="detalle11" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle11]]></fieldDescription>
-	</field>
-	<field name="detalle16" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle16]]></fieldDescription>
-	</field>
-	<field name="tiempoPerdidoTotal" class="java.lang.String">
-		<fieldDescription><![CDATA[tiempoPerdidoTotal]]></fieldDescription>
-	</field>
-	<field name="detalle6" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle6]]></fieldDescription>
-	</field>
-	<field name="g250" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[g250]]></fieldDescription>
-	</field>
-	<field name="k5" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[k5]]></fieldDescription>
-	</field>
-	<field name="metaClass" class="groovy.lang.MetaClass">
-		<fieldDescription><![CDATA[metaClass]]></fieldDescription>
-	</field>
-	<field name="fldTiempoPerdidoTotal" class="java.lang.String">
-		<fieldDescription><![CDATA[fldTiempoPerdidoTotal]]></fieldDescription>
-	</field>
-	<field name="k2" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[k2]]></fieldDescription>
-	</field>
-	<field name="g500" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[g500]]></fieldDescription>
-	</field>
-	<field name="sumGranel" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[sumGranel]]></fieldDescription>
-	</field>
-	<field name="promTurbiedad" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[promTurbiedad]]></fieldDescription>
-	</field>
-	<field name="fldPorcTot" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[fldPorcTot]]></fieldDescription>
-	</field>
-	<field name="sumK5" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[sumK5]]></fieldDescription>
-	</field>
-	<field name="itemsCargados" class="java.lang.Boolean">
-		<fieldDescription><![CDATA[itemsCargados]]></fieldDescription>
-	</field>
-	<field name="detalle13" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle13]]></fieldDescription>
-	</field>
-	<field name="descripcion" class="java.lang.String">
-		<fieldDescription><![CDATA[descripcion]]></fieldDescription>
-	</field>
-	<field name="detalle3" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle3]]></fieldDescription>
-	</field>
-	<field name="fldRataMolienda" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[fldRataMolienda]]></fieldDescription>
-	</field>
-	<field name="calG250" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[calG250]]></fieldDescription>
-	</field>
-	<field name="detalle4" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle4]]></fieldDescription>
-	</field>
-	<field name="detalle102" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle102]]></fieldDescription>
-	</field>
-	<field name="granel" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[granel]]></fieldDescription>
-	</field>
-	<field name="fraccionTiempo" class="java.lang.String">
-		<fieldDescription><![CDATA[fraccionTiempo]]></fieldDescription>
-	</field>
-	<field name="calG500" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[calG500]]></fieldDescription>
-	</field>
-	<field name="tiempoMoliendaReal" class="java.lang.String">
-		<fieldDescription><![CDATA[tiempoMoliendaReal]]></fieldDescription>
-	</field>
-	<field name="fldFraccionTiempo" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[fldFraccionTiempo]]></fieldDescription>
-	</field>
-	<field name="sumK1" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[sumK1]]></fieldDescription>
+	<field name="turbiedad" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[turbiedad]]></fieldDescription>
 	</field>
 	<field name="porcTot" class="java.lang.String">
 		<fieldDescription><![CDATA[porcTot]]></fieldDescription>
 	</field>
+	<field name="detalle101" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle101]]></fieldDescription>
+	</field>
+	<field name="sumK1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[sumK1]]></fieldDescription>
+	</field>
+	<field name="qqTotalesDia" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[qqTotalesDia]]></fieldDescription>
+	</field>
 	<field name="detalle21" class="java.util.Collection">
 		<fieldDescription><![CDATA[detalle21]]></fieldDescription>
 	</field>
-	<field name="rataMolienda" class="java.lang.String">
-		<fieldDescription><![CDATA[rataMolienda]]></fieldDescription>
-	</field>
-	<field name="arroba2" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[arroba2]]></fieldDescription>
-	</field>
-	<field name="calQqTotalesDia" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[calQqTotalesDia]]></fieldDescription>
-	</field>
-	<field name="detalle8" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle8]]></fieldDescription>
-	</field>
-	<field name="promColor" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[promColor]]></fieldDescription>
+	<field name="calG250" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[calG250]]></fieldDescription>
 	</field>
 	<field name="detalle1" class="java.util.Collection">
 		<fieldDescription><![CDATA[detalle1]]></fieldDescription>
 	</field>
-	<field name="detalle9" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle9]]></fieldDescription>
+	<field name="detalle11" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle11]]></fieldDescription>
 	</field>
-	<field name="sumArroba" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[sumArroba]]></fieldDescription>
-	</field>
-	<field name="detalle14" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle14]]></fieldDescription>
-	</field>
-	<field name="detalle15" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle15]]></fieldDescription>
-	</field>
-	<field name="color" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[color]]></fieldDescription>
+	<field name="detalle8" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle8]]></fieldDescription>
 	</field>
 	<field name="detalle12" class="java.util.Collection">
 		<fieldDescription><![CDATA[detalle12]]></fieldDescription>
 	</field>
-	<field name="detalle22" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle22]]></fieldDescription>
+	<field name="detalle3" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle3]]></fieldDescription>
 	</field>
-	<field name="calArroba" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[calArroba]]></fieldDescription>
-	</field>
-	<field name="turbiedad" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[turbiedad]]></fieldDescription>
-	</field>
-	<field name="sumK2" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[sumK2]]></fieldDescription>
-	</field>
-	<field name="g5002" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[g5002]]></fieldDescription>
-	</field>
-	<field name="detalle101" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle101]]></fieldDescription>
-	</field>
-	<field name="g2502" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[g2502]]></fieldDescription>
-	</field>
-	<field name="diaTrabajo" class="ec.carper.ingenio.model.DiaTrabajo">
-		<fieldDescription><![CDATA[diaTrabajo]]></fieldDescription>
-	</field>
-	<field name="detalle17" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle17]]></fieldDescription>
-	</field>
-	<field name="arroba" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[arroba]]></fieldDescription>
-	</field>
-	<field name="detalle7" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle7]]></fieldDescription>
-	</field>
-	<field name="sumG250" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[sumG250]]></fieldDescription>
-	</field>
-	<field name="fldTiempoMoliendaReal" class="java.lang.String">
-		<fieldDescription><![CDATA[fldTiempoMoliendaReal]]></fieldDescription>
-	</field>
-	<field name="sumG500" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[sumG500]]></fieldDescription>
-	</field>
-	<field name="detalle5" class="java.util.Collection">
-		<fieldDescription><![CDATA[detalle5]]></fieldDescription>
+	<field name="detalle15" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle15]]></fieldDescription>
 	</field>
 	<field name="k1" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[k1]]></fieldDescription>
 	</field>
+	<field name="k5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[k5]]></fieldDescription>
+	</field>
+	<field name="k2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[k2]]></fieldDescription>
+	</field>
+	<field name="tiempoPerdidoTotal" class="java.lang.String">
+		<fieldDescription><![CDATA[tiempoPerdidoTotal]]></fieldDescription>
+	</field>
+	<field name="detalle14" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle14]]></fieldDescription>
+	</field>
+	<field name="g5002" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[g5002]]></fieldDescription>
+	</field>
+	<field name="tiempoMoliendaReal" class="java.lang.String">
+		<fieldDescription><![CDATA[tiempoMoliendaReal]]></fieldDescription>
+	</field>
+	<field name="detalle16" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle16]]></fieldDescription>
+	</field>
+	<field name="g250" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[g250]]></fieldDescription>
+	</field>
+	<field name="rataMolienda" class="java.lang.String">
+		<fieldDescription><![CDATA[rataMolienda]]></fieldDescription>
+	</field>
+	<field name="detalle4" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle4]]></fieldDescription>
+	</field>
+	<field name="detalle6" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle6]]></fieldDescription>
+	</field>
+	<field name="arroba2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[arroba2]]></fieldDescription>
+	</field>
+	<field name="granel" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[granel]]></fieldDescription>
+	</field>
+	<field name="detalle13" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle13]]></fieldDescription>
+	</field>
+	<field name="detalle102" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle102]]></fieldDescription>
+	</field>
+	<field name="diaTrabajo" class="ec.carper.ingenio.model.DiaTrabajo">
+		<fieldDescription><![CDATA[diaTrabajo]]></fieldDescription>
+	</field>
+	<field name="detalle7" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle7]]></fieldDescription>
+	</field>
+	<field name="fraccionTiempo" class="java.lang.String">
+		<fieldDescription><![CDATA[fraccionTiempo]]></fieldDescription>
+	</field>
+	<field name="promTurbiedad" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[promTurbiedad]]></fieldDescription>
+	</field>
+	<field name="arroba" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[arroba]]></fieldDescription>
+	</field>
+	<field name="sumK5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[sumK5]]></fieldDescription>
+	</field>
+	<field name="sumGranel" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[sumGranel]]></fieldDescription>
+	</field>
+	<field name="calG500" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[calG500]]></fieldDescription>
+	</field>
+	<field name="consultarParo" class="java.util.List">
+		<fieldDescription><![CDATA[consultarParo]]></fieldDescription>
+	</field>
+	<field name="detalle22" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle22]]></fieldDescription>
+	</field>
+	<field name="calQqTotalesDia" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[calQqTotalesDia]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[descripcion]]></fieldDescription>
+	</field>
+	<field name="sumG500" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[sumG500]]></fieldDescription>
+	</field>
 	<field name="id" class="java.lang.String">
 		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="detalle5" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle5]]></fieldDescription>
+	</field>
+	<field name="color" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[color]]></fieldDescription>
+	</field>
+	<field name="g2502" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[g2502]]></fieldDescription>
+	</field>
+	<field name="sumArroba" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[sumArroba]]></fieldDescription>
+	</field>
+	<field name="sumG250" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[sumG250]]></fieldDescription>
+	</field>
+	<field name="g500" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[g500]]></fieldDescription>
+	</field>
+	<field name="detalle9" class="java.util.Collection">
+		<fieldDescription><![CDATA[detalle9]]></fieldDescription>
+	</field>
+	<field name="calArroba" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[calArroba]]></fieldDescription>
+	</field>
+	<field name="itemsCargados" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[itemsCargados]]></fieldDescription>
+	</field>
+	<field name="promColor" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[promColor]]></fieldDescription>
+	</field>
+	<field name="sumK2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[sumK2]]></fieldDescription>
 	</field>
 
 		<background>
@@ -324,25 +306,10 @@ TEL: 042-762454]]></text>
 					<reportElement
 						x="392"
 						y="1"
-						width="105"
+						width="147"
 						height="15"
 						key="subreport-2"/>
-					<subreportParameter  name="TPT">
-						<subreportParameterExpression><![CDATA[$F{fldTiempoPerdidoTotal}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter  name="TMR">
-						<subreportParameterExpression><![CDATA[$F{fldTiempoMoliendaReal}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter  name="FT">
-						<subreportParameterExpression><![CDATA[$F{fldFraccionTiempo}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter  name="RM">
-						<subreportParameterExpression><![CDATA[$F{fldRataMolienda}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter  name="PPT">
-						<subreportParameterExpression><![CDATA[$F{fldPorcTot}]]></subreportParameterExpression>
-					</subreportParameter>
-					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detalle17})]]></dataSourceExpression>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{consultarParo})]]></dataSourceExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "blc_d17.jasper"]]></subreportExpression>
 				</subreport>
 				<staticText>

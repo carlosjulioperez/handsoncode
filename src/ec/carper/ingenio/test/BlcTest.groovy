@@ -10,13 +10,13 @@ class BlcTest extends ModuleTestBase {
 
     void test() throws Exception {
         login("admin", "admin")
-        crear()
-        // consultar()
+        // crear()
+        consultar()
     }
     
     void consultar(){
-        setConditionComparators(["contains_comparator"])
-        setConditionValues(["principal"])
+        setConditionValues     ( [ "", "DIA 5"] )
+        setConditionComparators( [ "=", "contains_comparator"] )
         execute ("List.filter") 
         execute ("List.viewDetail", "row=0")
         execute ("Blc.consultarDatos")

@@ -24,7 +24,7 @@ class BlcDetalle12 extends Identifiable{
     Indicador indicador
     
     //@ReadOnly(forViews="DEFAULT")
-    @Digits(integer=10, fraction=3) @DisplaySize(6) @ReadOnly 
+    @Digits(integer=10, fraction=3) @DisplaySize(6) //@ReadOnly 
     BigDecimal unidades
  
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @ReadOnly
@@ -33,7 +33,7 @@ class BlcDetalle12 extends Identifiable{
     @Digits(integer=10, fraction=3) @DisplaySize(6)
     BigDecimal acumulado
     
-    @Digits(integer=10, fraction=3) @DisplaySize(6) @ReadOnly
+    @Digits(integer=10, fraction=3) @DisplaySize(6) //@ReadOnly
     BigDecimal totalZafra
  
     @ManyToOne(fetch=FetchType.LAZY) @DescriptionsList @ReadOnly

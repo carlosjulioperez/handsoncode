@@ -116,7 +116,7 @@ class Util{
             // println "dateF: ${dateF}"
             
             def duration = TimeCategory.minus(dateF, dateI)
-            println "duration: ${duration}"
+            // println "duration: ${duration}"
 
             //"${duration.hours}".padLeft(2, '0' )
             valor = String.format("%02d:%02d:%02d", duration.hours, duration.minutes, duration.seconds )

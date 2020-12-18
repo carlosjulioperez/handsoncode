@@ -59,6 +59,6 @@ class PhDetalle extends Identifiable {
     @Stereotype("DATETIME") @ReadOnly
     java.sql.Timestamp horaTJClaro
 
-    @ReadOnly @DisplaySize(6)
+    @DisplaySize(6) //@ReadOnly
     BigDecimal tJClaro     
 }

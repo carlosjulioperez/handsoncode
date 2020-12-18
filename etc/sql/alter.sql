@@ -56,7 +56,13 @@
 -- ALTER TABLE ingenio.ingenio.azucargranel ADD itemsporhoracreados bool NULL;
 -- UPDATE ingenio.ingenio.azucargranel SET itemsporhoracreados=true;
 
-ALTER TABLE ingenio.ingenio.cto24hdetalle5 ALTER COLUMN pmtra       TYPE numeric(19,4);
-ALTER TABLE ingenio.ingenio.cto24hdetalle5 ALTER COLUMN pcrisol     TYPE numeric(19,4);
-ALTER TABLE ingenio.ingenio.cto24hdetalle5 ALTER COLUMN pcricen     TYPE numeric(19,4);
-ALTER TABLE ingenio.ingenio.cto24hdetalle5 ALTER COLUMN porccenizas TYPE numeric(19,2);
+-- ALTER TABLE ingenio.ingenio.cto24hdetalle5 ALTER COLUMN pmtra       TYPE numeric(19,4);
+-- ALTER TABLE ingenio.ingenio.cto24hdetalle5 ALTER COLUMN pcrisol     TYPE numeric(19,4);
+-- ALTER TABLE ingenio.ingenio.cto24hdetalle5 ALTER COLUMN pcricen     TYPE numeric(19,4);
+-- ALTER TABLE ingenio.ingenio.cto24hdetalle5 ALTER COLUMN porccenizas TYPE numeric(19,2);
+
+ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldtiempoperdidototal;
+ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldtiempomoliendareal;
+ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldfracciontiempo;
+ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldratamolienda;
+ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldporctot;

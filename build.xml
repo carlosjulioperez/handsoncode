@@ -244,8 +244,6 @@
 			<AntMenuItem name="Exit"          loopexit="true"/>
         </antmenu>
 		-->
-
 	</target>
-
 
 </project>

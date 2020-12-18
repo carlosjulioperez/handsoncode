@@ -24,7 +24,7 @@ class Paro extends Formulario {
     
     @ElementCollection @ReadOnly
     @ListProperties(""" area.descripcion,totalParo """)
-    Collection<ParoTotal> total 
+    Collection<ParoTotal> total
     
     String totalParada
     

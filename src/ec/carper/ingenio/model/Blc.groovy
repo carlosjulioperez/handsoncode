@@ -17,7 +17,7 @@ import static org.openxava.jpa.XPersistence.*
     diaTrabajo, descripcion;
     titDatDia { detalle1 }
     titTie { 
-        detalle17
+        consultarParo
     }
     titVarPri {
         cana { 
@@ -58,30 +58,6 @@ class Blc extends Formulario {
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL)
     @XOrderBy("orden") @EditOnly
     Collection<BlcDetalle1>detalle1
-    
-    @Column(length=8)
-    String fldTiempoPerdidoTotal
-
-    @Column(length=8)
-    String fldTiempoMoliendaReal
-
-    BigDecimal fldFraccionTiempo
-
-    BigDecimal fldRataMolienda
-
-    BigDecimal fldPorcTot
-
-    // @ElementCollection @ReadOnly @Transient
-    // @ListProperties(""" 
-    //     area.descripcion,
-    //     totalParo [ blc.tiempoPerdidoTotal, blc.tiempoMoliendaReal, blc.fraccionTiempo, blc.rataMolienda, blc.porcTot ] """)
-    // Collection<ParoTotal> consultaParo 
-
-    @ElementCollection @ReadOnly
-    @ListProperties(""" 
-        area.descripcion,
-        totalParo [ blc.tiempoPerdidoTotal, blc.tiempoMoliendaReal, blc.fraccionTiempo, blc.rataMolienda, blc.porcTot ] """)
-    Collection<BlcDetalle17> detalle17
     
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @ReadOnly
     Collection<BlcDetalle21> detalle21
@@ -128,7 +104,7 @@ class Blc extends Formulario {
         arroba [ blc.sumArroba , blc.calArroba ] """)
     Collection<BlcDetalle11> detalle11
 
-    @EditAction("Blc.editDetail12")
+    // @EditAction("Blc.editDetail12")
     @OneToMany (mappedBy="blc", cascade=CascadeType.ALL) @XOrderBy("orden") @EditOnly
     Collection<BlcDetalle12> detalle12
 
@@ -312,7 +288,6 @@ class Blc extends Formulario {
 
     void consultarDatos() throws ValidationException{
         try{ 
-            consultarParoTotal()
             consultarMetLabCan()
             consultarMetBal()
             consultarBagazo()
@@ -331,21 +306,30 @@ class Blc extends Formulario {
         }
     }
     
-    def consultarParoTotal(){
-        detalle17 = new ArrayList<BlcDetalle17>() //Inicializar el detalle
-        def lista = getManager().createQuery("FROM Paro where diaTrabajo.id = :id")
+    // 1a
+    // @Transient @ReadOnly
+    // Collection<BlcDetalle17> getConsultarParo(){
+
+    // TODO: Consulta de elementos
+    @ViewAction("") @ReadOnly
+    List<BlcDetalle17> getConsultarParo(){
+        def lista    = []
+        def consulta = getManager().createQuery("FROM Paro where diaTrabajo.id = :id")
                                 .setParameter("id", diaTrabajo.id).resultList
-        lista.each{
+        consulta.each{
             it.total.each{
-                detalle17.add( new BlcDetalle17 (area: it.area, totalParo: it.totalParo) )
+                lista << new BlcDetalle17(area: it.area.descripcion, totalParo: it.totalParo)
             }
         }
-        // Actualizar los totales del paro en la cabecera
-        fldTiempoPerdidoTotal = tiempoPerdidoTotal
-        fldTiempoMoliendaReal = tiempoMoliendaReal
-        fldFraccionTiempo     = new BigDecimal(fraccionTiempo)
-        fldRataMolienda       = new BigDecimal(rataMolienda)
-        fldPorcTot            = new BigDecimal(porcTot)
+       
+        lista << new BlcDetalle17 (area: "Tiempo Perdido Total" , totalParo: tiempoPerdidoTotal )
+        lista << new BlcDetalle17 (area: "Tiempo Molienda Real" , totalParo: tiempoMoliendaReal )
+        lista << new BlcDetalle17 (area: "Fracción de Tiempo"   , totalParo: fraccionTiempo )
+        lista << new BlcDetalle17 (area: "Rata de Molienda"     , totalParo: rataMolienda )
+        lista << new BlcDetalle17 (area: "% T. P. TOT. "        , totalParo: porcTot )
+
+        // println ">>> lista: ${lista}"
+        return lista
     }
 
     def consultarMetLabCan(){
