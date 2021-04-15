@@ -1,0 +1,11 @@
+@startmindmap
++ Laboratorio
+-- Básculas
+-- Elaboración
+--- Geyson Ruiz
+--- Rommel Pinto
+-- Molinos
+--- Jorge Paredes
+-- Generación
+--- Roberto Maldonado
+@endmindmap
