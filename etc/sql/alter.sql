@@ -61,8 +61,10 @@
 -- ALTER TABLE ingenio.ingenio.cto24hdetalle5 ALTER COLUMN pcricen     TYPE numeric(19,4);
 -- ALTER TABLE ingenio.ingenio.cto24hdetalle5 ALTER COLUMN porccenizas TYPE numeric(19,2);
 
-ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldtiempoperdidototal;
-ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldtiempomoliendareal;
-ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldfracciontiempo;
-ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldratamolienda;
-ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldporctot;
+-- ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldtiempoperdidototal;
+-- ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldtiempomoliendareal;
+-- ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldfracciontiempo;
+-- ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldratamolienda;
+-- ALTER TABLE ingenio.ingenio.blc DROP COLUMN fldporctot;
+
+ALTER TABLE ingenio.ingenio.diatrabajo ADD activo bool NULL;

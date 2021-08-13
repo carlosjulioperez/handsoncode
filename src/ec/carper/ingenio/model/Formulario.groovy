@@ -12,7 +12,8 @@ class Formulario extends Identifiable{
     @ManyToOne(fetch=FetchType.LAZY)
     // @DescriptionsList(descriptionProperties="descripcion", condition="\${cerrado}='false'")
     // @DescriptionsList(condition="\${cerrado}='false'")
-    @DescriptionsList(order="\${fecha}")
+    // @DescriptionsList(order="\${fecha}")
+    @DescriptionsList(condition="\${activo}='true'", order="\${fecha}")
     @OnChange(FormularioDiaTrabajoAction.class)
     @NoCreate @NoModify @Required    
     DiaTrabajo diaTrabajo

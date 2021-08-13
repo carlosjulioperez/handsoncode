@@ -1,6 +1,12 @@
 TODO
 	Crear paquete laboratorio
 
+2021-08-12
+	ALTER TABLE ingenio.ingenio.diatrabajo ADD activo bool NULL;
+	UPDATE ingenio.ingenio.diatrabajo SET activo = FALSE;
+	Agregar "activo" en src/ec/carper/ingenio/model/DiaTrabajo.groovy
+	Agregar [ @DescriptionsList(condition="\${activo}='true'", order="\${fecha}") ] en src/ec/carper/ingenio/model/Formulario.groovy
+
 2020-10-26 
 	BlcReportAction
 

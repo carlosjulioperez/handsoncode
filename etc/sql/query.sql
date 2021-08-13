@@ -33,11 +33,11 @@
 -- blc principal: ff80808174e4c5470174e4c9d1bf0002, diatrabajo_id: 
 -- blc anterior : ff80808174d572200174d5b05424014d, diatrabajo_id: ff80808174d2eb750174d3096a920000
 
-SELECT   orden, m.id, m.descripcion, m.campo, valor, cantidad, acumulado
-FROM     ingenio.blcdetalle1 d, ingenio.material m
-WHERE    d.material_id = m.id AND
-         d.blc_id='ff80808175cd9e8b0175cdbb8df70085'
-ORDER BY orden;
+-- SELECT   orden, m.id, m.descripcion, m.campo, valor, cantidad, acumulado
+-- FROM     ingenio.blcdetalle1 d, ingenio.material m
+-- WHERE    d.material_id = m.id AND
+--          d.blc_id='ff80808175cd9e8b0175cdbb8df70085'
+-- ORDER BY orden;
 
 --
 -- SELECT   orden, m.id, m.descripcion, m.campo, valor
@@ -95,3 +95,5 @@ ORDER BY orden;
 -- UPDATE ingenio.ingenio.blcdetalle1 SET valor = 7672.95 WHERE "id" = 'ff80808174d572200174d5b05a450157';
 -- UPDATE ingenio.ingenio.blcdetalle1 SET valor = 1719.97 WHERE "id" = 'ff80808174d572200174d5b05a450158';
 -- UPDATE ingenio.ingenio.blcdetalle1 SET valor = 1435.00 WHERE "id" = 'ff80808174d572200174d5b05a45015a';
+
+select * from diatrabajo;

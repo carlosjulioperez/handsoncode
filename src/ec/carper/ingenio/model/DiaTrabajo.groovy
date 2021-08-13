@@ -38,5 +38,7 @@ class DiaTrabajo extends Identifiable{
 
     @Required
     boolean cerrado
+    
+    boolean activo 
 
 }

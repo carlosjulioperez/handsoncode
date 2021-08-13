@@ -7,3 +7,5 @@
 
 -- DELETE FROM ingenio.stockprocesodetalle1;
 -- DELETE FROM ingenio.stockproceso;
+
+UPDATE ingenio.ingenio.diatrabajo SET activo = FALSE;

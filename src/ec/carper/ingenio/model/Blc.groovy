@@ -314,19 +314,21 @@ class Blc extends Formulario {
     @ViewAction("") @ReadOnly
     List<BlcDetalle17> getConsultarParo(){
         def lista    = []
-        def consulta = getManager().createQuery("FROM Paro where diaTrabajo.id = :id")
-                                .setParameter("id", diaTrabajo.id).resultList
-        consulta.each{
-            it.total.each{
-                lista << new BlcDetalle17(area: it.area.descripcion, totalParo: it.totalParo)
+        if (diaTrabajo){
+            def consulta = getManager().createQuery("FROM Paro where diaTrabajo.id = :id")
+                                    .setParameter("id", diaTrabajo.id).resultList
+            consulta.each{
+                it.total.each{
+                    lista << new BlcDetalle17(area: it.area.descripcion, totalParo: it.totalParo)
+                }
             }
+        
+            lista << new BlcDetalle17 (area: "Tiempo Perdido Total" , totalParo: tiempoPerdidoTotal )
+            lista << new BlcDetalle17 (area: "Tiempo Molienda Real" , totalParo: tiempoMoliendaReal )
+            lista << new BlcDetalle17 (area: "Fracción de Tiempo"   , totalParo: fraccionTiempo )
+            lista << new BlcDetalle17 (area: "Rata de Molienda"     , totalParo: rataMolienda )
+            lista << new BlcDetalle17 (area: "% T. P. TOT. "        , totalParo: porcTot )
         }
-       
-        lista << new BlcDetalle17 (area: "Tiempo Perdido Total" , totalParo: tiempoPerdidoTotal )
-        lista << new BlcDetalle17 (area: "Tiempo Molienda Real" , totalParo: tiempoMoliendaReal )
-        lista << new BlcDetalle17 (area: "Fracción de Tiempo"   , totalParo: fraccionTiempo )
-        lista << new BlcDetalle17 (area: "Rata de Molienda"     , totalParo: rataMolienda )
-        lista << new BlcDetalle17 (area: "% T. P. TOT. "        , totalParo: porcTot )
 
         // println ">>> lista: ${lista}"
         return lista
