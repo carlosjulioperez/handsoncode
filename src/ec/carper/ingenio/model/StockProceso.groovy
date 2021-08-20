@@ -21,6 +21,7 @@ import static org.openxava.jpa.XPersistence.*
 """)
 class StockProceso extends Formulario {
 
+    @OnChange(StockProcesoShowHideCargarItemsAction.class)
     boolean itemsCargados
     
     // Usado para pruebas solamente

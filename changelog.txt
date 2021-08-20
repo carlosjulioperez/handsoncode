@@ -1,6 +1,13 @@
 TODO
 	Crear paquete laboratorio
 
+2021-08-16
+	Stock de Proceso: A veces no aparece el botón "Cargar Items"
+	Creación de StockProcesoShowHideCargarItemsAction
+
+2021-08-14
+	Hacer editable campo BLC: SOLIDOS INSOL
+
 2021-08-12
 	ALTER TABLE ingenio.ingenio.diatrabajo ADD activo bool NULL;
 	UPDATE ingenio.ingenio.diatrabajo SET activo = FALSE;
