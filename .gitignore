@@ -1,0 +1,18 @@
+**/.classpath
+**/.project
+**/.settings/
+
+**/*.swp
+**/.DS_Store
+**/.DS_Store?
+**/*~
+**/target/
+
+# swap
+**/[._]*.s[a-v][a-z]
+**/[._]*.sw[a-p]
+**/[._]s[a-v][a-z]
+**/[._]sw[a-p]
+
+act.sh
+/.metadata/
