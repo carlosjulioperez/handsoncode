@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ### Delete
-DELETE http://localhost:8080/customer/delete/6
+DELETE http://localhost:8080/customer/delete/1
 
 ### Get all
 GET http://localhost:8080/customer/all
@@ -29,8 +29,8 @@ Content-Type: application/json
     "shippingAddresses": []
 }
 
-###
-PUT http://localhost:8080/customer/update/5
+### Update
+PUT http://localhost:8080/customer/update/3
 Content-Type: application/json
 
 {
@@ -39,5 +39,3 @@ Content-Type: application/json
     "email": "jcverao@gmail.com",
     "shippingAddresses": []
 }
-
-

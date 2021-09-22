@@ -48,7 +48,6 @@ public class CustomerController {
     @PostMapping("/add")
     public ResponseEntity<MessageResponse> addCustomer( @RequestBody CustomerRequest customerRequest){
         MessageResponse newCustomer = customerService.createCustomer(customerRequest);
-        System.out.println(customerRequest.toString());
         return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
     }
 

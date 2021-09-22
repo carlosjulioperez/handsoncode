@@ -14,6 +14,7 @@ import ec.carper.oms.data.model.Customer;
 /**
  * Test class
  * https://www.tutorialspoint.com/spring_boot/spring_boot_rest_controller_unit_test.htm
+ * https://stackoverflow.com/questions/65520264/how-to-test-json-structure-in-spring-boot
  */
 public class CustomerServiceControllerTest extends AbstractTest {
     @Override
@@ -51,10 +52,37 @@ public class CustomerServiceControllerTest extends AbstractTest {
 
         int status = mvcResult.getResponse().getStatus();
         assertEquals(201, status);
+        
         String content = mvcResult.getResponse().getContentAsString();
-
         String expectedResponse = "{\"message\":\"New Customer created successfully\"}";
         assertEquals(content, expectedResponse);
     }
 
+    @Test
+    public void updateCustomer() throws Exception {
+        String uri = "/customer/update/1";
+        Customer customer = new Customer();
+        customer.setName("James Bond AKA 007");
+        customer.setPhone("+01 123456 789");
+        customer.setEmail("jamesbond@theagents.com");
+        String inputJson = super.mapToJson(customer);
+        MvcResult mvcResult = mvc.perform(
+            MockMvcRequestBuilders.put(uri).contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson))
+            .andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(200, status);
+
+        String content = mvcResult.getResponse().getContentAsString();
+        String expectedResponse = "{\"id\":1,\"name\":\"James Bond AKA 007\",\"phone\":\"+01 123456 789\",\"email\":\"jamesbond@theagents.com\",\"shippingAddresses\":null}";
+        assertEquals(content, expectedResponse);
+    }
+
+    // @Test
+    // public void deleteCustomer() throws Exception {
+    //     String uri = "/customer/delete/1";
+    //     MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete(uri)).andReturn();
+    //     int status = mvcResult.getResponse().getStatus();
+    //     assertEquals(200, status);
+    // }
 }

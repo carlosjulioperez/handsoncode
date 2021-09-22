@@ -49,7 +49,7 @@ public class Orders {
   
   @JoinColumn(name = "FK_SHIPPING_ADDRESS", nullable = false)
   @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  private ShippingAddress shippingAddress;
+  private ShippingAddress shippingAddresses;
   
   @Enumerated(EnumType.STRING)
   private PaymentType paymentType;
