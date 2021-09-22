@@ -1,0 +1,2 @@
+curl -v -d "@customer_add.json" -H "Content-Type: application/json" http://localhost:8080/customer/add
+

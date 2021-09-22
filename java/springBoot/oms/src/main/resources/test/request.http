@@ -1,0 +1,43 @@
+### Create
+POST http://localhost:8080/customer/add
+Content-Type: application/json
+
+{
+    "name" : "Carlos Julio Pérez Quizhpe",
+    "phone": "+593 993208265",
+    "email": "carlosjulioperez@gmail.com",
+    "shippingAddresses": []
+}
+
+### Delete
+DELETE http://localhost:8080/customer/delete/2
+
+### Get all
+GET http://localhost:8080/customer/all
+
+### Get single record
+GET http://localhost:8080/customer/find/1
+
+### Create another record and Update it
+POST http://localhost:8080/customer/add
+Content-Type: application/json
+
+{
+    "name" : "Juan Carlos Vera",
+    "phone": "+593 986622100",
+    "email": "jcvera@gmail.com",
+    "shippingAddresses": []
+}
+
+###
+PUT http://localhost:8080/customer/update/5
+Content-Type: application/json
+
+{
+    "name" : "Juan Carlos Vera Ortiz",
+    "phone": "+593 986622100",
+    "email": "jcverao@gmail.com",
+    "shippingAddresses": []
+}
+
+
