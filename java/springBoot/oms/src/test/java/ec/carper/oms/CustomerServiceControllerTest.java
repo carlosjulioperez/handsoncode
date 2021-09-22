@@ -35,4 +35,26 @@ public class CustomerServiceControllerTest extends AbstractTest {
         Customer[] list = super.mapFromJson(content, Customer[].class);
         assertTrue(list.length > 0);
     }
+
+    @Test
+    public void addCustomer() throws Exception {
+        String uri = "/customer/add";
+        Customer customer = new Customer();
+        customer.setName("James Bond");
+        customer.setPhone("+01 123456");
+        customer.setEmail("jamesbond@agents.com");
+
+        String inputJson = super.mapToJson(customer);
+        MvcResult mvcResult = mvc.perform(
+            MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson))
+            .andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(201, status);
+        String content = mvcResult.getResponse().getContentAsString();
+
+        String expectedResponse = "{\"message\":\"New Customer created successfully\"}";
+        assertEquals(content, expectedResponse);
+    }
+
 }

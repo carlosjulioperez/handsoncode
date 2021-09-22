@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ### Delete
-DELETE http://localhost:8080/customer/delete/2
+DELETE http://localhost:8080/customer/delete/6
 
 ### Get all
 GET http://localhost:8080/customer/all
