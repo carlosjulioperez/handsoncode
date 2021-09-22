@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,15 +29,16 @@ public class OrdersLine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
   
-    @JoinColumn(name = "FK_PRODUCT", nullable = false)
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_PRODUCT")
     private Product product;
     
     @NotNull
     private Integer quantity;
     
-    @ManyToOne
-    @JoinColumn(name = "FK_ORDERS", nullable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_ORDERS")
+    @JsonIgnore
     private Orders orders;
 
 }

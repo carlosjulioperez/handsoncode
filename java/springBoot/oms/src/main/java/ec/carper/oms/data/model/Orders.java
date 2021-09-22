@@ -43,12 +43,12 @@ public class Orders {
   @NotNull
   private LocalDate date;
   
-  @JoinColumn(name = "FK_CUSTOMER", nullable = false)
-  @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "FK_CUSTOMER")
   private Customer customer;
   
-  @JoinColumn(name = "FK_SHIPPING_ADDRESS", nullable = false)
-  @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "FK_SHIPPING_ADDRESS")
   private ShippingAddress shippingAddresses;
   
   @Enumerated(EnumType.STRING)

@@ -39,3 +39,32 @@ Content-Type: application/json
     "email": "jcverao@gmail.com",
     "shippingAddresses": []
 }
+
+### Create orders
+POST http://localhost:8080/order/add
+Content-Type: application/json
+
+{
+  "customer": {
+    "id": 99,
+    "email": "cjperez@gmail.com",
+    "name": "Carlos Julio",
+    "phone": "0993208265"
+  },
+  "date": "2021-09-22",
+  "lines": [
+    {
+      "id": 1,
+      "product": {
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "description": "Product 1",
+        "price": 1.5,
+        "weight": 0
+      },
+      "quantity": 10
+    }
+  ],
+  "orderNumber": 123,
+  "paymentType": "CASH",
+  "total": 10.5
+}
