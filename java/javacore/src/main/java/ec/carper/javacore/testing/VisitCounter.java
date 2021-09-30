@@ -13,15 +13,16 @@ import java.util.Optional;
 
 public class VisitCounter {
 
-    class UserStats {
+    public class UserStats {
 
         private Optional<Long> visitCount;
 
-        UserStats(Optional<Long> visitCount) {
+        public UserStats(Optional<Long> visitCount) {
+            super();
             this.visitCount = visitCount;
         }
 
-        Optional<Long> getVisitCount() {
+        public Optional<Long> getVisitCount() {
             return this.visitCount;
         }
     }
@@ -30,18 +31,18 @@ public class VisitCounter {
 
         VisitCounter v = new VisitCounter();
         Map<String, VisitCounter.UserStats> ms1 = new HashMap<String, VisitCounter.UserStats>() {{
-            put("100001", new v.UserStats(Optional.of(10L) ));
-            put("100002", new v.UserStats(Optional.of( 1L) ));
+            put("100001", v.new UserStats(Optional.of(10L) ));
+            put("100002", v.new UserStats(Optional.of( 1L) ));
         }};
         Map<String, VisitCounter.UserStats> ms2 = new HashMap<String, VisitCounter.UserStats>() {{
-            put("100001", new v.UserStats(Optional.of(10L) ));
-            put("100002", new v.UserStats(Optional.of( 1L) ));
+            put("100001", v.new UserStats(Optional.of(10L) ));
+            put("100002", v.new UserStats(Optional.of( 1L) ));
             put("100003", null);//this should not cause error
-            put("ABCDEF", new v.UserStats(Optional.of( 1L) ));//this should not cause error
+            put("ABCDEF", v.new UserStats(Optional.of( 1L) ));//this should not cause error
         }};
         Map<String, VisitCounter.UserStats> ms3 = new HashMap<String, VisitCounter.UserStats>() {{
-            put("100001", new v.UserStats(Optional.of(10L) ));
-            put("100002", new v.UserStats(Optional.of( 1L) ));
+            put("100001", v.new UserStats(Optional.of(10L) ));
+            put("100002", v.new UserStats(Optional.of( 1L) ));
         }};
         Map<String, VisitCounter.UserStats> msNull = null;
 
