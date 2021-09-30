@@ -13,37 +13,24 @@ import java.util.Optional;
 
 public class VisitCounter {
 
-    class UserStats {
-
-        private Optional<Long> visitCount;
-
-        UserStats(Optional<Long> visitCount) {
-            this.visitCount = visitCount;
-        }
-
-        Optional<Long> getVisitCount() {
-            return this.visitCount;
-        }
-    }
-    
     public static void main(String [] args){
 
         VisitCounter v = new VisitCounter();
-        Map<String, VisitCounter.UserStats> ms1 = new HashMap<String, VisitCounter.UserStats>() {{
-            put("100001", new v.UserStats(Optional.of(10L) ));
-            put("100002", new v.UserStats(Optional.of( 1L) ));
+        Map<String, UserStats> ms1 = new HashMap<String, UserStats>() {{
+            put("100001", new UserStats(Optional.of(10L) ));
+            put("100002", new UserStats(Optional.of( 1L) ));
         }};
-        Map<String, VisitCounter.UserStats> ms2 = new HashMap<String, VisitCounter.UserStats>() {{
-            put("100001", new v.UserStats(Optional.of(10L) ));
-            put("100002", new v.UserStats(Optional.of( 1L) ));
+        Map<String, UserStats> ms2 = new HashMap<String, UserStats>() {{
+            put("100001", new UserStats(Optional.of(10L) ));
+            put("100002", new UserStats(Optional.of( 1L) ));
             put("100003", null);//this should not cause error
-            put("ABCDEF", new v.UserStats(Optional.of( 1L) ));//this should not cause error
+            put("ABCDEF", new UserStats(Optional.of( 1L) ));//this should not cause error
         }};
-        Map<String, VisitCounter.UserStats> ms3 = new HashMap<String, VisitCounter.UserStats>() {{
-            put("100001", new v.UserStats(Optional.of(10L) ));
-            put("100002", new v.UserStats(Optional.of( 1L) ));
+        Map<String, UserStats> ms3 = new HashMap<String, UserStats>() {{
+            put("100001", new UserStats(Optional.of(10L) ));
+            put("100002", new UserStats(Optional.of( 1L) ));
         }};
-        Map<String, VisitCounter.UserStats> msNull = null;
+        Map<String, UserStats> msNull = null;
 
         Map<Long, Long> result = v.count(ms1, ms2, ms3,msNull);
         System.out.println(result);
@@ -72,6 +59,7 @@ public class VisitCounter {
         }
         return true;
     }
+    
     boolean isValiduserStats(UserStats stat){
         if (Objects.isNull(stat)) return false;  //null filter
         if (!stat.getVisitCount().isPresent()) return false; // null value filter

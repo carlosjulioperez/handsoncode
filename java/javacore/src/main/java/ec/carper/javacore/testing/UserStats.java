@@ -14,14 +14,4 @@ public class UserStats {
     public Optional<Long> getVisitCount() {
         return this.visitCount;
     }
-
-    // private Long visitCount;
-
-    // public UserStats(Long visitCount) {
-    //     this.visitCount = visitCount;
-    // }
-
-    // public Long getVisitCount() {
-    //     return this.visitCount;
-    // }
 }
