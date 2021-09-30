@@ -32,7 +32,7 @@ public class VisitCounter {
         }};
         Map<String, UserStats> msNull = null;
 
-        Map<Long, Long> result = v.count(ms1, ms2, ms3,msNull);
+        Map<Long, Long> result = v.count(ms1, ms2, ms3, msNull);
         System.out.println(result);
 
     }
@@ -65,5 +65,4 @@ public class VisitCounter {
         if (!stat.getVisitCount().isPresent()) return false; // null value filter
         return true;
     }    
-
 }
