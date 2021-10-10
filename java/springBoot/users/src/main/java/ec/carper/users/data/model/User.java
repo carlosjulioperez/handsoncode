@@ -1,8 +1,10 @@
 package ec.carper.users.data.model;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +45,10 @@ public class User {
 
     private Boolean isactive;
 
-    @OneToMany(mappedBy = "user")
-    private List<Phone> phones;
+    // @OneToMany(mappedBy = "user")
+    // private List<Phone> phones;
     
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Phone> phones = new HashSet<>();
+
 }

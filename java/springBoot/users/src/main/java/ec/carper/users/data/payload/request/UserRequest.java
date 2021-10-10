@@ -1,6 +1,7 @@
 package ec.carper.users.data.payload.request;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import ec.carper.users.data.model.Phone;
 import lombok.Getter;
@@ -13,6 +14,7 @@ public class UserRequest {
     private String name;
     private String email;
     private String password;
-    private List<Phone> phones;
+    //private List<Phone> phones;
+    private Set<Phone> phones = new HashSet<>();
     
 }
