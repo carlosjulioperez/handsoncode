@@ -51,6 +51,10 @@ public class User {
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
+        user.setCreated(LocalDate.now());
+        user.setLastlogin(LocalDate.now());
+        user.setIsactive(true);
+
         user.setPhones(Phone.from(userDto.getPhones(), user));
 
         return user;

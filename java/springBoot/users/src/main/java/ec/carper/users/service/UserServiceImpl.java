@@ -19,8 +19,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public MessageResponse createUser(UserDto userDto) {
-        User user = User.from(userDto);
-        userRepository.save(user);
+        userRepository.save(User.from(userDto));
         return new MessageResponse("New User created succesfully");
     }
 

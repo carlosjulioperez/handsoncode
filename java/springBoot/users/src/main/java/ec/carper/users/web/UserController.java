@@ -52,10 +52,10 @@ public class UserController {
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{id}")
-    public Optional<User> updateUser( @PathVariable Long id, @RequestBody UserDto userDto){
-        return userService.updateUser(id, userDto);
-    }
+    // @PutMapping("/update/{id}")
+    // public Optional<User> updateUser( @PathVariable Long id, @RequestBody UserDto userDto){
+    //     return userService.updateUser(id, userDto);
+    // }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable("id") Long id){
