@@ -1,5 +1,8 @@
 package ec.carper.users.data.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +18,7 @@ import lombok.Data;
 public class Phone {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     private Long number;
@@ -28,4 +31,16 @@ public class Phone {
     @JsonIgnore
     private User user;
  
+    public static List<Phone> from(List<Phone> phones, User user) {
+        List<Phone> list = new ArrayList<>();
+        for (Phone phone : phones) {
+            Phone aPhone = new Phone();
+            aPhone.setNumber(phone.getNumber());
+            aPhone.setCitycode(phone.getCitycode());
+            aPhone.setCountrycode(phone.getCountrycode());
+            aPhone.setUser(user);
+            list.add(aPhone);
+        }
+        return list;
+    }
 }

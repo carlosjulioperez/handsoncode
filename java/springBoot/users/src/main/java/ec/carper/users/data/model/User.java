@@ -22,7 +22,7 @@ import lombok.Data;
 public class User {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -51,17 +51,7 @@ public class User {
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
-
-        List<Phone> phones = new ArrayList<>();
-        for (Phone phone : userDto.getPhones()) {
-            Phone aPhone = new Phone();
-            aPhone.setNumber(phone.getNumber());
-            aPhone.setCitycode(phone.getCitycode());
-            aPhone.setCountrycode(phone.getCountrycode());
-            aPhone.setUser(user);
-            phones.add(aPhone);
-        }
-        user.setPhones(phones);
+        user.setPhones(Phone.from(userDto.getPhones(), user));
 
         return user;
     }
