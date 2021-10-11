@@ -1,7 +1,6 @@
 package ec.carper.users.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -16,8 +15,7 @@ import ec.carper.users.data.response.MessageResponse;
 @Component
 public interface UserService {
     
-   MessageResponse createUser(UserDto customerRequest);
-   Optional <User> updateUser(Long customerId, UserDto customerRequest);
+   MessageResponse createUser(UserDto userDto);
    void deleteUser (Long customerId);
    User getAsSinglUser(Long customerId);
    List <User> getAllUser();
