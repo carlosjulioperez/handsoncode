@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
+import ec.carper.users.data.dto.UserDto;
 import ec.carper.users.data.model.User;
-import ec.carper.users.data.payload.request.UserRequest;
-import ec.carper.users.data.payload.response.MessageResponse;
+import ec.carper.users.data.response.MessageResponse;
 
 /**
  * @Component annotation is a shorthand for the @Bean annotation that register this
@@ -16,8 +16,8 @@ import ec.carper.users.data.payload.response.MessageResponse;
 @Component
 public interface UserService {
     
-   MessageResponse createUser(UserRequest customerRequest);
-   Optional <User> updateUser(Long customerId, UserRequest customerRequest);
+   MessageResponse createUser(UserDto customerRequest);
+   Optional <User> updateUser(Long customerId, UserDto customerRequest);
    void deleteUser (Long customerId);
    User getAsSinglUser(Long customerId);
    List <User> getAllUser();

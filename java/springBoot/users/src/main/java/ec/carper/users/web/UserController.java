@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ec.carper.users.data.dto.UserDto;
 import ec.carper.users.data.model.User;
-import ec.carper.users.data.payload.request.UserRequest;
-import ec.carper.users.data.payload.response.MessageResponse;
+import ec.carper.users.data.response.MessageResponse;
 import ec.carper.users.service.UserService;
 import io.swagger.annotations.ApiResponses;
 
@@ -47,14 +47,14 @@ public class UserController {
     }
     
     @PostMapping("/add")
-    public ResponseEntity<MessageResponse> addUser( @RequestBody UserRequest userRequest){
-        MessageResponse newUser = userService.createUser(userRequest);
+    public ResponseEntity<MessageResponse> addUser( @RequestBody UserDto userDto){
+        MessageResponse newUser = userService.createUser(userDto);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
-    public Optional<User> updateUser( @PathVariable Long id, @RequestBody UserRequest userRequest){
-        return userService.updateUser(id, userRequest);
+    public Optional<User> updateUser( @PathVariable Long id, @RequestBody UserDto userDto){
+        return userService.updateUser(id, userDto);
     }
 
     @DeleteMapping("/delete/{id}")

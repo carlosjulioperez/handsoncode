@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ec.carper.users.data.dto.UserDto;
 import ec.carper.users.data.model.User;
-import ec.carper.users.data.payload.request.UserRequest;
-import ec.carper.users.data.payload.response.MessageResponse;
 import ec.carper.users.data.repository.UserRepository;
+import ec.carper.users.data.response.MessageResponse;
 import ec.carper.users.exception.ResourceNotFoundException;
 
 @Service
@@ -19,28 +19,34 @@ public class UserServiceImpl implements UserService{
     UserRepository userRepository;
 
     @Override
-    public MessageResponse createUser(UserRequest userRequest) {
-        User user = new User();
-        user.setName(userRequest.getName());
-        user.setEmail(userRequest.getEmail());
-        user.setPassword(userRequest.getPassword());
-        user.setPhones(userRequest.getPhones());
+    public MessageResponse createUser(UserDto userDto) {
+        User user = User.from(userDto);
         userRepository.save(user);
         return new MessageResponse("New User created succesfully");
     }
 
     @Override
-    public Optional<User> updateUser(Long userId, UserRequest userRequest) throws ResourceNotFoundException{
+    public Optional<User> updateUser(Long userId, UserDto userDto) throws ResourceNotFoundException{
         Optional<User> user = userRepository.findById(userId);
 
         // https://stackoverflow.com/questions/56290161/the-method-isempty-is-undefined-for-the-type-optional
         if ( !user.isPresent() )
             throw new ResourceNotFoundException("User", "id", userId);
         else{
-            user.get().setName(userRequest.getName());
-            user.get().setEmail(userRequest.getEmail());
-            user.get().setPassword(userRequest.getPassword());
-            user.get().setPhones(userRequest.getPhones());
+            user.get().setName(userDto.getName());
+            user.get().setEmail(userDto.getEmail());
+            user.get().setPassword(userDto.getPassword());
+          
+            // List<Phone>phones = new ArrayList<>();
+            // for (Phone phone: userDto.getPhones()){
+            //     Phone aPhone = new Phone();
+            //     aPhone.setNumber(phone.getNumber());
+            //     aPhone.setCitycode(phone.getCitycode());
+            //     aPhone.setCountrycode(phone.getCountrycode());
+            //     aPhone.setUser(user.get());
+            //     phones.add(aPhone);
+            // }
+            // user.get().setPhones(phones);
             userRepository.save(user.get());
         }
         return user;

@@ -5,15 +5,20 @@ POST http://localhost:8080/user/add
 Content-Type: application/json
 
 {
-  "email": "cjperez1@nisum.com",
+  "email": "cjperez@nisum.com",
   "name": "Carlos Julio Pérez",
   "password": "secret",
   "phones": [
     {
-      "id": 1,
       "citycode": 1,
       "countrycode": 57,
       "number": 123123
     }
   ]
 }
+
+### Get Users
+GET http://localhost:8080/user/all
+
+### Get single record
+GET http://localhost:8080/user/find/1

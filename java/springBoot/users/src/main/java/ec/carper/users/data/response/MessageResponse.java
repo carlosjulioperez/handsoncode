@@ -1,4 +1,4 @@
-package ec.carper.users.data.payload.response;
+package ec.carper.users.data.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
