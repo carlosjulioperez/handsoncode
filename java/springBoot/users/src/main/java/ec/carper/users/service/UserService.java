@@ -4,9 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ec.carper.users.data.dto.UserDto;
-import ec.carper.users.data.model.User;
-import ec.carper.users.data.response.MessageResponse;
+import ec.carper.users.dto.UserDto;
+import ec.carper.users.model.User;
 
 /**
  * @Component annotation is a shorthand for the @Bean annotation that register this

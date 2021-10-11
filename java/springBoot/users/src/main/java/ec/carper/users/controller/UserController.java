@@ -1,4 +1,4 @@
-package ec.carper.users.web;
+package ec.carper.users.controller;
 
 import java.util.List;
 
@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ec.carper.users.data.dto.UserDto;
-import ec.carper.users.data.model.User;
-import ec.carper.users.data.response.MessageResponse;
+import ec.carper.users.dto.UserDto;
+import ec.carper.users.model.User;
 import ec.carper.users.service.UserService;
 import io.swagger.annotations.ApiResponses;
 
@@ -32,6 +31,12 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @PostMapping("/add")
+    public ResponseEntity<User> addUser( @RequestBody UserDto userDto){
+        User user = userService.createUser(userDto);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers(){
         List<User> users = userService.getAllUser();
@@ -44,12 +49,6 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
     
-    @PostMapping("/add")
-    public ResponseEntity<User> addUser( @RequestBody UserDto userDto){
-        User user = userService.createUser(userDto);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
-    }
-
     // @PutMapping("/update/{id}")
     // public Optional<User> updateUser( @PathVariable Long id, @RequestBody UserDto userDto){
     //     return userService.updateUser(id, userDto);

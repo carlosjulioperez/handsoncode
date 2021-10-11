@@ -1,9 +1,9 @@
-package ec.carper.users.data.repository;
+package ec.carper.users.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import ec.carper.users.data.model.User;
+import ec.carper.users.model.User;
 
 /**
  * @Repository makes the interface a bean as @Component annotation.

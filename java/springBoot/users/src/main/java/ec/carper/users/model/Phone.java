@@ -1,4 +1,4 @@
-package ec.carper.users.data.model;
+package ec.carper.users.model;
 
 import java.util.ArrayList;
 import java.util.List;

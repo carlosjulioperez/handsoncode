@@ -1,9 +1,9 @@
-package ec.carper.users.data.dto;
+package ec.carper.users.dto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ec.carper.users.data.model.Phone;
+import ec.carper.users.model.Phone;
 import lombok.Data;
 
 @Data

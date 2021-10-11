@@ -1,4 +1,4 @@
-package ec.carper.users.data.model;
+package ec.carper.users.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
-import ec.carper.users.data.dto.UserDto;
+import ec.carper.users.dto.UserDto;
 import lombok.Data;
 @Entity
 @Data
