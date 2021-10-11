@@ -15,7 +15,7 @@ import ec.carper.users.data.response.MessageResponse;
 @Component
 public interface UserService {
     
-   MessageResponse createUser(UserDto userDto);
+   User createUser(UserDto userDto);
    void deleteUser (Long customerId);
    User getAsSinglUser(Long customerId);
    List <User> getAllUser();
