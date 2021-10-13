@@ -1,13 +1,24 @@
 # Project User
 
-# Generating fatJar
+## Source code:
+`https://github.com/carlosjulioperez/handsoncode/tree/main/java/springBoot/users`
+
+## Download the application
+* Visit `https://downgit.github.io`
+* Input the source code URL.
+* Download as a zip file.
+
+## Generating fatJar
 $ ./gradlew uberJar
 
 ## Starting service
-./gradlew bootRun
+$ ./gradlew bootRun
+
+## Executing test
+$ ./gradlew test
 
 ## Packaging app
-./gradlew bootJar
+$ ./gradlew bootJar
 
 ## Running H2 Console
 `http://localhost:8080/h2`
