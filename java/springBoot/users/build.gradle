@@ -26,6 +26,7 @@ dependencies {
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 
 	implementation 'commons-io:commons-io:2.6'
+	implementation 'commons-validator:commons-validator:1.7'
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
@@ -38,6 +39,8 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+	// Testing exclude
+	//exclude '**/UserServiceControllerTest.class'
 }
 
 tasks.register('uberJar', Jar) {

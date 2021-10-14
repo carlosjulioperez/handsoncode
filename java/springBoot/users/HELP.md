@@ -17,6 +17,10 @@ $ ./gradlew bootRun
 ## Executing test
 $ ./gradlew test
 
+## Executing specific test
+$ ./gradlew :profile:testDebug --tests "*my_profile*"
+$ ./gradlew :users:EmailValidationUnitTest --tests "*testUsingEmailValidator*"
+
 ## Packaging app
 $ ./gradlew bootJar
 
