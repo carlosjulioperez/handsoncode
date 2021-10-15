@@ -10,4 +10,8 @@ import ec.carper.users.model.User;
  * Extending of JpaRepository we inherit the save, findAll, findById methods.
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{}
+public interface UserRepository extends JpaRepository<User, Long>{
+
+    Object findByEmail(String email);
+
+}

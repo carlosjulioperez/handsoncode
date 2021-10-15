@@ -12,8 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 
 import ec.carper.users.dto.UserDto;
 import lombok.Data;
@@ -25,11 +23,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     private String name;
     
-    // @Email
-    // @Column(unique=true)
+    @Column(unique= true)
     private String email;
     
     private String password;

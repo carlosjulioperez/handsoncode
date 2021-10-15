@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import ec.carper.users.dto.UserDto;
 import ec.carper.users.model.User;
+import ec.carper.users.response.MessageResponse;
 
 /**
  * @Component annotation is a shorthand for the @Bean annotation that register this
@@ -14,7 +15,8 @@ import ec.carper.users.model.User;
 @Component
 public interface UserService {
     
-   User createUser(UserDto userDto);
+   //User createUser(UserDto userDto);
+   MessageResponse createUser(UserDto userDto);
    void deleteUser (Long customerId);
    User getAsSinglUser(Long customerId);
    List <User> getAllUser();

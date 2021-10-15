@@ -3,8 +3,8 @@ package ec.carper.users.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 import ec.carper.users.model.Phone;
 import lombok.Data;
@@ -13,10 +13,11 @@ import lombok.Data;
 public class UserDto {
     
     private Long id;
+    
+    @NotNull
     private String name;
     
     @Email
-    @Column(unique=true)
     private String email;
     
     private String password;

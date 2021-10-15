@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ec.carper.users.dto.UserDto;
 import ec.carper.users.model.User;
+import ec.carper.users.response.MessageResponse;
 import ec.carper.users.service.UserService;
 import io.swagger.annotations.ApiResponses;
 
@@ -34,9 +35,9 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/add")
-    public ResponseEntity<User> addUser(@Valid @RequestBody UserDto userDto){
-        User user = userService.createUser(userDto);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    public ResponseEntity<MessageResponse> addUser(@Valid @RequestBody UserDto userDto){
+        MessageResponse messageResponse = userService.createUser(userDto);
+        return new ResponseEntity<>(messageResponse, HttpStatus.CREATED);
     }
 
     @GetMapping("/all")
