@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ec.carper.users.dto.UserDto;
-import ec.carper.users.exception.MessageException;
 import ec.carper.users.exception.ResourceNotFoundException;
 import ec.carper.users.model.User;
 import ec.carper.users.repository.UserRepository;
