@@ -2,6 +2,8 @@ package ec.carper.users.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +34,7 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/add")
-    public ResponseEntity<User> addUser( @RequestBody UserDto userDto){
+    public ResponseEntity<User> addUser(@Valid @RequestBody UserDto userDto){
         User user = userService.createUser(userDto);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }

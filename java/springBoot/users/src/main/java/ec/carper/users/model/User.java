@@ -28,8 +28,8 @@ public class User {
     @NotNull
     private String name;
     
-    @Email
-    @Column(unique=true)
+    // @Email
+    // @Column(unique=true)
     private String email;
     
     private String password;
