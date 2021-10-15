@@ -5,13 +5,13 @@ POST http://localhost:8080/user/add
 Content-Type: application/json
 
 {
-  "email": "carlosjulioperez@nisum.com",
-  "name": "Carlos Julio Pérez Quizhpe",
-  "password": "123123123",
+  "email": "cjperez@nisum.com",
+  "name": "Carlos Julio Pérez",
+  "password": "4Z1vvgy-002",
   "phones": [
     {
-      "citycode": 1,
-      "countrycode": 57,
+      "citycode": 2,
+      "countrycode": 58,
       "number": 123123
     }
   ]
