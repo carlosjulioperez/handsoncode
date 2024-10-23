@@ -1,16 +1,16 @@
 package main
 
 import (
-  "fmt"
+	"fmt"
 )
 
 func FibonacciRecursion(n int) int {
-  if n <= 1 {
-    return n
-  }
-  return FibonacciRecursion(n-1) + FibonacciRecursion(n-2)
+	if n <= 1 {
+		return n
+	}
+	return FibonacciRecursion(n-1) + FibonacciRecursion(n-2)
 }
 
 func main() {
-  fmt.Print( FibonacciRecursion(40) )
+	fmt.Print(FibonacciRecursion(40))
 }

@@ -3,4 +3,4 @@ proc fibonacci(n: int): int =
     return n
   return fibonacci(n-1) + fibonacci(n-2) 
 
-echo fibonacci 40
+echo fibonacci 8
